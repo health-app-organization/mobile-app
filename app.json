@@ -12,16 +12,39 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true, 
+      "imageCompression": 1,
+      "imageFormats": [
+        "png",
+        "jpg",
+        "svg"
+      ]
+
+
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "imageCompression": 1,
+      "imageFormats": [
+        "png",
+        "jpg",
+        "svg"
+      ]
     },
+    
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      "expo-font",
+      "expo-asset"
+    ],
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+
   }
 }

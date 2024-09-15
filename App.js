@@ -2,19 +2,37 @@ import { NavigationContainer } from "@react-navigation/native";
 import "react-native-gesture-handler";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import {ActivityIndicator, StyleSheet, Text, View } from "react-native";
 import { PaperProvider } from "react-native-paper";
 import StackWrapper from "./routers/stackrouter";
 import { createStackNavigator } from "@react-navigation/stack";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useFonts } from "expo-font";
+import * as SplashScreen from 'expo-splash-screen';
+
 
 
 export default function App() {
-  
+  const [fontsLoaded] = useFonts({
+    'TTFirsNeue': require('./assets/fonts/TTFirsNeueTrialVarRoman.ttf'),
+    'TTFirsNeueMedium':require('./assets/fonts/TTFirsNeueTrialMedium.ttf')
+   
+  });
+  const onLayoutRootView = useCallback(async () => {
+    if (fontsLoaded) {
+      await SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
+
+  if (!fontsLoaded) {
+    return <ActivityIndicator />;
+  }
+  const Stack=createStackNavigator()
 
   return (
-    <PaperProvider>
+    <View className="h-full w-full" onLayout={onLayoutRootView}>
+       <PaperProvider>
       <GestureHandlerRootView>
         <NavigationContainer>
           <Stack.Navigator screenOptions={{ headerShown: false }}>
@@ -28,6 +46,9 @@ export default function App() {
         </NavigationContainer>
       </GestureHandlerRootView>
     </PaperProvider>
+
+    </View>
+   
   );
 }
 
