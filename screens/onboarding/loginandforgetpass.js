@@ -45,7 +45,14 @@ export const Login = () => {
     };
     const handlesubmit = () => {
         console.log(email, password);
+        handleToDashboard();
     };
+    const handleToDashboard = () => {
+        // IF first time login
+        // THEN redirect to id verification
+        // ELSE navigate to dashboard
+        navigation.navigate("dashboard")
+    }
     const handleToSignup = () => {
         navigation.navigate("signup");
     };
@@ -301,7 +308,7 @@ export const Otpverify = () => {
                         ))}
                     </Pressable>
                     <View className="h-3" />
-                    <Text style={[Textstyles.text_xsmall]} className="text-center">Didn’t receive code? <TouchableOpacity><Text style={[{color:primarycolor}]}>Resend</Text></TouchableOpacity></Text>
+                    <Text style={[Textstyles.text_xsmall]} className="text-center">Didn’t receive code? <TouchableOpacity><Text style={[{ color: primarycolor }]}>Resend</Text></TouchableOpacity></Text>
                     <View className="h-8" />
                     <CustomButton
                         backgroundColor={primarycolor}
