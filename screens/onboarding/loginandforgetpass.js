@@ -43,8 +43,6 @@ export const Login = () => {
     const handleShowPassword = () => {
         setShowPassword(!showPassword);
     };
-    const handlesubmit = () => { 
-        navigation.navigate("order");
 
     const handlesubmit = () => {
         console.log(email, password);
