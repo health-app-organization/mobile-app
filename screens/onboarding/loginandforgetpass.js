@@ -45,6 +45,7 @@ export const Login = () => {
     };
     const handlesubmit = () => {
         console.log(email, password);
+        navigation.navigate('dashboardhome')
     };
     const handleToSignup = () => {
         navigation.navigate("signup");

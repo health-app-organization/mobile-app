@@ -10,7 +10,7 @@ import { useCallback, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
-import DashbaordScreen from "./routers/dashboardScreen";
+import DashboardScreen from "./routers/dashboardScreen";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -42,7 +42,7 @@ export default function App() {
             </Stack.Navigator>
             <Stack.Screen
             name="dashboardscreen"
-            component={DashbaordScreen}
+            component={DashboardScreen}
             />
           </NavigationContainer>
         </GestureHandlerRootView>
