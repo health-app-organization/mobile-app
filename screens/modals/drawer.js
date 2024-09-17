@@ -18,7 +18,7 @@ export const Drawer = ({ navigateTo, buttonText, text, title }) => {
   const navigation = useNavigation();
   const handlePress = () => {
     console.log("to " + navigateTo);
-    // navigation.navigate(navigateTo);
+    navigation.navigate(navigateTo);
   };
   return (
     <>

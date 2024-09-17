@@ -11,7 +11,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import Order from "./screens/dashboard/order";
-import Dashbaord from "./screens/dashboard/dashboard";
+import Dashboard from "./screens/dashboard/dashboard";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -40,25 +40,8 @@ export default function App() {
                 name="onboarding"
                 component={StackWrapper}
               />
-              <Stack.Screen
-               options={{
-                gestureEnabled: true,
-                gestureDirection: Platform.OS === "ios" ? "horizontal" : Platform.OS === "android" && "vertical",
-              }}
-                name="order"
-                component={Order}
-              />
             </Stack.Navigator>
-            <Stack.Screen
-             options={{
-              gestureEnabled: true,
-              gestureDirection: Platform.OS === "ios" ? "horizontal" : Platform.OS === "android" && "vertical",
-            }}
-            name="dashboardhome"
-            component={Dashbaord}
-           
-          
-            />
+     
           </NavigationContainer>
         </GestureHandlerRootView>
       </PaperProvider>

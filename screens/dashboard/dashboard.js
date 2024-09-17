@@ -1,7 +1,7 @@
 import { Image, Text, View } from "react-native"
 import { height, width } from "../../constants/mobileDimensions"
 
-const Dashbaord=()=>{
+const Dashboard=()=>{
     return(
         <>
         
@@ -26,4 +26,4 @@ const Dashbaord=()=>{
     )
 
 }
-export default Dashbaord
+export default Dashboard
