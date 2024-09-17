@@ -37,13 +37,17 @@ import { Drawer } from "../modals/drawer";
 
 export const Login = () => {
     const navigation = useNavigation();
-    const [email, setemail] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
     const handleShowPassword = () => {
         setShowPassword(!showPassword);
     };
     const handlesubmit = () => { 
         navigation.navigate("order");
+
+    const handlesubmit = () => {
+        console.log(email, password);
     };
     const handleToSignup = () => {
         navigation.navigate("signup");
@@ -69,7 +73,7 @@ export const Login = () => {
                             placeholder={"Email"}
                             placeholderTextColor={greycolortwo}
                             sideicon={<Feather name="mail" size={20} color={primarycolortwo} />}
-                            onChange={(text) => setemail(text)}
+                            onChange={(text) => setEmail(text)}
                         />
                         <View className="h-3" />
                         <CustomTextInput
@@ -87,7 +91,7 @@ export const Login = () => {
                                     />
                                 </TouchableOpacity>
                             }
-                            onChange={(text) => setemail(text)}
+                            onChange={(text) => setPassword(text)}
                             secureTextEntry={!showPassword}
                         />
                         <TouchableOpacity onPress={() => navigation.navigate("forgotpass")}>
@@ -163,8 +167,9 @@ export const Login = () => {
 };
 export const Forgotpass = () => {
     const navigation = useNavigation();
-    const [email, setemail] = useState("");
+    const [email, setEmail] = useState("");
     const handlesubmit = () => {
+        console.log(email);
         navigation.navigate("otpverify");
     };
     return (
@@ -188,7 +193,7 @@ export const Forgotpass = () => {
                         placeholder={"Email"}
                         placeholderTextColor={greycolortwo}
                         sideicon={<Feather name="mail" size={20} color={primarycolortwo} />}
-                        onChange={(text) => setemail(text)}
+                        onChange={(text) => setEmail(text)}
                     />
 
                     <View className="h-8" />
@@ -204,7 +209,7 @@ export const Forgotpass = () => {
     );
 };
 export const Otpverify = () => {
-    const [email, setemail] = useState("yomzeew@gmail.com");
+    const email = "yomzeew@gmail.com";
     const [showkeyboard, setshowkeyboard] = useState(false);
     const [otpArray, setotpArray] = useState(["", "", "", ""]); // OTP array for 4 digits
     const [errorMsg, seterrorMsg] = useState("");
@@ -256,6 +261,7 @@ export const Otpverify = () => {
         }
     };
     const handlesubmit = () => {
+        console.log(otpArray);
         navigation.navigate("confirmpass");
     };
 
@@ -319,7 +325,8 @@ export const Otpverify = () => {
     );
 };
 export const ConfirmPassword = () => {
-    const [email, setemail] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
     const navigation = useNavigation("");
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -334,6 +341,7 @@ export const ConfirmPassword = () => {
         navigation.navigate("signup");
     }
     const handlesubmit = () => {
+        console.log(password, confirmPassword);
         setShowDrawer(true);
         translateY.value = setShowDrawer ? withSpring(300) : withSpring(600);
     }
@@ -389,7 +397,7 @@ export const ConfirmPassword = () => {
                                     />
                                 </TouchableOpacity>
                             }
-                            onChange={(text) => setEmail(text)}
+                            onChange={(text) => setPassword(text)}
                             secureTextEntry={!showPassword}
                         />
                         <View className="h-3" />
@@ -408,7 +416,7 @@ export const ConfirmPassword = () => {
                                     />
                                 </TouchableOpacity>
                             }
-                            onChange={(text) => setEmail(text)}
+                            onChange={(text) => setConfirmPassword(text)}
                             secureTextEntry={!showConfirmPassword}
                         />
                     </View>

@@ -12,6 +12,7 @@ import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import Order from "./screens/dashboard/order";
 
+
 export default function App() {
   const [fontsLoaded] = useFonts({
     TTFirsNeue: require("./assets/fonts/TTFirsNeueTrialVarRoman.ttf"),
@@ -44,6 +45,10 @@ export default function App() {
                 component={Order}
               />
             </Stack.Navigator>
+            <Stack.Screen
+            name="dashboardscreen"
+            component={DashbaordScreen}
+            />
           </NavigationContainer>
         </GestureHandlerRootView>
       </PaperProvider>
