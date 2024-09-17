@@ -11,6 +11,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import DashbaordScreen from "./routers/dashboardScreen";
+import VerificationFlowStack from "./screens/verification/verification-stack";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -42,6 +43,10 @@ export default function App() {
               <Stack.Screen
                 name="dashboardscreen"
                 component={DashbaordScreen}
+              />
+              <Stack.Screen
+                name="verification"
+                component={VerificationFlowStack}
               />
             </Stack.Navigator>
           </NavigationContainer>
