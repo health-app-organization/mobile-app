@@ -256,6 +256,8 @@ export const Otpverify = () => {
                             </View>
                         ))}
                     </Pressable>
+                    <View className="h-3" />
+                    <Text style={[Textstyles.text_xsmall]} className="text-center">Didn’t receive code? <TouchableOpacity><Text style={[{color:primarycolor}]}>Resend</Text></TouchableOpacity></Text>
                     <View className="h-8" />
                     <CustomButton
                         backgroundColor={primarycolor}
@@ -279,7 +281,7 @@ export const ConfirmPassword=()=>{
     const [email,setemail]=useState('')
     const navigation=useNavigation('')
     const handlesubmit=()=>{
-        
+
     }
 
     return(
@@ -321,61 +323,13 @@ export const ConfirmPassword=()=>{
                     <View className="h-8" />
                     <CustomButton
                         backgroundColor={primarycolor}
-                        Textname={'Login'}
+                        Textname={'Send'}
                         TextColor={whitecolor}
                         onPress={handlesubmit}
                     />
 
                 </View>
 
-                <View className="items-center">
-                    <View className="flex-row items-center justify-center">
-                        <MyDivider
-                            width={96}
-                            Color={greycolorthree}
-                        />
-                        <View className="w-3" />
-                        <Text style={[Textstyles.text_button]}>
-                            Or sign in with
-                        </Text>
-                        <View className="w-3" />
-                        <MyDivider
-                            width={96}
-                            Color={greycolorthree}
-                        />
-
-                    </View>
-                    <View className="h-3" />
-                    <View className="flex-row">
-                        <TouchableOpacity style={{ height: 30, width: 30 }} className="rounded-full border flex justify-center items-center">
-                            <Google
-                                width={24} height={24}
-                            />
-                        </TouchableOpacity>
-                        <View className="w-3" />
-                        <TouchableOpacity style={{ height: 30, width: 30 }} className="rounded-full border flex justify-center items-center">
-                            <Facebook
-                                width={24} height={24}
-                            />
-                        </TouchableOpacity>
-                        <View className="w-3" />
-                        <TouchableOpacity style={{ height: 30, width: 30 }} className="rounded-full border flex justify-center items-center">
-                            <Apple
-                                width={24} height={24}
-                            />
-                        </TouchableOpacity>
-
-                    </View>
-                    <View className="h-8" />
-                    <View>
-                        <Text className="flex-row items-center justify-center" style={[Textstyles.text_small, { color: primarycolortwo }]}>
-                            I don't have an account? <TouchableOpacity><Text style={[Textstyles.text_small, { color: primarycolor }]}>Sign Up</Text></TouchableOpacity>
-                        </Text>
-                    </View>
-
-
-
-                </View>
 
 
 
