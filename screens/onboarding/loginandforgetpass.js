@@ -9,6 +9,7 @@ import {
     MyDivider,
 } from "../mycomponents/mycomponent";
 import {
+    greycolorfive,
     greycolorthree,
     greycolortwo,
     primarycolor,
@@ -31,6 +32,8 @@ import Animated, {
     useSharedValue,
     withSpring,
 } from "react-native-reanimated";
+import { height } from "../../constants/mobileDimensions";
+import { Drawer } from "../modals/drawer";
 
 export const Login = () => {
     const navigation = useNavigation();
@@ -322,13 +325,36 @@ export const ConfirmPassword = () => {
     const handleShowConfirmPassword = () => {
         setShowConfirmPassword(!showConfirmPassword);
     };
+    const [showDrawer, setShowDrawer] = useState(false);
     const handleToSignup = () => {
         navigation.navigate("signup");
     }
-    const handlesubmit = () => { };
+    const handlesubmit = () => {
+        setShowDrawer(true);
+        translateY.value = setShowDrawer ? withSpring(300) : withSpring(600);
+    }
+    const translateY = useSharedValue(600);
+    const animatedStyles = useAnimatedStyle(() => ({
+        transform: [{ translateY: translateY.value }],
+    }));
 
     return (
         <>
+            {showDrawer && (
+                <>
+                    <View style={{ height: height, backgroundColor: greycolorfive }} className="w-full absolute z-50 opacity-70" />
+                    <View style={{ zIndex: 12000 }} className="bottom-0 absolute">
+                        <Animated.View style={[animatedStyles]}>
+                            <Drawer
+                                title="Password Changed"
+                                text="Password changed successfully, you can login again with a new password"
+                                buttonText="Login"
+                                navigateTo="login"
+                            />
+                        </Animated.View>
+                    </View>
+                </>
+            )}
             <View className="h-screen w-full px-5 py-[88px]">
                 <View>
                     <View>

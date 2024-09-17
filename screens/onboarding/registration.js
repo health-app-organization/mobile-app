@@ -1,25 +1,49 @@
-import { Image, ScrollView, Text, TouchableOpacity, View, Dimensions } from "react-native";
+import { Image, Text, TouchableOpacity, View } from "react-native";
 import Google from "../../assets/images/google.svg";
 import Facebook from "../../assets/images/facebook.svg";
 import Apple from "../../assets/images/apple.svg";
 import { Textstyles } from "../../constants/fontsize";
-import { greycolorthree, greycolortwo, primarycolor, primarycolortwo, whitecolor } from "../../constants/color";
+import {
+    greycolorfive,
+    greycolorthree,
+    greycolortwo,
+    primarycolor,
+    primarycolortwo,
+    whitecolor,
+} from "../../constants/color";
 import { useNavigation } from "@react-navigation/native";
-import { CustomButton, CustomSelect, CustomSelectRadioBox, CustomTextInput, Drawer, MyDivider } from "../mycomponents/mycomponent";
-import { Feather, FontAwesome5, Ionicons, MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
-import { useState } from 'react';
-import Animated, { useAnimatedStyle, useSharedValue } from "react-native-reanimated";
+import {
+    CustomButton,
+    CustomSelect,
+    CustomSelectRadioBox,
+    CustomTextInput,
+    MyDivider,
+} from "../mycomponents/mycomponent";
+import {
+    Feather,
+    FontAwesome5,
+    Ionicons,
+    MaterialCommunityIcons,
+    MaterialIcons,
+} from "@expo/vector-icons";
+import { useState } from "react";
+import Animated, {
+    useAnimatedStyle,
+    useSharedValue,
+    withSpring,
+} from "react-native-reanimated";
+import { height } from "../../constants/mobileDimensions";
+import { Drawer } from "../modals/drawer";
 
 export default function Registration() {
-    const { height } = Dimensions.get('window');
     const navigation = useNavigation();
     const [currentStep, setCurrentStep] = useState(0); //0 and 1 and 2
     const [email, setEmail] = useState("");
-    const [studentSelectOption, setStudentSelectOption] = useState("Yes");
+    const [studentSelectOption, setStudentSelectOption] = useState("");
     const handleStudentSelectOption = (value) => {
         setStudentSelectOption(value);
         // console.log(value)
-    }
+    };
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const handleShowPassword = () => {
@@ -30,42 +54,52 @@ export default function Registration() {
     };
     const handleToLogin = () => {
         navigation.navigate("login");
-    }
+    };
     const [showDrawer, setShowDrawer] = useState(false);
     const handleContinue = () => {
         if (currentStep < 2) {
-            setCurrentStep(prevStep => prevStep + 1);
+            setCurrentStep((prevStep) => prevStep + 1);
         }
         if (currentStep === 2) {
             setShowDrawer(true);
+            translateY.value = setShowDrawer ? withSpring(300) : withSpring(600);
         }
-    }
+    };
     const handleContinueBackwards = () => {
         if (currentStep > 0) {
-            setCurrentStep(prevStep => prevStep - 1);
+            setCurrentStep((prevStep) => prevStep - 1);
         }
-    }
-    const translateY = useSharedValue(300);
+    };
+    const translateY = useSharedValue(600);
     const animatedStyles = useAnimatedStyle(() => ({
         transform: [{ translateY: translateY.value }],
     }));
     return (
         <>
             {showDrawer && (
-                <View style={{ zIndex: 12000 }} className="bottom-0 absolute">
-                    <Animated.View style={[animatedStyles]}>
-                        <Drawer
-                            title="Successful"
-                            text={
-                                <Text>Your <Text style={{ color: primarycolor }}>stulivery</Text> account has been registered successfully</Text>
-                            }
-                            buttonText="Go to dashboard"
-                            navigateTo="dashboard"
-                        />
-                    </Animated.View>
-                </View>
+                <>
+                    <View
+                        style={{ height: height, backgroundColor: greycolorfive }}
+                        className="w-full absolute z-50 opacity-70"
+                    />
+                    <View style={{ zIndex: 12000 }} className="bottom-0 absolute">
+                        <Animated.View style={[animatedStyles]}>
+                            <Drawer
+                                title="Successful"
+                                text={
+                                    <Text>
+                                        Your <Text style={{ color: primarycolor }}>stulivery</Text>{" "}
+                                        account has been registered successfully
+                                    </Text>
+                                }
+                                buttonText="Go to dashboard"
+                                navigateTo="dashboard"
+                            />
+                        </Animated.View>
+                    </View>
+                </>
             )}
-            <View style={{ height: height }} className="w-full px-5 py-[88px]">
+            <View style={{ height: height }} className={`w-full px-5 py-[88px]`}>
                 <View>
                     <View>
                         <Image
@@ -76,13 +110,25 @@ export default function Registration() {
                         <View className="h-8" />
                         <Text style={[Textstyles.text_medium]}>Create an account</Text>
                         <Text style={[Textstyles.text_xsmall]}>
-                            Enter your details to create your <Text style={{ color: primarycolor }}>Stulvilery</Text> account
+                            Enter your details to create your{" "}
+                            <Text style={{ color: primarycolor }}>Stulvilery</Text> account
                         </Text>
                         <View className="h-4" />
                         {currentStep > 0 && (
-                            <TouchableOpacity onPress={handleContinueBackwards} className="flex flex-row items-center">
-                                <MaterialIcons name="keyboard-backspace" size={24} color={primarycolortwo} />
-                                <Text style={[Textstyles.text_xsmall, { color: primarycolortwo }]}>Previous</Text>
+                            <TouchableOpacity
+                                onPress={handleContinueBackwards}
+                                className="flex flex-row items-center"
+                            >
+                                <MaterialIcons
+                                    name="keyboard-backspace"
+                                    size={24}
+                                    color={primarycolortwo}
+                                />
+                                <Text
+                                    style={[Textstyles.text_xsmall, { color: primarycolortwo }]}
+                                >
+                                    Previous
+                                </Text>
                             </TouchableOpacity>
                         )}
                         <View className="h-4" />
@@ -91,21 +137,35 @@ export default function Registration() {
                                 <CustomTextInput
                                     placeholder={"Name"}
                                     placeholderTextColor={greycolortwo}
-                                    sideicon={<Ionicons name="person-outline" size={20} color={primarycolortwo} />}
+                                    sideicon={
+                                        <Ionicons
+                                            name="person-outline"
+                                            size={20}
+                                            color={primarycolortwo}
+                                        />
+                                    }
                                     onChange={(text) => setEmail(text)}
                                 />
                                 <View className="h-3" />
                                 <CustomTextInput
                                     placeholder={"Email"}
                                     placeholderTextColor={greycolortwo}
-                                    sideicon={<Feather name="mail" size={20} color={primarycolortwo} />}
+                                    sideicon={
+                                        <Feather name="mail" size={20} color={primarycolortwo} />
+                                    }
                                     onChange={(text) => setEmail(text)}
                                 />
                                 <View className="h-3" />
                                 <CustomTextInput
                                     placeholder={"Phone number"}
                                     placeholderTextColor={greycolortwo}
-                                    sideicon={<MaterialIcons name="phone-android" size={20} color={primarycolortwo} />}
+                                    sideicon={
+                                        <MaterialIcons
+                                            name="phone-android"
+                                            size={20}
+                                            color={primarycolortwo}
+                                        />
+                                    }
                                     onChange={(text) => setEmail(text)}
                                 />
                             </>
@@ -116,7 +176,11 @@ export default function Registration() {
                                     placeholder={"Password"}
                                     placeholderTextColor={greycolortwo}
                                     sideicon={
-                                        <FontAwesome5 name="lock" size={20} color={primarycolortwo} />
+                                        <FontAwesome5
+                                            name="lock"
+                                            size={20}
+                                            color={primarycolortwo}
+                                        />
                                     }
                                     rightIcon={
                                         <TouchableOpacity onPress={handleShowPassword}>
@@ -135,12 +199,20 @@ export default function Registration() {
                                     placeholder={"Confirm password"}
                                     placeholderTextColor={greycolortwo}
                                     sideicon={
-                                        <FontAwesome5 name="lock" size={20} color={primarycolortwo} />
+                                        <FontAwesome5
+                                            name="lock"
+                                            size={20}
+                                            color={primarycolortwo}
+                                        />
                                     }
                                     rightIcon={
                                         <TouchableOpacity onPress={handleShowConfirmPassword}>
                                             <MaterialCommunityIcons
-                                                name={showConfirmPassword ? "eye-outline" : "eye-off-outline"}
+                                                name={
+                                                    showConfirmPassword
+                                                        ? "eye-outline"
+                                                        : "eye-off-outline"
+                                                }
                                                 size={20}
                                                 color={primarycolortwo}
                                             />
@@ -157,10 +229,18 @@ export default function Registration() {
                                     placeHolder="Are you a student"
                                     placeholderTextColor={greycolortwo}
                                     leftIcon={
-                                        <MaterialCommunityIcons name="chat-question-outline" size={20} color={greycolortwo} />
+                                        <MaterialCommunityIcons
+                                            name="chat-question-outline"
+                                            size={20}
+                                            color={greycolortwo}
+                                        />
                                     }
                                     rightIcon={
-                                        <MaterialIcons name="keyboard-arrow-down" size={20} color={greycolortwo} />
+                                        <MaterialIcons
+                                            name="keyboard-arrow-down"
+                                            size={20}
+                                            color={greycolortwo}
+                                        />
                                     }
                                 />
                                 <View className="h-3" />
@@ -176,37 +256,63 @@ export default function Registration() {
                                             placeHolder="Are you a student"
                                             placeholderTextColor={greycolortwo}
                                             leftIcon={
-                                                <MaterialCommunityIcons name="chat-question-outline" size={20} color={greycolortwo} />
+                                                <MaterialCommunityIcons
+                                                    name="chat-question-outline"
+                                                    size={20}
+                                                    color={greycolortwo}
+                                                />
                                             }
                                             rightIcon={
-                                                <MaterialIcons name="keyboard-arrow-down" size={20} color={greycolortwo} />
+                                                <MaterialIcons
+                                                    name="keyboard-arrow-down"
+                                                    size={20}
+                                                    color={greycolortwo}
+                                                />
                                             }
                                         />
                                     </>
-                                ) : studentSelectOption === "No" && (
-                                    <>
-                                        <CustomSelect
-                                            placeHolder="Are you a student"
-                                            placeholderTextColor={greycolortwo}
-                                            leftIcon={
-                                                <MaterialCommunityIcons name="chat-question-outline" size={20} color={greycolortwo} />
-                                            }
-                                            rightIcon={
-                                                <MaterialIcons name="keyboard-arrow-down" size={20} color={greycolortwo} />
-                                            }
-                                        />
-                                        <View className="h-8" />
-                                        <CustomSelect
-                                            placeHolder="Are you a student"
-                                            placeholderTextColor={greycolortwo}
-                                            leftIcon={
-                                                <MaterialCommunityIcons name="chat-question-outline" size={20} color={greycolortwo} />
-                                            }
-                                            rightIcon={
-                                                <MaterialIcons name="keyboard-arrow-down" size={20} color={greycolortwo} />
-                                            }
-                                        />
-                                    </>
+                                ) : (
+                                    studentSelectOption === "No" && (
+                                        <>
+                                            <CustomSelect
+                                                placeHolder="Are you a student"
+                                                placeholderTextColor={greycolortwo}
+                                                leftIcon={
+                                                    <MaterialCommunityIcons
+                                                        name="chat-question-outline"
+                                                        size={20}
+                                                        color={greycolortwo}
+                                                    />
+                                                }
+                                                rightIcon={
+                                                    <MaterialIcons
+                                                        name="keyboard-arrow-down"
+                                                        size={20}
+                                                        color={greycolortwo}
+                                                    />
+                                                }
+                                            />
+                                            <View className="h-8" />
+                                            <CustomSelect
+                                                placeHolder="Are you a student"
+                                                placeholderTextColor={greycolortwo}
+                                                leftIcon={
+                                                    <MaterialCommunityIcons
+                                                        name="chat-question-outline"
+                                                        size={20}
+                                                        color={greycolortwo}
+                                                    />
+                                                }
+                                                rightIcon={
+                                                    <MaterialIcons
+                                                        name="keyboard-arrow-down"
+                                                        size={20}
+                                                        color={greycolortwo}
+                                                    />
+                                                }
+                                            />
+                                        </>
+                                    )
                                 )}
                             </>
                         )}
@@ -271,5 +377,5 @@ export default function Registration() {
                 </View>
             </View>
         </>
-    )
+    );
 }

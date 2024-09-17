@@ -1,10 +1,9 @@
-import { TouchableOpacity, Text, View, Image } from "react-native";
+import { TouchableOpacity, Text, View } from "react-native";
 import { customstyle, radioButtonStyles } from "../../constants/customstyle";
 import { Textstyles } from "../../constants/fontsize";
 import { TextInput } from "react-native-gesture-handler";
 import { useState } from "react";
-import { greycolortwo, primarycolor, whitecolor } from "../../constants/color";
-import { useNavigation } from "@react-navigation/native";
+import { greycolortwo } from "../../constants/color";
 
 export const CustomButton = ({
   Textname,
@@ -110,7 +109,7 @@ export const CustomSelectRadioBox = ({ options, selected, setSelected }) => {
         <TouchableOpacity
           key={index}
           className="flex flex-row justify-between py-2"
-          onPress={(val) => handleSelectedOption(val)}
+          onPress={() => handleSelectedOption(row)}
         >
           <Text style={{ color: greycolortwo }}>{row}</Text>
           <View style={radioButtonStyles.radioButton}>
@@ -135,38 +134,5 @@ export const Box = ({ inputText }) => {
     >
       <Text style={[Textstyles.text_medium]}>{inputText}</Text>
     </View>
-  );
-};
-
-export const Drawer = ({ navigateTo, buttonText, text, title }) => {
-  const navigation = useNavigation();
-  const handlePress = () => {
-    console.log("to " + navigateTo);
-    // navigation.navigate(navigateTo);
-  }
-  return (
-    <>
-      <View className="w-screen h-screen">
-        <View style={{ backgroundColor: whitecolor }} className="absolute bottom-0 w-full px-6 py-0 rounded-t-[24px] h-5/6 shadow-lg">
-          <View className="h-2" />
-          <View style={{ backgroundColor: greycolortwo }} className="h-1 w-[67px] rounded-[11px] mx-auto" />
-          <View className="h-10" />
-          <Image source={require("../../assets/images/Illustration Success.svg")} resizeMode="contain" className="w-20 h-20" />
-          <View className="h-10" />
-          <View className="items-center">
-            <Text>{title}</Text>
-            <View className="h-3" />
-            {text}
-          </View>
-          <View className="h-10" />
-          <CustomButton
-            backgroundColor={primarycolor}
-            Textname={buttonText}
-            TextColor={whitecolor}
-            onPress={handlePress}
-          />
-        </View>
-      </View>
-    </>
   );
 };
