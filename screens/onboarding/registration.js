@@ -111,8 +111,8 @@ export default function Registration() {
                                         account has been registered successfully
                                     </Text>
                                 }
-                                buttonText="Go to dashboard"
-                                navigateTo="dashboard"
+                                buttonText="Login"
+                                navigateTo="login"
                             />
                         </Animated.View>
                     </View>
