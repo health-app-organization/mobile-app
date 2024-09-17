@@ -42,7 +42,9 @@ export const Login = () => {
     const handleShowPassword = () => {
         setShowPassword(!showPassword);
     };
-    const handlesubmit = () => { };
+    const handlesubmit = () => { 
+        navigation.navigate("order");
+    };
     const handleToSignup = () => {
         navigation.navigate("signup");
     };

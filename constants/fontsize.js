@@ -6,6 +6,13 @@ export const Textstyles = StyleSheet.create({
         fontWeight: 400, 
         lineHeight: 21
     },
+    text_xsma:{
+        fontFamily: "TTFirsNeue",
+        fontSize: 14, 
+        fontWeight: 200, 
+        lineHeight: 25,
+        color:"grey"
+    },
     text_small:{
         fontFamily: "TTFirsNeue",
         fontSize: 18, 
@@ -23,7 +30,19 @@ export const Textstyles = StyleSheet.create({
         fontSize: 18, 
         fontWeight: 500, 
         lineHeight: 27
-    }
+    },
+    text_xmedium:{
+        fontFamily: "TTFirsNeueMedium",
+        fontSize: 18, 
+        fontWeight: 700, 
+        lineHeight: 30
+    },
   });
   
   
+
+
+
+
+
+
