@@ -39,11 +39,11 @@ export default function App() {
                 name="onboarding"
                 component={StackWrapper}
               />
+              <Stack.Screen
+                name="dashboardscreen"
+                component={DashbaordScreen}
+              />
             </Stack.Navigator>
-            <Stack.Screen
-            name="dashboardscreen"
-            component={DashbaordScreen}
-            />
           </NavigationContainer>
         </GestureHandlerRootView>
       </PaperProvider>
