@@ -1,14 +1,10 @@
-import React, { useEffect, useRef } from "react";
-import { Animated, View, StyleSheet, StatusBar, Image, Pressable } from "react-native";
-import {
-  primarycolor,
-  primarycolortwo,
-  whitecolor,
-} from "../../constants/color";
-import { useIsFocused, useNavigation } from "@react-navigation/native";
+import React, { useEffect, useRef } from 'react';
+import { Animated, View, StyleSheet, StatusBar, Image } from 'react-native';
+import { primarycolor, primarycolortwo, whitecolor } from '../../constants/color';
+import { useIsFocused, useNavigation } from '@react-navigation/native';
 
 const AnimatedBackground = () => {
-  const navigation = useNavigation();
+    const navigation=useNavigation()
   const scaleAnimation = useRef(new Animated.Value(0)).current;
   const dropAnimation = useRef(new Animated.Value(-1000)).current; // Starts from off-screen (top)
 
@@ -29,24 +25,29 @@ const AnimatedBackground = () => {
       }),
     ]).start();
   }, []);
+  
 
-  const isFocused = useIsFocused();
+  const isFocused=useIsFocused()
   const goto = async () => {
-    // const status = await getDeviceStatus();
-    // if (status) {
-    navigation.navigate("slider");
-    //     } else {
-    //       navigation.navigate('slider');
-    //     }
-  };
-  useEffect(() => {
-    if (isFocused) {
-      const mystart = setTimeout(() => {
-        goto();
-      }, 4000);
-      return () => clearTimeout(mystart);
-    }
-  }, []);
+      // const status = await getDeviceStatus();
+      // if (status) {
+        navigation.navigate('slider');
+  //     } else {
+  //       navigation.navigate('slider');
+  //     }
+   };
+  useEffect(
+      ()=>{
+          if(isFocused){
+              const mystart=setTimeout(()=>{
+                  goto()
+      
+              },4000)
+              return () => clearTimeout(mystart);
+  
+          }
+
+  },[])
 
   return (
     <View style={{ flex: 1 }}>
@@ -67,8 +68,7 @@ const AnimatedBackground = () => {
       />
 
       {/* Third view: Blue card dropping from the top */}
-      <Animated.View
-        style={[
+      <Animated.View style={[
           styles.fullScreen,
           styles.primarytwoCard,
           {
@@ -77,38 +77,34 @@ const AnimatedBackground = () => {
         ]}
         className="flex-col justify-center items-center"
       >
-        <Pressable onPress={() => navigation.navigate('slider')}>
-          <View>
-            <Image
-              source={require("../../assets/images/logowhite.png")}
-              resizeMode="contain"
-              className="h-12 w-36"
-            />
-          </View>
-        </Pressable>
-      </Animated.View>
+        <View>
+            <Image source={require('../../assets/images/logowhite.png')} resizeMode='contain' className="h-12 w-36" />
+
+        </View>
+
+    </Animated.View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   fullScreen: {
-    position: "absolute",
-    width: "100%",
-    height: "100%",
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
   },
   whiteBackground: {
     backgroundColor: whitecolor, // White background
   },
   primaryCard: {
-    backgroundColor: primarycolor, // Yellow color
-    justifyContent: "center",
-    alignItems: "center",
+    backgroundColor:primarycolor, // Yellow color
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   primarytwoCard: {
     backgroundColor: primarycolortwo, // Blue color
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 

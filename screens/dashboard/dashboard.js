@@ -1,7 +1,10 @@
+import { height, width } from "../../constants/mobileDimensions"
+
 const Dashbaord=()=>{
     return(
         <>
-        <View>
+        <View style={{height:height,width:width}} className="px-5 py-[88px]">
+            
 
         </View>
         </>
