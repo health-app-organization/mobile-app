@@ -42,8 +42,27 @@ export default function Registration() {
     const [studentSelectOption, setStudentSelectOption] = useState("");
     const handleStudentSelectOption = (value) => {
         setStudentSelectOption(value);
-        // console.log(value)
     };
+    const [roleSelectOption, setRoleSelectOption] = useState("");
+    const handleRoleSelectOption = (value) => {
+        setRoleSelectOption(value);
+    };
+    const [showStudentOption, setShowStudentOption] = useState(false);
+    const handleShowStudentOption = () => {
+        setShowStudentOption(!showStudentOption);
+        if (showStudentOption) {
+            setStudentSelectOption("");
+            setRoleSelectOption("");
+            setShowRoleSelectOption(false);
+        }
+    }
+    const [showRoleSelectOption, setShowRoleSelectOption] = useState(false);
+    const handleShowRoleSelectOption = () => {
+        setShowRoleSelectOption(!showRoleSelectOption);
+        if (showRoleSelectOption) {
+            setRoleSelectOption("");
+        }
+    }
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const handleShowPassword = () => {
@@ -225,92 +244,85 @@ export default function Registration() {
                         )}
                         {currentStep === 2 && (
                             <>
-                                <CustomSelect
-                                    placeHolder="Are you a student"
-                                    placeholderTextColor={greycolortwo}
-                                    leftIcon={
-                                        <MaterialCommunityIcons
-                                            name="chat-question-outline"
-                                            size={20}
-                                            color={greycolortwo}
-                                        />
-                                    }
-                                    rightIcon={
-                                        <MaterialIcons
-                                            name="keyboard-arrow-down"
-                                            size={20}
-                                            color={greycolortwo}
-                                        />
-                                    }
-                                />
+                                <TouchableOpacity
+                                    onPress={handleShowStudentOption}
+                                >
+                                    <CustomSelect
+                                        placeHolder="Are you a student"
+                                        placeholderTextColor={greycolortwo}
+                                        leftIcon={
+                                            <MaterialCommunityIcons
+                                                name="chat-question-outline"
+                                                size={20}
+                                                color={greycolortwo}
+                                            />
+                                        }
+                                        rightIcon={
+                                            <MaterialIcons
+                                                name={showStudentOption ? "keyboard-arrow-up" : "keyboard-arrow-down"}
+                                                size={20}
+                                                color={greycolortwo}
+                                            />
+                                        }
+                                    />
+                                </TouchableOpacity>
                                 <View className="h-3" />
-                                <CustomSelectRadioBox
-                                    selected={studentSelectOption}
-                                    setSelected={handleStudentSelectOption}
-                                    options={["Yes", "No"]}
-                                />
+                                {showStudentOption && (
+                                    <CustomSelectRadioBox
+                                        selected={studentSelectOption}
+                                        setSelected={handleStudentSelectOption}
+                                        options={["Yes", "No"]}
+                                    />
+                                )}
                                 <View className="h-8" />
                                 {studentSelectOption === "Yes" ? (
                                     <>
-                                        <CustomSelect
-                                            placeHolder="Are you a student"
+                                        <CustomTextInput
+                                            placeholder="Student ID/ Matric number"
                                             placeholderTextColor={greycolortwo}
-                                            leftIcon={
-                                                <MaterialCommunityIcons
-                                                    name="chat-question-outline"
-                                                    size={20}
-                                                    color={greycolortwo}
-                                                />
-                                            }
-                                            rightIcon={
+                                            sideicon={
                                                 <MaterialIcons
-                                                    name="keyboard-arrow-down"
+                                                    name="account-box"
                                                     size={20}
                                                     color={greycolortwo}
                                                 />
                                             }
+                                            onChange={(text) => setEmail(text)}
                                         />
                                     </>
                                 ) : (
                                     studentSelectOption === "No" && (
                                         <>
-                                            <CustomSelect
-                                                placeHolder="Are you a student"
-                                                placeholderTextColor={greycolortwo}
-                                                leftIcon={
-                                                    <MaterialCommunityIcons
-                                                        name="chat-question-outline"
-                                                        size={20}
-                                                        color={greycolortwo}
-                                                    />
-                                                }
-                                                rightIcon={
-                                                    <MaterialIcons
-                                                        name="keyboard-arrow-down"
-                                                        size={20}
-                                                        color={greycolortwo}
-                                                    />
-                                                }
-                                            />
+                                            <TouchableOpacity
+                                                onPress={handleShowRoleSelectOption}
+                                            >
+                                                <CustomSelect
+                                                    placeHolder="Choose role"
+                                                    placeholderTextColor={greycolortwo}
+                                                    leftIcon={
+                                                        <MaterialCommunityIcons
+                                                            name="chat-question-outline"
+                                                            size={20}
+                                                            color={greycolortwo}
+                                                        />
+                                                    }
+                                                    rightIcon={
+                                                        <MaterialIcons
+                                                            name={showRoleSelectOption ? "keyboard-arrow-up" : "keyboard-arrow-down"}
+                                                            size={20}
+                                                            color={greycolortwo}
+                                                        />
+                                                    }
+                                                />
+                                            </TouchableOpacity>
                                             <View className="h-8" />
-                                            <CustomSelect
-                                                placeHolder="Are you a student"
-                                                placeholderTextColor={greycolortwo}
-                                                leftIcon={
-                                                    <MaterialCommunityIcons
-                                                        name="chat-question-outline"
-                                                        size={20}
-                                                        color={greycolortwo}
-                                                    />
-                                                }
-                                                rightIcon={
-                                                    <MaterialIcons
-                                                        name="keyboard-arrow-down"
-                                                        size={20}
-                                                        color={greycolortwo}
-                                                    />
-                                                }
-                                            />
+                                            {showRoleSelectOption && (
+                                                <CustomSelectRadioBox
+                                                    selected={roleSelectOption}
+                                                    setSelected={handleRoleSelectOption}
+                                                    options={["University Teaching Staff", "Non-teaching staff", "Resident"]}
+                                                />
+                                            )}
                                         </>
                                     )
                                 )}
@@ -330,51 +342,53 @@ export default function Registration() {
 
                 <View className="h-10" />
 
-                <View className="items-center">
-                    <View className="flex-row items-center justify-center">
-                        <MyDivider width={96} Color={greycolorthree} />
-                        <View className="w-3" />
-                        <Text style={[Textstyles.text_button]}>Or sign up with</Text>
-                        <View className="w-3" />
-                        <MyDivider width={96} Color={greycolorthree} />
-                    </View>
-                    <View className="h-3" />
-                    <View className="flex-row">
-                        <TouchableOpacity
-                            style={{ height: 30, width: 30 }}
-                            className="rounded-full border flex justify-center items-center"
-                        >
-                            <Google width={24} height={24} />
-                        </TouchableOpacity>
-                        <View className="w-3" />
-                        <TouchableOpacity
-                            style={{ height: 30, width: 30 }}
-                            className="rounded-full border flex justify-center items-center"
-                        >
-                            <Facebook width={24} height={24} />
-                        </TouchableOpacity>
-                        <View className="w-3" />
-                        <TouchableOpacity
-                            style={{ height: 30, width: 30 }}
-                            className="rounded-full border flex justify-center items-center"
-                        >
-                            <Apple width={24} height={24} />
-                        </TouchableOpacity>
-                    </View>
-                    <View className="h-8" />
-                    <View>
+                {currentStep === 0 && (
+                    <View className="items-center">
                         <View className="flex-row items-center justify-center">
-                            <Text style={[Textstyles.text_small, { color: primarycolortwo }]}>
-                                Have an account?{" "}
-                            </Text>
-                            <TouchableOpacity onPress={handleToLogin}>
-                                <Text style={[Textstyles.text_small, { color: primarycolor }]}>
-                                    Login
-                                </Text>
+                            <MyDivider width={96} Color={greycolorthree} />
+                            <View className="w-3" />
+                            <Text style={[Textstyles.text_button]}>Or sign up with</Text>
+                            <View className="w-3" />
+                            <MyDivider width={96} Color={greycolorthree} />
+                        </View>
+                        <View className="h-3" />
+                        <View className="flex-row">
+                            <TouchableOpacity
+                                style={{ height: 30, width: 30 }}
+                                className="rounded-full border flex justify-center items-center"
+                            >
+                                <Google width={24} height={24} />
+                            </TouchableOpacity>
+                            <View className="w-3" />
+                            <TouchableOpacity
+                                style={{ height: 30, width: 30 }}
+                                className="rounded-full border flex justify-center items-center"
+                            >
+                                <Facebook width={24} height={24} />
+                            </TouchableOpacity>
+                            <View className="w-3" />
+                            <TouchableOpacity
+                                style={{ height: 30, width: 30 }}
+                                className="rounded-full border flex justify-center items-center"
+                            >
+                                <Apple width={24} height={24} />
                             </TouchableOpacity>
                         </View>
+                        <View className="h-8" />
+                        <View>
+                            <View className="flex-row items-center justify-center">
+                                <Text style={[Textstyles.text_small, { color: primarycolortwo }]}>
+                                    Have an account?{" "}
+                                </Text>
+                                <TouchableOpacity onPress={handleToLogin}>
+                                    <Text style={[Textstyles.text_small, { color: primarycolor }]}>
+                                        Login
+                                    </Text>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
                     </View>
-                </View>
+                )}
             </View>
         </>
     );
