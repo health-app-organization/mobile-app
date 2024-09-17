@@ -2,7 +2,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import "react-native-gesture-handler";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { StatusBar } from "expo-status-bar";
-import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
+import { ActivityIndicator, StyleSheet, Text, View,Platform } from "react-native";
 import { PaperProvider } from "react-native-paper";
 import StackWrapper from "./routers/stackrouter";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -10,7 +10,8 @@ import { useCallback, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
-import DashbaordScreen from "./routers/dashboardScreen";
+import Order from "./screens/dashboard/order";
+import Dashbaord from "./screens/dashboard/dashboard";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -40,13 +41,23 @@ export default function App() {
                 component={StackWrapper}
               />
               <Stack.Screen
+               options={{
+                gestureEnabled: true,
+                gestureDirection: Platform.OS === "ios" ? "horizontal" : Platform.OS === "android" && "vertical",
+              }}
                 name="order"
                 component={Order}
               />
             </Stack.Navigator>
             <Stack.Screen
-            name="dashboardscreen"
-            component={DashboardScreen}
+             options={{
+              gestureEnabled: true,
+              gestureDirection: Platform.OS === "ios" ? "horizontal" : Platform.OS === "android" && "vertical",
+            }}
+            name="dashboardhome"
+            component={Dashbaord}
+           
+          
             />
           </NavigationContainer>
         </GestureHandlerRootView>

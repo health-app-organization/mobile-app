@@ -68,59 +68,57 @@ export const Drawer = ({ navigateTo, buttonText, text, title }) => {
   );
 };
 
-export const MapDrawer = ({ navigateTo, buttonText, text, title }) => {
-  const navigation = useNavigation();
-  const handlePress = () => {
-    console.log("to " + navigateTo);
-    // navigation.navigate(navigateTo);
-  };
-  return (
-    <>
-      <View className="w-screen h-screen">
-        <View
-          style={{ backgroundColor: whitecolor }}
-          className="absolute top-[14.5vh] w-full px-6 py-0 rounded-t-[24px] h-1/2 shadow-lg"
-        >
-          <View className="h-2" />
-          <View
-            style={{ backgroundColor: greycolortwo }}
-            className="h-1 w-[67px] rounded-[11px] mx-auto"
-          />
-          <View className="h-10" />
-          <Text style={[Textstyles.text_xmedium]}>Your Package on The Way</Text>
-          <Text style={[Textstyles.text_xsma]} className=" font-medium">
-            Arriving at pick up point in 2 mins
-          </Text>
-          <View className="h-10" />
+// export const MapDrawer = ({ navigateTo, buttonText, text, title }) => {
+//   const navigation = useNavigation();
+//   const handlePress = () => {
+//     console.log("to " + navigateTo);
+//     // navigation.navigate(navigateTo);
+//   };
+//   return (
+//     <>
+//       <View className="w-screen h-screen">
+//         <View
+//           style={{ backgroundColor: whitecolor }}
+//           className="absolute top-[14.5vh] w-full px-6 py-0 rounded-t-[24px] h-1/2 shadow-lg"
+//         >
+//           <View className="h-2" />
+//           <View
+//             style={{ backgroundColor: greycolortwo }}
+//             className="h-1 w-[67px] rounded-[11px] mx-auto"
+//           />
+//           <View className="h-10" />
+//           <Text style={[Textstyles.text_xmedium]}>Your Package on The Way</Text>
+//           <Text style={[Textstyles.text_xsma]} className=" font-medium">
+//             Arriving at pick up point in 2 mins
+//           </Text>
+//           <View className="h-10" />
 
-          <View className=" bg-white flex-1 -mt-4">
-            {/* User Info Section */}
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                marginBottom: 20,
-              }}
-            >
-              <Avatar.Image
-                size={50}
-                source={{ uri: "https://placekitten.com/200/200" }}
-                className=" mr-4"
-              />
-              {/* User Name and Rating */}
-              <View className=" flex-1">
-                <Text>John Daniel</Text>
-                <View className=" flex-row items-center">
-                  <MaterialIcons name="star" size={16} color="gold" />
-                  <View>
-                    <Text className=" ml-1">4.9</Text>
-                  </View>
-
-    const navigation = useNavigation();
-    const handlePress = () => {
-        navigation.navigate(navigateTo);
-    }
-    return (
+//           <View className=" bg-white flex-1 -mt-4">
+//             {/* User Info Section */}
+//             <View
+//               style={{
+//                 flexDirection: "row",
+//                 alignItems: "center",
+//                 marginBottom: 20,
+//               }}
+//             >
+//               <Avatar.Image
+//                 size={50}
+//                 source={{ uri: "https://placekitten.com/200/200" }}
+//                 className=" mr-4"
+//               />
+//               {/* User Name and Rating */}
+//               <View className=" flex-1">
+//                 <Text>John Daniel</Text>
+//                 <View className=" flex-row items-center">
+//                   <MaterialIcons name="star" size={16} color="gold" />
+//                   <View>
+//                     <Text className=" ml-1">4.9</Text>
+//                   </View>
+                  
+//                   )
+//     }
+    {/* return (
         <>
             <View className="w-screen h-screen">
                 <View style={{ backgroundColor: whitecolor }} className="absolute top-[14.5vh] w-full px-6 py-0 rounded-t-[24px] h-1/2 shadow-lg">
@@ -185,4 +183,4 @@ export const MapDrawer = ({ navigateTo, buttonText, text, title }) => {
       </View>
     </>
   );
-};
+}; */}

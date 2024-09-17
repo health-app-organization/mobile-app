@@ -6,12 +6,18 @@ const Dashbaord=()=>{
         <>
         
         <View style={{height:height,width:width}} className="px-5 py-[88px]">
-            <View>
+            <View className="flex-row">
             <Image
                             className="h-12 w-12"
                             source={require("../../assets/images/logo.png")}
                             resizeMode="contain"
                         />
+            <View className="w-3"/>              
+            <View className="items-start">
+                <Text>Welcome back</Text>
+                <Text>John</Text>
+
+            </View>
             </View>
 
 

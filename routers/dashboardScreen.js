@@ -1,36 +1,36 @@
-import {
-    createStackNavigator,
-    CardStyleInterpolators,
-  } from "@react-navigation/stack";
-  import { Platform } from "react-native";
-import Dashbaord from "../screens/dashboard/dashboard";
+// import {
+//     createStackNavigator,
+//     CardStyleInterpolators,
+//   } from "@react-navigation/stack";
+//   import { Platform } from "react-native";
+// import Dashbaord from "../screens/dashboard/dashboard";
   
-  const DashboardScreen = () => {
-    const Stack = createStackNavigator();
-    return (
-      <Stack.Navigator
-        navigationOption=""
-        initialRouteName="dashboardhome"
-        screenOptions={{
-          headerTitle: null, // Remove the title for all screens
-          headerShown: false,
-          // gestureEnabled: true,
-          // gestureDirection: Platform.OS === "ios" ? "horizontal" : Platform.OS === "android" && "vertical",
-          cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-        }}
-      >
-        {/* <Stack.Screen  name="start" component={Home} /> */}
-        <Stack.Screen
-          options={{
-            gestureEnabled: false,
-            gestureDirection: Platform.OS === "ios" ? "horizontal" : Platform.OS === "android" && "vertical",
-          }}
-          name="dashboardhome"
-          component={Dashbaord}
-        />
+//   const DashboardScreen = () => {
+//     const Stack = createStackNavigator();
+//     return (
+//       <Stack.Navigator
+//         navigationOption=""
+//         initialRouteName="dashboardhome"
+//         screenOptions={{
+//           headerTitle: null, // Remove the title for all screens
+//           headerShown: false,
+//           // gestureEnabled: true,
+//           // gestureDirection: Platform.OS === "ios" ? "horizontal" : Platform.OS === "android" && "vertical",
+//           cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+//         }}
+//       >
+//         {/* <Stack.Screen  name="start" component={Home} /> */}
+//         <Stack.Screen
+//           options={{
+//             gestureEnabled: false,
+//             gestureDirection: Platform.OS === "ios" ? "horizontal" : Platform.OS === "android" && "vertical",
+//           }}
+//           name="dashboardhome"
+//           component={Dashbaord}
+//         />
        
-      </Stack.Navigator>
-    );
-  };
-  export default DashboardScreen;
+//       </Stack.Navigator>
+//     );
+//   };
+//   export default DashboardScreen;
   

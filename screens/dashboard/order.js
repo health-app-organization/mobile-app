@@ -5,7 +5,7 @@ import { Textstyles } from "../../constants/fontsize";
 import React, { useEffect, useState } from 'react';
 import * as Location from 'expo-location';
 import Animated, { useAnimatedStyle, useSharedValue, withSpring } from "react-native-reanimated";
-import { MapDrawer } from "../modals/drawer";
+// import { MapDrawer } from "../modals/drawer";
 import { greycolorfive, primarycolor, whitecolor } from "../../constants/color";
 import { MaterialCommunityIcons, Feather } from "@expo/vector-icons";
 import MapView, { Marker, Polyline } from "react-native-maps";
@@ -82,7 +82,7 @@ const Order = () => {
                     {/* MapDrawer Component with Close Button */}
                     <View style={{ zIndex: 12000 }} className="bottom-0 absolute">
                         <Animated.View style={[animatedStyles]}>
-                            <MapDrawer
+                            {/* <MapDrawer
                                 title="Successful"
                                 text={
                                     <Text>
@@ -92,7 +92,7 @@ const Order = () => {
                                 }
                                 buttonText="Go to dashboard"
                                 navigateTo="dashboard"
-                            />
+                            /> */}
 
                             {/* Close Button */}
                             <TouchableOpacity
