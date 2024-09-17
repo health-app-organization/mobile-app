@@ -1,9 +1,27 @@
-import { Text } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
+import { height, width } from "../../constants/mobileDimensions";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { Textstyles } from "../../constants/fontsize";
 
 export const Step1 = () => {
     return (
         <>
-            <View>step 1</View>
+            <View style={{ height: height, width: width }} className="py-[40px]">
+                <View className="w-full h-16 justify-center">
+                    <View className="w-[75%] flex-row justify-between">
+                        <TouchableOpacity className="bg-gray-200 w-[50px] h-[50px] rounded-full mt-auto mb-auto ml-4 flex justify-center items-center">
+                            <MaterialCommunityIcons
+                                name="arrow-left"
+                                size={20}
+                                color="black"
+                            />
+                        </TouchableOpacity>
+                        <View className="w-40 h-16 flex justify-center items-center">
+                            <Text style={[Textstyles.text_small]} className="font-bold">ID Verification</Text>
+                        </View>
+                    </View>
+                </View>
+            </View>
         </>
     )
 }
