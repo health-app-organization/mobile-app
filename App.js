@@ -10,7 +10,8 @@ import { useCallback, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
-import DashbaordScreen from "./routers/dashboardScreen";
+import Order from "./screens/dashboard/order";
+
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -39,6 +40,10 @@ export default function App() {
                 name="onboarding"
                 component={StackWrapper}
               />
+              <Stack.Screen
+                name="order"
+                component={Order}
+              />
             </Stack.Navigator>
             <Stack.Screen
             name="dashboardscreen"
@@ -59,3 +64,4 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
+
