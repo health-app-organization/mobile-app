@@ -12,6 +12,7 @@ import {
 } from "../screens/onboarding/loginandforgetpass";
 import Registration from "../screens/onboarding/registration";
 import { Platform } from "react-native";
+import Dashboard from "../screens/dashboard/dashboard";
 
 const StackWrapper = () => {
   const Stack = createStackNavigator();
@@ -84,6 +85,24 @@ const StackWrapper = () => {
         name="signup"
         component={Registration}
       />
+             <Stack.Screen
+             options={{
+              gestureEnabled: true,
+              gestureDirection: Platform.OS === "ios" ? "horizontal" : Platform.OS === "android" && "vertical",
+            }}
+            name="dashboardhome"
+            component={Dashboard}
+           
+          
+            />
+               <Stack.Screen
+               options={{
+                gestureEnabled: true,
+                gestureDirection: Platform.OS === "ios" ? "horizontal" : Platform.OS === "android" && "vertical",
+              }}
+                name="order"
+                component={Order}
+              />
     </Stack.Navigator>
   );
 };
