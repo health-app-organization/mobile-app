@@ -4,6 +4,7 @@ import { Textstyles } from "../../constants/fontsize";
 import { TextInput } from "react-native-gesture-handler";
 import { useState } from "react";
 import { greycolortwo } from "../../constants/color";
+import { height, width } from "../../constants/mobileDimensions";
 
 export const CustomButton = ({
   Textname,
@@ -15,6 +16,7 @@ export const CustomButton = ({
   leftIcon,
   rightIcon,
   props,
+  width,
 }) => {
   return (
     <>
@@ -24,6 +26,7 @@ export const CustomButton = ({
             backgroundColor: backgroundColor,
             borderWidth: borderWidth || 0,
             borderColor: borderColor || null,
+            width:width || '100%'
           },
           customstyle.buttonstyle,
         ]}
@@ -143,3 +146,10 @@ export const Box = ({ inputText }) => {
     </View>
   );
 };
+export const Iconplaceholder=({backgroundColor,width,height,Icon})=>{
+  return(
+    <View style={{backgroundColor:backgroundColor,width:width,height:height}} className="flex justify-center items-center rounded-full">
+      {Icon}
+    </View>
+  )
+}
