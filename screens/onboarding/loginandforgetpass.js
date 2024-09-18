@@ -52,7 +52,7 @@ export const Login = () => {
         // IF first time login
         // THEN redirect to id verification
         // ELSE navigate to dashboard
-        navigation.navigate("verification");
+        navigation.navigate("dashboardhome");
     }
     const handleToSignup = () => {
         navigation.navigate("signup");

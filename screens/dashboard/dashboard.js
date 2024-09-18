@@ -10,6 +10,7 @@ import { ScrollView } from "react-native-gesture-handler"
 import { useState } from "react"
 import { CustomButton, Iconplaceholder } from "../mycomponents/mycomponent"
 import { FontAwesome5 } from "@expo/vector-icons"
+import Footer from "./footer"
 
 const Dashboard = () => {
     const [refreshing, setRefreshing] = useState(false);
@@ -40,7 +41,7 @@ const Dashboard = () => {
     return (
         <>
 
-            <View style={{ height: height, width: width }} className="px-5 py-[88px] flex">
+            <View style={{ height: height, width: width }} className="px-5 pt-[88px] flex">
                 
                     <View className="flex-row">
                         <Image
@@ -211,12 +212,18 @@ const Dashboard = () => {
                         </TouchableOpacity>
 
                     </View>
+                    <View className="h-3" />
+                    <View>
+                        <Text style={[Textstyles.text_small]}>Recent Order</Text>
+
+                    </View>
                     </ScrollView>
                     </View>
 
 
-                
+                <Footer/>
             </View>
+
 
         </>
     )
