@@ -13,6 +13,7 @@ import {
 import Registration from "../screens/onboarding/registration";
 import { Platform } from "react-native";
 import Dashboard from "../screens/dashboard/dashboard";
+import Order from "../screens/dashboard/order";
 
 const StackWrapper = () => {
   const Stack = createStackNavigator();
@@ -95,7 +96,7 @@ const StackWrapper = () => {
            
           
             />
-               <Stack.Screen
+            <Stack.Screen
                options={{
                 gestureEnabled: true,
                 gestureDirection: Platform.OS === "ios" ? "horizontal" : Platform.OS === "android" && "vertical",

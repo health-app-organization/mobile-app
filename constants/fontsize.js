@@ -6,6 +6,12 @@ export const Textstyles = StyleSheet.create({
         fontWeight: 400, 
         lineHeight: 21
     },
+    text_x16small:{
+        fontFamily: "TTFirsNeue",
+        fontSize: 16, 
+        fontWeight: 500, 
+        lineHeight: 20
+    },
     text_xsma:{
         fontFamily: "TTFirsNeue",
         fontSize: 14, 
