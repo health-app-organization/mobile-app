@@ -13,6 +13,9 @@ export const CustomButton = ({
   TextColor,
   borderWidth,
   borderColor,
+  leftIcon,
+  rightIcon,
+  props,
   width,
 }) => {
   return (
@@ -28,10 +31,14 @@ export const CustomButton = ({
           customstyle.buttonstyle,
         ]}
         onPress={onPress}
+        {...props}
       >
+        {leftIcon}
         <Text style={[Textstyles.text_button, { color: TextColor }]}>
-          {Textname}
+          {" "}
+          {Textname}{" "}
         </Text>
+        {rightIcon}
       </TouchableOpacity>
     </>
   );

@@ -1,9 +1,9 @@
-import {StyleSheet} from 'react-native'
+import { StyleSheet } from 'react-native'
 export const Textstyles = StyleSheet.create({
-    text_xsmall:{
+    text_xsmall: {
         fontFamily: "TTFirsNeue",
-        fontSize: 14, 
-        fontWeight: 400, 
+        fontSize: 14,
+        fontWeight: 400,
         lineHeight: 21
     },
     text_x16small:{
@@ -12,40 +12,40 @@ export const Textstyles = StyleSheet.create({
         fontWeight: 500, 
         lineHeight: 20
     },
-    text_xsma:{
+    text_xsma: {
         fontFamily: "TTFirsNeue",
-        fontSize: 14, 
-        fontWeight: 200, 
+        fontSize: 14,
+        fontWeight: 200,
         lineHeight: 25,
-        color:"grey"
+        color: "grey"
     },
-    text_small:{
+    text_small: {
         fontFamily: "TTFirsNeue",
-        fontSize: 18, 
-        fontWeight: 400, 
+        fontSize: 18,
+        fontWeight: 400,
         lineHeight: 27
     },
-    text_medium:{
+    text_medium: {
         fontFamily: "TTFirsNeueMedium",
-        fontSize: 24, 
-        fontWeight: 600, 
+        fontSize: 24,
+        fontWeight: 600,
         lineHeight: 30
     },
-    text_button:{
+    text_button: {
         fontFamily: "TTFirsNeue",
-        fontSize: 18, 
-        fontWeight: 500, 
+        fontSize: 18,
+        fontWeight: 500,
         lineHeight: 27
     },
-    text_xmedium:{
+    text_xmedium: {
         fontFamily: "TTFirsNeueMedium",
-        fontSize: 18, 
-        fontWeight: 700, 
+        fontSize: 18,
+        fontWeight: 700,
         lineHeight: 30
     },
-  });
-  
-  
+});
+
+
 
 
 

@@ -1,4 +1,4 @@
-import { Image, Text, TouchableOpacity, View } from "react-native";
+import { Image, Pressable, Text, TouchableOpacity, View } from "react-native";
 import Google from "../../assets/images/google.svg";
 import Facebook from "../../assets/images/facebook.svg";
 import Apple from "../../assets/images/apple.svg";
@@ -13,6 +13,7 @@ import {
 } from "../../constants/color";
 import { useNavigation } from "@react-navigation/native";
 import {
+    Box,
     CustomButton,
     CustomSelect,
     CustomSelectRadioBox,
@@ -34,11 +35,13 @@ import Animated, {
 } from "react-native-reanimated";
 import { height } from "../../constants/mobileDimensions";
 import { Drawer } from "../modals/drawer";
+import NumericKeyboard from "../modals/CustomKeyboard";
 
 export default function Registration() {
     const navigation = useNavigation();
-    const [currentStep, setCurrentStep] = useState(0); //0 and 1 and 2
+    const [currentStep, setCurrentStep] = useState(0); //0 and 1 and 2 and 3
     const [email, setEmail] = useState("");
+    const [errorMsg, setErrorMsg] = useState(null);
     const [studentSelectOption, setStudentSelectOption] = useState("");
     const handleStudentSelectOption = (value) => {
         setStudentSelectOption(value);
@@ -76,10 +79,10 @@ export default function Registration() {
     };
     const [showDrawer, setShowDrawer] = useState(false);
     const handleContinue = () => {
-        if (currentStep < 2) {
+        if (currentStep < 3) {
             setCurrentStep((prevStep) => prevStep + 1);
         }
-        if (currentStep === 2) {
+        if (currentStep === 3) {
             setShowDrawer(true);
             translateY.value = setShowDrawer ? withSpring(300) : withSpring(600);
         }
@@ -190,6 +193,12 @@ export default function Registration() {
                             </>
                         )}
                         {currentStep === 1 && (
+                            <EmailVerification
+                                errorMsg={errorMsg}
+                                setErrorMsg={setErrorMsg}
+                            />
+                        )}
+                        {currentStep === 2 && (
                             <>
                                 <CustomTextInput
                                     placeholder={"Password"}
@@ -242,7 +251,7 @@ export default function Registration() {
                                 />
                             </>
                         )}
-                        {currentStep === 2 && (
+                        {currentStep === 3 && (
                             <>
                                 <TouchableOpacity
                                     onPress={handleShowStudentOption}
@@ -333,7 +342,7 @@ export default function Registration() {
                         <View className="h-8" />
                         <CustomButton
                             backgroundColor={primarycolor}
-                            Textname={currentStep === 2 ? "Create Account" : "Continue"}
+                            Textname={currentStep === 2 ? "Create Account" : currentStep === 1 ? "Send" : "Continue"}
                             TextColor={whitecolor}
                             onPress={handleContinue}
                         />
@@ -389,6 +398,88 @@ export default function Registration() {
                         </View>
                     </View>
                 )}
+            </View>
+        </>
+    );
+}
+
+const EmailVerification = ({
+    errorMsg,
+    setErrorMsg
+}) => {
+    const email = "yomzeew@gmail.com";
+    const [showKeyboard, setShowKeyboard] = useState(false);
+    const [emailVerificationNumber, setEmailVerificationNumber] = useState(["", "", "", ""]); // OTP array for 4 digits
+    const translateY = useSharedValue(500);
+    const animatedStyles = useAnimatedStyle(() => ({
+        transform: [{ translateY: translateY.value }],
+    }));
+    const handleShowKeys = () => {
+        setShowKeyboard((prevState) => !prevState);
+        translateY.value = showKeyboard ? withSpring(200) : withSpring(500);
+    };
+
+    // Function to update OTP values
+    const handlePickValue = (value) => {
+        if (value === "") {
+            // Handle delete action (remove the last filled digit)
+            setEmailVerificationNumber((prevNumber) => {
+                const lastFilledIndex = prevNumber.findLastIndex((digit) => digit !== ""); // Find the last filled index
+                if (lastFilledIndex > -1) {
+                    const newNumber = [...prevNumber];
+                    newNumber[lastFilledIndex] = ""; // Remove the last filled digit
+                    return newNumber;
+                }
+                return prevNumber; // Return unchanged if OTP is already empty
+            });
+        } else if (value === "*") {
+            // Handle OTP submission when * is pressed
+            if (emailVerificationNumber.some((digit) => digit === "")) {
+                setErrorMsg("Incomplete OTP"); // Show error if OTP is incomplete
+            } else {
+                setErrorMsg(""); // Clear the error message
+                // Handle OTP submission logic here
+                console.log("OTP Submitted:", emailVerificationNumber.join("")); // Example submission action
+            }
+        } else {
+            // Append digit to the first empty slot
+            setEmailVerificationNumber((prevNumber) => {
+                const nextEmptyIndex = prevNumber.indexOf(""); // Find the first empty index
+                if (nextEmptyIndex > -1) {
+                    const newNumber = [...prevNumber];
+                    newNumber[nextEmptyIndex] = value; // Fill the empty slot
+                    return newNumber;
+                }
+                return prevNumber; // Return unchanged if OTP is already filled
+            });
+        }
+    };
+
+    return (
+        <>
+            <View className="absolute -bottom-5 -left-5 z-50 items-center">
+                <Animated.View className="w-full" style={[animatedStyles]}>
+                    <NumericKeyboard onPress={(value) => handlePickValue(value)} />
+                </Animated.View>
+            </View>
+            <View>
+                <Text style={[Textstyles.text_xsmall]} className="text-red-300">
+                    {errorMsg}
+                </Text>
+                <Pressable
+                    onPress={handleShowKeys}
+                    className="flex-row justify-center items-center"
+                >
+                    {emailVerificationNumber.map((digit, index) => (
+                        <View
+                            key={index}
+                            style={{ flexDirection: "row", alignItems: "center" }}
+                        >
+                            <Box inputText={digit} />
+                            {index < emailVerificationNumber.length - 1 && <View className="w-2" />}
+                        </View>
+                    ))}
+                </Pressable>
             </View>
         </>
     );
