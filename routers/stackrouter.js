@@ -13,6 +13,7 @@ import {
 import Registration from "../screens/onboarding/registration";
 import { Platform } from "react-native";
 import Dashboard from "../screens/dashboard/dashboard";
+import Order from "../screens/dashboard/order";
 
 const StackWrapper = () => {
   const Stack = createStackNavigator();

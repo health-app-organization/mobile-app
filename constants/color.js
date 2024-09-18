@@ -6,3 +6,7 @@ export const greycolortwo = "#B5B5B5";
 export const greycolorthree = "#878787";
 export const greycolorfour = "#EAEAEA";
 export const greycolorfive = "#D9D9D9";
+export const greyColorSix = "#5B6676";
+export const greyColorSeven = "#E2E8F0";
+export const greyColorEight = "#212121";
+export const greyColorNine = "#656565";

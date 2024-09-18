@@ -11,7 +11,7 @@ export const customstyle = StyleSheet.create({
       height: 55,
       borderRadius: 44,
       width: "100%",
-      flexDirection: "column",
+      flexDirection: "row",
       alignItems: "center",
       justifyContent: "center",
    },

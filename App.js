@@ -47,7 +47,7 @@ export default function App() {
               />
               <Stack.Screen
                 name="dashboardscreen"
-                component={DashbaordScreen}
+                component={Dashboard}
               />
               <Stack.Screen
                 name="verification"

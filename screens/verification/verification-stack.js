@@ -38,11 +38,6 @@ const VerificationFlowStack = () => {
                 name="step-5"
                 component={Step5}
             />
-            <Stack.Screen
-                options={{ gestureEnabled: false, gestureDirection: "vertical" }}
-                name="step-6"
-                component={Step6}
-            />
         </Stack.Navigator>
     );
 };
