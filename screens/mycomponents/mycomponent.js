@@ -52,13 +52,109 @@ export const CustomTextInput = ({
   rightIcon,
   onChange,
   secureTextEntry,
+  disable,
+  value
+}) => {
+  const [showicon, seticon] = useState(true); // Initially, show the icon
+  const [inputValue, setInputValue] = useState(value); // Track the input value
+  
+
+  return (
+    <>
+      <View className="w-full relative flex justify-center">
+        {/* Show icon only when input is empty and not focused */}
+        {showicon && inputValue === "" && (
+          <View className="absolute left-2 z-50">{sideicon}</View>
+        )}
+        <TextInput
+          onFocus={() => seticon(false)} // Hide icon when focused
+          onBlur={() => inputValue === "" && seticon(true)} // Show icon on blur if input is empty
+          placeholder={placeholder}
+          placeholderTextColor={placeholderTextColor}
+          autoCapitalize={autoCapitalize || "none"}
+          style={[customstyle.textinputstyle]}
+          onChangeText={(text) => {
+            setInputValue(text); // Update input value state
+            onChange(text); // Call the parent onChange handler if provided
+          }}
+          secureTextEntry={secureTextEntry}
+          value={inputValue}
+          editable={disable}
+          
+        />
+        {rightIcon && (
+          <View className="absolute right-2 z-50">{rightIcon}</View>
+        )}
+      </View>
+    </>
+  );
+};
+
+
+export const CustomTextInputTall = ({
+  autoCapitalize,
+  placeholder,
+  placeholderTextColor,
+  sideicon,
+  rightIcon,
+  onChange,
+  secureTextEntry,
+}) => {
+  const [showicon, seticon] = useState(true); // Initially, show the icon
+  const [inputValue, setInputValue] = useState(""); // Track the input value
+
+  return (
+    <View className="w-72 relative flex justify-start"> 
+      {/* Align content to the start (top) */}
+      {/* Show icon only when input is empty and not focused */}
+      {showicon && inputValue === "" && (
+        <View className="absolute left-2 top-4 z-50">{sideicon}</View> 
+        // Adjust top to 4 to align with text placeholder
+      )}
+      <TextInput
+        onFocus={() => seticon(false)} // Hide icon when focused
+        onBlur={() => inputValue === "" && seticon(true)} // Show icon on blur if input is empty
+        placeholder={placeholder}
+        placeholderTextColor={placeholderTextColor}
+        autoCapitalize={autoCapitalize || "none"}
+        style={[
+          customstyle.textinputstyle,
+          {
+            height: 88, // Set the height of the input
+            paddingBottom: 37
+          },
+        ]}
+        onChangeText={(text) => {
+          setInputValue(text); // Update input value state
+          onChange(text); // Call the parent onChange handler if provided
+        }}
+        secureTextEntry={secureTextEntry}
+      />
+      {rightIcon && (
+        <View className="absolute right-2 top-1 z-50">{rightIcon}</View> 
+        // Adjust top to 4 to align with text placeholder
+      )}
+    </View>
+  );
+};
+
+
+
+export const CustomTextInputshort = ({
+  autoCapitalize,
+  placeholder,
+  placeholderTextColor,
+  sideicon,
+  rightIcon,
+  onChange,
+  secureTextEntry,
 }) => {
   const [showicon, seticon] = useState(true); // Initially, show the icon
   const [inputValue, setInputValue] = useState(""); // Track the input value
 
   return (
     <>
-      <View className="w-full relative flex justify-center">
+      <View className=" w-72 relative flex justify-center">
         {/* Show icon only when input is empty and not focused */}
         {showicon && inputValue === "" && (
           <View className="absolute left-2 z-50">{sideicon}</View>

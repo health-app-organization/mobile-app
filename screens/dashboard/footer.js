@@ -11,20 +11,17 @@ import { useState } from "react"
 import { useNavigation } from "@react-navigation/native"
 import { HomeIcons, Profileicon, TransactionIcon, Walleticon } from "../../utilities/Svgfiles.js";
 
-const Footer=({activeprops})=>{
+const Footer=({active})=>{
     const navigation=useNavigation()
-    const [active,setactive]=useState(activeprops||'Home')
-    const handlenavigate=(value,route)=>{
-        setactive(value)
+    const handlenavigate=(route)=>{
         navigation.navigate(route)
-
         
     }
     return(
         <>
         <View style={{width:width,height:92,backgroundColor:whitecolor}} className="flex-row justify-evenly items-center absolute bottom-0">
             <TouchableOpacity
-            onPress={()=>handlenavigate('Home','dashboardhome')}
+            onPress={()=>handlenavigate('dashboardhome')}
              className="items-center">
               <HomeIcons
               width={20}
@@ -56,7 +53,7 @@ const Footer=({activeprops})=>{
             <Text style={[Textstyles.text_xsma,{color:active === 'Wallet'&&primarycolor}]}>{active==='Wallet' && 'Wallet'}</Text>
             </TouchableOpacity>
             <TouchableOpacity
-            onPress={()=>handlenavigate('Profile','profile')}
+            onPress={()=>handlenavigate('profile')}
              className="items-center">
             <Profileicon 
             height={20}
