@@ -13,7 +13,7 @@ export const Step1 = () => {
     const navigation = useNavigation();
     return (
         <>
-            <View style={{ height: height, width: width }} className="py-[40px]">
+            <View style={{ height: height, width: width }} className="py-[40px] px-5">
                 <Header title="ID Verification" />
                 <View className="h-8" />
                 <VerificationStepChecker step1 />
@@ -29,7 +29,7 @@ export const Step1 = () => {
                         }
                         title="BVN"
                         description="Supported by over 1 million people"
-                        onPress={() => navigation.navigate("step-2")}
+                       
                     />
                     <View className="h-6" />
                     <VerificationStep1Button
@@ -38,8 +38,31 @@ export const Step1 = () => {
                         }
                         title="NIN"
                         description="Supported by over 1 million people"
-                        onPress={() => navigation.navigate("step-2")}
+                       
                     />
+                     <View className="h-6" />
+                    <View className="w-[90%] flex-row items-center mx-auto">
+                    <View className="w-[49%]">
+                        <CustomButton
+                            backgroundColor={whitecolor}
+                            Textname="Skip"
+                            TextColor={primarycolortwo}
+                            borderColor={primarycolortwo}
+                            borderWidth={1}
+                            onPress={() => navigation.navigate("dashboardhome")}
+                            className
+                        />
+                    </View>
+                    <View className="w-3" />
+                    <View className="w-[49%]">
+                        <CustomButton
+                            backgroundColor={primarycolor}
+                            Textname="Continue"
+                            TextColor={whitecolor}
+                            onPress={() => navigation.navigate("step-2")}
+                        />
+                    </View>
+                </View>
                 </View>
             </View>
             <View className="w-screen absolute bottom-0">
@@ -53,7 +76,7 @@ export const Step2 = () => {
     const navigation = useNavigation();
     return (
         <>
-            <View style={{ height: height, width: width }} className="py-[40px]">
+            <View style={{ height: height, width: width }} className="py-[40px] px-5">
                 <Header title="ID Verification" />
                 <View className="h-8" />
                 <View className="w-[90%] items-center mx-auto">
@@ -104,7 +127,7 @@ export const Step3 = () => {
     }
     return (
         <>
-            <View style={{ height: height, width: width }} className="py-[40px]">
+            <View style={{ height: height, width: width }} className="py-[40px] px-5">
                 <Header title="ID Verification" />
                 <View className="h-8" />
                 <VerificationStepChecker step1 step2 />
@@ -160,7 +183,7 @@ export const Step4 = () => {
     const [BNV, setBVN] = useState();
     return (
         <>
-            <View style={{ height: height, width: width }} className="py-[40px]">
+            <View style={{ height: height, width: width }} className="py-[40px] px-5">
                 <Header title="ID Verification" />
                 <View className="h-8" />
                 <VerificationStepChecker step1 step2 step3 />
@@ -196,7 +219,7 @@ export const Step5 = () => {
     const navigation = useNavigation();
     return (
         <>
-            <View style={{ height: height, width: width }} className="py-[40px]">
+            <View style={{ height: height, width: width }} className="py-[40px] px-5">
                 <View className="flex-1">
                     <Header />
                     <View className="h-20" />

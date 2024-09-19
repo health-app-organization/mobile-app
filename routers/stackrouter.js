@@ -15,6 +15,8 @@ import { Platform } from "react-native";
 import Dashboard from "../screens/dashboard/dashboard";
 import Order from "../screens/dashboard/order";
 import Profile from "../screens/dashboard/Profile";
+import VerificationFlowStack from "../screens/verification/verification-stack";
+import PaymentScreen from "../screens/TransactionPage/depositScreen";
 
 const StackWrapper = () => {
   const Stack = createStackNavigator();
@@ -97,6 +99,16 @@ const StackWrapper = () => {
            
           
             />
+             <Stack.Screen
+             options={{
+              gestureEnabled: true,
+              gestureDirection: Platform.OS === "ios" ? "horizontal" : Platform.OS === "android" && "vertical",
+            }}
+            name="verification"
+            component={VerificationFlowStack}
+           
+          
+            />
             <Stack.Screen
                options={{
                 gestureEnabled: true,
@@ -113,6 +125,15 @@ const StackWrapper = () => {
                 name="profile"
                 component={Profile}
               />
+              <Stack.Screen
+               options={{
+                gestureEnabled: true,
+                gestureDirection: Platform.OS === "ios" ? "horizontal" : Platform.OS === "android" && "vertical",
+              }}
+                name="paymentscreen"
+                component={PaymentScreen}
+              />
+              
     </Stack.Navigator>
   );
 };

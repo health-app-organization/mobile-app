@@ -9,7 +9,7 @@ const Profile=()=>{
     
         <View style={{ height: height, width: width }} className="px-5 pt-[88px] flex">
             <Footer
-            activeprops={'Profile'}
+            active={'Profile'}
             />
 
 

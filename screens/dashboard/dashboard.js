@@ -1,223 +1,306 @@
-import { height, width } from "../../constants/mobileDimensions";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { Textstyles } from "../../constants/fontsize";
-import React, { useEffect, useState } from 'react';
-import * as Location from 'expo-location';
-import Animated, { useAnimatedStyle, useSharedValue, withSpring } from "react-native-reanimated";
-import { MapDrawer } from "../modals/drawer";
-import { greycolorfive, primarycolor, whitecolor } from "../../constants/color";
-import { MaterialCommunityIcons, Feather } from "@expo/vector-icons";
-import MapView, { Marker, Polyline } from "react-native-maps";
+import { Image, RefreshControl, Text, TouchableOpacity, View } from "react-native"
+import Truck from '../../assets/images/container-truck.svg'
+import DeliveryTrack from '../../assets/images/delivery-tracking-01.svg'
+import Walleticon from '../../assets/images/wallet-02.svg'
+import CustomerCareicon from '../../assets/images/customer-service-01.svg'
+import { height, width } from "../../constants/mobileDimensions"
+import { Textstyles } from "../../constants/fontsize"
+import { bgopacitycolorforicon, greencolor, greenopacitycolor, orangecolor, primarycolor, primarycolortwo, purplecolor, purpleopacitycolor, redopacitycolor, redtwoopacitycolor, spotcolor, whitecolor } from "../../constants/color"
+import { ScrollView } from "react-native-gesture-handler"
+import { useEffect, useState } from "react"
+import { CustomButton, Iconplaceholder } from "../mycomponents/mycomponent"
+import { FontAwesome5 } from "@expo/vector-icons"
+import Footer from "./footer"
+import { useNavigation } from "@react-navigation/native"
+import RecentOrderRecord from "../mycomponents/recentOrderRecord"
+
+const Dashboard = () => {
+    const navigation = useNavigation()
+    const [refreshing, setRefreshing] = useState(false);
+    const [kycverify, setkycverify] = useState(false)
 
 
-const CustomMarker = ({ icon, color }) => {
-    return (
-        <View style={styles.markerContainer}>
-            <View style={[styles.markerBox, { borderColor: color }]}>
-                <MaterialCommunityIcons name={icon} size={30} color="white" />
-            </View>
-        </View>
-    );
-};
 
-// Helper function to generate zigzag points using square roots
-const generateZigzagPointsWithRoots = (start, end, numberOfPoints = 10) => {
-    const points = [];
-    const latStep = (end.latitude - start.latitude) / numberOfPoints;
-    const lonStep = (end.longitude - start.longitude) / numberOfPoints;
+    const fetchData = async () => {
+        try {
+            console.log('ok')
+            setkycverify(true)
 
-    for (let i = 0; i <= numberOfPoints; i++) {
-        const progress = i / numberOfPoints;
-        const zigzagOffset = Math.sqrt(progress) * (i % 2 === 0 ? 0.002 : -0.002); // Square root pattern for zigzag
-        points.push({
-            latitude: start.latitude + i * latStep + zigzagOffset, // Apply square root-based zigzag offset
-            longitude: start.longitude + i * lonStep
-        });
+        } catch (error) {
+
+        }
+
+
     }
+    const checkstatus = () => {
+        if (kycverify === false) {
+            navigation.navigate('verification')
+        }
 
-    return points;
-};
-
-const Order = () => {
-    const [location, setLocation] = useState(null);
-    const [randomLocation, setRandomLocation] = useState(null);
-    const [currentStep, setCurrentStep] = useState(0); // 0, 1, 2 for step progress
-    const [showDrawer, setShowDrawer] = useState(false);
-
-    // Helper to get a farther random location
-    const getFartherRandomLocation = (location) => {
-        const latOffset = (Math.random() - 0.5) * 0.2; // Increase offset range for latitude
-        const lonOffset = (Math.random() - 0.5) * 0.2; // Increase offset range for longitude
-        return {
-            latitude: location.latitude + latOffset,
-            longitude: location.longitude + lonOffset,
-        };
-    };
-
-    // Fetch user location
+    }
     useEffect(() => {
-        (async () => {
-            let { status } = await Location.requestForegroundPermissionsAsync();
-            if (status !== 'granted') {
-                console.log('Permission to access location was denied');
-                return;
-            }
+        checkstatus()
+    }, [])
 
-            let loc = await Location.getCurrentPositionAsync({});
-            if (loc && loc.coords) {
-                setLocation(loc.coords);
+    const onRefresh = () => {
+        setRefreshing(true)
+        fetchData().finally(() => {
+            setRefreshing(false)
 
-                // Set random location farther from current location
-                const randomLoc = getFartherRandomLocation(loc.coords);
-                setRandomLocation(randomLoc);
-
-                console.log("User Location: ", loc.coords);
-                console.log("Random Location: ", randomLoc);
-            }
-        })();
-    }, []);
-
-    // Function to handle step continuation and showing the drawer
-    const handleContinue = () => {
-        if (currentStep < 2) {
-            setCurrentStep((prevStep) => prevStep + 1);
         }
-        if (currentStep === 2) {
-            setShowDrawer(true);
-            translateY.value = withSpring(300); // Open drawer animation
-        }
-    };
+        )
+    }
+    const handledeposit = () => {
 
-    // Handle drawer close
-    const handleCloseDrawer = () => {
-        setShowDrawer(false);
-        translateY.value = withSpring(600); // Slide the drawer down when closing
-    };
+    }
+    const handlewithdraw = () => {
 
-    const translateY = useSharedValue(600);
-    const animatedStyles = useAnimatedStyle(() => ({
-        transform: [{ translateY: translateY.value }],
-    }));
-
+    }
     return (
         <>
-            {showDrawer && (
-                <>
-                    {/* Background Overlay */}
-                    <View
-                        style={{ height: height, backgroundColor: greycolorfive }}
-                        className="w-full absolute z-50 opacity-70"
+
+            <View style={{ height: height, width: width }} className="px-5 py-[88px] flex">
+
+                <View className="flex-row">
+                    <Image
+                        className="h-12 w-12"
+                        source={require("../../assets/images/logo.png")}
+                        resizeMode="contain"
                     />
-                    {/* MapDrawer Component with Close Button */}
-                    <View style={{ zIndex: 12000 }} className="bottom-0 absolute">
-                        <Animated.View style={[animatedStyles]}>
-                            <MapDrawer
-                                title="Successful"
-                                text={
-                                    <Text>
-                                        Your <Text style={{ color: primarycolor }}>stulivery</Text>{" "}
-                                        account has been registered successfully
-                                    </Text>
-                                }
-                                buttonText="Go to dashboard"
-                                navigateTo="dashboard"
-                            />
+                    <View className="w-3" />
+                    <View className="items-start">
+                        <Text style={[Textstyles.text_x16small]}>Welcome back</Text>
+                        <Text style={[Textstyles.text_x16small]}>John</Text>
 
-                            {/* Close Button */}
-                            <TouchableOpacity
-                                style={{
-                                    position: 'absolute',
-                                    top: 70,
-                                    right: 10,
-                                    zIndex: 13000,
-                                }}
-                                onPress={handleCloseDrawer}
-                            >
-                                <Feather name="x-circle" size={24} color={whitecolor} />
-                            </TouchableOpacity>
-                        </Animated.View>
                     </View>
-                </>
-            )}
-
-            <View style={{ height: height, width: width }} className="py-[40px]">
-                <View className="w-full h-16 justify-center">
-                    <View className="w-[75%] flex-row justify-between">
-                        <TouchableOpacity className="bg-gray-200 w-[50px] h-[50px] rounded-full mt-auto mb-auto ml-4 flex justify-center items-center">
-                            <MaterialCommunityIcons
-                                name="arrow-left"
-                                size={20}
-                                color="black"
+                </View>
+                <View className="h-5" />
+                <View className="flex-1">
+                    <ScrollView
+                        showsVerticalScrollIndicator={false}
+                        showsHorizontalScrollIndicator={false}
+                        refreshControl={
+                            <RefreshControl
+                                refreshing={refreshing}
+                                onRefresh={onRefresh}
+                                tintColor={primarycolortwo}
+                                colors={[primarycolortwo]}
                             />
-                        </TouchableOpacity>
-                        <View className="w-40 h-16 flex justify-center items-center">
-                            <Text style={[Textstyles.text_small]} className="font-bold">Order Location</Text>
+                        }
+                    >
+                        <View style={{ backgroundColor: primarycolortwo, height: 148, borderRadius: 15 }} className="w-full p-5">
+                            <Text style={[Textstyles.text_xmedium, { color: whitecolor }]}>&#x20A6; 500,000,000</Text>
+                            <Text style={[Textstyles.text_xsma, { color: whitecolor }]}>Wallet Balance</Text>
+                            <View className="h-3" />
+                            <View className="flex-row w-full">
+                                <TouchableOpacity
+                                onPress={()=>{navigation.navigate('paymentscreen')}}
+                                 style={{ backgroundColor: primarycolor, height: 40, width: '50%', borderRadius: 15 }} className="flex justify-center items-center">
+                                    <Text>Deposit</Text>
+                                </TouchableOpacity>
+                                <View className="w-3" />
+                                <TouchableOpacity style={{ backgroundColor: whitecolor, height: 40, width: '50%', borderRadius: 15 }} className="flex justify-center items-center">
+                                    <Text>Withdraw</Text>
+                                </TouchableOpacity>
+                            </View>
                         </View>
-                    </View>
+                        <View className="h-8" />
+                        <View>
+                            <Text style={[Textstyles.text_small]}>Features</Text>
+
+                        </View>
+                        <View className="flex-row">
+                            <TouchableOpacity className="p-3" style={{ backgroundColor: redopacitycolor, height: 200, width: '48%', borderRadius: 15 }}>
+                                <View>
+                                    <Iconplaceholder
+                                        backgroundColor={bgopacitycolorforicon}
+                                        width={50}
+                                        height={50}
+
+                                        Icon={<Truck width={24} height={24} />}
+                                    />
+                                    <View className="h-3" />
+
+                                    <Text style={[Textstyles.text_small, { color: spotcolor }]}>Order</Text>
+
+                                </View>
+
+
+                                <View className="flex-row w-full justify-between items-end">
+                                    <View className="w-2/3">
+                                        <Text style={[Textstyles.text_xsma]}>Create a New Delivery Request and get it Moving</Text>
+
+                                    </View>
+                                </View>
+                                <View className="absolute bottom-5 right-2">
+                                    <FontAwesome5 size={24} color={spotcolor} name="arrow-circle-right" />
+
+                                </View>
+
+
+                            </TouchableOpacity>
+                            <View className="w-3" />
+                            <TouchableOpacity className="p-3" style={{ backgroundColor: greenopacitycolor, height: 200, width: '48%', borderRadius: 15 }}>
+                                <View>
+                                    <Iconplaceholder
+                                        backgroundColor={bgopacitycolorforicon}
+                                        width={50}
+                                        height={50}
+
+                                        Icon={<DeliveryTrack width={24} height={24} />}
+                                    />
+                                    <View className="h-3" />
+
+                                    <Text style={[Textstyles.text_small, { color: greencolor }]}>Track Order</Text>
+
+                                </View>
+
+
+                                <View className="flex-row w-full justify-between items-end">
+                                    <View className="w-2/3">
+                                        <Text style={[Textstyles.text_xsma]}>Your Delivery is on the Way! Track Progress</Text>
+
+                                    </View>
+                                </View>
+                                <View className="absolute bottom-5 right-2">
+                                    <FontAwesome5 size={24} color={greencolor} name="arrow-circle-right" />
+
+                                </View>
+
+                            </TouchableOpacity>
+
+                        </View>
+                        <View className="h-3" />
+                        <View className="flex-row">
+                            <TouchableOpacity className="p-3" style={{ backgroundColor: purpleopacitycolor, height: 200, width: '48%', borderRadius: 15 }}>
+                                <View>
+                                    <Iconplaceholder
+                                        backgroundColor={bgopacitycolorforicon}
+                                        width={50}
+                                        height={50}
+
+                                        Icon={<Walleticon width={24} height={24} />}
+                                    />
+                                    <View className="h-3" />
+
+                                    <Text style={[Textstyles.text_small, { color: purplecolor }]}>Wallet</Text>
+
+                                </View>
+
+
+                                <View className="flex-row w-full justify-between items-end">
+                                    <View className="w-2/3">
+                                        <Text style={[Textstyles.text_xsma]}>Manage Your Earnings with Stulivery Wallet</Text>
+
+                                    </View>
+
+
+
+
+                                </View>
+                                <View className="absolute bottom-5 right-2">
+                                    <FontAwesome5 size={24} color={purplecolor} name="arrow-circle-right" />
+
+                                </View>
+
+
+                            </TouchableOpacity>
+                            <View className="w-3" />
+                            <TouchableOpacity className="p-3" style={{ backgroundColor: redtwoopacitycolor, height: 200, width: '48%', borderRadius: 15 }}>
+                                <View>
+                                    <Iconplaceholder
+                                        backgroundColor={bgopacitycolorforicon}
+                                        width={50}
+                                        height={50}
+
+                                        Icon={<CustomerCareicon width={24} height={24} />}
+                                    />
+                                    <View className="h-3" />
+
+                                    <Text style={[Textstyles.text_small, { color: orangecolor }]}>Help Center</Text>
+
+                                </View>
+
+
+                                <View className="flex-row w-full justify-between items-end">
+                                    <View className="w-2/3">
+                                        <Text style={[Textstyles.text_xsma]}>Contact customer support for help or complain</Text>
+
+                                    </View>
+
+
+
+
+                                </View>
+                                <View className="absolute bottom-5 right-2">
+                                    <FontAwesome5 size={24} color={orangecolor} name="arrow-circle-right" />
+
+                                </View>
+
+                            </TouchableOpacity>
+
+                        </View>
+                        <View className="h-3" />
+                        <View>
+                            <Text style={[Textstyles.text_small]}>Recent Order</Text>
+
+                        </View>
+                        <View style={{height:height*0.3}} className="w-full">
+                            <ScrollView>
+                                <RecentOrderRecord
+                                ordernumber={'MM09132005'}
+                                orderstatus={'in transit'}
+                                ordertime={'2 hrs'}
+                                index={0}
+                                />
+                                  <RecentOrderRecord
+                                ordernumber={'MM09132005'}
+                                orderstatus={'Completed'}
+                                ordertime={'12 September, 2024'}
+                                index={1}
+                                />
+                                  <RecentOrderRecord
+                                ordernumber={'MM09132005'}
+                                orderstatus={'Completed'}
+                                ordertime={'12 September, 2024'}
+                                index={2}
+                                />
+                                 <RecentOrderRecord
+                                ordernumber={'MM09132005'}
+                                orderstatus={'Completed'}
+                                ordertime={'12 September, 2024'}
+                                index={3}
+                                />
+                                 <RecentOrderRecord
+                                ordernumber={'MM09132005'}
+                                orderstatus={'Completed'}
+                                ordertime={'12 September, 2024'}
+                                index={4}
+                                />
+                                 <RecentOrderRecord
+                                ordernumber={'MM09132005'}
+                                orderstatus={'Completed'}
+                                ordertime={'12 September, 2024'}
+                                index={5}
+                                />
+                              
+
+                            </ScrollView>
+
+                        </View>
+
+                    </ScrollView>
                 </View>
 
-                <View className="px-2 mt-1">
-                    {/* Ensure location is available */}
-                    {location && randomLocation ? (
-                        <MapView
-                            className="w-[100%] h-full"
-                            initialRegion={{
-                                latitude: location.latitude,
-                                longitude: location.longitude,
-                                latitudeDelta: 0.0922,
-                                longitudeDelta: 0.0421,
-                            }}
-                        >
-                            {/* Marker for Current Location */}
-                            <Marker
-                                coordinate={location}
-                                title="Your Location"
-                                description="This is where you are"
-                                onPress={handleContinue} // Move to the next step when pressed
-                            >
-                                <CustomMarker icon="map-marker" color="white" />
-                            </Marker>
 
-                            {/* Marker for Farther Random Location */}
-                            <Marker
-                                coordinate={randomLocation}
-                                title="Farther Location"
-                                description="Random location generated farther away"
-                                onPress={handleContinue} // Move to the next step when pressed
-                            >
-                                <CustomMarker icon="send-circle-outline" color="white" />
-                            </Marker>
-
-                            {/* Polyline with zigzag pattern */}
-                            <Polyline
-                                coordinates={generateZigzagPointsWithRoots(location, randomLocation)}
-                                strokeColor={primarycolor} // Line color
-                                strokeWidth={6} // Line width
-                            />
-                        </MapView>
-                    ) : (
-                        <Text>Loading map...</Text>
-                    )}
-                </View>
+                <Footer
+                    active={'Home'}
+                />
             </View>
+
+
         </>
-    );
-};
+    )
 
-export default Order;
-
-const styles = StyleSheet.create({
-    markerContainer: {
-        alignItems: "center",
-        justifyContent: "center",
-    },
-    markerBox: {
-        width: 50,
-        height: 50,
-        borderRadius: 100,
-        borderWidth: 3,
-        backgroundColor: "#073945",
-        alignItems: "center",
-        justifyContent: "center",
-    },
-});
+}
+export default Dashboard
