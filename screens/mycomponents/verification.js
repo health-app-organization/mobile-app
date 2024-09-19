@@ -31,6 +31,26 @@ export const Header = (props) => {
     )
 }
 
+export const Lines = () => {
+    return (
+      <>
+        <View className="w-full h-auto items-center">
+          {/* Dashed line */}
+          <View className="flex flex-col items-center my-1">
+            {[...Array(29)].map((_, index) => (
+              <View
+                key={index}
+                style={{ backgroundColor: '#E0E0E0' }} // Adjust color as needed
+                className="h-2 w-[1px] my-0.5" // Height of dash, width of line
+              />
+            ))}
+          </View>
+        </View>
+      </>
+    );
+  };
+  
+
 export const VerificationStepChecker = (props) => {
     // props: step1, step2, step3
     return (
@@ -75,6 +95,8 @@ export const VerificationStepChecker = (props) => {
         </>
     );
 }
+
+
 
 export const VerificationStep1Button = (props) => {
     // props: icon, title, description
