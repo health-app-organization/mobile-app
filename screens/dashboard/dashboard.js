@@ -72,10 +72,10 @@ const Dashboard = () => {
                         <Text style={[Textstyles.text_x16small]}>Welcome back</Text>
                         <Text style={[Textstyles.text_x16small]}>John</Text>
 
+                        </View>
                     </View>
-                </View>
-                <View className="h-5" />
-                <View className="flex-1">
+                    <View className="h-5" />
+                    <View style={{height:height*0.7}} >
                     <ScrollView
                         showsVerticalScrollIndicator={false}
                         showsHorizontalScrollIndicator={false}
@@ -293,11 +293,10 @@ const Dashboard = () => {
                 </View>
 
 
-                <Footer
-                    active={'Home'}
-                />
+               
             </View>
 
+            <Footer/>
 
         </>
     )
