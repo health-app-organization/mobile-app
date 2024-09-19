@@ -57,7 +57,7 @@ const Dashboard = () => {
                         </View>
                     </View>
                     <View className="h-5" />
-                    <View className="flex-1">
+                    <View style={{height:height*0.7}} >
                     <ScrollView
                     showsVerticalScrollIndicator={false}
                     showsHorizontalScrollIndicator={false}
@@ -221,9 +221,10 @@ const Dashboard = () => {
                     </View>
 
 
-                <Footer/>
+               
             </View>
 
+            <Footer/>
 
         </>
     )

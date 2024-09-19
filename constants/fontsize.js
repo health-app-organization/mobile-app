@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native'
+import { Platform, StyleSheet } from 'react-native'
 export const Textstyles = StyleSheet.create({
     text_xsmall: {
         fontFamily: "TTFirsNeue",
@@ -14,9 +14,8 @@ export const Textstyles = StyleSheet.create({
     },
     text_xsma: {
         fontFamily: "TTFirsNeue",
-        fontSize: 14,
+        fontSize: Platform.OS==='android'?12:14,
         fontWeight: 200,
-        lineHeight: 25,
         color: "grey"
     },
     text_small: {
