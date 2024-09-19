@@ -52,9 +52,12 @@ export const CustomTextInput = ({
   rightIcon,
   onChange,
   secureTextEntry,
+  disable,
+  value
 }) => {
   const [showicon, seticon] = useState(true); // Initially, show the icon
-  const [inputValue, setInputValue] = useState(""); // Track the input value
+  const [inputValue, setInputValue] = useState(value); // Track the input value
+  
 
   return (
     <>
@@ -75,6 +78,9 @@ export const CustomTextInput = ({
             onChange(text); // Call the parent onChange handler if provided
           }}
           secureTextEntry={secureTextEntry}
+          value={inputValue}
+          editable={disable}
+          
         />
         {rightIcon && (
           <View className="absolute right-2 z-50">{rightIcon}</View>

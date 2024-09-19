@@ -93,7 +93,9 @@ const Dashboard = () => {
                             <Text style={[Textstyles.text_xsma, { color: whitecolor }]}>Wallet Balance</Text>
                             <View className="h-3" />
                             <View className="flex-row w-full">
-                                <TouchableOpacity style={{ backgroundColor: primarycolor, height: 40, width: '50%', borderRadius: 15 }} className="flex justify-center items-center">
+                                <TouchableOpacity
+                                onPress={()=>{navigation.navigate('paymentscreen')}}
+                                 style={{ backgroundColor: primarycolor, height: 40, width: '50%', borderRadius: 15 }} className="flex justify-center items-center">
                                     <Text>Deposit</Text>
                                 </TouchableOpacity>
                                 <View className="w-3" />

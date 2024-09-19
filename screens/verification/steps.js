@@ -13,7 +13,7 @@ export const Step1 = () => {
     const navigation = useNavigation();
     return (
         <>
-            <View style={{ height: height, width: width }} className="py-[40px]">
+            <View style={{ height: height, width: width }} className="py-[40px] px-5">
                 <Header title="ID Verification" />
                 <View className="h-8" />
                 <VerificationStepChecker step1 />
@@ -76,7 +76,7 @@ export const Step2 = () => {
     const navigation = useNavigation();
     return (
         <>
-            <View style={{ height: height, width: width }} className="py-[40px]">
+            <View style={{ height: height, width: width }} className="py-[40px] px-5">
                 <Header title="ID Verification" />
                 <View className="h-8" />
                 <View className="w-[90%] items-center mx-auto">
@@ -127,7 +127,7 @@ export const Step3 = () => {
     }
     return (
         <>
-            <View style={{ height: height, width: width }} className="py-[40px]">
+            <View style={{ height: height, width: width }} className="py-[40px] px-5">
                 <Header title="ID Verification" />
                 <View className="h-8" />
                 <VerificationStepChecker step1 step2 />
@@ -183,7 +183,7 @@ export const Step4 = () => {
     const [BNV, setBVN] = useState();
     return (
         <>
-            <View style={{ height: height, width: width }} className="py-[40px]">
+            <View style={{ height: height, width: width }} className="py-[40px] px-5">
                 <Header title="ID Verification" />
                 <View className="h-8" />
                 <VerificationStepChecker step1 step2 step3 />
@@ -219,7 +219,7 @@ export const Step5 = () => {
     const navigation = useNavigation();
     return (
         <>
-            <View style={{ height: height, width: width }} className="py-[40px]">
+            <View style={{ height: height, width: width }} className="py-[40px] px-5">
                 <View className="flex-1">
                     <Header />
                     <View className="h-20" />
