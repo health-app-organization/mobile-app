@@ -1,9 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import { Entypo, MaterialCommunityIcons } from "@expo/vector-icons";
 import { CameraView, useCameraPermissions } from "expo-camera";
-import { Image, Text, TouchableOpacity, View } from "react-native";
+import { Image, Text, TouchableOpacity, View,Button } from "react-native";
 import { height, width } from "../../constants/mobileDimensions";
 import { useState } from 'react';
+import { primarycolor } from '../../constants/color';
 
 export const CameraPage = ({
     cameraBackArrowAction,
@@ -48,9 +49,32 @@ export const CameraPage = ({
     }
 
     return (
-        <View className="flex-1 justify-center">
-            <CameraView
-                className="flex-1"
+        <View style={{height:height,width:width}} className="items-center py-[88px] px-5 justify-center">   
+        <View className="items-start w-full flex-row">
+        <TouchableOpacity
+            onPress={cameraBackArrowAction}
+            style={{backgroundColor:primarycolor}} 
+            className="rounded-full h-10 flex justify-center items-center w-10"   
+        >
+            <MaterialCommunityIcons
+                name="arrow-left"
+                size={20}
+                color="black"
+            />
+        </TouchableOpacity>
+        {/* <View>
+            
+        <Image
+                            className="h-12 w-12"
+                            source={require("../../assets/images/logo.png")}
+                            resizeMode="contain"
+                        />
+        </View> */}
+    </View>
+    <View style={{width:width}} className="flex-1 justify-center items-center px-5">
+    <CameraView
+    
+                className="w-screen h-72 rounded-2xl pb-3"
                 facing="back"
                 flash="auto"
                 CameraOrientation="portrait"
@@ -58,19 +82,8 @@ export const CameraPage = ({
                     camera = ref;
                 }}
             >
-                <View className="flex-1 flex-row bg-transparent m-16">
-                    <View className="absolute top-0">
-                        <TouchableOpacity
-                            onPress={cameraBackArrowAction}
-                            className="bg-gray-200 w-[50px] h-[50px] rounded-full mt-auto mb-auto ml-4 flex justify-center items-center"
-                        >
-                            <MaterialCommunityIcons
-                                name="arrow-left"
-                                size={20}
-                                color="black"
-                            />
-                        </TouchableOpacity>
-                    </View>
+                <View className="flex-1 relative flex-row bg-transparent">
+                 
                     <View className="absolute bottom-0 w-full items-center">
                         {showCaptureButton && (
                             <TouchableOpacity
@@ -83,6 +96,9 @@ export const CameraPage = ({
                     </View>
                 </View>
             </CameraView>
+
+    </View>
+           
         </View>
     );
 };

@@ -19,3 +19,7 @@ export const spotcolor="rgba(227, 82, 113, 1)"
 export const greencolor="rgba(31, 174, 114, 1)"
 export const purplecolor="rgba(117, 91, 172, 1)"
 export const orangecolor="rgba(241, 114, 105, 1)"
+export const iconplaceholder="rgba(238, 238, 238, 1)"
+export const borderColor="rgba(243, 243, 243, 1)"
+
+
