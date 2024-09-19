@@ -75,8 +75,9 @@ const Dashboard = () => {
                         </View>
                     </View>
                     <View className="h-5" />
-                    <View style={{height:height*0.7}} >
+                    <View style={{height:height*0.7,flex:1}}>
                     <ScrollView
+                    style={{flex: 1,}}
                         showsVerticalScrollIndicator={false}
                         showsHorizontalScrollIndicator={false}
                         refreshControl={
@@ -296,7 +297,9 @@ const Dashboard = () => {
                
             </View>
 
-            <Footer/>
+            <Footer
+            active={'Home'}
+            />
 
         </>
     )

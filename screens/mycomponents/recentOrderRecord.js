@@ -28,7 +28,7 @@ const RecentOrderRecord=({ordernumber,orderstatus,ordertime,index})=>{
                 </View>
                 
                 <View>
-                    <Text style={[Textstyles.text_xsmall,{color:greyColorEight}]}>{ordertime}</Text>
+                    <Text style={[Textstyles.text_xsma,{color:greyColorEight}]}>{ordertime}</Text>
                 </View>
 
             </TouchableOpacity>
