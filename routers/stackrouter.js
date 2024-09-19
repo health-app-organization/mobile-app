@@ -91,7 +91,7 @@ const StackWrapper = () => {
       />
              <Stack.Screen
              options={{
-              gestureEnabled: true,
+              gestureEnabled: false,
               gestureDirection: Platform.OS === "ios" ? "horizontal" : Platform.OS === "android" && "vertical",
             }}
             name="dashboardhome"
