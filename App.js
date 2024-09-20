@@ -14,6 +14,8 @@ import Order from "./screens/dashboard/order";
 import Dashboard from "./screens/dashboard/dashboard";
 import VerificationFlowStack from "./screens/verification/verification-stack";
 import Neworder from "./screens/dashboard/neworder";
+import OrderDetails from "./screens/delivery/orderdetails";
+
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -57,6 +59,10 @@ export default function App() {
                <Stack.Screen
                 name="neworder"
                 component={Neworder}
+              />
+               <Stack.Screen
+                name="orderdetails"
+                component={OrderDetails}
               />
             </Stack.Navigator>
           </NavigationContainer>
