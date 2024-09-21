@@ -26,7 +26,7 @@ export const CustomButton = ({
             backgroundColor: backgroundColor,
             borderWidth: borderWidth || 0,
             borderColor: borderColor || null,
-            width:width || '100%'
+            width: width || "100%",
           },
           customstyle.buttonstyle,
         ]}
@@ -53,7 +53,7 @@ export const CustomTextInput = ({
   onChange,
   secureTextEntry,
   disable,
-  value
+  value,
 }) => {
   const [showicon, seticon] = useState(true); // Initially, show the icon
   const [inputValue, setInputValue] = useState(value); // Track the input value
@@ -78,7 +78,6 @@ export const CustomTextInput = ({
           secureTextEntry={secureTextEntry}
           value={inputValue}
           editable={disable}
-          
         />
         {rightIcon && (
           <View className="absolute right-2 z-50">{rightIcon}</View>
@@ -88,6 +87,48 @@ export const CustomTextInput = ({
   );
 };
 
+export const CustomUploadInput = ({
+  placeholder,
+  placeholderTextColor,
+  uploadIcon,
+  buttonLabel = "Upload",
+  onUploadPress,
+  onChange,
+  value,
+  sideIcon, // The left icon (for upload)
+}) => {
+  const [inputValue, setInputValue] = useState(value || "");
+
+  return (
+    <View className="w-full relative flex-row items-center bg-[#EEEEEE] rounded-xl my-2 px-4 py-3">
+      {/* Left Icon */}
+      {sideIcon && <View className="absolute left-3 z-50">{sideIcon}</View>}
+
+      {/* Text Input */}
+      <TextInput
+        placeholder={placeholder}
+        placeholderTextColor={placeholderTextColor}
+        style={{
+          flex: 1,
+          marginLeft: sideIcon ? 36 : 0, // Make sure there's space for the icon
+        }}
+        onChangeText={(text) => {
+          setInputValue(text);
+          onChange && onChange(text); // Call onChange from parent if provided
+        }}
+        value={inputValue}
+      />
+
+      {/* Right Upload Button */}
+      <TouchableOpacity
+        className="rounded-xl px-4 py-2 bg-[#FFC107]"
+        onPress={onUploadPress}
+      >
+        <Text className="text-white font-semibold">{buttonLabel}</Text>
+      </TouchableOpacity>
+    </View>
+  );
+};
 
 export const CustomTextInputTall = ({
   autoCapitalize,
@@ -102,11 +143,11 @@ export const CustomTextInputTall = ({
   const [inputValue, setInputValue] = useState(""); // Track the input value
 
   return (
-    <View className="w-72 relative flex justify-start"> 
+    <View className="w-72 relative flex justify-start">
       {/* Align content to the start (top) */}
       {/* Show icon only when input is empty and not focused */}
       {showicon && inputValue === "" && (
-        <View className="absolute left-2 top-4 z-50">{sideicon}</View> 
+        <View className="absolute left-2 top-4 z-50">{sideicon}</View>
         // Adjust top to 4 to align with text placeholder
       )}
       <TextInput
@@ -119,7 +160,7 @@ export const CustomTextInputTall = ({
           customstyle.textinputstyle,
           {
             height: 88, // Set the height of the input
-            paddingBottom: 37
+            paddingBottom: 37,
           },
         ]}
         onChangeText={(text) => {
@@ -129,14 +170,12 @@ export const CustomTextInputTall = ({
         secureTextEntry={secureTextEntry}
       />
       {rightIcon && (
-        <View className="absolute right-2 top-1 z-50">{rightIcon}</View> 
+        <View className="absolute right-2 top-1 z-50">{rightIcon}</View>
         // Adjust top to 4 to align with text placeholder
       )}
     </View>
   );
 };
-
-
 
 export const CustomTextInputshort = ({
   autoCapitalize,
@@ -240,18 +279,16 @@ export const Box = ({ inputText }) => {
     </View>
   );
 };
-export const Iconplaceholder=({backgroundColor,width,height,Icon})=>{
-  return(
-    <View style={{backgroundColor:backgroundColor,width:width,height:height}} className="flex justify-center items-center rounded-full">
+export const Iconplaceholder = ({ backgroundColor, width, height, Icon }) => {
+  return (
+    <View
+      style={{ backgroundColor: backgroundColor, width: width, height: height }}
+      className="flex justify-center items-center rounded-full"
+    >
       {Icon}
     </View>
-  )
-}
-
-
-
-
-
+  );
+};
 
 export const CustomInputWithHeader = ({
   headerText, // This is the input header text
@@ -260,21 +297,23 @@ export const CustomInputWithHeader = ({
   onChange,
   secureTextEntry,
   disable,
-  value
+  value,
 }) => {
   const [inputValue, setInputValue] = useState(value); // Track the input value
 
   return (
     <View className="w-full flex flex-col">
       {/* Input Header */}
-      <Text className=" mb-2"style={[Textstyles.text_cmedium]}>{headerText}</Text>
-      
+      <Text className=" mb-2" style={[Textstyles.text_cmedium]}>
+        {headerText}
+      </Text>
+
       {/* Input Field */}
       <View className="relative flex justify-center">
         <TextInput
-           style={[
-            customstyle.textinputstyle, 
-            { paddingLeft: 15 }  // Reduce the left padding here
+          style={[
+            customstyle.textinputstyle,
+            { paddingLeft: 15 }, // Reduce the left padding here
           ]} // Apply custom styling
           value={inputValue || normalText} // Display the normalText if no value
           editable={false}

@@ -13,6 +13,7 @@ import {
   CustomTextInput,
   CustomTextInputshort,
   CustomTextInputTall,
+  CustomUploadInput,
 } from "../mycomponents/mycomponent";
 import { Textstyles } from "../../constants/fontsize";
 import {
@@ -99,7 +100,7 @@ const Neworder = () => {
               }
             />
             <View className="h-4" />
-            <CustomTextInput
+            <CustomUploadInput
               placeholder="Enter the recipient's name"
               placeholderTextColor={greycolortwo}
               sideicon={

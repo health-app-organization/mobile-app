@@ -15,6 +15,10 @@ import Dashboard from "./screens/dashboard/dashboard";
 import VerificationFlowStack from "./screens/verification/verification-stack";
 import Neworder from "./screens/dashboard/neworder";
 import OrderDetails from "./screens/delivery/orderdetails";
+import Trackorder from "./screens/dashboard/trackorder";
+import Editprofile from "./screens/Profile/editprofile";
+import DeliveryDash from "./screens/delivery/deliverydash";
+import Nearby from "./screens/delivery/neardelivery";
 
 
 export default function App() {
@@ -64,6 +68,21 @@ export default function App() {
                 name="orderdetails"
                 component={OrderDetails}
               />
+              <Stack.Screen 
+              name="trackorder"
+              component={Trackorder}
+              />
+              <Stack.Screen
+              name="editprofile"
+              component={Editprofile}
+              />
+                 <Stack.Screen
+              name="deliverydash"
+              component={DeliveryDash}
+              />
+              <Stack.Screen
+              name="neardelivery"
+              component={Nearby}/>
             </Stack.Navigator>
           </NavigationContainer>
         </GestureHandlerRootView>

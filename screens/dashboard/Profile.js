@@ -8,9 +8,8 @@ const Profile = () => {
       <View
         style={{ height: height, width: width }}
         className="px-5 pt-[88px] flex"
-      >
-        <Footer active={"Profile"} />
-      </View>
+      ></View>
+      <Footer active={"Profile"} />
     </>
   );
 };
