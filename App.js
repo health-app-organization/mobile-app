@@ -10,15 +10,6 @@ import { useCallback, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
-import Order from "./screens/dashboard/order";
-import Dashboard from "./screens/dashboard/dashboard";
-import VerificationFlowStack from "./screens/verification/verification-stack";
-import Neworder from "./screens/dashboard/neworder";
-import OrderDetails from "./screens/delivery/orderdetails";
-import Trackorder from "./screens/dashboard/trackorder";
-import Editprofile from "./screens/Profile/editprofile";
-import DeliveryDash from "./screens/delivery/deliverydash";
-import Nearby from "./screens/delivery/neardelivery";
 
 
 export default function App() {
@@ -43,46 +34,11 @@ export default function App() {
         <GestureHandlerRootView>
           <NavigationContainer>
             <Stack.Navigator screenOptions={{ headerShown: false }}>
-              {/* <Stack.Screen  name="start" component={Home} /> */}
               <Stack.Screen
                 name="onboarding"
                 component={StackWrapper}
               />
-              <Stack.Screen
-                name="order"
-                component={Order}
-              />
-              <Stack.Screen
-                name="dashboardscreen"
-                component={Dashboard}
-              />
-              <Stack.Screen
-                name="verification"
-                component={VerificationFlowStack}
-              />
-               <Stack.Screen
-                name="neworder"
-                component={Neworder}
-              />
-               <Stack.Screen
-                name="orderdetails"
-                component={OrderDetails}
-              />
-              <Stack.Screen 
-              name="trackorder"
-              component={Trackorder}
-              />
-              <Stack.Screen
-              name="editprofile"
-              component={Editprofile}
-              />
-                 <Stack.Screen
-              name="deliverydash"
-              component={DeliveryDash}
-              />
-              <Stack.Screen
-              name="neardelivery"
-              component={Nearby}/>
+              
             </Stack.Navigator>
           </NavigationContainer>
         </GestureHandlerRootView>

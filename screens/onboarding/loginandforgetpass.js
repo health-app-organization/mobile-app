@@ -1,13 +1,13 @@
 import { Image, View, Text, Pressable } from "react-native";
-import Google from "../../assets/images/google.svg";
-import Facebook from "../../assets/images/facebook.svg";
-import Apple from "../../assets/images/apple.svg";
+
 import {
   Box,
   CustomButton,
   CustomTextInput,
   MyDivider,
 } from "../mycomponents/mycomponent";
+import { CustomInputWithHeader } from "../mycomponents/mycomponent";
+import { CustomInputpassword } from "../mycomponents/mycomponent";
 import {
   greycolorfive,
   greycolorthree,
@@ -60,115 +60,67 @@ export const Login = () => {
   return (
     <>
       <View className="h-screen w-full px-5 py-[88px]">
-        <View>
-          <View>
-            <Image
-              className="h-12 w-12"
-              source={require("../../assets/images/logo.png")}
-              resizeMode="contain"
-            />
-            <View className="h-8" />
-            <Text style={[Textstyles.text_medium]}>Login to your account</Text>
-
-            <Text style={[Textstyles.text_xsmall]}>
-              Enter your login details to have access to your account
-            </Text>
-            <View className="h-8" />
-            <CustomTextInput
-              placeholder={"Email"}
-              placeholderTextColor={greycolortwo}
-              sideicon={
-                <Feather name="mail" size={20} color={primarycolortwo} />
-              }
-              onChange={(text) => setEmail(text)}
-            />
-            <View className="h-3" />
-            <CustomTextInput
-              placeholder={"Password"}
-              placeholderTextColor={greycolortwo}
-              sideicon={
-                <FontAwesome5 name="lock" size={20} color={primarycolortwo} />
-              }
-              rightIcon={
-                <TouchableOpacity onPress={handleShowPassword}>
-                  <MaterialCommunityIcons
-                    name={showPassword ? "eye-outline" : "eye-off-outline"}
-                    size={20}
-                    color={primarycolortwo}
-                  />
-                </TouchableOpacity>
-              }
-              onChange={(text) => setPassword(text)}
-              secureTextEntry={!showPassword}
-            />
-            <TouchableOpacity onPress={() => navigation.navigate("forgotpass")}>
-              <Text
-                style={[Textstyles.text_small, { color: primarycolor }]}
-                className="text-right"
-              >
-                forgot password?
-              </Text>
-            </TouchableOpacity>
-          </View>
-          <View>
-            <View className="h-8" />
-            <CustomButton
-              backgroundColor={primarycolor}
-              Textname={"Login"}
-              TextColor={whitecolor}
-              onPress={handlesubmit}
-            />
-          </View>
-        </View>
-
-        <View className="h-10" />
-
-        <View className="items-center">
-          <View className="flex-row items-center justify-center">
-            <MyDivider width={96} Color={greycolorthree} />
-            <View className="w-3" />
-            <Text style={[Textstyles.text_button]}>Or sign in with</Text>
-            <View className="w-3" />
-            <MyDivider width={96} Color={greycolorthree} />
-          </View>
-          <View className="h-3" />
-          <View className="flex-row">
-            <TouchableOpacity
-              style={{ height: 30, width: 30 }}
-              className="rounded-full border flex justify-center items-center"
-            >
-              <Google width={24} height={24} />
-            </TouchableOpacity>
-            <View className="w-3" />
-            <TouchableOpacity
-              style={{ height: 30, width: 30 }}
-              className="rounded-full border flex justify-center items-center"
-            >
-              <Facebook width={24} height={24} />
-            </TouchableOpacity>
-            <View className="w-3" />
-            <TouchableOpacity
-              style={{ height: 30, width: 30 }}
-              className="rounded-full border flex justify-center items-center"
-            >
-              <Apple width={24} height={24} />
-            </TouchableOpacity>
-          </View>
-          <View className="h-8" />
-          <View>
-            <View className="flex-row items-center justify-center">
-              <Text style={[Textstyles.text_small, { color: primarycolortwo }]}>
-                I don't have an account?{" "}
-              </Text>
-              <TouchableOpacity onPress={handleToSignup}>
-                <Text style={[Textstyles.text_small, { color: primarycolor }]}>
-                  Sign Up
-                </Text>
-              </TouchableOpacity>
+        <>
+          <Text className=" text-4xl text-center mt-7 ">Welcome Back !!</Text>
+          <View className=" w-full h-44  flex mb-4 justify-center items-center">
+            <View className=" w-[50%]  flex justify-center items-center h-36">
+              <Image
+                source={require("../../assets/images/logo.png")}
+                resizeMode="contain"
+                className=" h-36 w-36"
+              />
             </View>
           </View>
-        </View>
-      </View>
+          <CustomInputWithHeader
+            headerText="Phone Number"
+            placeholder="Enter your phone number"
+            leftIconName="phone" // Use FontAwesome email icon
+            onChange={(text) => console.log(text)}
+          />
+
+          <View className="h-3" />
+          <CustomInputpassword
+            headerText="Password"
+            placeholder="Enter your password"
+            value={password}
+            secureTextEntry={true} // Enable password mode with secureTextEntry
+            onChange={(text) => setPassword(text)} // Update password state on input change
+            leftIconName="lock" // Optional: Add a lock icon on the left
+            leftIconColor="#000"
+            leftIconSize={20}
+          />
+          <View className=" mt-3">
+            <TouchableOpacity>
+              <Text style={[Textstyles.text_small]} className=" text-[#0099b8]">
+                Forget Password ?
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </>
+
+        <View className="h-10" />
+        <CustomButton
+          Textname={"Login"}
+          backgroundColor={primarycolor}
+          TextColor={whitecolor}
+        />
+        <View className=" flex-row h-12 mt-36 w-full justify-center  ">
+                <View>
+                  <Text
+                    style={[Textstyles.text_small]}
+                    className="text-center mt-6"
+                  >
+                    Don't have an account?
+                  </Text>
+                </View>
+                <TouchableOpacity className=" mt-6 ml-1">
+                  <Text style={[Textstyles.text_small]} className=" text-[#0099b8]">
+                    Sign up
+                  </Text>
+                </TouchableOpacity>
+              </View>
+
+              </View>
     </>
   );
 };

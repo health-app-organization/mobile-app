@@ -12,11 +12,9 @@ import {
 } from "../screens/onboarding/loginandforgetpass";
 import Registration from "../screens/onboarding/registration";
 import { Platform } from "react-native";
-import Dashboard from "../screens/dashboard/dashboard";
-import Order from "../screens/dashboard/order";
-import Profile from "../screens/dashboard/Profile";
+
 import VerificationFlowStack from "../screens/verification/verification-stack";
-import PaymentScreen from "../screens/TransactionPage/depositScreen";
+import Identity from "../screens/onboarding/identity";
 
 const StackWrapper = () => {
   const Stack = createStackNavigator();
@@ -36,7 +34,10 @@ const StackWrapper = () => {
       <Stack.Screen
         options={{
           gestureEnabled: false,
-          gestureDirection: Platform.OS === "ios" ? "horizontal" : Platform.OS === "android" && "vertical",
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
         }}
         name="start"
         component={ScreenDisplay}
@@ -44,7 +45,10 @@ const StackWrapper = () => {
       <Stack.Screen
         options={{
           gestureEnabled: false,
-          gestureDirection: Platform.OS === "ios" ? "horizontal" : Platform.OS === "android" && "vertical",
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
         }}
         name="slider"
         component={Slider}
@@ -52,7 +56,21 @@ const StackWrapper = () => {
       <Stack.Screen
         options={{
           gestureEnabled: true,
-          gestureDirection: Platform.OS === "ios" ? "horizontal" : Platform.OS === "android" && "vertical",
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
+        }}
+        name="identity"
+        component={Identity}
+      />
+      <Stack.Screen
+        options={{
+          gestureEnabled: true,
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
         }}
         name="login"
         component={Login}
@@ -60,7 +78,10 @@ const StackWrapper = () => {
       <Stack.Screen
         options={{
           gestureEnabled: true,
-          gestureDirection: Platform.OS === "ios" ? "horizontal" : Platform.OS === "android" && "vertical",
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
         }}
         name="forgotpass"
         component={Forgotpass}
@@ -68,7 +89,10 @@ const StackWrapper = () => {
       <Stack.Screen
         options={{
           gestureEnabled: true,
-          gestureDirection: Platform.OS === "ios" ? "horizontal" : Platform.OS === "android" && "vertical",
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
         }}
         name="otpverify"
         component={Otpverify}
@@ -76,7 +100,10 @@ const StackWrapper = () => {
       <Stack.Screen
         options={{
           gestureEnabled: true,
-          gestureDirection: Platform.OS === "ios" ? "horizontal" : Platform.OS === "android" && "vertical",
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
         }}
         name="confirmpass"
         component={ConfirmPassword}
@@ -84,56 +111,25 @@ const StackWrapper = () => {
       <Stack.Screen
         options={{
           gestureEnabled: true,
-          gestureDirection: Platform.OS === "ios" ? "horizontal" : Platform.OS === "android" && "vertical",
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
         }}
         name="signup"
         component={Registration}
       />
-             <Stack.Screen
-             options={{
-              gestureEnabled: false,
-              gestureDirection: Platform.OS === "ios" ? "horizontal" : Platform.OS === "android" && "vertical",
-            }}
-            name="dashboardhome"
-            component={Dashboard}
-           
-          
-            />
-             <Stack.Screen
-             options={{
-              gestureEnabled: true,
-              gestureDirection: Platform.OS === "ios" ? "horizontal" : Platform.OS === "android" && "vertical",
-            }}
-            name="verification"
-            component={VerificationFlowStack}
-           
-          
-            />
-            <Stack.Screen
-               options={{
-                gestureEnabled: true,
-                gestureDirection: Platform.OS === "ios" ? "horizontal" : Platform.OS === "android" && "vertical",
-              }}
-                name="order"
-                component={Order}
-              />
-              <Stack.Screen
-               options={{
-                gestureEnabled: true,
-                gestureDirection: Platform.OS === "ios" ? "horizontal" : Platform.OS === "android" && "vertical",
-              }}
-                name="profile"
-                component={Profile}
-              />
-              <Stack.Screen
-               options={{
-                gestureEnabled: true,
-                gestureDirection: Platform.OS === "ios" ? "horizontal" : Platform.OS === "android" && "vertical",
-              }}
-                name="paymentscreen"
-                component={PaymentScreen}
-              />
-              
+      <Stack.Screen
+        options={{
+          gestureEnabled: true,
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
+        }}
+        name="verification"
+        component={VerificationFlowStack}
+      />
     </Stack.Navigator>
   );
 };

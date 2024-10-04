@@ -1,10 +1,14 @@
-import React, { useEffect, useRef } from 'react';
-import { Animated, View, StyleSheet, StatusBar, Image } from 'react-native';
-import { primarycolor, primarycolortwo, whitecolor } from '../../constants/color';
-import { useIsFocused, useNavigation } from '@react-navigation/native';
+import React, { useEffect, useRef } from "react";
+import { Animated, View, StyleSheet, StatusBar, Image,Text } from "react-native";
+import {
+  primarycolor,
+  primarycolortwo,
+  whitecolor,
+} from "../../constants/color";
+import { useIsFocused, useNavigation } from "@react-navigation/native";
 
 const AnimatedBackground = () => {
-    const navigation=useNavigation()
+  const navigation = useNavigation();
   const scaleAnimation = useRef(new Animated.Value(0)).current;
   const dropAnimation = useRef(new Animated.Value(-1000)).current; // Starts from off-screen (top)
 
@@ -25,29 +29,24 @@ const AnimatedBackground = () => {
       }),
     ]).start();
   }, []);
-  
 
-  const isFocused=useIsFocused()
+  const isFocused = useIsFocused();
   const goto = async () => {
-      // const status = await getDeviceStatus();
-      // if (status) {
-        navigation.navigate('slider');
-  //     } else {
-  //       navigation.navigate('slider');
-  //     }
-   };
-  useEffect(
-      ()=>{
-          if(isFocused){
-              const mystart=setTimeout(()=>{
-                  goto()
-      
-              },4000)
-              return () => clearTimeout(mystart);
-  
-          }
-
-  },[])
+    // const status = await getDeviceStatus();
+    // if (status) {
+    navigation.navigate("slider");
+    //     } else {
+    //       navigation.navigate('slider');
+    //     }
+  };
+  useEffect(() => {
+    if (isFocused) {
+      const mystart = setTimeout(() => {
+        goto();
+      }, 4000);
+      return () => clearTimeout(mystart);
+    }
+  }, []);
 
   return (
     <View style={{ flex: 1 }}>
@@ -68,7 +67,8 @@ const AnimatedBackground = () => {
       />
 
       {/* Third view: Blue card dropping from the top */}
-      <Animated.View style={[
+      <Animated.View
+        style={[
           styles.fullScreen,
           styles.primarytwoCard,
           {
@@ -78,33 +78,36 @@ const AnimatedBackground = () => {
         className="flex-col justify-center items-center"
       >
         <View>
-            <Image source={require('../../assets/images/logowhite.png')} resizeMode='contain' className="h-12 w-36" />
-
+          <Image
+            source={require("../../assets/images/logo.png")}
+            resizeMode="contain"
+            className=" h-40 w-40"
+          />
         </View>
-
-    </Animated.View>
+        <Text className=" text-white font-bold text-center text-4xl">HEALTHAPP</Text>
+      </Animated.View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   fullScreen: {
-    position: 'absolute',
-    width: '100%',
-    height: '100%',
+    position: "absolute",
+    width: "100%",
+    height: "100%",
   },
   whiteBackground: {
     backgroundColor: whitecolor, // White background
   },
   primaryCard: {
-    backgroundColor:primarycolor, // Yellow color
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: primarycolor, // blue color
+    justifyContent: "center",
+    alignItems: "center",
   },
   primarytwoCard: {
-    backgroundColor: primarycolortwo, // Blue color
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: primarycolor, // Blue color
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 

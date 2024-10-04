@@ -1,486 +1,324 @@
-import { Image, Pressable, Text, TouchableOpacity, View } from "react-native";
-import Google from "../../assets/images/google.svg";
-import Facebook from "../../assets/images/facebook.svg";
-import Apple from "../../assets/images/apple.svg";
-import { Textstyles } from "../../constants/fontsize";
 import {
-    greycolorfive,
-    greycolorthree,
-    greycolortwo,
-    primarycolor,
-    primarycolortwo,
-    whitecolor,
-} from "../../constants/color";
-import { useNavigation } from "@react-navigation/native";
+  Image,
+  Pressable,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import {
-    Box,
-    CustomButton,
-    CustomSelect,
-    CustomSelectRadioBox,
-    CustomTextInput,
-    MyDivider,
-} from "../mycomponents/mycomponent";
-import {
-    Feather,
-    FontAwesome5,
-    Ionicons,
-    MaterialCommunityIcons,
-    MaterialIcons,
+  MaterialIcons,
+  Feather,
+  MaterialCommunityIcons,
+  FontAwesome5,
 } from "@expo/vector-icons";
+import React from "react";
+import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
 import Animated, {
-    useAnimatedStyle,
-    useSharedValue,
-    withSpring,
+  useAnimatedStyle,
+  useSharedValue,
+  withSpring,
 } from "react-native-reanimated";
 import { height } from "../../constants/mobileDimensions";
-import { Drawer } from "../modals/drawer";
-import NumericKeyboard from "../modals/CustomKeyboard";
+import { Textstyles } from "../../constants/fontsize";
+import {
+  CustomInputpassword,
+  CustomInputWithHeader,
+} from "../mycomponents/mycomponent";
+import { Box, CustomTextnumber } from "../mycomponents/mycomponent";
+import {
+  primarycolor,
+  whitecolor,
+  primarycolortwo,
+  greycolortwo,
+} from "../../constants/color";
+import { CustomButton, CustomTextInput } from "../mycomponents/mycomponent";
+import NumericKeyboard from "../modals/CustomKeyboard"; // Importing the Numeric Keyboard
 
 export default function Registration() {
-    const navigation = useNavigation();
-    const [currentStep, setCurrentStep] = useState(0); //0 and 1 and 2 and 3
-    const [email, setEmail] = useState("");
-    const [errorMsg, setErrorMsg] = useState(null);
-    const [studentSelectOption, setStudentSelectOption] = useState("");
-    const handleStudentSelectOption = (value) => {
-        setStudentSelectOption(value);
-    };
-    const [roleSelectOption, setRoleSelectOption] = useState("");
-    const handleRoleSelectOption = (value) => {
-        setRoleSelectOption(value);
-    };
-    const [showStudentOption, setShowStudentOption] = useState(false);
-    const handleShowStudentOption = () => {
-        setShowStudentOption(!showStudentOption);
-        if (showStudentOption) {
-            setStudentSelectOption("");
-            setRoleSelectOption("");
-            setShowRoleSelectOption(false);
-        }
+  const navigation = useNavigation();
+  const [currentStep, setCurrentStep] = useState(0); // Steps: 0 = phone input, 1 = OTP, 2 = password
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = React.useState("");
+
+  const [errorMsg, setErrorMsg] = useState(null);
+
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  const [showKeyboard, setShowKeyboard] = useState(false); // State to toggle keyboard visibility
+  const [otp, setOtp] = useState(["", "", "", "", "", ""]); // OTP input array
+
+  const translateY = useSharedValue(600); // Animation for the keyboard
+  const animatedStyles = useAnimatedStyle(() => ({
+    transform: [{ translateY: translateY.value }],
+  }));
+
+  const handleContinue = () => {
+    if (currentStep === 2) {
+      navigation.navigate("login"); // Navigate to the 'Login' screen when on the last step
+    } else {
+      setCurrentStep((prevStep) => prevStep + 1);
     }
-    const [showRoleSelectOption, setShowRoleSelectOption] = useState(false);
-    const handleShowRoleSelectOption = () => {
-        setShowRoleSelectOption(!showRoleSelectOption);
-        if (showRoleSelectOption) {
-            setRoleSelectOption("");
-        }
+  };
+
+  const handleContinueBackwards = () => {
+    if (currentStep > 0) {
+      setCurrentStep((prevStep) => prevStep - 1);
     }
-    const [showPassword, setShowPassword] = useState(false);
-    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-    const handleShowPassword = () => {
-        setShowPassword(!showPassword);
-    };
-    const handleShowConfirmPassword = () => {
-        setShowConfirmPassword(!showConfirmPassword);
-    };
-    const handleToLogin = () => {
-        navigation.navigate("login");
-    };
-    const [showDrawer, setShowDrawer] = useState(false);
-    const handleContinue = () => {
-        if (currentStep < 3) {
-            setCurrentStep((prevStep) => prevStep + 1);
+  };
+
+  // Toggle keyboard visibility
+  const handleShowKeys = () => {
+    setShowKeyboard((prevState) => !prevState);
+    translateY.value = showKeyboard ? withSpring(600) : withSpring(200);
+  };
+
+  // Function to handle OTP input
+  const handleOtpInput = (value) => {
+    if (value === "") {
+      // Handle deletion of the last inputted digit
+      setOtp((prevOtp) => {
+        const lastFilledIndex = prevOtp.findLastIndex((digit) => digit !== "");
+        if (lastFilledIndex > -1) {
+          const newOtp = [...prevOtp];
+          newOtp[lastFilledIndex] = "";
+          return newOtp;
         }
-        if (currentStep === 3) {
-            setShowDrawer(true);
-            translateY.value = setShowDrawer ? withSpring(300) : withSpring(600);
+        return prevOtp;
+      });
+    } else if (value === "*") {
+      // Handle OTP submission when "*" is pressed
+      if (otp.some((digit) => digit === "")) {
+        setErrorMsg("Incomplete OTP");
+      } else {
+        setErrorMsg(null);
+        console.log("OTP Submitted:", otp.join(""));
+        // Handle OTP submission logic here
+      }
+    } else {
+      // Add new digit to the first empty slot
+      setOtp((prevOtp) => {
+        const nextEmptyIndex = prevOtp.indexOf("");
+        if (nextEmptyIndex > -1) {
+          const newOtp = [...prevOtp];
+          newOtp[nextEmptyIndex] = value;
+          return newOtp;
         }
-    };
-    const handleContinueBackwards = () => {
-        if (currentStep > 0) {
-            setCurrentStep((prevStep) => prevStep - 1);
-        }
-    };
-    const translateY = useSharedValue(600);
-    const animatedStyles = useAnimatedStyle(() => ({
-        transform: [{ translateY: translateY.value }],
-    }));
-    return (
-        <>
-            {showDrawer && (
-                <>
-                    <View
-                        style={{ height: height, backgroundColor: greycolorfive }}
-                        className="w-full absolute z-50 opacity-70"
-                    />
-                    <View style={{ zIndex: 12000 }} className="bottom-0 absolute">
-                        <Animated.View style={[animatedStyles]}>
-                            <Drawer
-                                title="Successful"
-                                text={
-                                    <Text>
-                                        Your <Text style={{ color: primarycolor }}>stulivery</Text>{" "}
-                                        account has been registered successfully
-                                    </Text>
-                                }
-                                buttonText="Login"
-                                navigateTo="login"
-                            />
-                        </Animated.View>
-                    </View>
-                </>
-            )}
-            <View style={{ height: height }} className={`w-full px-5 py-[88px]`}>
-                <View>
-                    <View>
-                        <Image
-                            className="h-12 w-12"
-                            source={require("../../assets/images/logo.png")}
-                            resizeMode="contain"
-                        />
-                        <View className="h-8" />
-                        <Text style={[Textstyles.text_medium]}>Create an account</Text>
-                        <Text style={[Textstyles.text_xsmall]}>
-                            Enter your details to create your{" "}
-                            <Text style={{ color: primarycolor }}>Stulvilery</Text> account
-                        </Text>
-                        <View className="h-4" />
-                        {currentStep > 0 && (
-                            <TouchableOpacity
-                                onPress={handleContinueBackwards}
-                                className="flex flex-row items-center"
-                            >
-                                <MaterialIcons
-                                    name="keyboard-backspace"
-                                    size={24}
-                                    color={primarycolortwo}
-                                />
-                                <Text
-                                    style={[Textstyles.text_xsmall, { color: primarycolortwo }]}
-                                >
-                                    Previous
-                                </Text>
-                            </TouchableOpacity>
-                        )}
-                        <View className="h-4" />
-                        {currentStep === 0 && (
-                            <>
-                                <CustomTextInput
-                                    placeholder={"Name"}
-                                    placeholderTextColor={greycolortwo}
-                                    sideicon={
-                                        <Ionicons
-                                            name="person-outline"
-                                            size={20}
-                                            color={primarycolortwo}
-                                        />
-                                    }
-                                    onChange={(text) => setEmail(text)}
-                                />
-                                <View className="h-3" />
-                                <CustomTextInput
-                                    placeholder={"Email"}
-                                    placeholderTextColor={greycolortwo}
-                                    sideicon={
-                                        <Feather name="mail" size={20} color={primarycolortwo} />
-                                    }
-                                    onChange={(text) => setEmail(text)}
-                                />
-                                <View className="h-3" />
-                                <CustomTextInput
-                                    placeholder={"Phone number"}
-                                    placeholderTextColor={greycolortwo}
-                                    sideicon={
-                                        <MaterialIcons
-                                            name="phone-android"
-                                            size={20}
-                                            color={primarycolortwo}
-                                        />
-                                    }
-                                    onChange={(text) => setEmail(text)}
-                                />
-                            </>
-                        )}
-                        {currentStep === 1 && (
-                            <EmailVerification
-                                errorMsg={errorMsg}
-                                setErrorMsg={setErrorMsg}
-                            />
-                        )}
-                        {currentStep === 2 && (
-                            <>
-                                <CustomTextInput
-                                    placeholder={"Password"}
-                                    placeholderTextColor={greycolortwo}
-                                    sideicon={
-                                        <FontAwesome5
-                                            name="lock"
-                                            size={20}
-                                            color={primarycolortwo}
-                                        />
-                                    }
-                                    rightIcon={
-                                        <TouchableOpacity onPress={handleShowPassword}>
-                                            <MaterialCommunityIcons
-                                                name={showPassword ? "eye-outline" : "eye-off-outline"}
-                                                size={20}
-                                                color={primarycolortwo}
-                                            />
-                                        </TouchableOpacity>
-                                    }
-                                    onChange={(text) => setEmail(text)}
-                                    secureTextEntry={!showPassword}
-                                />
-                                <View className="h-3" />
-                                <CustomTextInput
-                                    placeholder={"Confirm password"}
-                                    placeholderTextColor={greycolortwo}
-                                    sideicon={
-                                        <FontAwesome5
-                                            name="lock"
-                                            size={20}
-                                            color={primarycolortwo}
-                                        />
-                                    }
-                                    rightIcon={
-                                        <TouchableOpacity onPress={handleShowConfirmPassword}>
-                                            <MaterialCommunityIcons
-                                                name={
-                                                    showConfirmPassword
-                                                        ? "eye-outline"
-                                                        : "eye-off-outline"
-                                                }
-                                                size={20}
-                                                color={primarycolortwo}
-                                            />
-                                        </TouchableOpacity>
-                                    }
-                                    onChange={(text) => setEmail(text)}
-                                    secureTextEntry={!showConfirmPassword}
-                                />
-                            </>
-                        )}
-                        {currentStep === 3 && (
-                            <>
-                                <TouchableOpacity
-                                    onPress={handleShowStudentOption}
-                                >
-                                    <CustomSelect
-                                        placeHolder="Are you a student"
-                                        placeholderTextColor={greycolortwo}
-                                        leftIcon={
-                                            <MaterialCommunityIcons
-                                                name="chat-question-outline"
-                                                size={20}
-                                                color={greycolortwo}
-                                            />
-                                        }
-                                        rightIcon={
-                                            <MaterialIcons
-                                                name={showStudentOption ? "keyboard-arrow-up" : "keyboard-arrow-down"}
-                                                size={20}
-                                                color={greycolortwo}
-                                            />
-                                        }
-                                    />
-                                </TouchableOpacity>
-                                <View className="h-3" />
-                                {showStudentOption && (
-                                    <CustomSelectRadioBox
-                                        selected={studentSelectOption}
-                                        setSelected={handleStudentSelectOption}
-                                        options={["Yes", "No"]}
-                                    />
-                                )}
-                                <View className="h-8" />
-                                {studentSelectOption === "Yes" ? (
-                                    <>
-                                        <CustomTextInput
-                                            placeholder="Student ID/ Matric number"
-                                            placeholderTextColor={greycolortwo}
-                                            sideicon={
-                                                <MaterialIcons
-                                                    name="account-box"
-                                                    size={20}
-                                                    color={greycolortwo}
-                                                />
-                                            }
-                                            onChange={(text) => setEmail(text)}
-                                        />
-                                    </>
-                                ) : (
-                                    studentSelectOption === "No" && (
-                                        <>
-                                            <TouchableOpacity
-                                                onPress={handleShowRoleSelectOption}
-                                            >
-                                                <CustomSelect
-                                                    placeHolder="Choose role"
-                                                    placeholderTextColor={greycolortwo}
-                                                    leftIcon={
-                                                        <MaterialCommunityIcons
-                                                            name="chat-question-outline"
-                                                            size={20}
-                                                            color={greycolortwo}
-                                                        />
-                                                    }
-                                                    rightIcon={
-                                                        <MaterialIcons
-                                                            name={showRoleSelectOption ? "keyboard-arrow-up" : "keyboard-arrow-down"}
-                                                            size={20}
-                                                            color={greycolortwo}
-                                                        />
-                                                    }
-                                                />
-                                            </TouchableOpacity>
-                                            <View className="h-8" />
-                                            {showRoleSelectOption && (
-                                                <CustomSelectRadioBox
-                                                    selected={roleSelectOption}
-                                                    setSelected={handleRoleSelectOption}
-                                                    options={["University Teaching Staff", "Non-teaching staff", "Resident"]}
-                                                />
-                                            )}
-                                        </>
-                                    )
-                                )}
-                            </>
-                        )}
-                    </View>
-                    <View>
-                        <View className="h-8" />
-                        <CustomButton
-                            backgroundColor={primarycolor}
-                            Textname={currentStep === 2 ? "Create Account" : currentStep === 1 ? "Send" : "Continue"}
-                            TextColor={whitecolor}
-                            onPress={handleContinue}
-                        />
-                    </View>
-                </View>
+        return prevOtp;
+      });
+    }
+  };
 
-                <View className="h-10" />
+  return (
+    <View style={{ height: height }} className="w-full px-5 py-[88px] bg-white">
+      <View>
+        {/* Back button */}
+        {currentStep > 0 && (
+          <TouchableOpacity
+            onPress={handleContinueBackwards}
+            className="absolute -top-9 left-3"
+          >
+            <Feather name="arrow-left" size={24} color="black" />
+          </TouchableOpacity>
+        )}
 
-                {currentStep === 0 && (
-                    <View className="items-center">
-                        <View className="flex-row items-center justify-center">
-                            <MyDivider width={96} Color={greycolorthree} />
-                            <View className="w-3" />
-                            <Text style={[Textstyles.text_button]}>Or sign up with</Text>
-                            <View className="w-3" />
-                            <MyDivider width={96} Color={greycolorthree} />
-                        </View>
-                        <View className="h-3" />
-                        <View className="flex-row">
-                            <TouchableOpacity
-                                style={{ height: 30, width: 30 }}
-                                className="rounded-full border flex justify-center items-center"
-                            >
-                                <Google width={24} height={24} />
-                            </TouchableOpacity>
-                            <View className="w-3" />
-                            <TouchableOpacity
-                                style={{ height: 30, width: 30 }}
-                                className="rounded-full border flex justify-center items-center"
-                            >
-                                <Facebook width={24} height={24} />
-                            </TouchableOpacity>
-                            <View className="w-3" />
-                            <TouchableOpacity
-                                style={{ height: 30, width: 30 }}
-                                className="rounded-full border flex justify-center items-center"
-                            >
-                                <Apple width={24} height={24} />
-                            </TouchableOpacity>
-                        </View>
-                        <View className="h-8" />
-                        <View>
-                            <View className="flex-row items-center justify-center">
-                                <Text style={[Textstyles.text_small, { color: primarycolortwo }]}>
-                                    Have an account?{" "}
-                                </Text>
-                                <TouchableOpacity onPress={handleToLogin}>
-                                    <Text style={[Textstyles.text_small, { color: primarycolor }]}>
-                                        Login
-                                    </Text>
-                                </TouchableOpacity>
-                            </View>
-                        </View>
-                    </View>
-                )}
-            </View>
-        </>
-    );
-}
+        {/* Conditional Headers */}
+        <View className="mt-6 flex justify-center items-center">
+          {currentStep === 0 && (
+            <>
+              <Text style={[Textstyles.text_medium]} className="mb-6">
+                Create an account
+              </Text>
+              <Text
+                style={[Textstyles.text_small]}
+                className="text-center mb-6"
+              >
+                Please enter your phone number to receive a 6-digit code via SMS
+              </Text>
+            </>
+          )}
 
-const EmailVerification = ({
-    errorMsg,
-    setErrorMsg
-}) => {
-    const email = "yomzeew@gmail.com";
-    const [showKeyboard, setShowKeyboard] = useState(false);
-    const [emailVerificationNumber, setEmailVerificationNumber] = useState(["", "", "", ""]); // OTP array for 4 digits
-    const translateY = useSharedValue(500);
-    const animatedStyles = useAnimatedStyle(() => ({
-        transform: [{ translateY: translateY.value }],
-    }));
-    const handleShowKeys = () => {
-        setShowKeyboard((prevState) => !prevState);
-        translateY.value = showKeyboard ? withSpring(200) : withSpring(500);
-    };
-
-    // Function to update OTP values
-    const handlePickValue = (value) => {
-        if (value === "") {
-            // Handle delete action (remove the last filled digit)
-            setEmailVerificationNumber((prevNumber) => {
-                const lastFilledIndex = prevNumber.findLastIndex((digit) => digit !== ""); // Find the last filled index
-                if (lastFilledIndex > -1) {
-                    const newNumber = [...prevNumber];
-                    newNumber[lastFilledIndex] = ""; // Remove the last filled digit
-                    return newNumber;
-                }
-                return prevNumber; // Return unchanged if OTP is already empty
-            });
-        } else if (value === "*") {
-            // Handle OTP submission when * is pressed
-            if (emailVerificationNumber.some((digit) => digit === "")) {
-                setErrorMsg("Incomplete OTP"); // Show error if OTP is incomplete
-            } else {
-                setErrorMsg(""); // Clear the error message
-                // Handle OTP submission logic here
-                console.log("OTP Submitted:", emailVerificationNumber.join("")); // Example submission action
-            }
-        } else {
-            // Append digit to the first empty slot
-            setEmailVerificationNumber((prevNumber) => {
-                const nextEmptyIndex = prevNumber.indexOf(""); // Find the first empty index
-                if (nextEmptyIndex > -1) {
-                    const newNumber = [...prevNumber];
-                    newNumber[nextEmptyIndex] = value; // Fill the empty slot
-                    return newNumber;
-                }
-                return prevNumber; // Return unchanged if OTP is already filled
-            });
-        }
-    };
-
-    return (
-        <>
-            <View className="absolute -bottom-5 -left-5 z-50 items-center">
-                <Animated.View className="w-full" style={[animatedStyles]}>
-                    <NumericKeyboard onPress={(value) => handlePickValue(value)} />
-                </Animated.View>
-            </View>
-            <View>
+          {currentStep === 1 && (
+            <>
+              <Text style={[Textstyles.text_medium]} className="mb-6">
+                Verification
+              </Text>
+              <Text style={[Textstyles.text_small]} className="text-center">
+                Enter the 6-digit code sent to your phone
+              </Text>
+              <View style={{ alignItems: "center", marginTop: 40 }}>
                 <Text style={[Textstyles.text_xsmall]} className="text-red-300">
-                    {errorMsg}
+                  {errorMsg}
                 </Text>
                 <Pressable
-                    onPress={handleShowKeys}
-                    className="flex-row justify-center items-center"
+                  onPress={handleShowKeys}
+                  className="flex-row justify-center items-center"
                 >
-                    {emailVerificationNumber.map((digit, index) => (
-                        <View
-                            key={index}
-                            style={{ flexDirection: "row", alignItems: "center" }}
-                        >
-                            <Box inputText={digit} />
-                            {index < emailVerificationNumber.length - 1 && <View className="w-2" />}
-                        </View>
-                    ))}
+                  {otp.map((digit, index) => (
+                    <View
+                      key={index}
+                      style={{ flexDirection: "row", alignItems: "center" }}
+                    >
+                      <Box inputText={digit} />
+                      {index < otp.length - 1 && <View className="w-4" />}
+                    </View>
+                  ))}
                 </Pressable>
+              </View>
+              <View className=" flex-row h-10  ">
+                <View>
+                  <Text
+                    style={[Textstyles.text_small]}
+                    className="text-center mt-6"
+                  >
+                    Didn't get a code?
+                  </Text>
+                </View>
+                <TouchableOpacity className=" mt-6 ml-1">
+                  <Text
+                    style={[Textstyles.text_small]}
+                    className=" text-[#0099b8]"
+                  >
+                    Resend
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </>
+          )}
+        </View>
+
+        <View className="h-4" />
+
+        {currentStep === 0 && (
+          <>
+            <View className=" mb-5">
+              <CustomTextnumber
+                placeholder={"mobile number"}
+                placeholderTextColor={greycolortwo}
+              />
             </View>
-        </>
-    );
+          </>
+        )}
+
+        {currentStep === 2 && (
+          <>
+            <ScrollView className=" -mt-11 h-[100%]">
+              <View>
+                <Text
+                  style={[Textstyles.text_medium]}
+                  className="mb-4  text-center"
+                >
+                  Welcome to HealthApp
+                </Text>
+                <View className=" w-full h-28 mb-5  flex  justify-center items-center">
+                  <View className=" w-[117.91px] justify-center flex items-center  h-[109.36px] rounded-xl">
+                    <Image
+                      source={require("../../assets/images/pro.png")}
+                      resizeMode="contain"
+                      className=" w-full"
+                    />
+                  </View>
+                </View>
+              </View>
+              <CustomInputWithHeader
+                headerText="First name"
+                placeholder="Enter your first name"
+                leftIconName="user" // Use FontAwesome email icon
+                onChange={(text) => console.log(text)}
+              />
+
+              <View className="h-3" />
+              <CustomInputWithHeader
+                headerText="Last name"
+                placeholder="Enter your last name"
+                leftIconName="user" // Use FontAwesome email icon
+                onChange={(text) => console.log(text)}
+              />
+
+              <View className="h-3" />
+              <CustomInputWithHeader
+                headerText="Email address"
+                placeholder="Enter your email address"
+                leftIconName="envelope" // Use FontAwesome email icon
+                onChange={(text) => console.log(text)}
+              />
+              <View className="h-3" />
+              <CustomInputWithHeader
+                headerText="Phone number"
+                placeholder="Enter your phone number"
+                leftIconName="phone" // Use FontAwesome email icon
+                onChange={(text) => console.log(text)}
+              />
+              <View className="h-3" />
+              <CustomInputWithHeader
+                headerText="Date of birth"
+                placeholder="Enter your date of birth"
+                leftIconName="calendar" // Use FontAwesome email icon
+                onChange={(text) => console.log(text)}
+              />
+              <View className="h-3" />
+              <CustomInputWithHeader
+                headerText="Gender"
+                placeholder="Enter your Gender"
+                leftIconName="user" // Use FontAwesome email icon
+                onChange={(text) => console.log(text)}
+              />
+              <View className="h-3" />
+
+              <CustomInputpassword
+                headerText="Password"
+                placeholder="Enter your password"
+                value={password}
+                secureTextEntry={true} // Enable password mode with secureTextEntry
+                onChange={(text) => setPassword(text)} // Update password state on input change
+                leftIconName="lock" // Optional: Add a lock icon on the left
+                leftIconColor="#000"
+                leftIconSize={20}
+              />
+              <View className="h-3" />
+
+              <CustomInputpassword
+                headerText="Confirm  password"
+                placeholder="Enter your password again"
+                value={password}
+                secureTextEntry={true} // Enable password mode with secureTextEntry
+                onChange={(text) => setPassword(text)} // Update password state on input change
+                leftIconName="lock" // Optional: Add a lock icon on the left
+                leftIconColor="#000"
+                leftIconSize={20}
+                className=" mb-32"
+              />
+            </ScrollView>
+          </>
+        )}
+      </View>
+
+      <View>
+        <View className="h-8" />
+        <CustomButton
+          backgroundColor={primarycolor}
+          Textname={
+            currentStep === 2
+              ? "Continue"
+              : currentStep === 1
+              ? "Verify"
+              : "Send"
+          }
+          TextColor={whitecolor}
+          onPress={handleContinue}
+        />
+      </View>
+
+      {/* Numeric Keyboard */}
+      {currentStep === 1 && (
+        <View className="absolute -bottom-5  z-50 items-center">
+          <Animated.View className="w-full h-[467px]" style={[animatedStyles]}>
+            <NumericKeyboard onPress={(value) => handleOtpInput(value)} />
+          </Animated.View>
+        </View>
+      )}
+    </View>
+  );
 }

@@ -1,201 +1,178 @@
 import { StatusBar } from "expo-status-bar";
-import { Image, Pressable, View, Text, TouchableOpacity } from "react-native";
+import { Image, View, Text, TouchableOpacity } from "react-native";
 import { CustomButton } from "../mycomponents/mycomponent";
-import {
-    primarycolor,
-    whitecolor,
-    primarycolortwo,
-} from "../../constants/color";
+import { primarycolor, whitecolor } from "../../constants/color";
 import { Textstyles } from "../../constants/fontsize";
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 
+// Slider component
 const Slider = () => {
-    const navigation = useNavigation("");
-    const [currentindex, setcurrentindex] = useState(0);
-    const mapArray = [<Sliderone />, <Slidertwo />, <Sliderthree />];
-    const handlenext = () => {
-        if (currentindex < mapArray.length - 1) {
-            setcurrentindex((next) => next + 1);
-        }
-        if (currentindex === mapArray.length - 1) {
-            navigation.navigate("");
-        }
-    };
-    const handletosignup = () => {
-        navigation.navigate("signup");
-    };
-    const handletologin = () => {
-        navigation.navigate("login");
-    };
-    const handleSkip = () => {
-        // navigate to slider three
-        setcurrentindex(2);
-    }
+  const navigation = useNavigation();
+  const [currentindex, setcurrentindex] = useState(0);
 
-    return (
+  // Array with content for each slider
+  const mapArray = [
+    {
+      component: <Sliderone />,
+      description: (
         <>
-            <View
-                style={{ backgroundColor: whitecolor }}
-                className="h-full w-full px-5 flex"
-            >
-                <StatusBar style="auto" />
-                <View className="h-4/5">
-                    {mapArray.map((item, index) => {
-                        if (index === currentindex) {
-                            return <View key={index}>{item}</View>;
-                        }
-                    })}
-                </View>
-                {currentindex === mapArray.length - 1 ? (
-                    <>
-                        <CustomButton
-                            Textname={"Sign up"}
-                            onPress={handletosignup}
-                            backgroundColor={primarycolor}
-                            TextColor={whitecolor}
-                        />
-                        <View className="h-3" />
-                        <CustomButton
-                            Textname={"Sign in"}
-                            onPress={handletologin}
-                            backgroundColor={whitecolor}
-                            TextColor={primarycolortwo}
-                            borderWidth={2}
-                            borderColor={primarycolortwo}
-                        />
-                    </>
-                ) : (
-                    <>
-                        <CustomButton
-                            Textname={"Next"}
-                            onPress={() => handlenext()}
-                            backgroundColor={primarycolor}
-                            TextColor={whitecolor}
-                        />
-                        <View className="h-3" />
-                        <TouchableOpacity onPress={handleSkip}>
-                            <Text style={[Textstyles.text_button]} className="text-center">
-                                Skip
-                            </Text>
-                        </TouchableOpacity>
-                    </>
-                )}
-            </View>
+          <Text className="text-center text-black  text-3xl mt-10 font-bold mb-5">
+            Select Your Healthcare Provider
+          </Text>
+          <Text className="text-center text-gray-500 leading-9 text-[22px]">
+            Search for healthcare providers by specialty, or location. Need a
+            general check-up or specialist consultation, we’ve got you covered.
+          </Text>
         </>
-    );
+      ),
+    },
+    {
+      component: <Slidertwo />,
+      description: (
+        <>
+          <Text className="text-center text-black  text-3xl mt-6 font-bold mb-5">
+            Secure and Convenient Communication
+          </Text>
+          <Text className="text-center text-gray-500 leading-9 text-[22px] ">
+            Communicate directly with your healthcare provider through our
+            secure messaging platform for follow-ups or quick questions.
+          </Text>
+        </>
+      ),
+    },
+    {
+      component: <Sliderthree />,
+      description: (
+        <>
+          <Text className="text-center text-black  text-3xl mt-10 font-bold mb-5">
+            Effortless Appointment Booking
+          </Text>
+          <Text className="text-center text-gray-500 leading-9 text-[22px] ">
+            Choose from a variety of appointment types, including in-person
+            visits and telehealth consultations.
+          </Text>
+        </>
+      ),
+    },
+  ];
+
+  // Handle "Next" button click
+  const handlenext = () => {
+    if (currentindex < mapArray.length - 1) {
+      setcurrentindex((next) => next + 1);
+    } else if (currentindex === mapArray.length - 1) {
+      navigation.navigate("login");
+    }
+  };
+
+  // Handle "Get Started" button click
+  const handletoiden = () => {
+    navigation.navigate("identity");
+  };
+
+  // Handle "Skip" button click
+  const handleSkip = () => {
+    setcurrentindex(mapArray.length - 1); // Skip to the last slider
+  };
+
+  return (
+    <View className="flex-1">
+      <StatusBar style="auto" />
+
+      {/* Slider Section */}
+      <View className="flex-1 relative">
+        {/* Conditionally render Skip button */}
+        {currentindex < mapArray.length - 1 && (
+          <TouchableOpacity
+            onPress={handleSkip}
+            style={{
+              position: "absolute",
+              top: 50, // Adjust as needed to move down from the top edge
+              right: 30, // Position to the right
+              zIndex: 1, // Ensure it stays above the image
+            }}
+          >
+            <Text style={[Textstyles.text_small]} className="text-white">
+              Skip
+            </Text>
+          </TouchableOpacity>
+        )}
+
+        {/* Render the current slider */}
+        {mapArray[currentindex].component}
+      </View>
+
+      {/* White View Section */}
+      <View
+        className="h-[360px] bg-white w-full justify-center items-center"
+        style={{
+          borderTopLeftRadius: 40,
+          borderTopRightRadius: 40,
+        }}
+      >
+        {/* Render the description text */}
+        <View className="px-8">{mapArray[currentindex].description}</View>
+
+        {/* Buttons */}
+        {currentindex === mapArray.length - 1 ? (
+          <View className="w-full mt-20 px-5">
+            <CustomButton
+              Textname={"Get started"}
+              onPress={handletoiden}
+              backgroundColor={primarycolor}
+              TextColor={whitecolor}
+            />
+          </View>
+        ) : (
+          <View className="w-full mt-20 px-5">
+            <CustomButton
+              Textname={"Next"}
+              onPress={handlenext}
+              backgroundColor={primarycolor}
+              TextColor={whitecolor}
+            />
+          </View>
+        )}
+      </View>
+    </View>
+  );
 };
 export default Slider;
 
+// Sliderone component
 const Sliderone = () => {
-    return (
-        <>
-            <View className="h-full w-full flex">
-                <View className="flex-1 flex justify-center items-center">
-                    <Image
-                        className="h-64 w-64"
-                        resizeMode="contain"
-                        source={require("../../assets/images/sliderone.png")}
-                    />
-                    <View className="h-3" />
-                    <Text
-                        style={[Textstyles.text_medium, { color: primarycolortwo }]}
-                        className="text-center"
-                    >
-                        Welcome to Stulivery
-                    </Text>
-                    <View className="h-3" />
-                    <Text style={[Textstyles.text_small]} className="text-center">
-                        Earn money by delivering items while you move around campus. It’s
-                        easy, flexible, and fits into your busy student life
-                    </Text>
-                    <View className="h-5" />
-                    <View className="flex-row justify-start h-2 rounded-xl w-20 bg-slate-200">
-                        <View
-                            style={{ backgroundColor: primarycolor }}
-                            className="h-2 rounded-xl w-7"
-                        />
-                    </View>
-                </View>
-
-                <View className="h-3" />
-            </View>
-        </>
-    );
+  return (
+    <View className="w-full h-[850px] -mt-[140px] flex justify-center items-center">
+      <Image
+        source={require("../../assets/images/slide1.png")}
+        className="w-full"
+      />
+    </View>
+  );
 };
+
+// Slidertwo component
 const Slidertwo = () => {
-    return (
-        <>
-            <View className="h-full w-full flex">
-                <View className="flex-1 flex justify-center items-center">
-                    <Image
-                        className="h-64 w-64"
-                        resizeMode="contain"
-                        source={require("../../assets/images/slidertwo.png")}
-                    />
-                    <View className="h-3" />
-                    <Text
-                        style={[Textstyles.text_medium, { color: primarycolortwo }]}
-                        className="text-center"
-                    >
-                        Flexibility and Convenience
-                    </Text>
-                    <View className="h-3" />
-                    <Text style={[Textstyles.text_small]} className="text-center">
-                        Work around your schedule. Deliver on your own time—whether you're
-                        heading to class, or just taking a walk across campus.
-                    </Text>
-                    <View className="h-5" />
-                    <View className="flex-row justify-center h-2 rounded-xl w-20 bg-slate-200">
-                        <View
-                            style={{ backgroundColor: primarycolor }}
-                            className="h-2 rounded-xl w-7"
-                        />
-                    </View>
-                </View>
-
-                <View className="h-3" />
-            </View>
-        </>
-    );
+  return (
+    <View className="w-full h-[850px] -mt-[130px] flex justify-center items-center">
+      <Image
+        source={require("../../assets/images/slide2.png")}
+        className="w-full"
+        resizeMode="contain"
+      />
+    </View>
+  );
 };
-const Sliderthree = () => {
-    return (
-        <>
-            <View className="h-full w-full flex">
-                <View className="flex-1 flex justify-center items-center">
-                    <Image
-                        className="h-64 w-64"
-                        resizeMode="contain"
-                        source={require("../../assets/images/slidertwo.png")}
-                    />
-                    <View className="h-3" />
-                    <Text
-                        style={[Textstyles.text_medium, { color: primarycolortwo }]}
-                        className="text-center"
-                    >
-                        Ready to start delivering?
-                    </Text>
-                    <View className="h-3" />
-                    <Text style={[Textstyles.text_small]} className="text-center">
-                        Register on{" "}
-                        <Text style={[{ color: primarycolor }, Textstyles.text_medium]}>
-                            Stulvilery
-                        </Text>{" "}
-                        and turn your next campus walk into an earning opportunity. Sign up
-                        now!
-                    </Text>
-                    <View className="h-5" />
-                    <View className="flex-row justify-end h-2 rounded-xl w-20 bg-slate-200">
-                        <View
-                            style={{ backgroundColor: primarycolor }}
-                            className="h-2 rounded-xl w-7"
-                        />
-                    </View>
-                </View>
 
-                <View className="h-3" />
-            </View>
-        </>
-    );
+// Sliderthree component
+const Sliderthree = () => {
+  return (
+    <View className="w-full h-[850px] -mt-[140px] flex justify-center items-center">
+      <Image
+        source={require("../../assets/images/slide3.png")}
+        className="w-full"
+      />
+    </View>
+  );
 };

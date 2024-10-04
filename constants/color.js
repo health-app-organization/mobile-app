@@ -1,5 +1,5 @@
-export const primarycolor = "#FFC107"; //yellow
-export const primarycolortwo = "#073945"; //blue
+export const primarycolor = "#0099b8"; 
+export const primarycolortwo ="rgba(0, 153, 184, 0.2)"
 export const whitecolor = "#ffffff";
 export const greycolor = "#EEEEEE";
 export const greycolortwo = "#B5B5B5";
