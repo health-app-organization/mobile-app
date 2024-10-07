@@ -368,7 +368,7 @@ export const CustomInputWithHeader = ({
               paddingLeft: leftIconName ? 45 : 15, // Adjust left padding based on icon presence
               borderColor: isFocused ? "#0099b8" : "#ccc", // Change border color on focus
               borderWidth: 1, // Add border width
-              borderRadius: 5, // Optional: add border radius
+              borderRadius: 10, // Optional: add border radius
               backgroundColor: "#F3F3F3",
             },
           ]}
@@ -440,7 +440,7 @@ export const CustomInputpassword = ({
               paddingRight: 45, // Add right padding for the eye icon
               borderColor: isFocused ? "blue" : "#ccc", // Change border color on focus
               borderWidth: 1,
-              borderRadius: 5,
+              borderRadius: 10,
               backgroundColor: "#F3F3F3",
             },
           ]}

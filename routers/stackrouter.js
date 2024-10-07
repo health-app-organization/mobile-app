@@ -16,6 +16,7 @@ import { Platform } from "react-native";
 import VerificationFlowStack from "../screens/verification/verification-stack";
 import Identity from "../screens/onboarding/identity";
 import Provider from "../screens/healthptype/healthtype";
+import Healthcare from "../screens/healthptype/healthsignup";
 
 const StackWrapper = () => {
   const Stack = createStackNavigator();
@@ -84,39 +85,6 @@ const StackWrapper = () => {
               ? "horizontal"
               : Platform.OS === "android" && "vertical",
         }}
-        name="forgotpass"
-        component={Forgotpass}
-      />
-      <Stack.Screen
-        options={{
-          gestureEnabled: true,
-          gestureDirection:
-            Platform.OS === "ios"
-              ? "horizontal"
-              : Platform.OS === "android" && "vertical",
-        }}
-        name="otpverify"
-        component={Otpverify}
-      />
-      <Stack.Screen
-        options={{
-          gestureEnabled: true,
-          gestureDirection:
-            Platform.OS === "ios"
-              ? "horizontal"
-              : Platform.OS === "android" && "vertical",
-        }}
-        name="confirmpass"
-        component={ConfirmPassword}
-      />
-      <Stack.Screen
-        options={{
-          gestureEnabled: true,
-          gestureDirection:
-            Platform.OS === "ios"
-              ? "horizontal"
-              : Platform.OS === "android" && "vertical",
-        }}
         name="signup"
         component={Registration}
       />
@@ -130,6 +98,18 @@ const StackWrapper = () => {
         }}
         name="healthptype"
         component={Provider}
+      />
+
+      <Stack.Screen
+        options={{
+          gestureEnabled: true,
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
+        }}
+        name="healthsignup"
+        component={Healthcare}
       />
       <Stack.Screen
         options={{

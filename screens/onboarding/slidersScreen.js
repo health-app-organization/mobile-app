@@ -125,7 +125,7 @@ const Slider = () => {
             />
           </View>
         ) : (
-          <View className="w-full mt-20 px-5">
+          <View className="w-full mt-20 px-5 mb-5">
             <CustomButton
               Textname={"Next"}
               onPress={handlenext}

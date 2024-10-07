@@ -31,21 +31,18 @@ const Identity = () => {
   // State for showing the confirmation modal
   const [showConfirmation, setShowConfirmation] = useState(false);
 
-  // Functions to handle navigation
+  // Functions to handle navig// Function to handle the 'Create account' navigation
   const handletonewacc = () => {
     if (selectedIdentity === "identity2") {
-      setShowConfirmation(true); // Show popup for health provider
+      navigation.navigate("healthptype"); // Navigate to healthtype for health provider
     } else {
       navigation.navigate("signup");
     }
   };
 
+  // Function to handle the 'Login' navigation
   const handletologin = () => {
-    if (selectedIdentity === "identity2") {
-      setShowConfirmation(true); // Show popup for health provider
-    } else {
-      navigation.navigate("login");
-    }
+    navigation.navigate("login"); // Always navigate to login
   };
 
   // Function to handle the selection

@@ -7,65 +7,14 @@ import {
   StatusBar,
   Modal,
 } from "react-native";
-import { FontAwesome } from "@expo/vector-icons";
-import {
-  primarycolor,
-  primarycolortwo,
-  whitecolor,
-} from "../../constants/color";
-import {
-  CustomButton,
-  CustomButton2,
-  CustomButtonsmall,
-  CustomButtonsmall2,
-} from "../mycomponents/mycomponent";
 import { useNavigation } from "@react-navigation/native";
 import { height, width } from "../../constants/mobileDimensions";
 
 const Provider = () => {
   const navigation = useNavigation();
-
-  // State for identity selection
-  const [selectedIdentity, setSelectedIdentity] = useState(null);
-
-  // State for showing the confirmation modal
-  const [showConfirmation, setShowConfirmation] = useState(false);
-
-  // Functions to handle navigation
-  const handletonewacc = () => {
-    if (selectedIdentity === "identity2") {
-      setShowConfirmation(true); // Show popup for health provider
-    } else {
-      navigation.navigate("signup");
-    }
+  const handleContinue = () => {
+    navigation.navigate("healthsignup");
   };
-
-  const handletologin = () => {
-    if (selectedIdentity === "identity2") {
-      setShowConfirmation(true); // Show popup for health provider
-    } else {
-      navigation.navigate("login");
-    }
-  };
-
-  // Function to handle the selection
-  const handleSelection = (identity) => {
-    setSelectedIdentity(identity);
-  };
-
-  // Function to proceed after confirmation
-  const handleConfirmationContinue = () => {
-    setShowConfirmation(false);
-    if (selectedIdentity === "identity2") {
-      navigation.navigate("healthProviderLogin"); // Adjust the route for health provider login/signup
-    }
-  };
-
-  // Function to close confirmation modal
-  const handleConfirmationBack = () => {
-    setShowConfirmation(false);
-  };
-
   return (
     <View
       style={{ height: height, width: width }}
@@ -83,9 +32,12 @@ const Provider = () => {
         </View>
         <Text className=" font-bold text-xl">Choose identity</Text>
       </View>
-      <View className=" h-5"/>
+      <View className=" h-5" />
       <View className=" w-full flex-row justify-between px-4 h-[115.39px] ">
-        <TouchableOpacity className="w-[103px] h-[115.39px] justify-center items-center">
+        <TouchableOpacity
+          className="w-[103px] h-[115.39px] justify-center items-center"
+          onPress={handleContinue}
+        >
           <Image
             source={require("../../assets/images/Frame 8.png")}
             resizeMode="contain"
