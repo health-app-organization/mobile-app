@@ -48,15 +48,7 @@ export const Login = () => {
     console.log(email, password);
     handleToDashboard();
   };
-  const handleToDashboard = () => {
-    // IF first time login
-    // THEN redirect to id verification
-    // ELSE navigate to dashboard
-    navigation.navigate("dashboardhome");
-  };
-  const handleToSignup = () => {
-    navigation.navigate("signup");
-  };
+  
   return (
     <>
       <View className="h-screen w-full px-5 py-[88px]">

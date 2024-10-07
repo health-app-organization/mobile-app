@@ -44,6 +44,84 @@ export const CustomButton = ({
   );
 };
 
+export const CustomButtonsmall = ({
+  Textname,
+  onPress,
+  backgroundColor,
+  TextColor,
+  borderWidth,
+  borderColor,
+  leftIcon,
+  rightIcon,
+  props,
+  width, // Accept width prop
+}) => {
+  return (
+    <>
+      <TouchableOpacity
+        style={[
+          {
+            backgroundColor: backgroundColor,
+            borderWidth: borderWidth || 0,
+            borderColor: borderColor || null,
+            width: 142,
+            borderRadius: 10, // Default to 142px if no width prop is passed
+            height: 50, // Fixed height of 50px
+            justifyContent: "center", // Center align items
+            alignItems: "center",
+          },
+        ]}
+        onPress={onPress}
+        {...props}
+      >
+        {leftIcon}
+        <Text style={[Textstyles.text_button, { color: TextColor }]}>
+          {Textname}
+        </Text>
+        {rightIcon}
+      </TouchableOpacity>
+    </>
+  );
+};
+
+export const CustomButtonsmall2 = ({
+  Textname,
+  onPress,
+  backgroundColor,
+  TextColor,
+  borderWidth,
+  borderColor = "#0099b8", // Default borderColor is set to #0099b8
+  leftIcon,
+  rightIcon,
+  props,
+  width,
+}) => {
+  return (
+    <TouchableOpacity
+      style={[
+        {
+          backgroundColor: backgroundColor,
+          borderWidth: borderWidth || 1,
+          borderColor: borderColor, // Use the default or passed borderColor
+          width: 142,
+          borderRadius: 10, // Default to 142px if no width prop is passed
+          height: 50, // Fixed height of 50px
+          justifyContent: "center", // Center align items
+          alignItems: "center",
+        },
+      ]}
+      onPress={onPress}
+      {...props}
+    >
+      {leftIcon}
+      <Text style={[Textstyles.text_button, { color: TextColor }]}>
+        {Textname}
+      </Text>
+      {rightIcon}
+    </TouchableOpacity>
+  );
+};
+
 export const CustomButton2 = ({
   Textname,
   onPress,

@@ -15,6 +15,7 @@ import { Platform } from "react-native";
 
 import VerificationFlowStack from "../screens/verification/verification-stack";
 import Identity from "../screens/onboarding/identity";
+import Provider from "../screens/healthptype/healthtype";
 
 const StackWrapper = () => {
   const Stack = createStackNavigator();
@@ -118,6 +119,17 @@ const StackWrapper = () => {
         }}
         name="signup"
         component={Registration}
+      />
+      <Stack.Screen
+        options={{
+          gestureEnabled: true,
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
+        }}
+        name="healthptype"
+        component={Provider}
       />
       <Stack.Screen
         options={{

@@ -1,30 +1,69 @@
 import React, { useState } from "react";
-import { Image, View, Text, TouchableOpacity, StatusBar } from "react-native";
-import { FontAwesome } from "@expo/vector-icons"; // For the mark icon
+import {
+  Image,
+  View,
+  Text,
+  TouchableOpacity,
+  StatusBar,
+  Modal,
+} from "react-native";
+import { FontAwesome } from "@expo/vector-icons";
 import {
   primarycolor,
   primarycolortwo,
   whitecolor,
 } from "../../constants/color";
-import { CustomButton, CustomButton2 } from "../mycomponents/mycomponent";
+import {
+  CustomButton,
+  CustomButton2,
+  CustomButtonsmall,
+  CustomButtonsmall2,
+} from "../mycomponents/mycomponent";
 import { useNavigation } from "@react-navigation/native";
 import { height, width } from "../../constants/mobileDimensions";
 
 const Identity = () => {
   const navigation = useNavigation();
+
+  // State for identity selection
+  const [selectedIdentity, setSelectedIdentity] = useState(null);
+
+  // State for showing the confirmation modal
+  const [showConfirmation, setShowConfirmation] = useState(false);
+
+  // Functions to handle navigation
   const handletonewacc = () => {
-    navigation.navigate("signup");
-  };
-  const handletologin = () => {
-    navigation.navigate("login");
+    if (selectedIdentity === "identity2") {
+      setShowConfirmation(true); // Show popup for health provider
+    } else {
+      navigation.navigate("signup");
+    }
   };
 
-  // State to track which item was selected
-  const [selectedIdentity, setSelectedIdentity] = useState(null);
+  const handletologin = () => {
+    if (selectedIdentity === "identity2") {
+      setShowConfirmation(true); // Show popup for health provider
+    } else {
+      navigation.navigate("login");
+    }
+  };
 
   // Function to handle the selection
   const handleSelection = (identity) => {
     setSelectedIdentity(identity);
+  };
+
+  // Function to proceed after confirmation
+  const handleConfirmationContinue = () => {
+    setShowConfirmation(false);
+    if (selectedIdentity === "identity2") {
+      navigation.navigate("healthptype"); // Adjust the route for health provider login/signup
+    }
+  };
+
+  // Function to close confirmation modal
+  const handleConfirmationBack = () => {
+    setShowConfirmation(false);
   };
 
   return (
@@ -64,7 +103,7 @@ const Identity = () => {
           )}
         </TouchableOpacity>
 
-        {/* TouchableOpacity for Identity 2 */}
+        {/* TouchableOpacity for Identity 2 (Health Provider) */}
         <TouchableOpacity
           className="w-[143.01px] h-[188.56px] justify-center items-center relative"
           onPress={() => handleSelection("identity2")}
@@ -101,6 +140,39 @@ const Identity = () => {
           />
         </View>
       )}
+
+      {/* Modal for confirmation */}
+      <Modal visible={showConfirmation} transparent={true} animationType="fade">
+        <View
+          style={{
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center",
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+          }}
+        >
+          <View className=" w-[350px] py-14 bg-white flex justify-center items-center rounded-xl">
+            <Text className="text-center text-2xl font-bold mb-3">Confirm</Text>
+            <Text className="text-center mb-6 text-xl">
+              This is for trained health care providers only.
+            </Text>
+            <View className=" flex-row  w-full justify-between px-6">
+              <CustomButtonsmall
+                Textname={"Continue"}
+                onPress={handleConfirmationContinue}
+                backgroundColor={primarycolor}
+                TextColor={whitecolor}
+              />
+              <CustomButtonsmall2
+                Textname={"Back"}
+                onPress={handleConfirmationBack}
+                backgroundColor={primarycolortwo}
+                TextColor={primarycolor}
+              />
+            </View>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 };
