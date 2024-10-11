@@ -17,6 +17,9 @@ import VerificationFlowStack from "../screens/verification/verification-stack";
 import Identity from "../screens/onboarding/identity";
 import Provider from "../screens/healthptype/healthtype";
 import Healthcare from "../screens/healthptype/healthsignup";
+import Messages from "../screens/dashboard/messages";
+import Appointments from "../screens/dashboard/apponitments";
+import Details from "../screens/dashboard/apponitmentdetails";
 
 const StackWrapper = () => {
   const Stack = createStackNavigator();
@@ -110,6 +113,39 @@ const StackWrapper = () => {
         }}
         name="healthsignup"
         component={Healthcare}
+      />
+            <Stack.Screen
+        options={{
+          gestureEnabled: true,
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
+        }}
+        name="messages"
+        component={Messages}
+      />
+      <Stack.Screen
+        options={{
+          gestureEnabled: true,
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
+        }}
+        name="apponitments"
+        component={Appointments}
+      />
+           <Stack.Screen
+        options={{
+          gestureEnabled: true,
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
+        }}
+        name="apponitmentdetails"
+        component={Details}
       />
       <Stack.Screen
         options={{

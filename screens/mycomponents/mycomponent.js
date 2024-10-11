@@ -170,6 +170,8 @@ export const CustomTextInput = ({
 }) => {
   const [showicon, seticon] = useState(true); // Initially, show the icon
   const [inputValue, setInputValue] = useState(value); // Track the input value
+  const [isFocused, setIsFocused] = useState(false); // Track focus state
+
   return (
     <>
       <View className="w-full relative flex justify-center">
@@ -183,7 +185,13 @@ export const CustomTextInput = ({
           placeholder={placeholder}
           placeholderTextColor={placeholderTextColor}
           autoCapitalize={autoCapitalize || "none"}
-          style={[customstyle.textinputstyle]}
+          style={[
+            customstyle.textinputstyle,
+            {
+              borderColor: isFocused ? "#0099b8" : "#ccc", // Change border color on focus
+              borderWidth: 1, // Add border width
+            },
+          ]}
           onChangeText={(text) => {
             setInputValue(text); // Update input value state
             onChange(text); // Call the parent onChange handler if provided
@@ -388,6 +396,110 @@ export const CustomInputWithHeader = ({
         />
       </View>
     </View>
+  );
+};
+
+export const CustomInputSearch = ({
+  placeholder, // New placeholder prop
+  autoCapitalize,
+  onChange,
+  secureTextEntry,
+  disable,
+  value,
+  leftIconName, // Use icon name as a string
+  leftIconSize, // Optional size for the icon
+  leftIconColor, // Optional color for the icon
+}) => {
+  const [inputValue, setInputValue] = useState(value); // Track the input value
+  const [isFocused, setIsFocused] = useState(false); // Track focus state
+
+  return (
+    <View className="w-full flex flex-col">
+      {/* Input Field */}
+      <View className="relative flex justify-center">
+        {/* Show left FontAwesome icon if iconName is provided */}
+        {leftIconName && (
+          <View className="absolute left-4 z-50">
+            <FontAwesome
+              name={leftIconName}
+              size={leftIconSize || 20}
+              color={leftIconColor || "#000"}
+            />
+          </View>
+        )}
+        <TextInput
+          style={[
+            customstyle.textinputstyle,
+            {
+              paddingLeft: leftIconName ? 45 : 15, // Adjust left padding based on icon presence
+              borderColor: isFocused ? "#0099b8" : "#ccc", // Change border color on focus
+              borderWidth: 1, // Add border width
+              borderRadius: 10, // Optional: add border radius
+              backgroundColor: "#F3F3F3",
+            },
+          ]}
+          placeholder={placeholder} // Set placeholder text
+          value={inputValue} // Use inputValue for the actual value
+          editable={!disable} // Allow editing based on disable prop
+          secureTextEntry={secureTextEntry}
+          autoCapitalize={autoCapitalize || "none"}
+          onFocus={() => setIsFocused(true)} // Set focus state
+          onBlur={() => setIsFocused(false)} // Reset focus state
+          onChangeText={(text) => {
+            setInputValue(text); // Update input value state
+            if (onChange) {
+              onChange(text); // Call the parent onChange handler if provided
+            }
+          }}
+        />
+      </View>
+    </View>
+  );
+};
+
+const HeaderTitle = ({ title }) => {
+  return (
+    <View className="w-full h-8 flex justify-start pl-6 mt-5">
+      <Text className="text-2xl font-bold">{title}</Text>
+    </View>
+  );
+};
+
+export default HeaderTitle;
+
+export const Providercard = ({ name, title, rating, likes,onPress }) => {
+  return (
+    <TouchableOpacity onPress={onPress} className="flex-row bg-white rounded-xl shadow-md w-[359px] h-[120px]">
+      {/* Left Section: Image */}
+      <View className="bg-gray-600 w-[130px] h-[120px]  mr-4">
+        {/* Placeholder for the image */}
+      </View>
+
+      <View className="flex-1 mb-auto mt-auto">
+        <Text className="text-[18px] font-[500] leading-[27px] mb-1">
+          {name}
+        </Text>
+        <Text className="text-gray-500 text-[14px] font-[500] leading-[21px] mb-1">
+          {title}
+        </Text>
+
+        {/* Ratings and Likes */}
+        <View className="flex-row items-center mt-2">
+          {/* Stars */}
+          <View className="flex-row w-[60p] space-x-1">
+            {[...Array(rating)].map((_, index) => (
+              <FontAwesome key={index} name="star" size={16} color="#0099b8" />
+            ))}
+          </View>
+
+          {/* Likes */}
+          <View className=" flex-row space-x-1">
+          <Text className="ml-3 text-gray-600">{likes}</Text>
+          <FontAwesome name="heart" size={16} color="red" className="ml-1" />
+          </View>
+        </View>
+      </View>
+    </TouchableOpacity>
   );
 };
 

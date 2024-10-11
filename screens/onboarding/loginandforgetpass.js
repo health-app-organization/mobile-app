@@ -47,6 +47,9 @@ export const Login = () => {
   const handletosignup = () => {
     navigation.navigate("signup");
   };
+  const handletodashboard = () => {
+    navigation.navigate("messages");
+  };
 
   return (
     <>
@@ -92,6 +95,7 @@ export const Login = () => {
         <View className="h-10" />
         <CustomButton
           Textname={"Login"}
+          onPress={handletodashboard}
           backgroundColor={primarycolor}
           TextColor={whitecolor}
         />
