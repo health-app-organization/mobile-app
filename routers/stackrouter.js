@@ -20,6 +20,9 @@ import Healthcare from "../screens/healthptype/healthsignup";
 import Messages from "../screens/dashboard/messages";
 import Appointments from "../screens/dashboard/apponitments";
 import Details from "../screens/dashboard/apponitmentdetails";
+import Cart from "../screens/dashboard/cart";
+import Orcode from "../screens/dashboard/userqrcode";
+import { PaymentScreen } from "../screens/dashboard/payment";
 
 const StackWrapper = () => {
   const Stack = createStackNavigator();
@@ -146,6 +149,40 @@ const StackWrapper = () => {
         }}
         name="apponitmentdetails"
         component={Details}
+      />
+      
+      <Stack.Screen
+        options={{
+          gestureEnabled: true,
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
+        }}
+        name="cart"
+        component={Cart}
+      />
+           <Stack.Screen
+        options={{
+          gestureEnabled: true,
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
+        }}
+        name="userqrcode"
+        component={Orcode}
+      />
+               <Stack.Screen
+        options={{
+          gestureEnabled: true,
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
+        }}
+        name="payment"
+        component={PaymentScreen}
       />
       <Stack.Screen
         options={{

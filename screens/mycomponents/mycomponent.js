@@ -1,9 +1,11 @@
-import { TouchableOpacity, Text, View } from "react-native";
+import { TouchableOpacity, Text, View ,StyleSheet} from "react-native";
 import { customstyle, radioButtonStyles } from "../../constants/customstyle";
 import { Textstyles } from "../../constants/fontsize";
+import { Ionicons } from "@expo/vector-icons"; // Import Ionicons for arrow
 import { TextInput } from "react-native-gesture-handler";
 import { FontAwesome } from "@expo/vector-icons";
-import { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
+import { useState,useEffect } from "react";
 import { greycolortwo } from "../../constants/color";
 import { height, width } from "../../constants/mobileDimensions";
 
@@ -585,6 +587,186 @@ export const CustomInputpassword = ({
           </TouchableOpacity>
         )}
       </View>
+    </View>
+  );
+};
+
+
+
+export const PaymentInput = ({
+  placeholder,
+  placeholderTextColor,
+  onChange,
+  value,
+  sideIcon,
+  disable,
+  onFocusCustomKeyboard,
+}) => {
+  const [inputValue, setInputValue] = useState(value);
+  const [isFocused, setIsFocused] = useState(false);
+  const [showIcon, setShowIcon] = useState(true); // Track the visibility of the icon
+
+  useEffect(() => {
+    // Sync input value with the external value prop
+    setInputValue(value);
+  }, [value]);
+
+  return (
+    <View style={styles.container}>
+      {/* Show the currency icon if input is empty and not focused */}
+      {showIcon && inputValue === "" && (
+        <View style={styles.iconContainer}>{sideIcon}</View>
+      )}
+
+      <TextInput
+        onFocus={() => {
+          setIsFocused(true);
+          setShowIcon(false); // Hide the icon when focused
+          onFocusCustomKeyboard(); // Trigger the custom numeric keyboard
+        }}
+        onBlur={() => {
+          setIsFocused(false);
+          inputValue === "" && setShowIcon(true); // Show the icon when blurred and input is empty
+        }}
+        placeholder={placeholder}
+        placeholderTextColor={placeholderTextColor}
+        style={[styles.input, { borderColor: isFocused ? "#0099b8" : "#ccc" }]} // Dynamic border color
+        onChangeText={(text) => {
+          const formattedText = text.replace(/[^0-9]/g, ""); // Allow only numeric input
+          setInputValue(formattedText); // Update input field value
+          onChange(formattedText); // Call parent component's onChange to sync state
+        }}
+        value={inputValue}
+        editable={!disable} // Disable input if the 'disable' prop is true
+        showSoftInputOnFocus={false} // Disable the default keyboard
+      />
+    </View>
+  );
+};
+
+
+const styles = StyleSheet.create({
+  container: {
+    width: '100%',
+    position: 'relative',
+    justifyContent: 'center',
+  },
+  iconContainer: {
+    position: 'absolute',
+    left: 12,
+    zIndex: 50,
+  },
+  input: {
+    paddingLeft: 50,  // Padding to account for the side icon
+    fontSize: 18,
+    backgroundColor: "#F3F3F3",  // Input background color
+    height: 50,  // Height of the input
+    borderRadius: 8,  // Border radius to match the design
+    borderWidth: 1,  // Border width
+  },
+});
+
+
+
+export const PaymentMethod = ({ selectedMethod, onSelect }) => {
+  const paymentOptions = [
+    { id: "paystack", label: "PayStack" },
+    { id: "interswitch", label: "Interswitch" },
+  ];
+
+  return (
+    <View className="flex flex-col space-y-3"> 
+      {paymentOptions.map((option) => (
+        <TouchableOpacity
+          key={option.id}
+          className={`flex flex-row items-center border p-4 rounded-lg ${
+            selectedMethod === option.id
+              ? "border-[#0099b8]"  // Highlighted border for selected method
+              : "border-gray-300"
+          }`}
+          onPress={() => onSelect(option.id)} // Set selected method on press
+        >
+          <View
+            className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
+              selectedMethod === option.id ? "border-[#0099b8]" : "border-gray-300"
+            }`}
+          >
+            {selectedMethod === option.id && (
+              <View className="w-3 h-3 bg-[#0099b8] rounded-full" /> // Filled circle for selected method
+            )}
+          </View>
+          <Text className="ml-3 text-lg">{option.label}</Text>
+        </TouchableOpacity>
+      ))}
+    </View>
+  );
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+export const Header = ({ title }) => {
+  const navigation = useNavigation();
+
+  return (
+    <View
+      style={{
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 15,
+        paddingHorizontal: 30,
+        height: 140,
+        paddingTop: 30,
+        backgroundColor: '#00A8CC', // The color for the header background
+      }}
+    >
+      {/* Back Button */}
+      <TouchableOpacity onPress={() => navigation.goBack()}>
+        <Ionicons name="chevron-back" size={24} color="white" />
+      </TouchableOpacity>
+
+      {/* Title */}
+      <Text
+        style={{
+          color: 'white',
+          fontSize: 20,
+          lineHeight: 30,
+          fontWeight: '700',
+        }}
+      >
+        {title}
+      </Text>
+
+    
+      <View style={{ width: 24 }} /> 
     </View>
   );
 };
