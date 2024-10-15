@@ -105,10 +105,10 @@ const Slider = () => {
 
       {/* White View Section */}
       <View
-        className="h-[360px] bg-white w-full justify-center items-center"
+        className="h-[466px] bg-white w-full justify-center items-center"
         style={{
-          borderTopLeftRadius: 40,
-          borderTopRightRadius: 40,
+          borderTopLeftRadius: 60,
+          borderTopRightRadius: 60,
         }}
       >
         {/* Render the description text */}
@@ -143,10 +143,11 @@ export default Slider;
 // Sliderone component
 const Sliderone = () => {
   return (
-    <View className="w-full h-[850px] -mt-[140px] flex justify-center items-center">
+    <View className="w-full h-[872px] -mt-[190px] flex justify-center items-center">
       <Image
         source={require("../../assets/images/slide1.png")}
-        className="w-full"
+        className="w-full h-[990px]"
+        resizeMode="contain"
       />
     </View>
   );
@@ -155,11 +156,11 @@ const Sliderone = () => {
 // Slidertwo component
 const Slidertwo = () => {
   return (
-    <View className="w-full h-[850px] -mt-[140px] flex justify-center items-center">
+    <View className="w-full  h-[760px] -mt-[140px] flex justify-center items-center">
       <Image
         source={require("../../assets/images/slide2.png")}
         className="w-full"
-       
+           resizeMode="contain"
       />
     </View>
   );
@@ -168,10 +169,11 @@ const Slidertwo = () => {
 // Sliderthree component
 const Sliderthree = () => {
   return (
-    <View className="w-full h-[850px] -mt-[140px] flex justify-center items-center">
+    <View className="w-full h-[760px] -mt-[140px] flex justify-center items-center">
       <Image
         source={require("../../assets/images/slide3.png")}
         className="w-full"
+           resizeMode="contain"
       />
     </View>
   );

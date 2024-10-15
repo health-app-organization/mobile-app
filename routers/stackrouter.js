@@ -27,6 +27,7 @@ import Notification from "../screens/dashboard/notifications";
 import Medicine from "../screens/dashboard/medicine";
 import lab from "../screens/dashboard/lab";
 import Lab from "../screens/dashboard/lab";
+import Wallet from "../screens/dashboard/wallet";
 
 const StackWrapper = () => {
   const Stack = createStackNavigator();
@@ -220,6 +221,17 @@ const StackWrapper = () => {
         }}
         name="lab"
         component={Lab}
+      />
+       <Stack.Screen
+        options={{
+          gestureEnabled: true,
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
+        }}
+        name="wallet"
+        component={Wallet}
       />
       <Stack.Screen
         options={{

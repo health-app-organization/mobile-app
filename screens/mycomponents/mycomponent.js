@@ -817,6 +817,16 @@ export const PaymentMethod = ({ selectedMethod, onSelect }) => {
 
 
 
+
+
+
+
+
+
+
+
+
+
 export const Header = ({ title, rightIcon, onRightIconPress }) => {
   const navigation = useNavigation();
 
