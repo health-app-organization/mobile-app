@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet } from "react-native"; // Ensure StyleSheet is imported
+import { View, Text, StyleSheet ,Image, TouchableOpacity} from "react-native"; // Ensure StyleSheet is imported
 import {
   PaymentInput,
   CustomButton,
   PaymentMethod,
 } from "../mycomponents/mycomponent";
 import { height } from "../../constants/mobileDimensions";
+import { FontAwesome } from "@expo/vector-icons";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -47,11 +48,29 @@ export const PaymentScreen = () => {
 
   return (
     <View style={{ height: height }} className="w-full px-5 py-[44px] bg-white">
-      <View className="mt-20">
-        <Text className="text-lg font-bold text-black text-center">
+      <View className=" mb-10 w-full  h-16 flex-row justify-between ">
+        <View className=" w-44 h-16  flex-row">
+          <View>
+             <Image
+            source={require("../../assets/images/logo.png")}
+            resizeMode="contain"
+            className=" h-16 w-16"
+          />
+          </View>
+          <View className=" -ml-3 flex justify-center items-center">
+          <Text className=" text-black font-bold text-center text-2xl">HEALTHAPP</Text>
+          </View>
+        </View>
+        <TouchableOpacity className=" justify-center items-center flex  w-10 h-10 ">
+          
+        <FontAwesome name="times" size={23} color="#0099B8"/>
+        </TouchableOpacity>
+      </View>
+      <View className="mt-5">
+        <Text className="text-[16px] font-[600] text-gray-500 text-center">
           Caleb Omojuko
         </Text>
-        <Text className="text-2xl my-3 text-black text-center">
+        <Text className="text-[20px] leading-[30px] font-[700] my-3 text-black text-center mb-6">
           ₦{amount || "0.00"}
         </Text>
 

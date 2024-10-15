@@ -1,14 +1,15 @@
 import React from 'react';
 import { StatusBar } from "expo-status-bar";
 import { View, Text, TouchableOpacity } from 'react-native';
-import { Header } from '../mycomponents/mycomponent';
+import { Cartcard, Header } from '../mycomponents/mycomponent';
 import { useNavigation } from '@react-navigation/native';
+import { Providercard } from '../mycomponents/mycomponent';
 
 
 const Cart = () => {
     const navigation = useNavigation();
     const handletocode = () => {
-        navigation.navigate("payment");
+        navigation.navigate("notifications");
       };
 
 
@@ -17,13 +18,19 @@ const Cart = () => {
         
       <StatusBar style="auto" />
 
-      <Header title="My Cart" />    
-      <View className=" mt-1 w-full flex justify-center items-center  h-[660px]">
-        <TouchableOpacity
-          onPress={handletocode}
-          className=" w-52 h-52 bg-blue-800 -mt-12"
-        ></TouchableOpacity>
-      </View>  
+      <Header 
+  title="My Cart" 
+  rightIcon="credit-card" // Example FontAwesome icon name
+  onRightIconPress={() => console.log('Right icon pressed!')}
+/>   
+<View className=" flex justify-center w-full items-center mt-12">
+<Cartcard
+          name="Amartem Paracetermol"
+          rating={5}
+          likes={250}
+          onPress={() => navigation.navigate('apponitmentdetails')} 
+        />
+        </View>
     
     </View>
   );

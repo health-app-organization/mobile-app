@@ -155,11 +155,11 @@ const Sliderone = () => {
 // Slidertwo component
 const Slidertwo = () => {
   return (
-    <View className="w-full h-[850px] -mt-[130px] flex justify-center items-center">
+    <View className="w-full h-[850px] -mt-[140px] flex justify-center items-center">
       <Image
         source={require("../../assets/images/slide2.png")}
         className="w-full"
-        resizeMode="contain"
+       
       />
     </View>
   );

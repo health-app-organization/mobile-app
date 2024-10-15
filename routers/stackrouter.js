@@ -23,6 +23,10 @@ import Details from "../screens/dashboard/apponitmentdetails";
 import Cart from "../screens/dashboard/cart";
 import Orcode from "../screens/dashboard/userqrcode";
 import { PaymentScreen } from "../screens/dashboard/payment";
+import Notification from "../screens/dashboard/notifications";
+import Medicine from "../screens/dashboard/medicine";
+import lab from "../screens/dashboard/lab";
+import Lab from "../screens/dashboard/lab";
 
 const StackWrapper = () => {
   const Stack = createStackNavigator();
@@ -183,6 +187,39 @@ const StackWrapper = () => {
         }}
         name="payment"
         component={PaymentScreen}
+      />
+                 <Stack.Screen
+        options={{
+          gestureEnabled: true,
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
+        }}
+        name="notifications"
+        component={Notification}
+      />
+                    <Stack.Screen
+        options={{
+          gestureEnabled: true,
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
+        }}
+        name="medicine"
+        component={Medicine}
+      />
+                     <Stack.Screen
+        options={{
+          gestureEnabled: true,
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
+        }}
+        name="lab"
+        component={Lab}
       />
       <Stack.Screen
         options={{

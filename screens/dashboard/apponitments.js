@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Imagepic from "../../assets/images/appo.png"
 import {
   Image,
   View,
@@ -38,6 +39,7 @@ const Appointments = () => {
 
       <View className=" px-5 mt-10">
         <Providercard
+          
           name="Dr Micheal Brains"
           title="Healthcare Provider"
           rating={5}

@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import { Image, View, Text, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { Ionicons } from "@expo/vector-icons"; // Import Ionicons for arrow
-import { CustomButton } from "../mycomponents/mycomponent";
+import { FontAwesome, Ionicons } from "@expo/vector-icons"; // Import Ionicons for arrow
+import { CustomButton, CustomButtonmedium, CustomButtonsmall, CustomButtonsmall2 } from "../mycomponents/mycomponent";
 import {
   greycolorfive,
   greycolorthree,
@@ -69,15 +69,15 @@ const Details = () => {
 
         {/* Image */}
         <Image
-          source={require("../../assets/images/slide1.png")} // replace with your actual image path
-          className="w-full h-[500px]"
+          source={require("../../assets/images/appo.png")} // replace with your actual image path
+          className="w-full h-[700px]"
           resizeMode="cover"
         />
       </View>
 
       {/* Overlay Section */}
       <View
-        className="h-[700px] absolute mt-[280px] bg-white w-full "
+        className="h-[700px] absolute mt-[340px] bg-white w-full "
         style={{
           borderTopLeftRadius: 40,
           borderTopRightRadius: 40,
@@ -100,7 +100,13 @@ const Details = () => {
         <View className="w-full flex justify-center items-center h-[127px]">
           <View className="w-[290px] h-[87px] flex-row justify-center gap-[20px]">
             <View className="w-[50px] h-[87px]">
-              <View className="w-[50px] h-[50px] rounded-[25px] bg-[#D9D9D980] mb-2"></View>
+              <View className="w-[50px] h-[50px] flex justify-center items-center rounded-[25px] bg-[#D9D9D980] mb-2">
+              <Image
+          source={require("../../assets/images/user.png")} // replace with your actual image path
+          className=" w-6 h-6"
+          resizeMode="cover"
+        />
+              </View>
               <View className="w-[46px] h-[32px]">
                 <Text className="text-center font-[500] text-[12px] leading-4">
                   200
@@ -111,7 +117,13 @@ const Details = () => {
               </View>
             </View>
             <View className="w-[50px] h-[87px]">
-              <View className="w-[50px] h-[50px] rounded-[25px] bg-[#D9D9D980] mb-2"></View>
+              <View className="w-[50px] h-[50px] flex justify-center items-center rounded-[25px] bg-[#D9D9D980] mb-2">
+              <Image
+          source={require("../../assets/images/check.png")} // replace with your actual image path
+          className=" w-6 h-6"
+          resizeMode="cover"
+        />
+              </View>
               <View className="w-[46px] h-[32px]">
                 <Text className="text-center font-[500] text-[12px] leading-4">
                   5+
@@ -122,7 +134,13 @@ const Details = () => {
               </View>
             </View>
             <View className="w-[50px] h-[87px]">
-              <View className="w-[50px] h-[50px] rounded-[25px] bg-[#D9D9D980] mb-2"></View>
+              <View className="w-[50px] h-[50px] rounded-[25px] flex justify-center items-center bg-[#D9D9D980] mb-2">
+              <Image
+          source={require("../../assets/images/star.png")} // replace with your actual image path
+          className=" w-6 h-6"
+          resizeMode="cover"
+        />
+              </View>
               <View className="w-[46px] h-[32px]">
                 <Text className="text-center font-[500] text-[12px] leading-4">
                   5.0
@@ -133,7 +151,13 @@ const Details = () => {
               </View>
             </View>
             <View className="w-[50px] h-[87px]">
-              <View className="w-[50px] h-[50px] rounded-[25px] bg-[#D9D9D980] mb-2"></View>
+              <View className="w-[50px] h-[50px] flex justify-center items-center rounded-[25px] bg-[#D9D9D980] mb-2">
+              <Image
+          source={require("../../assets/images/heart.png")} // replace with your actual image path
+          className=" w-6 h-6"
+          resizeMode="cover"
+        />
+              </View>
               <View className="w-[46px] h-[32px]">
                 <Text className="text-center font-[500] text-[12px] leading-4">
                   200+
@@ -175,12 +199,12 @@ const Details = () => {
         </View>
 
         {/* About Dr Micheal Section */}
-        <View className="px-5 mt-[72px]">
+        <View className="px-5 mt-[20px]">
           <Text className="text-[22px] font-bold text-center mb-2">
             About Dr Micheal
           </Text>
 
-          <Text className="text-[16px] leading-[24px] text-center text-gray-600 mb-1">
+          <Text className="text-[16px] leading-[24px] text-center text-gray-600 ">
             He is a top Senior Cardiologist and Surgeon at the United States
             Medical College & Hospital, with 20+ years of experience in heart
             treatments and surgeries. His expertise and compassionate care make
@@ -188,12 +212,13 @@ const Details = () => {
           </Text>
 
           {/* Call Dr Micheal Button */}
-          <View className="mt-4">
-            <CustomButton
+          <View className="mt-4 w-full justify-center items-center">
+            <CustomButtonmedium
               Textname={"Call Dr Micheal Brains"} // Button text as per design
               onPress={handletocart}
               backgroundColor={primarycolor}
               TextColor={whitecolor}
+        
             />
           </View>
         </View>
