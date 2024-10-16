@@ -1129,7 +1129,17 @@ export const Providercard2 = ({ name, title, rating, reviews,onPress ,image}) =>
     </TouchableOpacity>
   );
 };
+export const MenuButton=({icon,text})=>{
+  return(
+    <>
+    <TouchableOpacity style={{elevation:4}} className="w-28 h-28 rounded-2xl bg-white flex justify-center items-center px-3 shadow-sm shadow-black">
+      {icon}
+      {text}
 
+    </TouchableOpacity>
+    </>
+  )
+}
 
 
 

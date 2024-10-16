@@ -48,7 +48,7 @@ export const Login = () => {
     navigation.navigate("signup");
   };
   const handletodashboard = () => {
-    navigation.navigate("lab");
+    navigation.navigate("dashboard");
   };
 
   return (

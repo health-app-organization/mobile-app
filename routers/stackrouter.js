@@ -27,6 +27,7 @@ import Notification from "../screens/dashboard/notifications";
 import Medicine from "../screens/dashboard/medicine";
 import lab from "../screens/dashboard/lab";
 import Lab from "../screens/dashboard/lab";
+import DashboardScreen from "./dashboardScreen";
 
 const StackWrapper = () => {
   const Stack = createStackNavigator();
@@ -108,6 +109,17 @@ const StackWrapper = () => {
         }}
         name="healthptype"
         component={Provider}
+      />
+      <Stack.Screen
+        options={{
+          gestureEnabled: true,
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
+        }}
+        name="dashboard"
+        component={DashboardScreen}
       />
 
       <Stack.Screen

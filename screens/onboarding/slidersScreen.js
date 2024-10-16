@@ -77,11 +77,11 @@ const Slider = () => {
   };
 
   return (
-    <View className="flex-1">
+    <View className="w-full h-full">
       <StatusBar style="auto" />
 
       {/* Slider Section */}
-      <View className="flex-1 relative">
+      <View className="h-[60vh] w-full relative">
         {/* Conditionally render Skip button */}
         {currentindex < mapArray.length - 1 && (
           <TouchableOpacity
@@ -105,7 +105,7 @@ const Slider = () => {
 
       {/* White View Section */}
       <View
-        className="h-[360px] bg-white w-full justify-center items-center"
+        className="h-[50vh] bg-white w-full justify-center items-center -mt-20"
         style={{
           borderTopLeftRadius: 40,
           borderTopRightRadius: 40,
@@ -143,10 +143,11 @@ export default Slider;
 // Sliderone component
 const Sliderone = () => {
   return (
-    <View className="w-full h-[850px] -mt-[140px] flex justify-center items-center">
+    <View className="w-full h-full  flex justify-center items-center">
       <Image
         source={require("../../assets/images/slide1.png")}
-        className="w-full"
+        className="w-full h-full"
+        resizeMethod="contain"
       />
     </View>
   );
@@ -155,10 +156,11 @@ const Sliderone = () => {
 // Slidertwo component
 const Slidertwo = () => {
   return (
-    <View className="w-full h-[850px] -mt-[140px] flex justify-center items-center">
+    <View className="w-full h-full flex justify-center items-center">
       <Image
         source={require("../../assets/images/slide2.png")}
-        className="w-full"
+        className="w-full h-full"
+        resizeMethod="contain"
        
       />
     </View>
@@ -168,10 +170,10 @@ const Slidertwo = () => {
 // Sliderthree component
 const Sliderthree = () => {
   return (
-    <View className="w-full h-[850px] -mt-[140px] flex justify-center items-center">
+    <View className="w-full h-full flex justify-center items-center">
       <Image
         source={require("../../assets/images/slide3.png")}
-        className="w-full"
+        className="w-full h-full"
       />
     </View>
   );
