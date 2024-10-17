@@ -108,7 +108,7 @@ const Slider = () => {
 
         className="h-[50vh] bg-white w-full justify-center items-center -mt-20"
 
-        className="h-[466px] bg-white w-full justify-center items-center"
+       
 
         style={{
           borderTopLeftRadius: 60,
@@ -153,14 +153,8 @@ const Sliderone = () => {
         source={require("../../assets/images/slide1.png")}
         className="w-full h-full"
         resizeMethod="contain"
-
-    <View className="w-full h-[872px] -mt-[190px] flex justify-center items-center">
-      <Image
-        source={require("../../assets/images/slide1.png")}
-        className="w-full h-[990px]"
-        resizeMode="contain"
-
-      />
+/>
+    
     </View>
   );
 };
@@ -174,15 +168,9 @@ const Slidertwo = () => {
         source={require("../../assets/images/slide2.png")}
         className="w-full h-full"
         resizeMethod="contain"
-       
+       />
 
-    <View className="w-full  h-[760px] -mt-[140px] flex justify-center items-center">
-      <Image
-        source={require("../../assets/images/slide2.png")}
-        className="w-full"
-           resizeMode="contain"
-
-      />
+    
     </View>
   );
 };
@@ -195,14 +183,7 @@ const Sliderthree = () => {
       <Image
         source={require("../../assets/images/slide3.png")}
         className="w-full h-full"
-
-    <View className="w-full h-[760px] -mt-[140px] flex justify-center items-center">
-      <Image
-        source={require("../../assets/images/slide3.png")}
-        className="w-full"
-           resizeMode="contain"
-
-      />
+/>
     </View>
   );
 };
