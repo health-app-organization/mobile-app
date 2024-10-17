@@ -55,13 +55,13 @@ export const Login = () => {
     <>
       <View className="h-screen w-full px-5 py-[88px]">
         <>
-          <Text className=" text-4xl text-center mt-7 ">Welcome Back !!</Text>
-          <View className=" w-full h-44  flex mb-4 justify-center items-center">
+          <Text style={[Textstyles.text_medium]} className="text-3xl text-center mt-4">Welcome Back !!</Text>
+          <View className="w-full h-44  flex mb-4 justify-center items-center">
             <View className=" w-[50%]  flex justify-center items-center h-36">
               <Image
                 source={require("../../assets/images/logo.png")}
                 resizeMode="contain"
-                className=" h-36 w-36"
+                className=" h-24 w-24"
               />
             </View>
           </View>

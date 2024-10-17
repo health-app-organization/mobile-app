@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { Animated, View, StyleSheet, StatusBar, Image,Text } from "react-native";
 import {
+  logocolor,
   primarycolor,
   primarycolortwo,
   whitecolor,
@@ -81,10 +82,10 @@ const AnimatedBackground = () => {
           <Image
             source={require("../../assets/images/logo.png")}
             resizeMode="contain"
-            className=" h-40 w-40"
+            className="h-24 w-24"
           />
         </View>
-        <Text className=" text-white font-bold text-center text-4xl">HEALTHAPP</Text>
+        <Text className="text-white font-bold text-center text-3xl"><Text>Westa</Text><Text>Care</Text></Text>
       </Animated.View>
     </View>
   );

@@ -75,7 +75,7 @@ const Identity = () => {
           <Image
             source={require("../../assets/images/logo.png")}
             resizeMode="contain"
-            className="h-36 w-36"
+            className="h-24 w-24"
           />
         </View>
         <Text className=" font-bold text-xl">Choose identity</Text>
@@ -94,7 +94,7 @@ const Identity = () => {
           />
           {/* Show check mark if this one is selected */}
           {selectedIdentity === "identity1" && (
-            <View className="absolute top-2 right-2 bg-black p-1 rounded-full">
+            <View className="absolute top-0 right-2 bg-black p-1 rounded-full">
               <FontAwesome name="check" size={16} color={whitecolor} />
             </View>
           )}
