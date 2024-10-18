@@ -109,14 +109,8 @@ export default function Registration() {
   };
 
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      style={{ flex: 1 }}
-      keyboardVerticalOffset={Platform.OS === 'ios' ? 10 : 0}  // Increase offset here
-    >
-      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-        <View className="w-full px-5 py-[88px] bg-white">
-          <View>
+   
+        <View className="w-full h-full px-5 py-[88px] bg-white">
             {/* Back button */}
             {currentStep > 0 && (
               <TouchableOpacity
@@ -203,9 +197,16 @@ export default function Registration() {
               </>
             )}
 
-            <View className=" w-full">
+
+            <>
               {currentStep === 2 && (
-                <>
+                <> 
+                <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      style={{ flex: 1 }}
+      keyboardVerticalOffset={Platform.OS === 'ios' ? 10 : 0}  // Increase offset here
+    >
+      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
                   <View>
                     <Text
                       style={[Textstyles.text_medium]}
@@ -288,10 +289,12 @@ export default function Registration() {
                     leftIconSize={20}
                     className="mb-32"
                   />
+                    </ScrollView>
+                    </KeyboardAvoidingView>
                 </>
               )}
-            </View>
-          </View>
+            </>
+      
 
           <View>
             <View className="h-8" />
@@ -318,7 +321,6 @@ export default function Registration() {
             </View>
           )}
         </View>
-      </ScrollView>
-    </KeyboardAvoidingView>
+    
   );
 }
