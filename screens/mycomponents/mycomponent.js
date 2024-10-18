@@ -1,4 +1,4 @@
-import { TouchableOpacity, Text, View ,StyleSheet,Image} from "react-native";
+import { TouchableOpacity, Text, View ,StyleSheet,Image, ScrollView} from "react-native";
 import { customstyle, customstyle2, radioButtonStyles } from "../../constants/customstyle";
 import { Textstyles } from "../../constants/fontsize";
 import { Ionicons } from "@expo/vector-icons"; // Import Ionicons for arrow
@@ -6,7 +6,7 @@ import { TextInput } from "react-native-gesture-handler";
 import { FontAwesome } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { useState,useEffect } from "react";
-import { greycolortwo } from "../../constants/color";
+import { greycolortwo, linkcolor, primarycolor } from "../../constants/color";
 import { height, width } from "../../constants/mobileDimensions";
 
 export const CustomButton = ({
@@ -1031,26 +1031,6 @@ export const Chatlist = ({ profileImage, name, message, time, unreadCount }) => 
 };
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 export const Notificationcard = ({ profileImage, name, message, time, unreadCount }) => {
   return (
     <TouchableOpacity
@@ -1147,6 +1127,55 @@ export const MenuButton=({icon,text})=>{
       {text}
 
     </TouchableOpacity>
+    </>
+  )
+}
+
+export const DateComponent=()=>{
+  const [getdayArray,setdayArray]=useState([])
+  const days=['Sun','Mon','Tue','Wed','Thur','Fri','Sat']
+  const currentDate = new Date();
+  function getWeekDates() {
+    // Get today's date
+    const weekDates = [];
+    
+    // Calculate the difference from the current day to the previous Sunday
+    const firstDayOfWeek = new Date(currentDate.setDate(currentDate.getDate() - currentDate.getDay()));
+    
+    // Loop through the week and add only the day of the month (date)
+    for (let i = 0; i < 7; i++) {
+      const weekDate = new Date(firstDayOfWeek); // Copy the date
+      weekDate.setDate(firstDayOfWeek.getDate() + i); // Set date to Sunday + i days
+      weekDates.push(weekDate.getDate()); // Add only the date to the array
+    }
+  
+    return weekDates; // Return the dates as a comma-separated string
+  }
+  useEffect(()=>{
+    setdayArray(getWeekDates())
+
+  },[])
+ 
+  return(
+    <>
+      <ScrollView
+      horizontal={true}
+      >
+    <View className="w-full flex-row gap-3 items-center justify-evenly">
+    
+
+     
+
+      {getdayArray.map((item,index)=>(
+             <TouchableOpacity style={{borderColor:linkcolor, borderWidth:1,borderRadius:30, height:80,width:50}} className="flex justify-center items-center">
+              <Text>{days[index]}</Text>
+              <Text>{item}</Text>
+             </TouchableOpacity>
+
+      ))}
+ 
+    </View>
+    </ScrollView>
     </>
   )
 }

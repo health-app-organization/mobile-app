@@ -3,7 +3,7 @@ import { StatusBar } from "expo-status-bar";
 import { Image, View, Text, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { FontAwesome, Ionicons } from "@expo/vector-icons"; // Import Ionicons for arrow
-import { CustomButton, CustomButtonmedium, CustomButtonsmall, CustomButtonsmall2 } from "../mycomponents/mycomponent";
+import { CustomButton, CustomButtonmedium, CustomButtonsmall, CustomButtonsmall2, DateComponent } from "../mycomponents/mycomponent";
 import {
   greycolorfive,
   greycolorthree,
@@ -196,6 +196,10 @@ const Details = () => {
               </TouchableOpacity>
             </View>
           </View>
+        </View>
+        <View className="w-full">
+          <DateComponent/>
+
         </View>
 
         {/* About Dr Micheal Section */}
