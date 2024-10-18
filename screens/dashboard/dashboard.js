@@ -118,9 +118,7 @@ const Dashheader=()=>{
     )
 }
 const DashboardMenu=()=>{
-    const handletoHealth = () => {
-        navigation.navigate("healthprovider");
-      };
+
     return(
         <>
         <View className="mt-3 px-3 flex-row justify-center">
