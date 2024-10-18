@@ -53,7 +53,7 @@ const Details = () => {
       <StatusBar style="auto" />
 
       {/* Top Image with Back Arrow */}
-      <View>
+   
         {/* Back Arrow Icon */}
         <TouchableOpacity
           onPress={() => navigation.goBack()} // Navigates to the previous screen
@@ -68,11 +68,13 @@ const Details = () => {
         </TouchableOpacity>
 
         {/* Image */}
-        <Image
-          source={require("../../assets/images/appo.png")} // replace with your actual image path
-          className="w-full h-[700px]"
-          resizeMode="cover"
-        />
+       
+        <View className="h-1/3">
+  <Image
+    source={require("../../assets/images/appo.png")} // Replace with your actual image path
+    style={{ width: '100%', height: '100%', alignSelf: 'flex-end' }} // Align the image to the top
+    resizeMode="cover" // Use cover to ensure it fills the width
+  />
       </View>
 
       {/* Overlay Section */}
@@ -172,7 +174,7 @@ const Details = () => {
 
         {/* Appointments Section */}
         <View className=" flex justify-center items-center">
-          <View className="w-[388px] h-[119px] mt-3 p-3 flex-row justify-between">
+          <View className="w-full mt-3 p-3 flex-row justify-between">
             <View>
               <Text className="text-xl font-semibold leading-[24px]">
                 Appointments
@@ -203,7 +205,7 @@ const Details = () => {
         </View>
 
         {/* About Dr Micheal Section */}
-        <View className="px-5 mt-[20px]">
+        <View className="px-5 mt-3">
           <Text className="text-[22px] font-bold text-center mb-2">
             About Dr Micheal
           </Text>
