@@ -20,15 +20,43 @@ const Cart = () => {
 
       <Header 
   title="My Cart" 
-  rightIcon="credit-card" // Example FontAwesome icon name
+  rightIcon="shopping-cart" // Example FontAwesome icon name
   onRightIconPress={() => console.log('Right icon pressed!')}
 />   
-<View className=" flex justify-center w-full items-center mt-12">
+<View className=" flex justify-center w-full items-center mt-8">
 <Cartcard
           name="Amartem Paracetermol"
           rating={5}
           likes={250}
-          onPress={() => navigation.navigate('apponitmentdetails')} 
+          onPress={() => navigation.navigate('')} 
+        />
+        <View className=" h-3" />
+        <Cartcard
+          name="Amartem Paracetermol"
+          rating={5}
+          likes={250}
+          onPress={() => navigation.navigate('')} 
+        />
+          <View className=" h-3" />
+        <Cartcard
+          name="Amartem Paracetermol"
+          rating={5}
+          likes={250}
+          onPress={() => navigation.navigate('')} 
+        />
+          <View className=" h-3" />
+        <Cartcard
+          name="Amartem Paracetermol"
+          rating={5}
+          likes={250}
+          onPress={() => navigation.navigate('')} 
+        />
+          <View className=" h-3" />
+        <Cartcard
+          name="Amartem Paracetermol"
+          rating={5}
+          likes={250}
+          onPress={() => navigation.navigate('')} 
         />
         </View>
     
