@@ -3,8 +3,13 @@ import React from 'react'
 
 const Chat = () => {
   return (
-    <View>
-      <Text>chat</Text>
+    <View className="flex-1 w-full h-screen pt-[44px]">
+      <StatusBar style="auto" />
+
+ <View style={{backgroundColor:primarycolor}}></View>
+  
+
+      
     </View>
   )
 }
