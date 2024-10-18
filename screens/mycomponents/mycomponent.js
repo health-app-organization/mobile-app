@@ -1158,24 +1158,25 @@ export const DateComponent=()=>{
  
   return(
     <>
-      <ScrollView
+    <View className="px-3">
+    <ScrollView
       horizontal={true}
+      showsHorizontalScrollIndicator={false}
       >
-    <View className="w-full flex-row gap-3 items-center justify-evenly">
-    
-
-     
-
+    <View className="w-full flex-row gap-3 items-center justify-evenly  px-2">
       {getdayArray.map((item,index)=>(
-             <TouchableOpacity style={{borderColor:linkcolor, borderWidth:1,borderRadius:30, height:80,width:50}} className="flex justify-center items-center">
-              <Text>{days[index]}</Text>
-              <Text>{item}</Text>
+             <TouchableOpacity style={{borderColor:linkcolor, borderWidth:1,borderRadius:30, height:100,width:60}} className="flex justify-center items-center">
+              <Text style={[Textstyles.text_cmedium]}>{days[index]}</Text>
+              <Text style={[Textstyles.text_cmedium]}>{item}</Text>
              </TouchableOpacity>
 
       ))}
  
     </View>
     </ScrollView>
+
+    </View>
+ 
     </>
   )
 }
