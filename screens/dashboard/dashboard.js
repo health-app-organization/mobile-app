@@ -123,7 +123,7 @@ const DashboardMenu=()=>{
         <>
         <View className="mt-3 px-3 flex-row justify-center">
            <MenuButton
-              onPress={handletoHealth}
+             
            icon={<SethIcon width={40} height={40}/>}
            text={<Text style={[Textstyles.text_xsmall]} className="text-center">Healthcare Provider</Text>}
            />
