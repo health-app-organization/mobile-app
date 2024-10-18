@@ -25,8 +25,8 @@ import Orcode from "../screens/dashboard/userqrcode";
 import { PaymentScreen } from "../screens/dashboard/payment";
 import Notification from "../screens/dashboard/notifications";
 import Medicine from "../screens/dashboard/medicine";
-import lab from "../screens/dashboard/lab";
-import Lab from "../screens/dashboard/lab";
+import lab from "../screens/dashboard/LAB/lab";
+import Lab from "../screens/dashboard/LAB/lab";
 import DashboardScreen from "./dashboardScreen";
 
 const StackWrapper = () => {
