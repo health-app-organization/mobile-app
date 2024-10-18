@@ -25,9 +25,14 @@ import Orcode from "../screens/dashboard/userqrcode";
 import { PaymentScreen } from "../screens/dashboard/payment";
 import Notification from "../screens/dashboard/notifications";
 import Medicine from "../screens/dashboard/medicine";
-import lab from "../screens/dashboard/LAB/lab";
 import Lab from "../screens/dashboard/LAB/lab";
 import DashboardScreen from "./dashboardScreen";
+
+import Wallet from "../screens/dashboard/wallet";
+import Profile from "../screens/dashboard/profile";
+import Chat from "../screens/dashboard/chat";
+import HealthcareProviderScreen from "../screens/dashboard/LAB/healthprovider";
+
 
 const StackWrapper = () => {
   const Stack = createStackNavigator();
@@ -133,6 +138,18 @@ const StackWrapper = () => {
         name="healthsignup"
         component={Healthcare}
       />
+      
+      <Stack.Screen
+        options={{
+          gestureEnabled: true,
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
+        }}
+        name="healthprovider"
+        component={HealthcareProviderScreen}
+      />
             <Stack.Screen
         options={{
           gestureEnabled: true,
@@ -232,6 +249,39 @@ const StackWrapper = () => {
         }}
         name="lab"
         component={Lab}
+      />
+       <Stack.Screen
+        options={{
+          gestureEnabled: true,
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
+        }}
+        name="wallet"
+        component={Wallet}
+      />
+      <Stack.Screen
+        options={{
+          gestureEnabled: true,
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
+        }}
+        name="profile"
+        component={Profile}
+      />
+         <Stack.Screen
+        options={{
+          gestureEnabled: true,
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
+        }}
+        name="chat"
+        component={Chat}
       />
       <Stack.Screen
         options={{
