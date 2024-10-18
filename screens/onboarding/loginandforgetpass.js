@@ -49,7 +49,7 @@ export const Login = () => {
   };
   const handletodashboard = () => {
 
-    navigation.navigate("profile");
+    navigation.navigate("dashboard");
 
     navigation.navigate("");
 

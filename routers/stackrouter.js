@@ -32,6 +32,7 @@ import DashboardScreen from "./dashboardScreen";
 
 import Wallet from "../screens/dashboard/wallet";
 import Profile from "../screens/dashboard/profile";
+import Chat from "../screens/dashboard/chat";
 
 
 const StackWrapper = () => {
@@ -259,6 +260,17 @@ const StackWrapper = () => {
         }}
         name="profile"
         component={Profile}
+      />
+         <Stack.Screen
+        options={{
+          gestureEnabled: true,
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
+        }}
+        name="chat"
+        component={Chat}
       />
       <Stack.Screen
         options={{
