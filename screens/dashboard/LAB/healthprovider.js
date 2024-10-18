@@ -1,8 +1,9 @@
 
 import { View, Text, StatusBar, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
-import { CustomButton, Header3 } from '../../mycomponents/mycomponent';
+import { CustomButton, Header3, Header4 } from '../../mycomponents/mycomponent';
 import { Textstyles } from '../../../constants/fontsize';
+import { primarycolor,whitecolor } from '../../../constants/color';
 
 
 const HealthcareProviderScreen = () => {
@@ -16,9 +17,9 @@ const HealthcareProviderScreen = () => {
   return (
     <View className="flex-1 bg-white py-[40px]">
       <StatusBar style="auto" />
-      <Header3 title="Healthcare Provider" />
+      <Header4 title="Healthcare Provider" />
 
-      <Text className="text-[28px] font-semibold mt-7 ml-8 mb-1" style={[Textstyles.text_medium]}>
+      <Text className="text-[28px] font-semibold mt-14 ml-8 mb-1" style={[Textstyles.text_medium]}>
         Caleb Omojuko
       </Text>
       <Text className="text-[14px] font-semibold ml-8 mb-6" style={[Textstyles.text_small]}>
@@ -64,6 +65,15 @@ const HealthcareProviderScreen = () => {
           </TouchableOpacity>
         </View>
       </View>
+       {/* Save Button at the Bottom */}
+       <View className="px-3">
+          <CustomButton
+            Textname={"Save"}
+            backgroundColor={primarycolor}
+            TextColor={whitecolor}
+            onPress={() => handleSelect('Save')} // Trigger the save action
+          />
+        </View>
     </View>
   );
 };

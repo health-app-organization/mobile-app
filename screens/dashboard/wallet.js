@@ -12,8 +12,8 @@ const Wallet = () => {
     <View className="flex-1 w-full h-screen">
       <StatusBar style="auto" />
 
-      <View className="w-full bg-[#0099B8] h-[211px]">
-        <View className="flex-row items-center px-8 h-[90px] pt-8">
+      <View className="w-full bg-[#0099B8] h-1/3">
+        <View className="flex-row items-center px-8 h-[90px] pt-16">
           {/* Back Button */}
           <TouchableOpacity onPress={() => navigation.goBack()}>
             <Ionicons name="chevron-back" size={32} color="white" />
@@ -24,7 +24,7 @@ const Wallet = () => {
             My Wallet
           </Text>
         </View>
-        <View className=" w-full flex-row justify-between px-5 h-[119px] ">
+        <View className=" w-full  mt-14 flex-row justify-between px-5 h-[119px] ">
 <View className="   w-[170px] h-[130px]">
     <Text className=" text-2xl text-white mt-7 mb-2">Available Balance</Text>
     <Text className="  text-2xl text-white font-bold "> ₦0.00</Text>
@@ -34,7 +34,7 @@ const Wallet = () => {
         resizeMode="contain"
       />
 </View>
-<View className="  flex justify-center items-center w-[104px] h-[104px]">
+<View className="  flex justify-center items-center w-[104px] mt-3 h-[104px]">
 <Image
         source={require("../../assets/images/wallet.png")}
         className="w-full"

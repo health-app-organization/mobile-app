@@ -1,24 +1,17 @@
-import React, { useState } from "react";
+
 import { StatusBar } from "expo-status-bar";
 import { Image, View, Text, TouchableOpacity } from "react-native";
+import React, { useState } from "react";
+import { CustomButton,StatsCard,DateComponent } from "../mycomponents/mycomponent";
+
+import { primarycolor, whitecolor } from "../../constants/color";
+import { Textstyles } from "../../constants/fontsize";
 import { useNavigation } from "@react-navigation/native";
-import { FontAwesome, Ionicons } from "@expo/vector-icons"; // Import Ionicons for arrow
-import { CustomButton, CustomButtonmedium, CustomButtonsmall, CustomButtonsmall2, DateComponent } from "../mycomponents/mycomponent";
-import {
-  greycolorfive,
-  greycolorthree,
-  greycolortwo,
-  primarycolor,
-  primarycolortwo,
-  whitecolor,
-} from "../../constants/color";
 
-const Details = () => {
+
+const AppointmentDetails = () => {
   const navigation = useNavigation();
-  const handletocart = () => {
-    navigation.navigate("cart");
-  };
-
+  
   const months = [
     "January",
     "February",
@@ -48,132 +41,74 @@ const Details = () => {
     );
   };
 
+
+  // Array with content for each slider step
+  const mapArray = [
+    {
+      description: (
+        <>
+          <Text className="text-center text-black  text-3xl mt-10 font-bold mb-5">
+            Select Your Healthcare Provider
+          </Text>
+          <Text className="text-center text-gray-500 leading-9 text-[22px]">
+            Search for healthcare providers by specialty, or location. Need a
+            general check-up or specialist consultation, we’ve got you covered.
+          </Text>
+        </>
+      ),
+    },
+  ];
+
+ 
+
   return (
-    <View className="flex-1">
+    <View className="w-full h-full">
       <StatusBar style="auto" />
-
-      {/* Top Image with Back Arrow */}
-   
-        {/* Back Arrow Icon */}
-        <TouchableOpacity
-          onPress={() => navigation.goBack()} // Navigates to the previous screen
-          style={{
-            position: "absolute",
-            top: 40,
-            left: 20,
-            zIndex: 1, // Ensures it's on top of the image
-          }}
-        >
-          <Ionicons name="chevron-back" size={30} color="white" />
-        </TouchableOpacity>
-
-        {/* Image */}
-       
-        <View className="h-1/3">
-  <Image
-    source={require("../../assets/images/appo.png")} // Replace with your actual image path
-    style={{ width: '100%', height: '100%', alignSelf: 'flex-end' }} // Align the image to the top
-    resizeMode="cover" // Use cover to ensure it fills the width
-  />
+      
+      {/* Slider Image Section */}
+      <View className="h-[48vh] w-full relative">
+        <View className="w-full h-full flex justify-center items-center">
+          <Image
+            source={require("../../assets/images/slide1.png")}
+            className="w-full h-full"
+            resizeMethod="contain"
+          />
+        </View>
       </View>
 
-      {/* Overlay Section */}
+      {/* White View Section */}
       <View
-        className="h-[700px] absolute mt-[340px] bg-white w-full "
+        className="h-[70vh] bg-white w-full justify-center items-center -mt-20"
         style={{
-          borderTopLeftRadius: 40,
-          borderTopRightRadius: 40,
+          borderTopLeftRadius: 60,
+          borderTopRightRadius: 60,
         }}
       >
-        {/* Doctor's Info Card */}
-        <View className="w-[345px] mx-auto -mt-10 h-[80px] bg-[#0099B8] rounded-lg justify-center">
-          <Text className=" text-[18px] font-[600] text-white mb-2 leading-[21px] text-center">
-            Prof. Dr. Micheal Brains
-          </Text>
-          <Text className="text-[13px] text-white text-center">
-            Senior Cardiologist & Surgeon
-          </Text>
-          <Text className="text-[13px] text-white text-center">
-            United States Medical College & Hospital
-          </Text>
-        </View>
-
-        {/* Stats Section */}
-        <View className="w-full flex justify-center items-center h-[127px]">
-          <View className="w-[290px] h-[87px] flex-row justify-center gap-[20px]">
-            <View className="w-[50px] h-[87px]">
-              <View className="w-[50px] h-[50px] flex justify-center items-center rounded-[25px] bg-[#D9D9D980] mb-2">
-              <Image
-          source={require("../../assets/images/user.png")} // replace with your actual image path
-          className=" w-6 h-6"
-          resizeMode="cover"
+      <View className="w-full flex justify-center items-center h-[127px]">
+      <View className="w-[290px]  h-[87px] flex-row justify-between ">
+        <StatsCard
+          icon={require('../../assets/images/user.png')}
+          value="200"
+          label="Patients"
         />
-              </View>
-              <View className="w-[46px] h-[32px]">
-                <Text className="text-center font-[500] text-[12px] leading-4">
-                  200
-                </Text>
-                <Text className="text-center font-[400] text-[11px] leading-4">
-                  Patients
-                </Text>
-              </View>
-            </View>
-            <View className="w-[50px] h-[87px]">
-              <View className="w-[50px] h-[50px] flex justify-center items-center rounded-[25px] bg-[#D9D9D980] mb-2">
-              <Image
-          source={require("../../assets/images/check.png")} // replace with your actual image path
-          className=" w-6 h-6"
-          resizeMode="cover"
+        <StatsCard
+          icon={require('../../assets/images/check.png')}
+          value="5+"
+          label="Years"
         />
-              </View>
-              <View className="w-[46px] h-[32px]">
-                <Text className="text-center font-[500] text-[12px] leading-4">
-                  5+
-                </Text>
-                <Text className="text-center font-[400] text-[11px] leading-4">
-                  Years
-                </Text>
-              </View>
-            </View>
-            <View className="w-[50px] h-[87px]">
-              <View className="w-[50px] h-[50px] rounded-[25px] flex justify-center items-center bg-[#D9D9D980] mb-2">
-              <Image
-          source={require("../../assets/images/star.png")} // replace with your actual image path
-          className=" w-6 h-6"
-          resizeMode="cover"
+        <StatsCard
+          icon={require('../../assets/images/star.png')}
+          value="5.0"
+          label="Rating"
         />
-              </View>
-              <View className="w-[46px] h-[32px]">
-                <Text className="text-center font-[500] text-[12px] leading-4">
-                  5.0
-                </Text>
-                <Text className="text-center font-[400] text-[11px] leading-4">
-                  Rating
-                </Text>
-              </View>
-            </View>
-            <View className="w-[50px] h-[87px]">
-              <View className="w-[50px] h-[50px] flex justify-center items-center rounded-[25px] bg-[#D9D9D980] mb-2">
-              <Image
-          source={require("../../assets/images/heart.png")} // replace with your actual image path
-          className=" w-6 h-6"
-          resizeMode="cover"
+        <StatsCard
+          icon={require('../../assets/images/heart.png')}
+          value="200+"
+          label="Reviews"
         />
-              </View>
-              <View className="w-[46px] h-[32px]">
-                <Text className="text-center font-[500] text-[12px] leading-4">
-                  200+
-                </Text>
-                <Text className="text-center font-[400] text-[11px] leading-4">
-                  Reviews
-                </Text>
-              </View>
-            </View>
-          </View>
-        </View>
-
-        {/* Appointments Section */}
-        <View className=" flex justify-center items-center">
+      </View>
+    </View>
+    <View className=" flex px-3 justify-center items-center -mt-4 ">
           <View className="w-full mt-3 p-3 flex-row justify-between">
             <View>
               <Text className="text-xl font-semibold leading-[24px]">
@@ -181,56 +116,54 @@ const Details = () => {
               </Text>
             </View>
 
-            <View className="flex-row justify-between -mt-2 space-x-3">
+            <View className="flex-row justify-between items-center -mt-2 space-x-3">
               {/* Left Arrow */}
               <TouchableOpacity onPress={handlePreviousMonth}>
-                <Text className="text-2xl">{"<"}</Text>
+                <Text className="text-2xl text-gray-400">{"<"}</Text>
               </TouchableOpacity>
 
               {/* Display Current Month */}
-              <Text className="text-xl font-semibold">
+              <Text className="text-base text-gray-400 font-semibold">
                 {months[currentMonthIndex]}
               </Text>
 
               {/* Right Arrow */}
               <TouchableOpacity onPress={handleNextMonth}>
-                <Text className="text-2xl">{">"}</Text>
+                <Text className="text-2xl text-gray-400">{">"}</Text>
               </TouchableOpacity>
             </View>
           </View>
         </View>
-        <View className="w-full">
+        <View className="w-full mb-4">
           <DateComponent/>
 
         </View>
-
-        {/* About Dr Micheal Section */}
         <View className="px-5 mt-3">
           <Text className="text-[22px] font-bold text-center mb-2">
             About Dr Micheal
           </Text>
 
-          <Text className="text-[16px] leading-[24px] text-center text-gray-600 ">
+          <Text className="text-[16px] leading-[24px] px-3 text-center text-gray-600 ">
             He is a top Senior Cardiologist and Surgeon at the United States
             Medical College & Hospital, with 20+ years of experience in heart
             treatments and surgeries. His expertise and compassionate care make
             him a trusted choice for cardiovascular health.
           </Text>
-
-          {/* Call Dr Micheal Button */}
-          <View className="mt-4 w-full justify-center items-center">
-            <CustomButtonmedium
-              Textname={"Call Dr Micheal Brains"} // Button text as per design
-              onPress={handletocart}
-              backgroundColor={primarycolor}
-              TextColor={whitecolor}
-        
-            />
-          </View>
+          
+         
+         
+        </View>
+        <View className="w-full mt-3 px-24">
+          <CustomButton
+            Textname={"Call Dr Micheal Brains"}
+          
+            backgroundColor={primarycolor}
+            TextColor={whitecolor}
+          />
         </View>
       </View>
     </View>
   );
 };
 
-export default Details;
+export default AppointmentDetails;

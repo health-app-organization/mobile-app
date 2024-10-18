@@ -14,7 +14,7 @@ const Profile = () => {
     <View className="flex-1 w-full h-screen">
       <StatusBar style="auto" />
 
-      <View className="w-full bg-[#0099B8] h-[211px] pt-20">
+      <View className="w-full bg-[#0099B8] h-[24%] pt-20">
       
          
           <Text className="text-white text-2xl font-bold ml-8"  style={[Textstyles.text_medium]}>

@@ -1,8 +1,8 @@
 // screens/LabsScreen.js
 import { View, Text, StatusBar, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
-import { CustomButton, Header3 } from '../../mycomponents/mycomponent';
-import { Textstyles } from '../../../constants/customstyle';
+import { CustomButton, Header3, Header4 } from '../../mycomponents/mycomponent';
+import { Textstyles } from "../../../constants/fontsize";
 import { primarycolor, whitecolor } from '../../../constants/color';
 
 const LabsScreen = ({ onSave }) => {
@@ -20,7 +20,7 @@ const LabsScreen = ({ onSave }) => {
   return (
     <View className="flex-1 bg-white py-[40px]">
       <StatusBar style="auto" />
-      <Header3 title="Labs & Radiology" />
+      <Header4 title="Labs & Radiology" />
 
       <Text className="text-[28px] font-semibold mt-7 ml-8 mb-1" style={[Textstyles.text_medium]}>
         Caleb Omojuko
@@ -57,7 +57,7 @@ const LabsScreen = ({ onSave }) => {
         </View>
 
         {/* Save Button at the Bottom */}
-        <View className="px-3 mb-5">
+        <View className="px-3 ">
           <CustomButton
             Textname={"Save"}
             backgroundColor={primarycolor}

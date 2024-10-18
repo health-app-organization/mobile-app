@@ -837,10 +837,10 @@ export const Header = ({ title, rightIcon, onRightIconPress }) => {
         alignItems: 'center',
         gap: 15,
         paddingHorizontal: 30,
-        height: 140,
         paddingTop: 30,
         backgroundColor: '#00A8CC', // The color for the header background
       }}
+      className=" h-1/6"
     >
       {/* Back Button */}
       <TouchableOpacity onPress={() => navigation.goBack()}>
@@ -982,6 +982,56 @@ export const Header3 = ({ title, rightIcon, onRightIconPress }) => {
     </View>
   );
 };
+
+
+
+
+
+
+
+export const Header4 = ({ title, rightIcon, onRightIconPress }) => {
+  const navigation = useNavigation();
+
+  return (
+    <View
+      style={{
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 15,
+        paddingHorizontal: 30,
+        paddingTop: 10,
+     
+        // The color for the header background
+      }}
+    >
+      {/* Back Button */}
+      <TouchableOpacity onPress={() => navigation.goBack()}>
+        <Ionicons name="chevron-back" size={30} color= "black"  />
+      </TouchableOpacity>
+
+      {/* Title */}
+      <Text
+       style={[Textstyles.text_cfmedium]}
+       className=" ml-5"
+      >
+        {title}
+      </Text>
+
+      {/* Right Icon (if provided) */}
+      {rightIcon && (
+        <TouchableOpacity onPress={onRightIconPress}>
+          <FontAwesome name={rightIcon} size={24} color="white" />
+        </TouchableOpacity>
+      )}
+    </View>
+  );
+};
+
+
+
+
+
+
 
 
 
@@ -1181,6 +1231,21 @@ export const DateComponent=()=>{
   )
 }
 
+
+
+export const StatsCard = ({ icon, value, label }) => {
+  return (
+    <View className="w-[50px] h-[87px]">
+      <View className="w-[50px] h-[50px] flex justify-center items-center rounded-[25px] bg-[#D9D9D980] mb-2">
+        <Image source={icon} className="w-6 h-6" resizeMode="cover" />
+      </View>
+      <View className="w-[46px] h-[32px]">
+        <Text className="text-center font-[500] text-[12px] leading-4">{value}</Text>
+        <Text className="text-center font-[400] text-[11px] leading-4">{label}</Text>
+      </View>
+    </View>
+  );
+};
 
 
 

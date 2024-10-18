@@ -33,6 +33,8 @@ import Profile from "../screens/dashboard/profile";
 import Chat from "../screens/dashboard/chat";
 import HealthcareProviderScreen from "../screens/dashboard/LAB/healthprovider";
 
+import AppointmentDetails from "../screens/dashboard/apponitmentdetails";
+
 
 const StackWrapper = () => {
   const Stack = createStackNavigator();
@@ -138,6 +140,7 @@ const StackWrapper = () => {
         name="healthsignup"
         component={Healthcare}
       />
+    
       
       <Stack.Screen
         options={{
@@ -181,7 +184,7 @@ const StackWrapper = () => {
               : Platform.OS === "android" && "vertical",
         }}
         name="apponitmentdetails"
-        component={Details}
+        component={AppointmentDetails}
       />
       
       <Stack.Screen
