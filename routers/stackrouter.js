@@ -34,7 +34,9 @@ import Chat from "../screens/dashboard/chat";
 import HealthcareProviderScreen from "../screens/dashboard/LAB/healthprovider";
 
 import AppointmentDetails from "../screens/dashboard/apponitmentdetails";
-
+import Allegires from "../screens/medical/allegires";
+import Disease from "../screens/medical/disease";
+import Medications from "../screens/medical/medications";
 
 const StackWrapper = () => {
   const Stack = createStackNavigator();
@@ -140,8 +142,7 @@ const StackWrapper = () => {
         name="healthsignup"
         component={Healthcare}
       />
-    
-      
+
       <Stack.Screen
         options={{
           gestureEnabled: true,
@@ -153,7 +154,7 @@ const StackWrapper = () => {
         name="healthprovider"
         component={HealthcareProviderScreen}
       />
-            <Stack.Screen
+      <Stack.Screen
         options={{
           gestureEnabled: true,
           gestureDirection:
@@ -175,7 +176,7 @@ const StackWrapper = () => {
         name="apponitments"
         component={Appointments}
       />
-           <Stack.Screen
+      <Stack.Screen
         options={{
           gestureEnabled: true,
           gestureDirection:
@@ -186,7 +187,7 @@ const StackWrapper = () => {
         name="apponitmentdetails"
         component={AppointmentDetails}
       />
-      
+
       <Stack.Screen
         options={{
           gestureEnabled: true,
@@ -198,7 +199,7 @@ const StackWrapper = () => {
         name="cart"
         component={Cart}
       />
-           <Stack.Screen
+      <Stack.Screen
         options={{
           gestureEnabled: true,
           gestureDirection:
@@ -209,7 +210,7 @@ const StackWrapper = () => {
         name="userqrcode"
         component={Orcode}
       />
-               <Stack.Screen
+      <Stack.Screen
         options={{
           gestureEnabled: true,
           gestureDirection:
@@ -220,7 +221,7 @@ const StackWrapper = () => {
         name="payment"
         component={PaymentScreen}
       />
-                 <Stack.Screen
+      <Stack.Screen
         options={{
           gestureEnabled: true,
           gestureDirection:
@@ -231,7 +232,7 @@ const StackWrapper = () => {
         name="notifications"
         component={Notification}
       />
-                    <Stack.Screen
+      <Stack.Screen
         options={{
           gestureEnabled: true,
           gestureDirection:
@@ -242,7 +243,7 @@ const StackWrapper = () => {
         name="medicine"
         component={Medicine}
       />
-                     <Stack.Screen
+      <Stack.Screen
         options={{
           gestureEnabled: true,
           gestureDirection:
@@ -253,7 +254,7 @@ const StackWrapper = () => {
         name="lab"
         component={Lab}
       />
-       <Stack.Screen
+      <Stack.Screen
         options={{
           gestureEnabled: true,
           gestureDirection:
@@ -275,7 +276,7 @@ const StackWrapper = () => {
         name="profile"
         component={Profile}
       />
-         <Stack.Screen
+      <Stack.Screen
         options={{
           gestureEnabled: true,
           gestureDirection:
@@ -285,6 +286,39 @@ const StackWrapper = () => {
         }}
         name="chat"
         component={Chat}
+      />
+      <Stack.Screen
+        options={{
+          gestureEnabled: true,
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
+        }}
+        name="allegires"
+        component={Allegires}
+      />
+       <Stack.Screen
+        options={{
+          gestureEnabled: true,
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
+        }}
+        name="disease"
+        component={Disease}
+      />
+       <Stack.Screen
+        options={{
+          gestureEnabled: true,
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
+        }}
+        name="medications"
+        component={Medications}
       />
       <Stack.Screen
         options={{
