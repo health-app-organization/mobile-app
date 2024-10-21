@@ -892,7 +892,7 @@ export const Header2 = ({ title, rightIcon, onRightIconPress }) => {
         gap: 15,
         paddingHorizontal: 30,
         height: 140,
-        paddingTop: 30,
+        paddingTop: 10,
         // The color for the header background
       }}
     >
@@ -926,6 +926,53 @@ export const Header2 = ({ title, rightIcon, onRightIconPress }) => {
   );
 };
 
+
+
+
+export const Header5 = ({ title, rightIcon, onRightIconPress }) => {
+  const navigation = useNavigation();
+
+  return (
+    <View
+      style={{
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 15,
+        paddingHorizontal: 30,
+        height: 140,
+      
+        // The color for the header background
+      }}
+    >
+      {/* Back Button */}
+      <TouchableOpacity onPress={() => navigation.goBack()}>
+        <Ionicons name="chevron-back" size={26} color= "#0099B8" />
+      </TouchableOpacity>
+
+      {/* Title */}
+      <Text
+        style={{
+          color: "black",
+          fontSize: 24,
+          lineHeight: 30,
+          fontWeight: '700',
+          flex: 1, // Allow title to take available space
+          textAlign: 'center', // Center the title
+          marginLeft: -190, // Consider adjusting this value for better alignment
+        }}
+      >
+        {title}
+      </Text>
+
+      {/* Right Icon (if provided) */}
+      {rightIcon && (
+        <TouchableOpacity onPress={onRightIconPress}>
+          <FontAwesome name={rightIcon} size={24} color="white" />
+        </TouchableOpacity>
+      )}
+    </View>
+  );
+};
 
 
 

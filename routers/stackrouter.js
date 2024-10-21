@@ -37,6 +37,9 @@ import AppointmentDetails from "../screens/dashboard/apponitmentdetails";
 import Allegires from "../screens/medical/allegires";
 import Disease from "../screens/medical/disease";
 import Medications from "../screens/medical/medications";
+import OrderHistory from "../screens/dashboard/orderhistory";
+import OrderTracking from "../screens/dashboard/ordertracking";
+import Favourites from "../screens/dashboard/favourites";
 
 const StackWrapper = () => {
   const Stack = createStackNavigator();
@@ -298,7 +301,7 @@ const StackWrapper = () => {
         name="allegires"
         component={Allegires}
       />
-       <Stack.Screen
+      <Stack.Screen
         options={{
           gestureEnabled: true,
           gestureDirection:
@@ -309,7 +312,7 @@ const StackWrapper = () => {
         name="disease"
         component={Disease}
       />
-       <Stack.Screen
+      <Stack.Screen
         options={{
           gestureEnabled: true,
           gestureDirection:
@@ -319,6 +322,39 @@ const StackWrapper = () => {
         }}
         name="medications"
         component={Medications}
+      />
+      <Stack.Screen
+        options={{
+          gestureEnabled: true,
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
+        }}
+        name="orderhistory"
+        component={OrderHistory}
+      />
+      <Stack.Screen
+        options={{
+          gestureEnabled: true,
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
+        }}
+        name="ordertracking"
+        component={OrderTracking}
+      />
+      <Stack.Screen
+        options={{
+          gestureEnabled: true,
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
+        }}
+        name="favourites"
+        component={Favourites}
       />
       <Stack.Screen
         options={{
