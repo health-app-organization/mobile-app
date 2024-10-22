@@ -45,6 +45,8 @@ import Smoking from "../screens/medical/smoking";
 import Diet from "../screens/medical/diet";
 import Alcohol from "../screens/medical/alcohol";
 import Lifestyle from "../screens/medical/lifestyle";
+import Injuries from "../screens/medical/injuries";
+import Surgeries from "../screens/medical/surgeries";
 
 const StackWrapper = () => {
   const Stack = createStackNavigator();
@@ -383,6 +385,28 @@ const StackWrapper = () => {
         }}
         name="smoking"
         component={Smoking}
+      />
+       <Stack.Screen
+        options={{
+          gestureEnabled: true,
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
+        }}
+        name="injuries"
+        component={Injuries}
+      />
+        <Stack.Screen
+        options={{
+          gestureEnabled: true,
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
+        }}
+        name="surgeries"
+        component={Surgeries}
       />
       <Stack.Screen
         options={{
