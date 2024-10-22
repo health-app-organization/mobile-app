@@ -40,6 +40,11 @@ import Medications from "../screens/medical/medications";
 import OrderHistory from "../screens/dashboard/orderhistory";
 import OrderTracking from "../screens/dashboard/ordertracking";
 import Favourites from "../screens/dashboard/favourites";
+import Profession from "../screens/medical/profession";
+import Smoking from "../screens/medical/smoking";
+import Diet from "../screens/medical/diet";
+import Alcohol from "../screens/medical/alcohol";
+import Lifestyle from "../screens/medical/lifestyle";
 
 const StackWrapper = () => {
   const Stack = createStackNavigator();
@@ -355,6 +360,62 @@ const StackWrapper = () => {
         }}
         name="favourites"
         component={Favourites}
+      />
+
+      <Stack.Screen
+        options={{
+          gestureEnabled: true,
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
+        }}
+        name="profession"
+        component={Profession}
+      />
+      <Stack.Screen
+        options={{
+          gestureEnabled: true,
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
+        }}
+        name="smoking"
+        component={Smoking}
+      />
+      <Stack.Screen
+        options={{
+          gestureEnabled: true,
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
+        }}
+        name="diet"
+        component={Diet}
+      />
+      <Stack.Screen
+        options={{
+          gestureEnabled: true,
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
+        }}
+        name="alcohol"
+        component={Alcohol}
+      />
+      <Stack.Screen
+        options={{
+          gestureEnabled: true,
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
+        }}
+        name="lifestyle"
+        component={Lifestyle}
       />
       <Stack.Screen
         options={{
