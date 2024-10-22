@@ -176,7 +176,7 @@ const StackWrapper = () => {
               ? "horizontal"
               : Platform.OS === "android" && "vertical",
         }}
-        name="messages"
+        name="Messages"
         component={Messages}
       />
 
@@ -202,7 +202,6 @@ const StackWrapper = () => {
         name="apponitmentdetails"
         component={AppointmentDetails}
       />
-
 
       <Stack.Screen
         options={{
@@ -447,7 +446,7 @@ const StackWrapper = () => {
         name="gender"
         component={Gender}
       />
-       <Stack.Screen
+      <Stack.Screen
         options={{
           gestureEnabled: true,
           gestureDirection:

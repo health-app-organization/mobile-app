@@ -80,7 +80,7 @@ const AppointmentDetails = () => {
 
       {/* White View Section */}
       <View
-        className="h-[70vh] bg-white w-full justify-center items-center -mt-20 pb-44"
+        className="h-[70vh] bg-white w-full justify-center items-center -mt-20 pb-36"
         style={{
           borderTopLeftRadius: 60,
           borderTopRightRadius: 60,

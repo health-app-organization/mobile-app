@@ -9,6 +9,7 @@ import {
   ScrollView,
 } from "react-native";
 import { Chatlist } from "../mycomponents/mycomponent";
+import Footer from "./footer";
 
 import HeaderTitle, {
   CustomButton,
@@ -28,94 +29,89 @@ const Messages = () => {
   };
 
   return (
-    <View className=" py-[40px]">
-      <StatusBar style="auto" />
-      <View>
-        <HeaderTitle title="My Messages" />
+    <>
+      <View className=" py-[40px] ">
+        <StatusBar style="auto" />
+        <View>
+          <HeaderTitle title="My Messages" />
+        </View>
+
+        <View className=" px-4 mt-8">
+          <CustomInputSearch
+            placeholder="Search for chat"
+            leftIconName="search" // Use FontAwesome email icon
+            onChange={(text) => console.log(text)}
+          />
+        </View>
+        <View className=" pb-36">
+          <ScrollView className=" mt-3 px-2 ">
+            <Chatlist
+              profileImage={require("../../assets/images/chat 1.png")}
+              name="Dr. Sunmisola Olowofela"
+              message="Lorem ipsum dolor sit amet consectetur. Tellus potenti et sed in scelerisque imperdiet.."
+              time="18:52"
+              unreadCount={4}
+            />
+            <Chatlist
+              profileImage={require("../../assets/images/chat 2.png")}
+              name="Dr. Sunmisola Olowofela"
+              message="Lorem ipsum dolor sit amet consectetur. Tellus potenti et sed in scelerisque imperdiet.."
+              time="18:52"
+              unreadCount={4}
+            />
+            <Chatlist
+              profileImage={require("../../assets/images/appo.png")}
+              name="Dr. Sunmisola Olowofela"
+              message="Lorem ipsum dolor sit amet consectetur."
+              time="18:52"
+            />
+            <Chatlist
+              profileImage={require("../../assets/images/appo.png")}
+              name="Dr. Sunmisola Olowofela"
+              message="Lorem ipsum dolor sit amet consectetur. Tellus potenti et sed in scelerisque imperdiet."
+              time="18:52"
+            />
+            <Chatlist
+              profileImage={require("../../assets/images/appo.png")}
+              name="Dr. Sunmisola Olowofela"
+              message="Lorem ipsum dolor sit amet consectetur. Tellus potenti et sed in scelerisque imperdiet."
+              time="18:52"
+            />
+            <Chatlist
+              profileImage={require("../../assets/images/appo.png")}
+              name="Dr. Sunmisola Olowofela"
+              message="Lorem ipsum dolor sit amet consectetur. Tellus potenti et sed in scelerisque imperdiet."
+              time="18:52"
+            />
+            <Chatlist
+              profileImage={require("../../assets/images/appo.png")}
+              name="Dr. Sunmisola Olowofela"
+              message="Lorem ipsum dolor sit amet consectetur. Tellus potenti et sed in scelerisque imperdiet."
+              time="18:52"
+            />
+            <Chatlist
+              profileImage={require("../../assets/images/appo.png")}
+              name="Dr. Sunmisola Olowofela"
+              message="Lorem ipsum dolor sit amet consectetur. Tellus potenti et sed in scelerisque imperdiet."
+              time="18:52"
+            />
+            <Chatlist
+              profileImage={require("../../assets/images/appo.png")}
+              name="Dr. Sunmisola Olowofela"
+              message="Lorem ipsum dolor sit amet consectetur. Tellus potenti et sed in scelerisque imperdiet."
+              time="18:52"
+            />
+            <Chatlist
+              profileImage={require("../../assets/images/appo.png")}
+              name="Dr. Sunmisola Olowofela"
+              message="Lorem ipsum dolor sit amet consectetur. Tellus potenti et sed in scelerisque imperdiet."
+              time="18:52"
+            />
+          </ScrollView>
+        </View>
       </View>
-
-      <View className=" px-4 mt-8">
-        <CustomInputSearch
-          placeholder="Search for chat"
-          leftIconName="search" // Use FontAwesome email icon
-          onChange={(text) => console.log(text)}
-        />
-      </View>
-      <ScrollView className=" mt-3 px-2 ">
-      <Chatlist
-  profileImage={require('../../assets/images/chat 1.png')}
-  name="Dr. Sunmisola Olowofela"
-  message="Lorem ipsum dolor sit amet consectetur. Tellus potenti et sed in scelerisque imperdiet.."
-  time="18:52"
-  unreadCount={4}
-/>
-<Chatlist
-  profileImage={require('../../assets/images/chat 2.png')}
-  name="Dr. Sunmisola Olowofela"
-  message="Lorem ipsum dolor sit amet consectetur. Tellus potenti et sed in scelerisque imperdiet.."
-  time="18:52"
-  unreadCount={4}
-/>
-<Chatlist
-  profileImage={require('../../assets/images/appo.png')}
-  name="Dr. Sunmisola Olowofela"
-  message="Lorem ipsum dolor sit amet consectetur."
-  time="18:52"
-
-/>
-<Chatlist
-  profileImage={require('../../assets/images/appo.png')}
-  name="Dr. Sunmisola Olowofela"
-  message="Lorem ipsum dolor sit amet consectetur. Tellus potenti et sed in scelerisque imperdiet."
-  time="18:52"
-  
-/>
-<Chatlist
-  profileImage={require('../../assets/images/appo.png')}
-  name="Dr. Sunmisola Olowofela"
-  message="Lorem ipsum dolor sit amet consectetur. Tellus potenti et sed in scelerisque imperdiet."
-  time="18:52"
-  
-/>
-<Chatlist
-  profileImage={require('../../assets/images/appo.png')}
-  name="Dr. Sunmisola Olowofela"
-  message="Lorem ipsum dolor sit amet consectetur. Tellus potenti et sed in scelerisque imperdiet."
-  time="18:52"
-  
-/>
-<Chatlist
-  profileImage={require('../../assets/images/appo.png')}
-  name="Dr. Sunmisola Olowofela"
-  message="Lorem ipsum dolor sit amet consectetur. Tellus potenti et sed in scelerisque imperdiet."
-  time="18:52"
-  
-/>
-<Chatlist
-  profileImage={require('../../assets/images/appo.png')}
-  name="Dr. Sunmisola Olowofela"
-  message="Lorem ipsum dolor sit amet consectetur. Tellus potenti et sed in scelerisque imperdiet."
-  time="18:52"
-  
-/>
-<Chatlist
-  profileImage={require('../../assets/images/appo.png')}
-  name="Dr. Sunmisola Olowofela"
-  message="Lorem ipsum dolor sit amet consectetur. Tellus potenti et sed in scelerisque imperdiet."
-  time="18:52"
-  
-/>
-<Chatlist
-  profileImage={require('../../assets/images/appo.png')}
-  name="Dr. Sunmisola Olowofela"
-  message="Lorem ipsum dolor sit amet consectetur. Tellus potenti et sed in scelerisque imperdiet."
-  time="18:52"
-  
-/>
-
-
-      </ScrollView>
-    </View>
+      <Footer activepros={Messages} />
+    </>
   );
 };
 
