@@ -47,6 +47,10 @@ import Alcohol from "../screens/medical/alcohol";
 import Lifestyle from "../screens/medical/lifestyle";
 import Injuries from "../screens/medical/injuries";
 import Surgeries from "../screens/medical/surgeries";
+import Bloodgroup from "../screens/personal/bloodgroup";
+import Status from "../screens/personal/status";
+import Gender from "../screens/personal/gender";
+import Emergency from "../screens/personal/emergencycontact";
 
 const StackWrapper = () => {
   const Stack = createStackNavigator();
@@ -386,7 +390,7 @@ const StackWrapper = () => {
         name="smoking"
         component={Smoking}
       />
-       <Stack.Screen
+      <Stack.Screen
         options={{
           gestureEnabled: true,
           gestureDirection:
@@ -397,7 +401,7 @@ const StackWrapper = () => {
         name="injuries"
         component={Injuries}
       />
-        <Stack.Screen
+      <Stack.Screen
         options={{
           gestureEnabled: true,
           gestureDirection:
@@ -407,6 +411,50 @@ const StackWrapper = () => {
         }}
         name="surgeries"
         component={Surgeries}
+      />
+      <Stack.Screen
+        options={{
+          gestureEnabled: true,
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
+        }}
+        name="bloodgroup"
+        component={Bloodgroup}
+      />
+      <Stack.Screen
+        options={{
+          gestureEnabled: true,
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
+        }}
+        name="status"
+        component={Status}
+      />
+      <Stack.Screen
+        options={{
+          gestureEnabled: true,
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
+        }}
+        name="gender"
+        component={Gender}
+      />
+       <Stack.Screen
+        options={{
+          gestureEnabled: true,
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
+        }}
+        name="emergencycontact"
+        component={Emergency}
       />
       <Stack.Screen
         options={{

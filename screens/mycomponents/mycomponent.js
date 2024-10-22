@@ -294,7 +294,7 @@ export const CustomTextnumber = ({
             customstyle.textinputstyle,
             {
               paddingLeft: 68, // Padding to account for the +234
-              fontSize: 18, // Increase the font size here
+              fontSize: 14, // Increase the font size here
               fontWeight: "medium",
               backgroundColor: "#F3F3F3", // Optional: Add bold weight to make it stand out more
             },
@@ -816,7 +816,7 @@ export const Header = ({ title, rightIcon, onRightIconPress }) => {
           fontWeight: "700",
           flex: 1, // Allow title to take available space
           textAlign: "center", // Center the title
-          marginLeft: -170, // Consider adjusting this value for better alignment
+          marginLeft: -220, // Consider adjusting this value for better alignment
         }}
       >
         {title}
@@ -877,7 +877,6 @@ export const Header2 = ({ title, rightIcon, onRightIconPress }) => {
   );
 };
 
-
 export const Header6 = ({ title, rightIcon, onRightIconPress }) => {
   const navigation = useNavigation();
 
@@ -922,20 +921,6 @@ export const Header6 = ({ title, rightIcon, onRightIconPress }) => {
     </View>
   );
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 export const Header5 = ({ title, rightIcon, onRightIconPress }) => {
   const navigation = useNavigation();
@@ -1311,7 +1296,9 @@ export const OptionButton = ({ optionName, isSelected, onSelect, width }) => {
       onPress={onSelect}
       style={{ width }} // Dynamic width from prop
       className={`m-2 p-4 rounded-lg border-2 ${
-        isSelected ? "bg-[#0099B8] border-0" : "bg-white border-1 border-[#0099B8]"
+        isSelected
+          ? "bg-[#0099B8] border-0"
+          : "bg-white border-1 border-[#0099B8]"
       }`}
     >
       <Text
@@ -1322,5 +1309,68 @@ export const OptionButton = ({ optionName, isSelected, onSelect, width }) => {
         {optionName}
       </Text>
     </TouchableOpacity>
+  );
+};
+
+export const CustomTextnumberlabel = ({
+  label, // Add label prop
+  autoCapitalize,
+  placeholder,
+  placeholderTextColor,
+  onChange,
+  secureTextEntry,
+  disable,
+  value,
+}) => {
+  const [isFocused, setIsFocused] = useState(false);
+  const [inputValue, setInputValue] = useState(value);
+
+  return (
+    <View className="w-full">
+      {label && ( // Render label if provided
+        <Text className="mb-2" style={[Textstyles.text_cmedium]}>
+          {label}
+        </Text>
+      )}
+      <View
+        className={`relative flex justify-center border ${
+          isFocused ? "border-[#0099b8]" : "border-gray-300"
+        } rounded-lg`}
+      >
+        {/* +234 Country code on the left */}
+        <View className="absolute left-2 z-50 flex flex-row items-center">
+          <Text className="text-lg text-gray-600 pl-3 font-medium">+234</Text>
+        </View>
+        <TextInput
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => {
+            setIsFocused(false);
+            inputValue === "" && setIsFocused(false);
+          }}
+          placeholder={placeholder}
+          placeholderTextColor={placeholderTextColor}
+          autoCapitalize={autoCapitalize || "none"}
+          style={[
+            customstyle.textinputstyle,
+            {
+              paddingLeft: 68, // Padding to account for the +234
+              fontSize: 14, // Increase the font size here
+              fontWeight: "medium",
+              backgroundColor: "#F3F3F3", // Optional: Add bold weight to make it stand out more
+            },
+          ]}
+          keyboardType="numeric" // Ensures numeric keyboard on mobile
+          onChangeText={(text) => {
+            // Ensure input only contains numeric values and is max 10 digits
+            const formattedText = text.replace(/[^0-9]/g, "").slice(0, 10);
+            setInputValue(formattedText);
+            onChange(formattedText);
+          }}
+          secureTextEntry={secureTextEntry}
+          value={inputValue}
+          editable={!disable}
+        />
+      </View>
+    </View>
   );
 };
