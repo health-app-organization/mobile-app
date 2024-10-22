@@ -26,20 +26,21 @@ import HeaderTitle, {
 } from "../mycomponents/mycomponent";
 import { useNavigation } from "@react-navigation/native";
 import { height, width } from "../../constants/mobileDimensions";
+import Footer from "./footer";
 
 const Appointments = () => {
   const navigation = useNavigation();
 
   return (
-    <View className=" py-[40px] h-screen">
+    <>
+    <View className=" py-[40px] h-full">
       <StatusBar style="auto" />
       <View>
         <HeaderTitle title="My Appointment" />
       </View>
 
       <View className=" px-5 mt-10">
-        <Providercard
-          
+        <Providercard 
           name="Dr Micheal Brains"
           title="Healthcare Provider"
           rating={5}
@@ -48,6 +49,12 @@ const Appointments = () => {
         />
       </View>
     </View>
+    <Footer
+    activepros={'Appointment'}
+    />
+   
+    </>
+    
   );
 };
 

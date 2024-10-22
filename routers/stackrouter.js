@@ -164,28 +164,7 @@ const StackWrapper = () => {
         name="messages"
         component={Messages}
       />
-      <Stack.Screen
-        options={{
-          gestureEnabled: true,
-          gestureDirection:
-            Platform.OS === "ios"
-              ? "horizontal"
-              : Platform.OS === "android" && "vertical",
-        }}
-        name="apponitments"
-        component={Appointments}
-      />
-           <Stack.Screen
-        options={{
-          gestureEnabled: true,
-          gestureDirection:
-            Platform.OS === "ios"
-              ? "horizontal"
-              : Platform.OS === "android" && "vertical",
-        }}
-        name="apponitmentdetails"
-        component={AppointmentDetails}
-      />
+     
       
       <Stack.Screen
         options={{

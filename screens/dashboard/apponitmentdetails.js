@@ -1,12 +1,13 @@
 
 import { StatusBar } from "expo-status-bar";
-import { Image, View, Text, TouchableOpacity } from "react-native";
+import { Image, View, Text, TouchableOpacity, ScrollView } from "react-native";
 import React, { useState } from "react";
 import { CustomButton,StatsCard,DateComponent } from "../mycomponents/mycomponent";
 
 import { primarycolor, whitecolor } from "../../constants/color";
 import { Textstyles } from "../../constants/fontsize";
 import { useNavigation } from "@react-navigation/native";
+import Footer from "./footer";
 
 
 const AppointmentDetails = () => {
@@ -62,6 +63,7 @@ const AppointmentDetails = () => {
  
 
   return (
+    <>
     <View className="w-full h-full">
       <StatusBar style="auto" />
       
@@ -78,17 +80,17 @@ const AppointmentDetails = () => {
 
       {/* White View Section */}
       <View
-        className="h-[70vh] bg-white w-full justify-center items-center -mt-20"
+        className="h-[70vh] bg-white w-full justify-center items-center -mt-20 pb-44"
         style={{
           borderTopLeftRadius: 60,
           borderTopRightRadius: 60,
         }}
       >
-        {/* Doctor's Info Card */}
-        <View className="w-[357px] h-[87px] rounded-[10px] bg-[#00d5fd] bg-opacity-30 relative -mt-[75px] flex justify-center items-center">
+              <View className="w-[357px] h-[87px] rounded-[10px] bg-[#00d5fd] bg-opacity-30 relative -mt-[20 px] flex justify-center items-center">
   <View className="w-[345px] h-[80px] bg-[#0099B8] rounded-lg justify-center items-center mx-auto -mt-10 absolute top-1/2 transform -translate-y-1/2">
     <Text className="text-[18px] font-semibold text-white mb-1 leading-[21px] text-center">
       Prof. Dr. Micheal Brains
+      
     </Text>
     <Text className="text-[13px] text-white text-center leading-[18px]">
       Senior Cardiologist & Surgeon
@@ -98,6 +100,9 @@ const AppointmentDetails = () => {
     </Text>
   </View>
 </View>
+        <ScrollView>
+        {/* Doctor's Info Card */}
+  
 
 
       <View className="w-full flex justify-center items-center h-[127px]">
@@ -177,8 +182,13 @@ const AppointmentDetails = () => {
             TextColor={whitecolor}
           />
         </View>
+        </ScrollView>
       </View>
     </View>
+    <Footer
+    activepros={'Appointment'}
+    />
+    </>
   );
 };
 
