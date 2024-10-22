@@ -19,7 +19,9 @@ const Dashboard=()=>{
             <Appointment/>
             </View>
             
-            <Footer/>
+            <Footer
+            activepros={'Home'}
+            />
            
            
             

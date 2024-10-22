@@ -526,10 +526,12 @@ export const Providercard = ({
   image,
 }) => {
   return (
+    <TouchableOpacity style={{elevation:4}} onPress={onPress} className="flex-row bg-white rounded-xl mb-4 shadow-sm shadow-cyan-300 w-[359px] h-[120px]">
+
     <TouchableOpacity
       onPress={onPress}
       className="flex-row bg-white rounded-xl mb-4 shadow-md w-[359px] h-[120px]"
-    >
+
       {/* Left Section: Image */}
       <View className="bg-gray-600 rounded-l-xl w-[130px] h-[120px] flex justify-center items-center mr-4">
         <Image

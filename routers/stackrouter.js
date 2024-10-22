@@ -179,6 +179,7 @@ const StackWrapper = () => {
         name="messages"
         component={Messages}
       />
+
       <Stack.Screen
         options={{
           gestureEnabled: true,
@@ -201,6 +202,7 @@ const StackWrapper = () => {
         name="apponitmentdetails"
         component={AppointmentDetails}
       />
+
 
       <Stack.Screen
         options={{
