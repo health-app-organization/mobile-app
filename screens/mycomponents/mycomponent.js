@@ -273,9 +273,8 @@ export const CustomTextnumber = ({
   return (
     <>
       <View
-        className={`w-full relative flex justify-center border ${
-          isFocused ? "border-[#0099b8]" : "border-gray-300"
-        } rounded-lg`}
+        className={`w-full relative flex justify-center border ${isFocused ? "border-[#0099b8]" : "border-gray-300"
+          } rounded-lg`}
       >
         {/* +234 Country code on the left */}
         <View className="absolute left-2 z-50 flex flex-row items-center">
@@ -526,12 +525,15 @@ export const Providercard = ({
   image,
 }) => {
   return (
-    <TouchableOpacity style={{elevation:4}} onPress={onPress} className="flex-row bg-white rounded-xl mb-4 shadow-sm shadow-cyan-300 w-[359px] h-[120px]">
-
     <TouchableOpacity
+      style={{ elevation: 4 }}
       onPress={onPress}
-      className="flex-row bg-white rounded-xl mb-4 shadow-md w-[359px] h-[120px]"
-
+      className="flex-row bg-white rounded-xl mb-4 shadow-sm shadow-cyan-300 w-[359px] h-[120px]"
+    >
+      <TouchableOpacity
+        onPress={onPress}
+        className="flex-row bg-white rounded-xl mb-4 shadow-md w-[359px] h-[120px]"
+      />
       {/* Left Section: Image */}
       <View className="bg-gray-600 rounded-l-xl w-[130px] h-[120px] flex justify-center items-center mr-4">
         <Image
@@ -764,19 +766,17 @@ export const PaymentMethod = ({ selectedMethod, onSelect }) => {
       {paymentOptions.map((option) => (
         <TouchableOpacity
           key={option.id}
-          className={`flex flex-row items-center border p-4 rounded-lg ${
-            selectedMethod === option.id
+          className={`flex flex-row items-center border p-4 rounded-lg ${selectedMethod === option.id
               ? "border-[#0099b8]" // Highlighted border for selected method
               : "border-gray-300"
-          }`}
+            }`}
           onPress={() => onSelect(option.id)} // Set selected method on press
         >
           <View
-            className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
-              selectedMethod === option.id
+            className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${selectedMethod === option.id
                 ? "border-[#0099b8]"
                 : "border-gray-300"
-            }`}
+              }`}
           >
             {selectedMethod === option.id && (
               <View className="w-3 h-3 bg-[#0099b8] rounded-full" /> // Filled circle for selected method
@@ -1297,16 +1297,14 @@ export const OptionButton = ({ optionName, isSelected, onSelect, width }) => {
     <TouchableOpacity
       onPress={onSelect}
       style={{ width }} // Dynamic width from prop
-      className={`m-2 p-4 rounded-lg border-2 ${
-        isSelected
+      className={`m-2 p-4 rounded-lg border-2 ${isSelected
           ? "bg-[#0099B8] border-0"
           : "bg-white border-1 border-[#0099B8]"
-      }`}
+        }`}
     >
       <Text
-        className={`text-lg font-semibold ${
-          isSelected ? "text-white text-center" : "text-black text-center"
-        }`}
+        className={`text-lg font-semibold ${isSelected ? "text-white text-center" : "text-black text-center"
+          }`}
       >
         {optionName}
       </Text>
@@ -1335,9 +1333,8 @@ export const CustomTextnumberlabel = ({
         </Text>
       )}
       <View
-        className={`relative flex justify-center border ${
-          isFocused ? "border-[#0099b8]" : "border-gray-300"
-        } rounded-lg`}
+        className={`relative flex justify-center border ${isFocused ? "border-[#0099b8]" : "border-gray-300"
+          } rounded-lg`}
       >
         {/* +234 Country code on the left */}
         <View className="absolute left-2 z-50 flex flex-row items-center">
