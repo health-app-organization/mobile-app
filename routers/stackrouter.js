@@ -15,8 +15,6 @@ import { Platform } from "react-native";
 
 import VerificationFlowStack from "../screens/verification/verification-stack";
 import Identity from "../screens/onboarding/identity";
-import Provider from "../screens/healthptype/healthtype";
-import Healthcare from "../screens/healthptype/healthsignup";
 import Messages from "../screens/dashboard/messages";
 import Appointments from "../screens/dashboard/apponitments";
 import Details from "../screens/dashboard/apponitmentdetails";
@@ -51,6 +49,7 @@ import Bloodgroup from "../screens/personal/bloodgroup";
 import Status from "../screens/personal/status";
 import Gender from "../screens/personal/gender";
 import Emergency from "../screens/personal/emergencycontact";
+import HealthProviderRouter from "./healthProviderRouter";
 
 const StackWrapper = () => {
   const Stack = createStackNavigator();
@@ -130,33 +129,9 @@ const StackWrapper = () => {
               ? "horizontal"
               : Platform.OS === "android" && "vertical",
         }}
-        name="healthptype"
-        component={Provider}
-      />
-      <Stack.Screen
-        options={{
-          gestureEnabled: true,
-          gestureDirection:
-            Platform.OS === "ios"
-              ? "horizontal"
-              : Platform.OS === "android" && "vertical",
-        }}
         name="dashboard"
         component={DashboardScreen}
       />
-
-      <Stack.Screen
-        options={{
-          gestureEnabled: true,
-          gestureDirection:
-            Platform.OS === "ios"
-              ? "horizontal"
-              : Platform.OS === "android" && "vertical",
-        }}
-        name="healthsignup"
-        component={Healthcare}
-      />
-
       <Stack.Screen
         options={{
           gestureEnabled: true,
@@ -202,7 +177,6 @@ const StackWrapper = () => {
         name="apponitmentdetails"
         component={AppointmentDetails}
       />
-
 
       <Stack.Screen
         options={{
@@ -447,7 +421,7 @@ const StackWrapper = () => {
         name="gender"
         component={Gender}
       />
-       <Stack.Screen
+      <Stack.Screen
         options={{
           gestureEnabled: true,
           gestureDirection:
@@ -501,6 +475,18 @@ const StackWrapper = () => {
         }}
         name="verification"
         component={VerificationFlowStack}
+      />
+      {/* for all the doctor flow */}
+      <Stack.Screen
+        options={{
+          gestureEnabled: true,
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
+        }}
+        name="healthptype"
+        component={HealthProviderRouter}
       />
     </Stack.Navigator>
   );
