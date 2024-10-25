@@ -19,6 +19,7 @@ import { useNavigation } from "@react-navigation/native";
 import { useState, useEffect } from "react";
 import { greycolortwo, linkcolor, primarycolor } from "../../constants/color";
 import { height, width } from "../../constants/mobileDimensions";
+import { Picker } from "@react-native-picker/picker";
 
 export const CustomButton = ({
   Textname,
@@ -1389,13 +1390,6 @@ export const CustomTextnumberlabel = ({
   );
 };
 
-
-
-
-
-
-
-
 export const Header9 = ({ profileName, profileCompletion }) => {
   const navigation = useNavigation();
 
@@ -1418,15 +1412,80 @@ export const Header9 = ({ profileName, profileCompletion }) => {
 
       {/* Profile Info */}
       <View style={{ marginLeft: 25 }}>
-        <Text style={{ color: "white", fontSize: 20, fontWeight: "bold" }}>
+        <Text style={{ color: "white", fontSize: 25, fontWeight: "bold" }}>
           {profileName}
         </Text>
         <Text style={{ color: "white", fontSize: 16, marginTop: 4 }}>
           {profileCompletion}% profile completed
         </Text>
       </View>
+    </View>
+  );
+};
 
-     
+export const CustomDropdownWithHeader = ({
+  headerText,
+  options = [],
+  placeholder,
+  onChange,
+  disable,
+  value,
+  leftIconName,
+  leftIconSize,
+  leftIconColor,
+}) => {
+  const [selectedValue, setSelectedValue] = useState(value);
+  const [isFocused, setIsFocused] = useState(false); // State for focus
+
+  return (
+    <View className="w-full mb-5">
+      {/* Input Header */}
+      <Text
+        className="text-lg font-bold mb-2"
+        style={[Textstyles.text_cmedium]}
+      >
+        {headerText}
+      </Text>
+
+      {/* Dropdown Field */}
+      <View
+        className={`relative border-1  rounded-lg bg-gray-100 ${
+          isFocused ? "border-[#0099b8] border-2" : "border-[#ccc]"
+        }`} // Change border color based on focus
+      >
+        {leftIconName && (
+          <View className="absolute left-4 top-3 z-10">
+            <FontAwesome
+              name={leftIconName}
+              size={leftIconSize || 20}
+              color={leftIconColor || "#000"}
+            />
+          </View>
+        )}
+        <Picker
+          selectedValue={selectedValue}
+          enabled={!disable}
+          className={`h-12 text-gray-600 ${leftIconName ? "pl-12" : "pl-4"}`} // Adjust padding for the icon
+          onValueChange={(itemValue) => {
+            setSelectedValue(itemValue);
+            if (onChange) {
+              onChange(itemValue);
+            }
+          }}
+          onFocus={() => setIsFocused(true)} // Set focus state on focus
+          onBlur={() => setIsFocused(false)} // Reset focus state on blur
+        >
+          {/* Placeholder */}
+          <Picker.Item label={placeholder} value="" />
+          {options.map((option) => (
+            <Picker.Item
+              key={option.value}
+              label={option.label}
+              value={option.value}
+            />
+          ))}
+        </Picker>
+      </View>
     </View>
   );
 };

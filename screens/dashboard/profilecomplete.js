@@ -5,7 +5,7 @@ import Personal from "./personal";
 import Medical from "./medical";
 import TestReport from "./testreport";
 
-const Ace = () => {
+const ProfileCompletion= () => {
   const [currentTab, setCurrentTab] = useState(0);
 
   // Tab content components (Personal, Medical, Test Report)
@@ -28,19 +28,19 @@ const Ace = () => {
 
       
       {/* Tab Header */}
-      <View className="flex-row justify-around mt-12 border-b border-gray-300">
+      <View className="flex-row justify-around mt-8 border-b border-gray-300">
         <TouchableOpacity onPress={() => setCurrentTab(0)}>
-          <Text className={currentTab === 0 ? "text-black font-bold border-b-2 border-blue-500 pb-2" : "text-gray-500 pb-2"}>
+          <Text className={currentTab === 0 ? "text-black  text-[20px] font-bold border-b-2 border-[#0099B8] pb-2" : "text-gray-400  font-bold  text-[20px] pb-2"}>
             Personal
           </Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => setCurrentTab(1)}>
-          <Text className={currentTab === 1 ? "text-black font-bold border-b-2 border-blue-500 pb-2" : "text-gray-500 pb-2"}>
+          <Text className={currentTab === 1 ? "text-black text-[20px] font-bold border-b-2 border-[#0099B8] pb-2" : "text-gray-400 font-bold  text-[20px] pb-2"}>
             Medical
           </Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => setCurrentTab(2)}>
-          <Text className={currentTab === 2 ? "text-black font-bold border-b-2 border-blue-500 pb-2" : "text-gray-500 pb-2"}>
+          <Text className={currentTab === 2 ? "text-black text-[20px] font-bold border-b-2 border-[#0099B8] pb-2" : "text-gray-400 font-bold  text-[20px] pb-2"}>
             Test Report
           </Text>
         </TouchableOpacity>
@@ -52,4 +52,4 @@ const Ace = () => {
   );
 };
 
-export default Ace;
+export default ProfileCompletion;

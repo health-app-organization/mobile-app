@@ -40,23 +40,7 @@ import Medications from "../screens/medical/medications";
 import OrderHistory from "../screens/dashboard/orderhistory";
 import OrderTracking from "../screens/dashboard/ordertracking";
 import Favourites from "../screens/dashboard/favourites";
-import Profession from "../screens/medical/profession";
-import Smoking from "../screens/medical/smoking";
-import Diet from "../screens/medical/diet";
-import Alcohol from "../screens/medical/alcohol";
-import Lifestyle from "../screens/medical/lifestyle";
-import Injuries from "../screens/medical/injuries";
-import Surgeries from "../screens/medical/surgeries";
-import Bloodgroup from "../screens/personal/bloodgroup";
-import Status from "../screens/personal/status";
-import Gender from "../screens/personal/gender";
-import Emergency from "../screens/personal/emergencycontact";
-import ProfileTabs from "../screens/dashboard/profilecomplete";
-import Ace from "../screens/dashboard/profilecomplete";
-
-
-
-
+import ProfileCompletion from "../screens/dashboard/profilecomplete";
 
 const StackWrapper = () => {
   const Stack = createStackNavigator();
@@ -185,7 +169,6 @@ const StackWrapper = () => {
         name="Messages"
         component={Messages}
       />
-   
 
       <Stack.Screen
         options={{
@@ -375,7 +358,7 @@ const StackWrapper = () => {
         name="favourites"
         component={Favourites}
       />
-         <Stack.Screen
+      <Stack.Screen
         options={{
           gestureEnabled: true,
           gestureDirection:
@@ -384,130 +367,9 @@ const StackWrapper = () => {
               : Platform.OS === "android" && "vertical",
         }}
         name="profilecomplete"
-        component={Ace}
+        component={ProfileCompletion}
       />
 
-      <Stack.Screen
-        options={{
-          gestureEnabled: true,
-          gestureDirection:
-            Platform.OS === "ios"
-              ? "horizontal"
-              : Platform.OS === "android" && "vertical",
-        }}
-        name="profession"
-        component={Profession}
-      />
-      <Stack.Screen
-        options={{
-          gestureEnabled: true,
-          gestureDirection:
-            Platform.OS === "ios"
-              ? "horizontal"
-              : Platform.OS === "android" && "vertical",
-        }}
-        name="smoking"
-        component={Smoking}
-      />
-      <Stack.Screen
-        options={{
-          gestureEnabled: true,
-          gestureDirection:
-            Platform.OS === "ios"
-              ? "horizontal"
-              : Platform.OS === "android" && "vertical",
-        }}
-        name="injuries"
-        component={Injuries}
-      />
-      <Stack.Screen
-        options={{
-          gestureEnabled: true,
-          gestureDirection:
-            Platform.OS === "ios"
-              ? "horizontal"
-              : Platform.OS === "android" && "vertical",
-        }}
-        name="surgeries"
-        component={Surgeries}
-      />
-      <Stack.Screen
-        options={{
-          gestureEnabled: true,
-          gestureDirection:
-            Platform.OS === "ios"
-              ? "horizontal"
-              : Platform.OS === "android" && "vertical",
-        }}
-        name="bloodgroup"
-        component={Bloodgroup}
-      />
-      <Stack.Screen
-        options={{
-          gestureEnabled: true,
-          gestureDirection:
-            Platform.OS === "ios"
-              ? "horizontal"
-              : Platform.OS === "android" && "vertical",
-        }}
-        name="status"
-        component={Status}
-      />
-      <Stack.Screen
-        options={{
-          gestureEnabled: true,
-          gestureDirection:
-            Platform.OS === "ios"
-              ? "horizontal"
-              : Platform.OS === "android" && "vertical",
-        }}
-        name="gender"
-        component={Gender}
-      />
-      <Stack.Screen
-        options={{
-          gestureEnabled: true,
-          gestureDirection:
-            Platform.OS === "ios"
-              ? "horizontal"
-              : Platform.OS === "android" && "vertical",
-        }}
-        name="emergencycontact"
-        component={Emergency}
-      />
-      <Stack.Screen
-        options={{
-          gestureEnabled: true,
-          gestureDirection:
-            Platform.OS === "ios"
-              ? "horizontal"
-              : Platform.OS === "android" && "vertical",
-        }}
-        name="diet"
-        component={Diet}
-      />
-      <Stack.Screen
-        options={{
-          gestureEnabled: true,
-          gestureDirection:
-            Platform.OS === "ios"
-              ? "horizontal"
-              : Platform.OS === "android" && "vertical",
-        }}
-        name="alcohol"
-        component={Alcohol}
-      />
-      <Stack.Screen
-        options={{
-          gestureEnabled: true,
-          gestureDirection:
-            Platform.OS === "ios"
-              ? "horizontal"
-              : Platform.OS === "android" && "vertical",
-        }}
-        name="lifestyle"
-        component={Lifestyle}
-      />
       <Stack.Screen
         options={{
           gestureEnabled: true,
