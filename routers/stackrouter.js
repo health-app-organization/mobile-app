@@ -51,6 +51,12 @@ import Bloodgroup from "../screens/personal/bloodgroup";
 import Status from "../screens/personal/status";
 import Gender from "../screens/personal/gender";
 import Emergency from "../screens/personal/emergencycontact";
+import ProfileTabs from "../screens/dashboard/profilecomplete";
+import Ace from "../screens/dashboard/profilecomplete";
+
+
+
+
 
 const StackWrapper = () => {
   const Stack = createStackNavigator();
@@ -179,6 +185,7 @@ const StackWrapper = () => {
         name="Messages"
         component={Messages}
       />
+   
 
       <Stack.Screen
         options={{
@@ -367,6 +374,17 @@ const StackWrapper = () => {
         }}
         name="favourites"
         component={Favourites}
+      />
+         <Stack.Screen
+        options={{
+          gestureEnabled: true,
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
+        }}
+        name="profilecomplete"
+        component={Ace}
       />
 
       <Stack.Screen

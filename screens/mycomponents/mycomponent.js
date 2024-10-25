@@ -1388,3 +1388,45 @@ export const CustomTextnumberlabel = ({
     </View>
   );
 };
+
+
+
+
+
+
+
+
+export const Header9 = ({ profileName, profileCompletion }) => {
+  const navigation = useNavigation();
+
+  return (
+    <View
+      style={{
+        flexDirection: "row",
+        alignItems: "center",
+        paddingHorizontal: 20,
+        paddingTop: 40,
+        paddingBottom: 20,
+        backgroundColor: "#00A8CC",
+        height: "20%", // Adjusted to match the rounded header style
+      }}
+    >
+      {/* Back Button */}
+      <TouchableOpacity onPress={() => navigation.goBack()}>
+        <Ionicons name="chevron-back" size={28} color="white" />
+      </TouchableOpacity>
+
+      {/* Profile Info */}
+      <View style={{ marginLeft: 25 }}>
+        <Text style={{ color: "white", fontSize: 20, fontWeight: "bold" }}>
+          {profileName}
+        </Text>
+        <Text style={{ color: "white", fontSize: 16, marginTop: 4 }}>
+          {profileCompletion}% profile completed
+        </Text>
+      </View>
+
+     
+    </View>
+  );
+};
