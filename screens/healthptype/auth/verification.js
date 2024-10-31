@@ -6,7 +6,11 @@ import { useNavigation } from "@react-navigation/native";
 import { AntDesign } from "@expo/vector-icons";
 import { Box, CustomButton } from "../../mycomponents/mycomponent";
 import { useState } from "react";
-import Animated, { useAnimatedStyle, useSharedValue, withSpring } from "react-native-reanimated";
+import Animated, {
+    useAnimatedStyle,
+    useSharedValue,
+    withSpring,
+} from "react-native-reanimated";
 import NumericKeyboard from "../../modals/CustomKeyboard";
 import { primarycolor, whitecolor } from "../../../constants/color";
 
@@ -23,7 +27,11 @@ export default function Verification() {
     const navigation = useNavigation();
     const handleGoBack = () => {
         navigation.goBack();
-    }
+    };
+
+    const handleToLogin = () => {
+        navigation.navigate("health-provider-login");
+    };
 
     // Toggle keyboard visibility
     const handleShowKeys = () => {
@@ -69,9 +77,7 @@ export default function Verification() {
 
     return (
         <SafeAreaView style={{ height: height }} className="py-2 px-4">
-            <TouchableOpacity
-                onPress={handleGoBack}
-            >
+            <TouchableOpacity onPress={handleGoBack}>
                 <AntDesign name="left" size={30} color="black" />
             </TouchableOpacity>
             <View className="h-10" />
@@ -111,10 +117,7 @@ export default function Verification() {
                     Didn't get a code?
                 </Text>
                 <TouchableOpacity>
-                    <Text
-                        style={[Textstyles.text_small]}
-                        className="text-[#0099b8]"
-                    >
+                    <Text style={[Textstyles.text_small]} className="text-[#0099b8]">
                         Resend
                     </Text>
                 </TouchableOpacity>
@@ -124,6 +127,7 @@ export default function Verification() {
                 Textname="Verify"
                 backgroundColor={primarycolor}
                 TextColor={whitecolor}
+                onPress={handleToLogin}
             />
 
             {/* Numerical keyboard */}
@@ -133,5 +137,5 @@ export default function Verification() {
                 </Animated.View>
             </View>
         </SafeAreaView>
-    )
+    );
 }
