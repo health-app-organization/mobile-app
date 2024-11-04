@@ -35,7 +35,7 @@ export default function HealthProviderLogin() {
                 <View className="w-full h-44  flex mb-4 justify-center items-center">
                         <View className=" w-[50%]  flex justify-center items-center h-36">
                             <Image
-                                source={require("../../../assets/images/logo.png")}
+                                source={require("../../../assets/images/logo-2.png")}
                                 resizeMode="contain"
                                 className=" h-24 w-24"
                             />
