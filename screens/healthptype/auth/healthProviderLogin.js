@@ -16,11 +16,11 @@ export default function HealthProviderLogin() {
         setShowPassword(!showPassword);
     };
 
-    const handletosignup = () => {
-        navigation.navigate("signup");
+    const handleToSignup = () => {
+        navigation.navigate("health-provider-signup");
     };
     const handletodashboard = () => {
-        navigation.navigate("dashboard");
+        navigation.navigate("doctor-home");
     };
 
     return (
@@ -37,7 +37,7 @@ export default function HealthProviderLogin() {
                             <Image
                                 source={require("../../../assets/images/logo-2.png")}
                                 resizeMode="contain"
-                                className=" h-24 w-24"
+                                className=" h-36 w-36"
                             />
                         </View>
                     </View>
@@ -81,7 +81,7 @@ export default function HealthProviderLogin() {
                         Don't have an account?
                     </Text>
                 </View>
-                <TouchableOpacity className=" mt-6 ml-1" onPress={handletosignup}>
+                <TouchableOpacity className=" mt-6 ml-1" onPress={handleToSignup}>
                     <Text style={[Textstyles.text_small]} className=" text-[#0099b8]">
                         Sign up
                     </Text>
