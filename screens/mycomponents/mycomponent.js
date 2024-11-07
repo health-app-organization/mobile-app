@@ -11,6 +11,7 @@ import {
   customstyle2,
   radioButtonStyles,
 } from "../../constants/customstyle";
+import { MaterialIcons } from "@expo/vector-icons";
 import { Textstyles } from "../../constants/fontsize";
 import { Ionicons } from "@expo/vector-icons"; // Import Ionicons for arrow
 import { TextInput } from "react-native-gesture-handler";
@@ -1401,8 +1402,9 @@ export const Header9 = ({ profileName, profileCompletion }) => {
         paddingHorizontal: 20,
         paddingTop: 40,
         paddingBottom: 20,
+        // Add border radius for the bottom right corner
         backgroundColor: "#00A8CC",
-        height: "20%", // Adjusted to match the rounded header style
+        height: "15%", // Adjusted to match the rounded header style
       }}
     >
       {/* Back Button */}
@@ -1489,3 +1491,147 @@ export const CustomDropdownWithHeader = ({
     </View>
   );
 };
+
+export const FloatingActionButton = ({ onPress }) => {
+  return (
+    <TouchableOpacity
+      className="w-16 h-16 bg-[#00A8CC] rounded-full items-center justify-center absolute bottom-5 right-5 shadow-lg"
+      onPress={onPress}
+    >
+      <MaterialIcons name="add" size={40} color="white" />
+    </TouchableOpacity>
+  );
+};
+
+export const CustomInputWithHeader2 = ({
+  headerText,
+  placeholder,
+  autoCapitalize,
+  onChange,
+  secureTextEntry,
+  disable,
+  value,
+  leftIconName,
+  leftIconSize,
+  leftIconColor,
+}) => {
+  const [inputValue, setInputValue] = useState(value);
+  const [isFocused, setIsFocused] = useState(false);
+
+  return (
+    <View className="flex-1 flex flex-col">
+      {/* Input Header */}
+      <Text className="mb-2" style={[Textstyles.text_cmedium]}>
+        {headerText}
+      </Text>
+
+      {/* Input Field */}
+      <View className="relative flex justify-center">
+        {leftIconName && (
+          <View className="absolute left-4 z-50">
+            <FontAwesome
+              name={leftIconName}
+              size={leftIconSize || 20}
+              color={leftIconColor || "#000"}
+            />
+          </View>
+        )}
+        <TextInput
+          style={[
+            customstyle.textinputstyle,
+            {
+              width: "90%",
+              paddingLeft: leftIconName ? 45 : 15,
+              borderColor: isFocused ? "#0099b8" : "#ccc",
+              borderWidth: 1,
+              borderRadius: 10,
+              backgroundColor: "#F3F3F3",
+            },
+          ]}
+          placeholder={placeholder}
+          value={inputValue}
+          editable={!disable}
+          secureTextEntry={secureTextEntry}
+          autoCapitalize={autoCapitalize || "none"}
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
+          onChangeText={(text) => {
+            setInputValue(text);
+            if (onChange) {
+              onChange(text);
+            }
+          }}
+        />
+      </View>
+    </View>
+  );
+};
+
+export const CustomInputWithHeaderdes = ({
+  headerText,
+  placeholder, // New placeholder prop
+  autoCapitalize,
+  onChange,
+  secureTextEntry,
+  disable,
+  value,
+  leftIconName, // Use icon name as a string
+  leftIconSize, // Optional size for the icon
+  leftIconColor, // Optional color for the icon
+}) => {
+  const [inputValue, setInputValue] = useState(value); // Track the input value
+  const [isFocused, setIsFocused] = useState(false); // Track focus state
+
+  return (
+    <View className="w-full flex flex-col">
+      {/* Input Header */}
+      <Text className="mb-2" style={[Textstyles.text_cmedium]}>
+        {headerText}
+      </Text>
+
+      {/* Input Field */}
+      <View className="relative flex justify-center">
+        {/* Show left FontAwesome icon if iconName is provided */}
+        {leftIconName && (
+          <View className="absolute left-4 z-50">
+            <FontAwesome
+              name={leftIconName}
+              size={leftIconSize || 20}
+              color={leftIconColor || "#000"}
+            />
+          </View>
+        )}
+        <TextInput
+          style={[
+            customstyle.textinputstyle,
+            {
+              height: 150,
+              paddingLeft: leftIconName ? 45 : 15, // Adjust left padding based on icon presence
+              borderColor: isFocused ? "#0099b8" : "#ccc", // Change border color on focus
+              borderWidth: 1, // Add border width
+              borderRadius: 10, // Optional: add border radius
+              backgroundColor: "#F3F3F3",
+              textAlignVertical: "top",
+              paddingTop: 3,
+            },
+          ]}
+          placeholder={placeholder} // Set placeholder text
+          value={inputValue} // Use inputValue for the actual value
+          editable={!disable} // Allow editing based on disable prop
+          secureTextEntry={secureTextEntry}
+          autoCapitalize={autoCapitalize || "none"}
+          onFocus={() => setIsFocused(true)} // Set focus state
+          onBlur={() => setIsFocused(false)} // Reset focus state
+          onChangeText={(text) => {
+            setInputValue(text); // Update input value state
+            if (onChange) {
+              onChange(text); // Call the parent onChange handler if provided
+            }
+          }}
+        />
+      </View>
+    </View>
+  );
+};
+
+// Container Component

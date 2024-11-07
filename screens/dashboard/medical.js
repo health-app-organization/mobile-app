@@ -21,7 +21,10 @@ const Medical = () => {
   const medications = [
     { label: "21st Century fish oil", value: "21st Century fish oil" },
     { label: "Abidec", value: "Abidec" },
-    { label: "Accord Bendroflumethiazide", value: "Accord Bendroflumethiazide" },
+    {
+      label: "Accord Bendroflumethiazide",
+      value: "Accord Bendroflumethiazide",
+    },
     { label: "ACCULOL", value: "ACCULOL" },
     { label: "ACTAVIS DOXYCYCLINE", value: "ACTAVIS DOXYCYCLINE" },
     { label: "ACTINAZA", value: "ACTINAZA" },
@@ -61,7 +64,10 @@ const Medical = () => {
   const smokingHabits = [
     { label: "1-2/day", value: "1-2/day" },
     { label: "I don’t smoke at all", value: "I don’t smoke at all" },
-    { label: "I used to, but I have quit", value: "I used to, but I have quit" },
+    {
+      label: "I used to, but I have quit",
+      value: "I used to, but I have quit",
+    },
   ];
 
   const alcoholConsumption = [
@@ -80,7 +86,7 @@ const Medical = () => {
   return (
     <View>
       <KeyboardAvoidingView>
-        <ScrollView className="mb-60">
+        <ScrollView className="mb-44">
           <CustomDropdownWithHeader
             headerText="Allergy"
             placeholder="Any Allergy"
@@ -129,13 +135,13 @@ const Medical = () => {
             options={alcoholConsumption}
             onChange={handleDropdownChange}
           />
-          <View className=" mt-4"/>
-<View className=" mb-7">
-          <CustomButton
-            Textname={"Save"}
-            backgroundColor={primarycolor}
-            TextColor={whitecolor}
-          />
+          <View className=" mt-4" />
+          <View className=" mb-7">
+            <CustomButton
+              Textname={"Save"}
+              backgroundColor={primarycolor}
+              TextColor={whitecolor}
+            />
           </View>
         </ScrollView>
       </KeyboardAvoidingView>
