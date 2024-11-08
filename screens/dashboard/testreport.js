@@ -7,29 +7,32 @@ import {
   CustomInputWithHeader2,
   CustomInputWithHeaderdes,
   CustomButton,
+  AppointmentCard,
 } from "../mycomponents/mycomponent";
-import { primarycolor, whitecolor } from "../../constants/color"; // Adjust the path based on your folder structure
+import { primarycolor, whitecolor } from "../../constants/color";
 
 const TestReport = () => {
   const [isFormVisible, setIsFormVisible] = useState(false);
+  const [isAppointmentVisible, setIsAppointmentVisible] = useState(false);
 
   const handleFabPress = () => {
-    setIsFormVisible(true); // Show the form and hide initial content
+    setIsFormVisible(true);
+    setIsAppointmentVisible(false); // Hide appointment card when form opens
   };
 
-  const handleCloseForm = () => {
-    setIsFormVisible(false); // Hide the form and show initial content
+  const handleSavePress = () => {
+    setIsAppointmentVisible(true);
+    setIsFormVisible(false); // Hide form when appointment card is shown
   };
 
   return (
     <View
       className={`flex justify-center items-center ${
-        !isFormVisible ? "mt-40" : ""
+        !isFormVisible && !isAppointmentVisible ? "mt-40" : ""
       }`}
     >
-      {/* Conditionally render either the initial content or the form */}
-      {!isFormVisible ? (
-        // Initial content
+      {/* Conditionally render either the initial content, form, or appointment card */}
+      {!isFormVisible && !isAppointmentVisible ? (
         <>
           <Image
             source={noReportsImage}
@@ -41,7 +44,7 @@ const TestReport = () => {
             <FloatingActionButton onPress={handleFabPress} />
           </View>
         </>
-      ) : (
+      ) : isFormVisible ? (
         // Add Test Report form
         <View className="w-full bg-white">
           <KeyboardAvoidingView>
@@ -49,20 +52,37 @@ const TestReport = () => {
             <View className="h-3" />
             <CustomInputWithHeader headerText="Doctor's Name" />
 
-            <View className=" flex-row    ">
+            <View className="flex-row">
               <CustomInputWithHeader2 headerText="Date" />
               <CustomInputWithHeader2 headerText="Time" />
             </View>
             <View className="h-3" />
             <CustomInputWithHeaderdes headerText="Description" />
-            <View className=" mt-7">
+            <View className="mt-7">
               <CustomButton
                 Textname={"Save"}
                 backgroundColor={primarycolor}
                 TextColor={whitecolor}
+                onPress={handleSavePress}
               />
             </View>
           </KeyboardAvoidingView>
+        </View>
+      ) : (
+        <View className=" w-full">
+          <AppointmentCard
+            title="Malaria"
+            doctorName="Dr Micheal Brains"
+            dateTime="28TH OCT, 2024  11:45 AM"
+          />
+          <AppointmentCard
+            title="Malaria"
+            doctorName="Dr Micheal Brains"
+            dateTime="28TH OCT, 2024  11:45 AM"
+          />
+          <View className="absolute -bottom-[230%] -right-2">
+            <FloatingActionButton onPress={handleFabPress} />
+          </View>
         </View>
       )}
     </View>
