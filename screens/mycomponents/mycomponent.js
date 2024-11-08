@@ -1,11 +1,22 @@
-import { TouchableOpacity, Text, View ,StyleSheet,Image, ScrollView} from "react-native";
-import { customstyle, customstyle2, radioButtonStyles } from "../../constants/customstyle";
+import {
+  TouchableOpacity,
+  Text,
+  View,
+  StyleSheet,
+  Image,
+  ScrollView,
+} from "react-native";
+import {
+  customstyle,
+  customstyle2,
+  radioButtonStyles,
+} from "../../constants/customstyle";
 import { Textstyles } from "../../constants/fontsize";
 import { Ionicons } from "@expo/vector-icons"; // Import Ionicons for arrow
 import { TextInput } from "react-native-gesture-handler";
 import { FontAwesome } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { greycolortwo, linkcolor, primarycolor } from "../../constants/color";
 import { height, width } from "../../constants/mobileDimensions";
 
@@ -46,7 +57,6 @@ export const CustomButton = ({
   );
 };
 
-
 export const CustomButtonmedium = ({
   Textname,
   onPress,
@@ -67,7 +77,7 @@ export const CustomButtonmedium = ({
             backgroundColor: backgroundColor,
             borderWidth: borderWidth || 0,
             borderColor: borderColor || null,
-            width: 20
+            width: 20,
           },
           customstyle2.buttonstyle,
         ]}
@@ -83,15 +93,6 @@ export const CustomButtonmedium = ({
     </>
   );
 };
-
-
-
-
-
-
-
-
-
 
 export const CustomButtonsmall = ({
   Textname,
@@ -272,9 +273,8 @@ export const CustomTextnumber = ({
   return (
     <>
       <View
-        className={`w-full relative flex justify-center border ${
-          isFocused ? "border-[#0099b8]" : "border-gray-300"
-        } rounded-lg`}
+        className={`w-full relative flex justify-center border ${isFocused ? "border-[#0099b8]" : "border-gray-300"
+          } rounded-lg`}
       >
         {/* +234 Country code on the left */}
         <View className="absolute left-2 z-50 flex flex-row items-center">
@@ -516,17 +516,28 @@ const HeaderTitle = ({ title }) => {
 
 export default HeaderTitle;
 
-export const Providercard = ({ name, title, rating, likes,onPress ,image}) => {
+export const Providercard = ({
+  name,
+  title,
+  rating,
+  likes,
+  onPress,
+  image,
+}) => {
   return (
-    <TouchableOpacity style={{elevation:4}} onPress={onPress} className="flex-row bg-white rounded-xl mb-4 shadow-sm shadow-cyan-300 w-[359px] h-[120px]">
+    <TouchableOpacity
+      style={{ elevation: 4 }}
+      onPress={onPress}
+      className="flex-row bg-white rounded-xl mb-4 shadow-sm shadow-cyan-300 w-[359px] h-[120px]"
+    >
       {/* Left Section: Image */}
       <View className="bg-gray-600 rounded-l-xl w-[130px] h-[120px] flex justify-center items-center mr-4">
-  <Image
-    source={require("../../assets/images/appo.png")}
-    className="w-full h-full" // Set height to full
-    resizeMode="contain"
-  />
-</View>
+        <Image
+          source={require("../../assets/images/appo.png")}
+          className="w-full h-full" // Set height to full
+          resizeMode="contain"
+        />
+      </View>
 
       <View className="flex-1 mb-auto mt-auto">
         <Text className="text-[18px] font-[500] leading-[27px] mb-1">
@@ -547,8 +558,8 @@ export const Providercard = ({ name, title, rating, likes,onPress ,image}) => {
 
           {/* Likes */}
           <View className=" flex-row space-x-1">
-          <Text className="ml-3 text-gray-600">{likes}</Text>
-          <FontAwesome name="heart" size={16} color="red" className="ml-1" />
+            <Text className="ml-3 text-gray-600">{likes}</Text>
+            <FontAwesome name="heart" size={16} color="red" className="ml-1" />
           </View>
         </View>
       </View>
@@ -556,10 +567,12 @@ export const Providercard = ({ name, title, rating, likes,onPress ,image}) => {
   );
 };
 
-
-export const Cartcard = ({ name, title, rating, likes,onPress }) => {
+export const Cartcard = ({ name, title, rating, likes, onPress }) => {
   return (
-    <TouchableOpacity onPress={onPress} className="flex-row bg-white rounded-2xl shadow-md w-[359px] h-[113px]">
+    <TouchableOpacity
+      onPress={onPress}
+      className="flex-row bg-white rounded-2xl shadow-md w-[359px] h-[113px]"
+    >
       {/* Left Section: Image */}
       <View className="bg-gray-600 w-[91px] h-[113px] rounded-l-2xl  mr-4">
         {/* Placeholder for the image */}
@@ -570,30 +583,15 @@ export const Cartcard = ({ name, title, rating, likes,onPress }) => {
           {name}
         </Text>
         <Text className="text-gray-500 text-[14px] font-[500] leading-[21px] mb-1">
-      View details
+          View details
         </Text>
 
         {/* Ratings and Likes */}
-        <View className="flex-row items-center mt-2">
-        
-          
-
-        
-        </View>
+        <View className="flex-row items-center mt-2"></View>
       </View>
     </TouchableOpacity>
   );
 };
-
-
-
-
-
-
-
-
-
-
 
 export const CustomInputpassword = ({
   headerText,
@@ -681,8 +679,6 @@ export const CustomInputpassword = ({
   );
 };
 
-
-
 export const PaymentInput = ({
   placeholder,
   placeholderTextColor,
@@ -734,29 +730,26 @@ export const PaymentInput = ({
   );
 };
 
-
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
-    position: 'relative',
-    justifyContent: 'center',
+    width: "100%",
+    position: "relative",
+    justifyContent: "center",
   },
   iconContainer: {
-    position: 'absolute',
+    position: "absolute",
     left: 12,
     zIndex: 50,
   },
   input: {
-    paddingLeft: 50,  // Padding to account for the side icon
+    paddingLeft: 50, // Padding to account for the side icon
     fontSize: 18,
-    backgroundColor: "#F3F3F3",  // Input background color
-    height: 50,  // Height of the input
-    borderRadius: 8,  // Border radius to match the design
-    borderWidth: 1,  // Border width
+    backgroundColor: "#F3F3F3", // Input background color
+    height: 50, // Height of the input
+    borderRadius: 8, // Border radius to match the design
+    borderWidth: 1, // Border width
   },
 });
-
-
 
 export const PaymentMethod = ({ selectedMethod, onSelect }) => {
   const paymentOptions = [
@@ -765,21 +758,21 @@ export const PaymentMethod = ({ selectedMethod, onSelect }) => {
   ];
 
   return (
-    <View className="flex flex-col space-y-3"> 
+    <View className="flex flex-col space-y-3">
       {paymentOptions.map((option) => (
         <TouchableOpacity
           key={option.id}
-          className={`flex flex-row items-center border p-4 rounded-lg ${
-            selectedMethod === option.id
-              ? "border-[#0099b8]"  // Highlighted border for selected method
+          className={`flex flex-row items-center border p-4 rounded-lg ${selectedMethod === option.id
+              ? "border-[#0099b8]" // Highlighted border for selected method
               : "border-gray-300"
-          }`}
+            }`}
           onPress={() => onSelect(option.id)} // Set selected method on press
         >
           <View
-            className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
-              selectedMethod === option.id ? "border-[#0099b8]" : "border-gray-300"
-            }`}
+            className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${selectedMethod === option.id
+                ? "border-[#0099b8]"
+                : "border-gray-300"
+              }`}
           >
             {selectedMethod === option.id && (
               <View className="w-3 h-3 bg-[#0099b8] rounded-full" /> // Filled circle for selected method
@@ -792,53 +785,18 @@ export const PaymentMethod = ({ selectedMethod, onSelect }) => {
   );
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 export const Header = ({ title, rightIcon, onRightIconPress }) => {
   const navigation = useNavigation();
 
   return (
     <View
       style={{
-        flexDirection: 'row',
-        alignItems: 'center',
+        flexDirection: "row",
+        alignItems: "center",
         gap: 15,
         paddingHorizontal: 30,
         paddingTop: 30,
-        backgroundColor: '#00A8CC', // The color for the header background
+        backgroundColor: "#00A8CC", // The color for the header background
       }}
       className=" h-1/6"
     >
@@ -850,12 +808,12 @@ export const Header = ({ title, rightIcon, onRightIconPress }) => {
       {/* Title */}
       <Text
         style={{
-          color: 'white',
+          color: "white",
           fontSize: 24,
           lineHeight: 30,
-          fontWeight: '700',
+          fontWeight: "700",
           flex: 1, // Allow title to take available space
-          textAlign: 'center', // Center the title
+          textAlign: "center", // Center the title
           marginLeft: -170, // Consider adjusting this value for better alignment
         }}
       >
@@ -872,23 +830,14 @@ export const Header = ({ title, rightIcon, onRightIconPress }) => {
   );
 };
 
-
-
-
-
-
-
-
-
-
 export const Header2 = ({ title, rightIcon, onRightIconPress }) => {
   const navigation = useNavigation();
 
   return (
     <View
       style={{
-        flexDirection: 'row',
-        alignItems: 'center',
+        flexDirection: "row",
+        alignItems: "center",
         gap: 15,
         paddingHorizontal: 30,
         height: 140,
@@ -898,7 +847,7 @@ export const Header2 = ({ title, rightIcon, onRightIconPress }) => {
     >
       {/* Back Button */}
       <TouchableOpacity onPress={() => navigation.goBack()}>
-        <Ionicons name="chevron-back" size={26} color= "#0099B8" />
+        <Ionicons name="chevron-back" size={26} color="#0099B8" />
       </TouchableOpacity>
 
       {/* Title */}
@@ -907,9 +856,9 @@ export const Header2 = ({ title, rightIcon, onRightIconPress }) => {
           color: "#0099B8",
           fontSize: 24,
           lineHeight: 30,
-          fontWeight: '700',
+          fontWeight: "700",
           flex: 1, // Allow title to take available space
-          textAlign: 'center', // Center the title
+          textAlign: "center", // Center the title
           marginLeft: -190, // Consider adjusting this value for better alignment
         }}
       >
@@ -926,36 +875,24 @@ export const Header2 = ({ title, rightIcon, onRightIconPress }) => {
   );
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
 export const Header3 = ({ title, rightIcon, onRightIconPress }) => {
   const navigation = useNavigation();
 
   return (
     <View
       style={{
-        flexDirection: 'row',
-        alignItems: 'center',
+        flexDirection: "row",
+        alignItems: "center",
         gap: 15,
         paddingHorizontal: 30,
         paddingTop: 10,
-     
+
         // The color for the header background
       }}
     >
       {/* Back Button */}
       <TouchableOpacity onPress={() => navigation.goBack()}>
-        <Ionicons name="chevron-back" size={30} color= "black" />
+        <Ionicons name="chevron-back" size={30} color="black" />
       </TouchableOpacity>
 
       {/* Title */}
@@ -964,9 +901,9 @@ export const Header3 = ({ title, rightIcon, onRightIconPress }) => {
           color: "black",
           fontSize: 24,
           lineHeight: 30,
-          fontWeight: '700',
+          fontWeight: "700",
           flex: 1, // Allow title to take available space
-          textAlign: 'center', // Center the title
+          textAlign: "center", // Center the title
           marginLeft: -203, // Consider adjusting this value for better alignment
         }}
       >
@@ -983,37 +920,28 @@ export const Header3 = ({ title, rightIcon, onRightIconPress }) => {
   );
 };
 
-
-
-
-
-
-
 export const Header4 = ({ title, rightIcon, onRightIconPress }) => {
   const navigation = useNavigation();
 
   return (
     <View
       style={{
-        flexDirection: 'row',
-        alignItems: 'center',
+        flexDirection: "row",
+        alignItems: "center",
         gap: 15,
         paddingHorizontal: 30,
         paddingTop: 10,
-     
+
         // The color for the header background
       }}
     >
       {/* Back Button */}
       <TouchableOpacity onPress={() => navigation.goBack()}>
-        <Ionicons name="chevron-back" size={30} color= "black"  />
+        <Ionicons name="chevron-back" size={30} color="black" />
       </TouchableOpacity>
 
       {/* Title */}
-      <Text
-       style={[Textstyles.text_cfmedium]}
-       className=" ml-5"
-      >
+      <Text style={[Textstyles.text_cfmedium]} className=" ml-5">
         {title}
       </Text>
 
@@ -1027,45 +955,51 @@ export const Header4 = ({ title, rightIcon, onRightIconPress }) => {
   );
 };
 
-
-
-
-
-
-
-
-
-
-
-
-export const Chatlist = ({ profileImage, name, message, time, unreadCount }) => {
+export const Chatlist = ({
+  profileImage,
+  name,
+  message,
+  time,
+  unreadCount,
+}) => {
   return (
     <TouchableOpacity
-    style={{ backgroundColor: 'rgba(0, 153, 184, 0.05)' }}
-    className="flex-row items-center p-4 rounded-lg my-2 -mb-1 ">
+      style={{ backgroundColor: "rgba(0, 153, 184, 0.05)" }}
+      className="flex-row items-center p-4 rounded-lg my-2 -mb-1 "
+    >
       {/* Profile Image */}
       <Image
-        source={typeof profileImage === 'string' ? { uri: profileImage } : profileImage}
+        source={
+          typeof profileImage === "string"
+            ? { uri: profileImage }
+            : profileImage
+        }
         className="w-12 h-12 rounded-full"
       />
       {/* Name and Message */}
       <View className="flex-1 ml-4">
         <Text
-        style={{
+          style={{
             fontSize: 16,
-            fontWeight: '600',
+            fontWeight: "600",
             lineHeight: 24,
-            textAlign: 'left',
+            textAlign: "left",
           }}
-         className=" font-bold">{name}</Text>
+          className=" font-bold"
+        >
+          {name}
+        </Text>
         <Text
-         style={{
-          fontSize: 12,
-          fontWeight: '300',
-          lineHeight: 18,
-          textAlign: 'left',
-        }}
-        className=" text-black">{message}</Text>
+          style={{
+            fontSize: 12,
+            fontWeight: "300",
+            lineHeight: 18,
+            textAlign: "left",
+          }}
+          className=" text-black"
+        >
+          {message}
+        </Text>
       </View>
       {/* Time and Unread Messages Badge */}
       <View className="items-end">
@@ -1080,158 +1014,171 @@ export const Chatlist = ({ profileImage, name, message, time, unreadCount }) => 
   );
 };
 
-
-export const Notificationcard = ({ profileImage, name, message, time, unreadCount }) => {
+export const Notificationcard = ({
+  profileImage,
+  name,
+  message,
+  time,
+  unreadCount,
+}) => {
   return (
-    <TouchableOpacity
-  
-    className="flex-row items-center rounded-[10px]   mb-2 w-[364px] h-[105px]">
+    <TouchableOpacity className="flex-row items-center rounded-[10px]   mb-2 w-[364px] h-[105px]">
       {/* Profile Image */}
       <Image
-        source={typeof profileImage === 'string' ? { uri: profileImage } : profileImage}
+        source={
+          typeof profileImage === "string"
+            ? { uri: profileImage }
+            : profileImage
+        }
         className=" w-[70px] h-[70px] rounded-[10px]"
       />
       {/* Name and Message */}
       <View className="flex-1 ml-4">
         <Text
-        style={{
+          style={{
             fontSize: 16,
-            fontWeight: '600',
+            fontWeight: "600",
             lineHeight: 24,
-            textAlign: 'left',
+            textAlign: "left",
           }}
-         className=" font-bold mb-1">{name}</Text>
+          className=" font-bold mb-1"
+        >
+          {name}
+        </Text>
         <Text
-         style={{
-          fontSize: 14,
-          fontWeight: '300',
-          lineHeight: 18,
-          textAlign: 'left',
-        }}
-        className=" text-black">{message}</Text>
+          style={{
+            fontSize: 14,
+            fontWeight: "300",
+            lineHeight: 18,
+            textAlign: "left",
+          }}
+          className=" text-black"
+        >
+          {message}
+        </Text>
       </View>
       {/* Time and Unread Messages Badge */}
       <View className=" -mr-10 -mt-12">
         <Text className="text-sm text-black mr-8">{time}</Text>
-        
       </View>
     </TouchableOpacity>
   );
 };
 
-
-
-
-
-
-
-export const Providercard2 = ({ name, title, rating, reviews,onPress ,image}) => {
+export const Providercard2 = ({
+  name,
+  title,
+  rating,
+  reviews,
+  onPress,
+  image,
+}) => {
   return (
-    <TouchableOpacity onPress={onPress} className=" bg-white rounded-xl shadow-md w-[200px] h-[170px] mr-4">
+    <TouchableOpacity
+      onPress={onPress}
+      className=" bg-white rounded-xl shadow-md w-[200px] h-[170px] mr-4"
+    >
       {/* Left Section: Image */}
       <View className="bg-gray-600 w-[200px] h-[97px] flex justify-center  rounded-t-xl items-center mr-4">
-  <Image
-    source={require("../../assets/images/appo.png")}
-    className="w-full h-full" // Set height to full
-    resizeMode="contain"
-  />
-</View>
+        <Image
+          source={require("../../assets/images/appo.png")}
+          className="w-full h-full" // Set height to full
+          resizeMode="contain"
+        />
+      </View>
 
       <View className="flex-row justify-between px-3 mb-auto mt-auto">
         <View>
-        <Text className="text-[1Opx] font-[500] leading-[27px] ">
-          {name}
-        </Text>
-        <Text className="text-gray-500 text-[10px] font-[500] leading-[21px] mb-1">
-          {title}
-        </Text>
+          <Text className="text-[1Opx] font-[500] leading-[27px] ">{name}</Text>
+          <Text className="text-gray-500 text-[10px] font-[500] leading-[21px] mb-1">
+            {title}
+          </Text>
         </View>
 
         {/* Ratings and Likes */}
         <View className=" items-center fl justify-center  bg-[#0099b8] w-[68px] rounded-[10px]">
           {/* Stars */}
-          <Text className=" text-white font-[8px] -mt-3 mb-1 ">Reviews {reviews}</Text>
+          <Text className=" text-white font-[8px] -mt-3 mb-1 ">
+            Reviews {reviews}
+          </Text>
           <View className=" flex-row w-[60px]  space-x-1 justify-center items-center ">
             {[...Array(rating)].map((_, index) => (
               <FontAwesome key={index} name="star" size={6} color="white" />
             ))}
-             
           </View>
 
           {/* Likes */}
-      
-            
-         
-         
-          
         </View>
       </View>
     </TouchableOpacity>
   );
 };
-export const MenuButton=({icon,text})=>{
-  return(
+export const MenuButton = ({ icon, text }) => {
+  return (
     <>
-    <TouchableOpacity style={{elevation:4}} className="w-28 h-28 rounded-2xl bg-white flex justify-center items-center px-3 shadow-sm shadow-black">
-      {icon}
-      {text}
-
-    </TouchableOpacity>
+      <TouchableOpacity
+        style={{ elevation: 4 }}
+        className="w-28 h-28 rounded-2xl bg-white flex justify-center items-center px-3 shadow-sm shadow-black"
+      >
+        {icon}
+        {text}
+      </TouchableOpacity>
     </>
-  )
-}
+  );
+};
 
-export const DateComponent=()=>{
-  const [getdayArray,setdayArray]=useState([])
-  const days=['Sun','Mon','Tue','Wed','Thur','Fri','Sat']
+export const DateComponent = () => {
+  const [getdayArray, setdayArray] = useState([]);
+  const days = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
   const currentDate = new Date();
   function getWeekDates() {
     // Get today's date
     const weekDates = [];
-    
+
     // Calculate the difference from the current day to the previous Sunday
-    const firstDayOfWeek = new Date(currentDate.setDate(currentDate.getDate() - currentDate.getDay()));
-    
+    const firstDayOfWeek = new Date(
+      currentDate.setDate(currentDate.getDate() - currentDate.getDay())
+    );
+
     // Loop through the week and add only the day of the month (date)
     for (let i = 0; i < 7; i++) {
       const weekDate = new Date(firstDayOfWeek); // Copy the date
       weekDate.setDate(firstDayOfWeek.getDate() + i); // Set date to Sunday + i days
       weekDates.push(weekDate.getDate()); // Add only the date to the array
     }
-  
+
     return weekDates; // Return the dates as a comma-separated string
   }
-  useEffect(()=>{
-    setdayArray(getWeekDates())
+  useEffect(() => {
+    setdayArray(getWeekDates());
+  }, []);
 
-  },[])
- 
-  return(
+  return (
     <>
-    <View className="px-3">
-    <ScrollView
-      horizontal={true}
-      showsHorizontalScrollIndicator={false}
-      >
-    <View className="w-full flex-row gap-3 items-center justify-evenly  px-2">
-      {getdayArray.map((item,index)=>(
-             <TouchableOpacity style={{borderColor:linkcolor, borderWidth:1,borderRadius:30, height:100,width:60}} className="flex justify-center items-center">
-              <Text style={[Textstyles.text_cmedium]}>{days[index]}</Text>
-              <Text style={[Textstyles.text_cmedium]}>{item}</Text>
-             </TouchableOpacity>
-
-      ))}
- 
-    </View>
-    </ScrollView>
-
-    </View>
- 
+      <View className="px-3">
+        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+          <View className="w-full flex-row gap-3 items-center justify-evenly  px-2">
+            {getdayArray.map((item, index) => (
+              <TouchableOpacity
+                style={{
+                  borderColor: linkcolor,
+                  borderWidth: 1,
+                  borderRadius: 30,
+                  height: 100,
+                  width: 60,
+                }}
+                className="flex justify-center items-center"
+              >
+                <Text style={[Textstyles.text_cmedium]}>{days[index]}</Text>
+                <Text style={[Textstyles.text_cmedium]}>{item}</Text>
+              </TouchableOpacity>
+            ))}
+          </View>
+        </ScrollView>
+      </View>
     </>
-  )
-}
-
-
+  );
+};
 
 export const StatsCard = ({ icon, value, label }) => {
   return (
@@ -1240,15 +1187,13 @@ export const StatsCard = ({ icon, value, label }) => {
         <Image source={icon} className="w-6 h-6" resizeMode="cover" />
       </View>
       <View className="w-[46px] h-[32px]">
-        <Text className="text-center font-[500] text-[12px] leading-4">{value}</Text>
-        <Text className="text-center font-[400] text-[11px] leading-4">{label}</Text>
+        <Text className="text-center font-[500] text-[12px] leading-4">
+          {value}
+        </Text>
+        <Text className="text-center font-[400] text-[11px] leading-4">
+          {label}
+        </Text>
       </View>
     </View>
   );
 };
-
-
-
-
-
-
