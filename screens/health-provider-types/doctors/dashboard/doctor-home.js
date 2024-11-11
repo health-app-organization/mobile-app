@@ -12,7 +12,7 @@ import { useNavigation } from "@react-navigation/native";
 const DoctorHome = () => {
     const navigation = useNavigation();
     const handleToExtraInfo = () => {
-        navigation.navigate("extra-info");
+        navigation.navigate("doctor-extra-info");
     };
 
     return (

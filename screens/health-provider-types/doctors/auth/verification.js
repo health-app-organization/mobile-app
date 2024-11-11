@@ -27,7 +27,7 @@ export default function Verification() {
         navigation.goBack();
     };
     const handleToLogin = () => {
-        navigation.navigate("health-provider-login");
+        navigation.navigate("doctor-login");
     };
     // Toggle keyboard visibility
     const handleShowKeys = () => {

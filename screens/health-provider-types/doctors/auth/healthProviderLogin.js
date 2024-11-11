@@ -20,7 +20,7 @@ export default function HealthProviderLogin() {
         setShowPassword(!showPassword);
     };
     const handleToSignup = () => {
-        navigation.navigate("health-provider-signup");
+        navigation.navigate("doctor-signup");
     };
     const handleToDashboard = () => {
         navigation.navigate("doctor-home");

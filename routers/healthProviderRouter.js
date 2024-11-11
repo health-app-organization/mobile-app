@@ -43,7 +43,7 @@ const HealthProviderRouter = () => {
                             ? "horizontal"
                             : Platform.OS === "android" && "vertical",
                 }}
-                name="health-provider-signup"
+                name="doctor-signup"
                 component={Healthcare}
             />
             <Stack.Screen
@@ -54,7 +54,7 @@ const HealthProviderRouter = () => {
                             ? "horizontal"
                             : Platform.OS === "android" && "vertical",
                 }}
-                name="health-provider-verification"
+                name="doctor-verification"
                 component={Verification}
             />
             <Stack.Screen
@@ -65,7 +65,7 @@ const HealthProviderRouter = () => {
                             ? "horizontal"
                             : Platform.OS === "android" && "vertical",
                 }}
-                name="health-provider-login"
+                name="doctor-login"
                 component={HealthProviderLogin}
             />
             <Stack.Screen
@@ -87,7 +87,7 @@ const HealthProviderRouter = () => {
                             ? "horizontal"
                             : Platform.OS === "android" && "vertical",
                 }}
-                name="extra-info"
+                name="doctor-extra-info"
                 component={ExtraInfo}
             />
         </Stack.Navigator>

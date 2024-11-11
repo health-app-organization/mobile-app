@@ -43,7 +43,7 @@ const Identity = () => {
   // Function to handle the 'Login' navigation
   const handletologin = () => {
     if (selectedIdentity === "identity2") {
-      navigation.navigate("health-provider-types", { screen: "health-provider-login" }); // Navigate to healthtype for health provider
+      navigation.navigate("health-provider-types", { screen: "doctor-login" }); // Navigate to healthtype for health provider
     } else {
       navigation.navigate("login");
     }

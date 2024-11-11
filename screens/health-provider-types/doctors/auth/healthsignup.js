@@ -25,7 +25,7 @@ export default function Healthcare() {
   const [password, setPassword] = React.useState("");
 
   const handleContinue = () => {
-    navigation.navigate("health-provider-verification");
+    navigation.navigate("doctor-verification");
   }
 
   return (

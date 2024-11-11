@@ -15,7 +15,7 @@ const typeList = [
   {
     image: "../../../../assets/images/health-provider-image.png",
     name: "Doctors",
-    linkTo: "health-provider-signup",
+    linkTo: "doctor-signup",
   },
   {
     image: "../../../../assets/images/health-provider-image.png",
