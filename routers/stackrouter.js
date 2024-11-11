@@ -5,32 +5,26 @@ import {
 import ScreenDisplay from "../screens/onboarding/splashScreen";
 import Slider from "../screens/onboarding/slidersScreen";
 import {
-  ConfirmPassword,
-  Forgotpass,
   Login,
-  Otpverify,
 } from "../screens/onboarding/loginandforgetpass";
 import Registration from "../screens/onboarding/registration";
 import { Platform } from "react-native";
 
 import VerificationFlowStack from "../screens/verification/verification-stack";
 import Identity from "../screens/onboarding/identity";
-import Messages from "../screens/dashboard/messages";
-import Cart from "../screens/dashboard/cart";
-import Orcode from "../screens/dashboard/userqrcode";
-import { PaymentScreen } from "../screens/dashboard/payment";
-import Notification from "../screens/dashboard/notifications";
-import Medicine from "../screens/dashboard/medicine";
-import Lab from "../screens/dashboard/LAB/lab";
-import DashboardScreen from "./dashboardScreen";
-
-import Wallet from "../screens/dashboard/wallet";
-import Profile from "../screens/dashboard/profile";
-import Chat from "../screens/dashboard/chat";
-import HealthcareProviderScreen from "../screens/dashboard/LAB/healthprovider";
-
-import AppointmentDetails from "../screens/dashboard/apponitmentdetails";
 import HealthProviderRouter from "./healthProviderRouter";
+import Messages from "../screens/patients/dashboard/messages";
+import HealthcareProviderScreen from "../screens/patients/dashboard/LAB/healthprovider";
+import DashboardScreen from "./dashboardScreen";
+import Orcode from "../screens/patients/dashboard/userqrcode";
+import { PaymentScreen } from "../screens/patients/dashboard/payment";
+import Medicine from "../screens/patients/dashboard/medicine";
+import { LabIcon } from "../assets/iconsvg/Svgicon";
+import Wallet from "../screens/patients/dashboard/wallet";
+import Profile from "../screens/patients/dashboard/profile";
+import Chat from "../screens/patients/dashboard/chat";
+import Cart from "../screens/patients/dashboard/cart";
+import Notification from "../screens/patients/dashboard/notifications";
 
 const StackWrapper = () => {
   const Stack = createStackNavigator();
@@ -200,7 +194,7 @@ const StackWrapper = () => {
               : Platform.OS === "android" && "vertical",
         }}
         name="lab"
-        component={Lab}
+        component={LabIcon}
       />
       <Stack.Screen
         options={{
@@ -255,7 +249,7 @@ const StackWrapper = () => {
               ? "horizontal"
               : Platform.OS === "android" && "vertical",
         }}
-        name="healthptype"
+        name="health-provider-types"
         component={HealthProviderRouter}
       />
     </Stack.Navigator>

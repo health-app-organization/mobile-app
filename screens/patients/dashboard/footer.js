@@ -9,23 +9,20 @@ import {
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 
-const Footer = ({ activeProps }) => {
-    const [active, setActive] = useState(activeProps);
+const Footer = ({ activepros }) => {
+    const [active, setactive] = useState(activepros);
     const navigation = useNavigation();
-    const handleNavigate = (value) => {
+    const handlenavigate = (value) => {
         navigation.navigate(value);
-        setActive(value);
+        setactive(value);
     };
-
     return (
         <>
-            <View className="w-full h-24 bg-white absolute bottom-0 flex-row items-center justify-evenly z-50">
+            <View className="w-full h-20 bg-white absolute bottom-0 flex-row items-center justify-evenly z-50">
                 <TouchableOpacity
-                    onPress={() =>
-                        handleNavigate("health-provider-types", { screen: "doctor-home" })
-                    }
+                    onPress={() => handlenavigate("Home")}
                     style={
-                        active === "doctor-home"
+                        active === "Home"
                             ? { backgroundColor: linkcolor }
                             : { backgroundColor: whitecolor }
                     }
@@ -34,11 +31,11 @@ const Footer = ({ activeProps }) => {
                     <HomeIcon
                         width={24}
                         height={24}
-                        color={active === "doctor-home" ? primarycolor : "black"}
+                        color={active === "Home" ? primarycolor : "black"}
                     />
                 </TouchableOpacity>
                 <TouchableOpacity
-                    onPress={() => handleNavigate("Message")}
+                    onPress={() => handlenavigate("Message")}
                     style={
                         active === "Message"
                             ? { backgroundColor: linkcolor }
@@ -53,7 +50,7 @@ const Footer = ({ activeProps }) => {
                     />
                 </TouchableOpacity>
                 <TouchableOpacity
-                    onPress={() => handleNavigate("Appointment")}
+                    onPress={() => handlenavigate("Appointment")}
                     style={
                         active === "Appointment"
                             ? { backgroundColor: linkcolor }
@@ -68,7 +65,7 @@ const Footer = ({ activeProps }) => {
                     />
                 </TouchableOpacity>
                 <TouchableOpacity
-                    onPress={() => handleNavigate("Setting")}
+                    onPress={() => handlenavigate("Setting")}
                     style={
                         active === "Setting"
                             ? { backgroundColor: linkcolor }
@@ -86,5 +83,4 @@ const Footer = ({ activeProps }) => {
         </>
     );
 };
-
 export default Footer;

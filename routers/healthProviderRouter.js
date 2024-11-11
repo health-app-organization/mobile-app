@@ -3,12 +3,12 @@ import {
     CardStyleInterpolators,
 } from "@react-navigation/stack";
 import { Platform } from "react-native";
-import Healthcare from "../screens/healthptype/auth/healthsignup";
-import Provider from "../screens/healthptype/auth/healthtype";
-import HealthProviderLogin from "../screens/healthptype/auth/healthProviderLogin";
-import Verification from "../screens/healthptype/auth/verification";
-import DoctorHome from "../screens/healthptype/dashboard/doctor-home";
-import ExtraInfo from "../screens/healthptype/dashboard/extra-info";
+import HealthProviderLogin from "../screens/health-provider-types/doctors/auth/healthProviderLogin";
+import Healthcare from "../screens/health-provider-types/doctors/auth/healthsignup";
+import Verification from "../screens/health-provider-types/doctors/auth/verification";
+import DoctorHome from "../screens/health-provider-types/doctors/dashboard/doctor-home";
+import ExtraInfo from "../screens/health-provider-types/doctors/dashboard/extra-info";
+import Provider from "../screens/health-provider-types/doctors/auth/healthtype";
 
 const HealthProviderRouter = () => {
     const Stack = createStackNavigator();
@@ -43,7 +43,7 @@ const HealthProviderRouter = () => {
                             ? "horizontal"
                             : Platform.OS === "android" && "vertical",
                 }}
-                name="health-provider-signup"
+                name="doctor-signup"
                 component={Healthcare}
             />
             <Stack.Screen
@@ -54,7 +54,7 @@ const HealthProviderRouter = () => {
                             ? "horizontal"
                             : Platform.OS === "android" && "vertical",
                 }}
-                name="health-provider-verification"
+                name="doctor-verification"
                 component={Verification}
             />
             <Stack.Screen
@@ -65,7 +65,7 @@ const HealthProviderRouter = () => {
                             ? "horizontal"
                             : Platform.OS === "android" && "vertical",
                 }}
-                name="health-provider-login"
+                name="doctor-login"
                 component={HealthProviderLogin}
             />
             <Stack.Screen
@@ -87,7 +87,7 @@ const HealthProviderRouter = () => {
                             ? "horizontal"
                             : Platform.OS === "android" && "vertical",
                 }}
-                name="extra-info"
+                name="doctor-extra-info"
                 component={ExtraInfo}
             />
         </Stack.Navigator>

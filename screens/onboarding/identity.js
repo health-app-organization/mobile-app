@@ -34,7 +34,7 @@ const Identity = () => {
   // Functions to handle navig// Function to handle the 'Create account' navigation
   const handletonewacc = () => {
     if (selectedIdentity === "identity2") {
-      navigation.navigate("healthptype"); // Navigate to healthtype for health provider
+      navigation.navigate("health-provider-types"); // Navigate to healthtype for health provider
     } else {
       navigation.navigate("signup");
     }
@@ -43,7 +43,7 @@ const Identity = () => {
   // Function to handle the 'Login' navigation
   const handletologin = () => {
     if (selectedIdentity === "identity2") {
-      navigation.navigate("healthptype", { screen: "health-provider-login" }); // Navigate to healthtype for health provider
+      navigation.navigate("health-provider-types", { screen: "doctor-login" }); // Navigate to healthtype for health provider
     } else {
       navigation.navigate("login");
     }
@@ -58,7 +58,7 @@ const Identity = () => {
   const handleConfirmationContinue = () => {
     setShowConfirmation(false);
     if (selectedIdentity === "identity2") {
-      navigation.navigate("healthptype"); // Adjust the route for health provider login/signup
+      navigation.navigate("health-provider-types"); // Adjust the route for health provider login/signup
     }
   };
 
