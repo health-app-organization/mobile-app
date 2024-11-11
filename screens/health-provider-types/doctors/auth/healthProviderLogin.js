@@ -1,15 +1,15 @@
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { height } from "../../../constants/mobileDimensions";
-import { Textstyles } from "../../../constants/fontsize";
+import { height } from "../../../../constants/mobileDimensions";
+import { Textstyles } from "../../../../constants/fontsize";
 import {
     CustomButton,
     CustomInputpassword,
     CustomInputWithHeader,
-} from "../../mycomponents/mycomponent";
+} from "../../../mycomponents/mycomponent";
 import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
-import { primarycolor, whitecolor } from "../../../constants/color";
+import { primarycolor, whitecolor } from "../../../../constants/color";
 
 export default function HealthProviderLogin() {
     const navigation = useNavigation();
@@ -38,7 +38,7 @@ export default function HealthProviderLogin() {
                 <View className="w-full h-44  flex mb-4 justify-center items-center">
                     <View className=" w-[50%]  flex justify-center items-center h-36">
                         <Image
-                            source={require("../../../assets/images/logo-2.png")}
+                            source={require("../../../../assets/images/logo-2.png")}
                             resizeMode="contain"
                             className=" h-36 w-36"
                         />

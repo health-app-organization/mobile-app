@@ -3,8 +3,8 @@ import { StatusBar } from "expo-status-bar";
 import { View, Text, TouchableOpacity,Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons"; // Import Ionicons for arrow
-import { CustomButton } from "../mycomponents/mycomponent";
-import { primarycolor,whitecolor } from "../../constants/color";
+import { CustomButton } from "../../mycomponents/mycomponent";
+import { primarycolor,whitecolor } from "../../../constants/color";
 
 const Wallet = () => {
   const navigation = useNavigation();
@@ -29,14 +29,14 @@ const Wallet = () => {
     <Text className=" text-2xl text-white mt-7 mb-2">Available Balance</Text>
     <Text className="  text-2xl text-white font-bold "> ₦0.00</Text>
     <Image
-        source={require("../../assets/images/wallet2.png")}
+        source={require("../../../assets/images/wallet2.png")}
         className="w-full -z-10 -mt-[75px]"
         resizeMode="contain"
       />
 </View>
 <View className="  flex justify-center items-center w-[104px] mt-3 h-[104px]">
 <Image
-        source={require("../../assets/images/wallet.png")}
+        source={require("../../../assets/images/wallet.png")}
         className="w-full"
         resizeMode="contain"
       />
@@ -55,7 +55,7 @@ const Wallet = () => {
         <View className=" w-full h-[137px] flex justify-center items-center ">
         <View className=" w-[265px] h-[137px] flex justify-center items-center ">
         <Image
-        source={require("../../assets/images/wallet3.png")}
+        source={require("../../../assets/images/wallet3.png")}
         className="w-full"
         resizeMode="contain"
       />

@@ -1,18 +1,18 @@
 import { Pressable, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { height } from "../../../constants/mobileDimensions";
-import { Textstyles } from "../../../constants/fontsize";
+import { height } from "../../../../constants/mobileDimensions";
+import { Textstyles } from "../../../../constants/fontsize";
 import { useNavigation } from "@react-navigation/native";
 import { AntDesign } from "@expo/vector-icons";
-import { Box, CustomButton } from "../../mycomponents/mycomponent";
+import { Box, CustomButton } from "../../../mycomponents/mycomponent";
 import { useState } from "react";
 import Animated, {
     useAnimatedStyle,
     useSharedValue,
     withSpring,
 } from "react-native-reanimated";
-import NumericKeyboard from "../../modals/CustomKeyboard";
-import { primarycolor, whitecolor } from "../../../constants/color";
+import NumericKeyboard from "../../../modals/CustomKeyboard";
+import { primarycolor, whitecolor } from "../../../../constants/color";
 
 export default function Verification() {
     const [errorMsg, setErrorMsg] = useState(null);

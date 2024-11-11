@@ -1,9 +1,9 @@
 // screens/LabsScreen.js
 import { View, Text, StatusBar, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
-import { CustomButton, Header3, Header4 } from '../../mycomponents/mycomponent';
-import { Textstyles } from "../../../constants/fontsize";
-import { primarycolor, whitecolor } from '../../../constants/color';
+import { CustomButton, Header3, Header4 } from '../../../mycomponents/mycomponent';
+import { Textstyles } from "../../../../constants/fontsize";
+import { primarycolor, whitecolor } from '../../../../constants/color';
 
 const LabsScreen = ({ onSave }) => {
   const [selectedOption, setSelectedOption] = useState(null);

@@ -1,40 +1,22 @@
 import {
-  Image,
-  Pressable,
-  ScrollView,
   Text,
   TouchableOpacity,
   View,
 } from "react-native";
-import {
-  MaterialIcons,
-  Feather,
-  MaterialCommunityIcons,
-  FontAwesome5,
-} from "@expo/vector-icons";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
-import Animated, {
-  useAnimatedStyle,
-  useSharedValue,
-  withSpring,
-} from "react-native-reanimated";
-import { height } from "../../../constants/mobileDimensions";
-import { Textstyles } from "../../../constants/fontsize";
+import { height } from "../../../../constants/mobileDimensions";
+import { Textstyles } from "../../../../constants/fontsize";
 import {
   CustomInputpassword,
   CustomInputWithHeader,
-} from "../../mycomponents/mycomponent";
-import { Box, CustomTextnumber } from "../../mycomponents/mycomponent";
+} from "../../../mycomponents/mycomponent";
 import {
   primarycolor,
   whitecolor,
-  primarycolortwo,
-  greycolortwo,
-} from "../../../constants/color";
-import { CustomButton, CustomTextInput } from "../../mycomponents/mycomponent";
-import NumericKeyboard from "../../modals/CustomKeyboard"; // Importing the Numeric Keyboard
+} from "../../../../constants/color";
+import { CustomButton } from "../../../mycomponents/mycomponent";
 
 export default function Healthcare() {
   const navigation = useNavigation();

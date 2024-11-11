@@ -1,12 +1,11 @@
 import { View, TouchableOpacity } from "react-native";
-import { linkcolor, primarycolor, whitecolor } from "../../constants/color";
+import { linkcolor, primarycolor, whitecolor } from "../../../constants/color";
 import {
     CalenderIcon,
     HomeIcon,
     MessageIcon,
     UserIcon,
-} from "../../assets/iconsvg/Svgicon";
-import { width } from "../../constants/mobileDimensions";
+} from "../../../assets/iconsvg/Svgicon";
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 

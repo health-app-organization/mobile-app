@@ -1,18 +1,18 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet ,Image, TouchableOpacity} from "react-native"; // Ensure StyleSheet is imported
+import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native"; // Ensure StyleSheet is imported
 import {
   PaymentInput,
   CustomButton,
   PaymentMethod,
-} from "../mycomponents/mycomponent";
-import { height } from "../../constants/mobileDimensions";
+} from "../../mycomponents/mycomponent";
+import { height } from "../../../constants/mobileDimensions";
 import { FontAwesome } from "@expo/vector-icons";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
   withSpring,
 } from "react-native-reanimated";
-import NumericKeyboard from "../modals/CustomKeyboard"; // Your numeric keyboard component
+import NumericKeyboard from "../../modals/CustomKeyboard"; // Your numeric keyboard component
 
 export const PaymentScreen = () => {
   const [amount, setAmount] = useState("");
@@ -51,19 +51,19 @@ export const PaymentScreen = () => {
       <View className=" mb-10 w-full  h-16 flex-row justify-between ">
         <View className=" w-44 h-16  flex-row">
           <View>
-             <Image
-            source={require("../../assets/images/logo.png")}
-            resizeMode="contain"
-            className=" h-16 w-16"
-          />
+            <Image
+              source={require("../../../assets/images/logo.png")}
+              resizeMode="contain"
+              className=" h-16 w-16"
+            />
           </View>
           <View className=" -ml-3 flex justify-center items-center">
-          <Text className=" text-black font-bold text-center text-2xl">HEALTHAPP</Text>
+            <Text className=" text-black font-bold text-center text-2xl">HEALTHAPP</Text>
           </View>
         </View>
         <TouchableOpacity className=" justify-center items-center flex  w-10 h-10 ">
-          
-        <FontAwesome name="times" size={23} color="#0099B8"/>
+
+          <FontAwesome name="times" size={23} color="#0099B8" />
         </TouchableOpacity>
       </View>
       <View className="mt-5">

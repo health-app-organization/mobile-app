@@ -1,12 +1,12 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { height } from "../../../constants/mobileDimensions";
-import Footer from "../../mycomponents/doctor/footer";
-import RoundProgressTracker from "../../mycomponents/doctor/round-progress-tracker";
-import { Textstyles } from "../../../constants/fontsize";
-import { CustomButton } from "../../mycomponents/mycomponent";
-import { primarycolor, whitecolor } from "../../../constants/color";
+import { height } from "../../../../constants/mobileDimensions";
+import Footer from "../../../mycomponents/doctor/footer";
+import RoundProgressTracker from "../../../mycomponents/doctor/round-progress-tracker";
+import { Textstyles } from "../../../../constants/fontsize";
+import { CustomButton } from "../../../mycomponents/mycomponent";
+import { primarycolor, whitecolor } from "../../../../constants/color";
 import { useNavigation } from "@react-navigation/native";
 
 const DoctorHome = () => {

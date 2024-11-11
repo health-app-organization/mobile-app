@@ -1,7 +1,7 @@
 import { Avatar } from "react-native-paper";
-import { primarycolor, whitecolor } from "../../constants/color";
+import { primarycolor, whitecolor } from "../../../constants/color";
 import { View, Text, TouchableOpacity } from "react-native";
-import { Textstyles } from "../../constants/fontsize";
+import { Textstyles } from "../../../constants/fontsize";
 import {
     AmbulanceIcon,
     BackgroundIcon,
@@ -10,9 +10,9 @@ import {
     Notificationicon,
     SethIcon,
     ShoppingCartIcon,
-} from "../../assets/iconsvg/Svgicon";
-import { QRCodeScreen } from "../qrcodegen/Qrcode";
-import { MenuButton } from "../mycomponents/mycomponent";
+} from "../../../assets/iconsvg/Svgicon";
+import { QRCodeScreen } from "../../qrcodegen/Qrcode";
+import { MenuButton } from "../../mycomponents/mycomponent";
 import Footer from "./footer";
 
 const Dashboard = () => {
@@ -48,7 +48,7 @@ const Dashheader = () => {
                     <View className="flex-row items-center">
                         <View>
                             <Avatar.Image
-                                source={require("../../assets/images/profileimage.png")}
+                                source={require("../../../assets/images/profileimage.png")}
                                 size={60}
                             />
                         </View>

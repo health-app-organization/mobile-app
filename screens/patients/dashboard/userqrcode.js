@@ -1,8 +1,8 @@
 import React from "react";
 import { StatusBar } from "expo-status-bar";
 import { View, Image, Text, TouchableOpacity } from "react-native";
-import { Header } from "../mycomponents/mycomponent";
 import { useNavigation } from "@react-navigation/native";
+import { Header } from "../../mycomponents/mycomponent";
 
 const Orcode = () => {
   const navigation = useNavigation();
@@ -19,7 +19,7 @@ const Orcode = () => {
         <TouchableOpacity className=" w-[345px] h-[398px] bg-white rounded-[16px] flex justify-center items-center -mt-12">
           <View className=" w-[80px] justify-center -mt-20 flex items-center ml-auto mr-auto  h-[80px] rounded-xl">
             <Image
-              source={require("../../assets/images/pro.png")}
+              source={require("../../../assets/images/pro.png")}
               resizeMode="contain"
               className=" w-full"
             />
@@ -28,7 +28,7 @@ const Orcode = () => {
           <Text className=" text-center  text-[17px] leading-[25] font-[500] text-gray-500 px-[70px] mb-12 ">Member since September 2024</Text>
           <View className=" w-[201px] h-[201px] ">
           <Image
-            source={require("../../assets/images/qr.png")}
+            source={require("../../../assets/images/qr.png")}
             resizeMode="contain"
             className=" w-full"
           />

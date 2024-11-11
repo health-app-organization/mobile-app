@@ -22,7 +22,7 @@ const Footer = ({ activeProps }) => {
             <View className="w-full h-24 bg-white absolute bottom-0 flex-row items-center justify-evenly z-50">
                 <TouchableOpacity
                     onPress={() =>
-                        handleNavigate("healthptype", { screen: "doctor-home" })
+                        handleNavigate("health-provider-types", { screen: "doctor-home" })
                     }
                     style={
                         active === "doctor-home"

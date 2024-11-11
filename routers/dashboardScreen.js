@@ -3,10 +3,10 @@ import {
     CardStyleInterpolators,
   } from "@react-navigation/stack";
   import { Platform } from "react-native";
-import Dashboard from "../screens/dashboard/dashboard";
-import Lab from "../screens/dashboard/LAB/lab";
-import Appointments from "../screens/dashboard/apponitments";
-import AppointmentDetails from "../screens/dashboard/apponitmentdetails";
+import Dashboard from "../screens/patients/dashboard/dashboard";
+import Appointments from "../screens/patients/dashboard/apponitments";
+import AppointmentDetails from "../screens/patients/dashboard/apponitmentdetails";
+import LabsScreen from "../screens/patients/dashboard/LAB/lab";
   
   const DashboardScreen = () => {
     const Stack = createStackNavigator();
@@ -37,7 +37,7 @@ import AppointmentDetails from "../screens/dashboard/apponitmentdetails";
             gestureDirection: Platform.OS === "ios" ? "horizontal" : Platform.OS === "android" && "vertical",
           }}
           name="lab"
-          component={Lab}
+          component={LabsScreen}
         />
          <Stack.Screen
         options={{

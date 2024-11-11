@@ -1,34 +1,16 @@
-import React, { useState } from "react";
-import Imagepic from "../../assets/images/appo.png"
 import {
-  Image,
   View,
   Text,
-  TouchableOpacity,
   StatusBar,
-  Modal,
   ScrollView,
 } from "react-native";
-import { Feather, FontAwesome } from "@expo/vector-icons";
 import {
-  greycolortwo,
-  primarycolor,
-  primarycolortwo,
-  whitecolor,
-} from "../../constants/color";
-import HeaderTitle, {
-  CustomButton,
-  CustomButton2,
-  CustomButtonsmall,
-  CustomButtonsmall2,
   CustomInputSearch,
-  CustomTextInput,
   Providercard,
   Providercard2,
-} from "../mycomponents/mycomponent";
+} from "../../mycomponents/mycomponent";
 import { useNavigation } from "@react-navigation/native";
-import { height, width } from "../../constants/mobileDimensions";
-import { Header3 } from "../mycomponents/mycomponent";
+import { Header3 } from "../../mycomponents/mycomponent";
 
 const Medicine = () => {
   const navigation = useNavigation();

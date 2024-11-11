@@ -1,14 +1,14 @@
 import { StyleSheet, Text, View } from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { height } from "../../../constants/mobileDimensions";
+import { height } from "../../../../constants/mobileDimensions";
 import {
     Step1,
     Step2,
     Step3,
     Step4,
     Step5,
-} from "../../mycomponents/doctor/extra-info/steps";
+} from "../../../mycomponents/doctor/extra-info/steps";
 
 const ExtraInfo = () => {
     const [currentStep, setCurrentStep] = useState(1);

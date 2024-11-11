@@ -3,12 +3,11 @@ import {
     CardStyleInterpolators,
 } from "@react-navigation/stack";
 import { Platform } from "react-native";
-import Healthcare from "../screens/healthptype/auth/healthsignup";
-import Provider from "../screens/healthptype/auth/healthtype";
-import HealthProviderLogin from "../screens/healthptype/auth/healthProviderLogin";
-import Verification from "../screens/healthptype/auth/verification";
-import DoctorHome from "../screens/healthptype/dashboard/doctor-home";
-import ExtraInfo from "../screens/healthptype/dashboard/extra-info";
+import HealthProviderLogin from "../screens/health-provider-types/doctors/auth/healthProviderLogin";
+import Healthcare from "../screens/health-provider-types/doctors/auth/healthsignup";
+import Verification from "../screens/health-provider-types/doctors/auth/verification";
+import DoctorHome from "../screens/health-provider-types/doctors/dashboard/doctor-home";
+import ExtraInfo from "../screens/health-provider-types/doctors/dashboard/extra-info";
 
 const HealthProviderRouter = () => {
     const Stack = createStackNavigator();
@@ -33,7 +32,7 @@ const HealthProviderRouter = () => {
                             : Platform.OS === "android" && "vertical",
                 }}
                 name="select-health-provider"
-                component={Provider}
+                component={HealthProviderLogin}
             />
             <Stack.Screen
                 options={{
