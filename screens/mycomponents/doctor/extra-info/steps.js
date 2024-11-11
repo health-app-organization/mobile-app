@@ -1,18 +1,24 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
+import { primarycolor } from "../../../../constants/color";
+import { Textstyles } from "../../../../constants/fontsize";
 
 export const Step1 = ({ handleNextStep, handlePreviousStep }) => {
     return (
-        <View>
-            <TouchableOpacity
-                onPress={() => {
-                    console.log("next step");
-                    handleNextStep();
-                }}
-            >
-                <Text>Step 1</Text>
-            </TouchableOpacity>
-        </View>
+        <>
+            <View className="gap-y-2">
+                <View className="flex-row justify-between">
+                    <Text style={[Textstyles.text_x16small]}>Step 1 of 3</Text>
+                    <TouchableOpacity onPress={handleNextStep}>
+                        <Text className={`text-[${primarycolor}]`} style={[Textstyles.text_x16small]}>
+                            Skip
+                        </Text>
+                    </TouchableOpacity>
+                </View>
+                <Text style={[Textstyles.text_cfmedium]}>Your Profile</Text>
+                <Text style={[Textstyles.text_small]}>Update your profile information</Text>
+            </View>
+        </>
     );
 };
 

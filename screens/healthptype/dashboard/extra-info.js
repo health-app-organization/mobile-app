@@ -26,7 +26,7 @@ const ExtraInfo = () => {
     return (
         <SafeAreaView
             style={{ height: height }}
-            className="justify-center items-center"
+            className="py-5 px-4"
         >
             {currentStep === 1 && (
                 <Step1
