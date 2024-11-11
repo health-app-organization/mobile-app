@@ -8,6 +8,7 @@ import Healthcare from "../screens/health-provider-types/doctors/auth/healthsign
 import Verification from "../screens/health-provider-types/doctors/auth/verification";
 import DoctorHome from "../screens/health-provider-types/doctors/dashboard/doctor-home";
 import ExtraInfo from "../screens/health-provider-types/doctors/dashboard/extra-info";
+import Provider from "../screens/health-provider-types/doctors/auth/healthtype";
 
 const HealthProviderRouter = () => {
     const Stack = createStackNavigator();
@@ -32,7 +33,7 @@ const HealthProviderRouter = () => {
                             : Platform.OS === "android" && "vertical",
                 }}
                 name="select-health-provider"
-                component={HealthProviderLogin}
+                component={Provider}
             />
             <Stack.Screen
                 options={{
