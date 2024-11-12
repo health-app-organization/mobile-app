@@ -1687,4 +1687,52 @@ export const DoctorCard = ({ name, session, time, imageSource, onPress }) => {
 
 
 
+export const CustomButtoncall = ({
+  Textname,
+  onPress,
+  backgroundColor,
+  TextColor,
+  borderWidth,
+  borderColor,
+  leftIcon,
+  rightIcon,
+  props,
+  width = 20,  // Default width set to 50
+  height = 20, // Default height set to 50
+}) => {
+  return (
+    <TouchableOpacity
+      style={[
+        {
+          backgroundColor: backgroundColor,
+          borderWidth: borderWidth || 0,
+          borderColor: borderColor || null,
+          width: width,  // Set the width (default 50)
+          height: height, // Set the height (default 50)
+          justifyContent: "center", // Center content vertically
+          alignItems: "center", // Center content horizontally
+          borderRadius: width / 2, // Make the button circular based on width/height
+        },
+        customstyle.buttonstyle, // Keep your existing custom styles if needed
+      ]}
+      onPress={onPress}
+      {...props}
+    >
+      {/* If no left or right icon is passed, show the phone icon */}
+      {!leftIcon && !rightIcon && (
+        <Ionicons name="call" size={24} color={TextColor || "white"} />
+      )}
 
+      {/* Display left icon if passed */}
+      {leftIcon}
+
+      {/* Display the text in the button */}
+      <Text style={[Textstyles.text_button, { color: TextColor }]}>
+        {Textname}
+      </Text>
+
+      {/* Display right icon if passed */}
+      {rightIcon}
+    </TouchableOpacity>
+  );
+};
