@@ -69,12 +69,13 @@ const TestReport = () => {
           </KeyboardAvoidingView>
         </View>
       ) : (
-        <View className=" w-full">
+        <View className="  w-full flex justify-center items-center">
           <AppointmentCard
             title="Malaria"
             doctorName="Dr Micheal Brains"
             dateTime="28TH OCT, 2024  11:45 AM"
           />
+          <View className=" h-5" />
           <AppointmentCard
             title="Malaria"
             doctorName="Dr Micheal Brains"

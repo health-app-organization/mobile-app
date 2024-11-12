@@ -28,21 +28,17 @@ import Medicine from "../screens/patients/dashboard/medicine";
 import Lab from "../screens/patients/dashboard/LAB/lab";
 import DashboardScreen from "./dashboardScreen";
 
-import Wallet from "../screens/patients/dashboard/wallet";
 import Profile from "../screens/patients/dashboard/profile/profile";
 import Chat from "../screens/patients/dashboard/chat";
 import HealthcareProviderScreen from "../screens/patients/dashboard/LAB/healthprovider";
 
-import OrderHistory from "../screens/patients/dashboard/orderhistory";
-import OrderTracking from "../screens/patients/dashboard/ordertracking";
-import Favourites from "../screens/patients/dashboard/favourites";
-import ProfileCompletion from "../screens/patients/dashboard/profile/profilecomplete";
-import Personal from "../screens/patients/dashboard/profile/personal";
 import Laboratories from "../screens//patients/dashboard/LAB/laboratories";
 import Address from "../screens/patients/dashboard/profile/manageaddress";
 import Settings from "../screens/patients/dashboard/profile/setings";
 import AppointmentDetails from "../screens/patients/dashboard/apponitmentdetails";
 import Toplabs from "../screens/patients/dashboard/LAB/toplaboratories";
+import Doctordetails from "../screens/patients/dashboard/doctordetails";
+import ProfileScreen from "./profileScreen";
 
 const StackWrapper = () => {
   const Stack = createStackNavigator();
@@ -69,6 +65,17 @@ const StackWrapper = () => {
         }}
         name="start"
         component={ScreenDisplay}
+      />
+      <Stack.Screen
+        options={{
+          gestureEnabled: false,
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
+        }}
+        name="doctordetails"
+        component={Doctordetails}
       />
       <Stack.Screen
         options={{
@@ -283,17 +290,7 @@ const StackWrapper = () => {
         name="lab"
         component={Lab}
       />
-      <Stack.Screen
-        options={{
-          gestureEnabled: true,
-          gestureDirection:
-            Platform.OS === "ios"
-              ? "horizontal"
-              : Platform.OS === "android" && "vertical",
-        }}
-        name="wallet"
-        component={Wallet}
-      />
+
       <Stack.Screen
         options={{
           gestureEnabled: true,
@@ -317,61 +314,6 @@ const StackWrapper = () => {
         component={Chat}
       />
 
-      <Stack.Screen
-        options={{
-          gestureEnabled: true,
-          gestureDirection:
-            Platform.OS === "ios"
-              ? "horizontal"
-              : Platform.OS === "android" && "vertical",
-        }}
-        name="orderhistory"
-        component={OrderHistory}
-      />
-      <Stack.Screen
-        options={{
-          gestureEnabled: true,
-          gestureDirection:
-            Platform.OS === "ios"
-              ? "horizontal"
-              : Platform.OS === "android" && "vertical",
-        }}
-        name="ordertracking"
-        component={OrderTracking}
-      />
-      <Stack.Screen
-        options={{
-          gestureEnabled: true,
-          gestureDirection:
-            Platform.OS === "ios"
-              ? "horizontal"
-              : Platform.OS === "android" && "vertical",
-        }}
-        name="favourites"
-        component={Favourites}
-      />
-      <Stack.Screen
-        options={{
-          gestureEnabled: true,
-          gestureDirection:
-            Platform.OS === "ios"
-              ? "horizontal"
-              : Platform.OS === "android" && "vertical",
-        }}
-        name="profilecomplete"
-        component={ProfileCompletion}
-      />
-      <Stack.Screen
-        options={{
-          gestureEnabled: true,
-          gestureDirection:
-            Platform.OS === "ios"
-              ? "horizontal"
-              : Platform.OS === "android" && "vertical",
-        }}
-        name="personal"
-        component={Personal}
-      />
       <Stack.Screen
         options={{
           gestureEnabled: true,
@@ -404,6 +346,17 @@ const StackWrapper = () => {
         }}
         name="verification"
         component={VerificationFlowStack}
+      />
+      <Stack.Screen
+        options={{
+          gestureEnabled: true,
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
+        }}
+        name="profileScreen"
+        component={ProfileScreen}
       />
     </Stack.Navigator>
   );

@@ -2,7 +2,7 @@ import React from 'react';
 import { StatusBar } from "expo-status-bar";
 import { View ,Image,Text} from 'react-native';
 import { Textstyles } from '../../../constants/fontsize';
-import { Header5 } from '../../mycomponents/mycomponent';
+import { Header } from '../../mycomponents/mycomponent';
 
 const OrderHistory = () => {
 
@@ -10,10 +10,7 @@ const OrderHistory = () => {
     <View className="h-screen w-full">
       <StatusBar style="auto" />
 
-      <Header5 
-        title="Order History" 
-      />   
-      
+      <Header title="Order History" />
       <View className=" w-full flex mt-52 justify-center items-center">
         <View className="w-[154px] h-[139px] ">
         <Image

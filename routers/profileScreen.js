@@ -3,18 +3,21 @@ import {
   CardStyleInterpolators,
 } from "@react-navigation/stack";
 import { Platform } from "react-native";
-import Dashboard from "../screens/patients/dashboard/dashboard";
-import Appointments from "../screens/patients/dashboard/apponitments";
-import AppointmentDetails from "../screens/patients/dashboard/apponitmentdetails";
 
-import LabsScreen from "../screens/patients/dashboard/LAB/lab";
+import Personal from "../screens/patients/dashboard/profile/personal";
 
-const DashboardScreen = () => {
+import ProfileCompletion from "../screens/patients/dashboard/profile/profilecomplete";
+import OrderHistory from "../screens/patients/dashboard/orderhistory";
+import OrderTracking from "../screens/patients/dashboard/ordertracking";
+import Favourites from "../screens/patients/dashboard/favourites";
+import Wallet from "../screens/patients/dashboard/wallet";
+
+const ProfileScreen = () => {
   const Stack = createStackNavigator();
   return (
     <Stack.Navigator
       navigationOption=""
-      initialRouteName="Home"
+      initialRouteName="profileScreen"
       screenOptions={{
         headerTitle: null, // Remove the title for all screens
         headerShown: false,
@@ -24,53 +27,68 @@ const DashboardScreen = () => {
       }}
     >
       {/* <Stack.Screen  name="start" component={Home} /> */}
-      <Stack.Screen
-        options={{
-          gestureEnabled: false,
-          gestureDirection:
-            Platform.OS === "ios"
-              ? "horizontal"
-              : Platform.OS === "android" && "vertical",
-        }}
-        name="Home"
-        component={Dashboard}
-      />
-      <Stack.Screen
-        options={{
-          gestureEnabled: false,
-          gestureDirection:
-            Platform.OS === "ios"
-              ? "horizontal"
-              : Platform.OS === "android" && "vertical",
-        }}
-        name="lab"
-        component={LabsScreen}
-      />
-      <Stack.Screen
-        options={{
-          gestureEnabled: true,
-          gestureDirection:
-            Platform.OS === "ios"
-              ? "horizontal"
-              : Platform.OS === "android" && "vertical",
-        }}
-        name="Appointment"
-        component={Appointments}
-      />
 
       <Stack.Screen
         options={{
-          gestureEnabled: true,
           gestureDirection:
             Platform.OS === "ios"
               ? "horizontal"
               : Platform.OS === "android" && "vertical",
         }}
-        name="apponitmentdetails"
-        component={AppointmentDetails}
+        name="wallet"
+        component={Wallet}
       />
-      
+      <Stack.Screen
+        options={{
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
+        }}
+        name="personal"
+        component={Personal}
+      />
+      <Stack.Screen
+        options={{
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
+        }}
+        name="profilecomplete"
+        component={ProfileCompletion}
+      />
+      <Stack.Screen
+        options={{
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
+        }}
+        name="orderhistory"
+        component={OrderHistory}
+      />
+      <Stack.Screen
+        options={{
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
+        }}
+        name="ordertracking"
+        component={OrderTracking}
+      />
+      <Stack.Screen
+        options={{
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
+        }}
+        name="favourites"
+        component={Favourites}
+      />
     </Stack.Navigator>
   );
 };
-export default DashboardScreen;
+export default ProfileScreen;

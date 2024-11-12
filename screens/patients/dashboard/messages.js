@@ -21,7 +21,6 @@ import HeaderTitle, {
 } from "../../mycomponents/mycomponent";
 import { useNavigation } from "@react-navigation/native";
 
-
 const Messages = () => {
   const navigation = useNavigation();
   const handletocheck = () => {
@@ -97,7 +96,7 @@ const Messages = () => {
           </ScrollView>
         </View>
       </View>
-      <Footer activepros={Messages} />
+      <Footer activepros={"Messages"} />
     </>
   );
 };
