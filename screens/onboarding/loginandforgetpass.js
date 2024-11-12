@@ -49,14 +49,18 @@ export const Login = () => {
   };
   const handletodashboard = () => {
     navigation.navigate("dashboard");
-
   };
 
   return (
     <>
       <View className="h-screen w-full px-5 py-[88px]">
         <>
-          <Text style={[Textstyles.text_medium]} className="text-3xl text-center mt-4">Welcome Back !!</Text>
+          <Text
+            style={[Textstyles.text_medium]}
+            className="text-3xl text-center mt-4"
+          >
+            Welcome Back !!
+          </Text>
           <View className="w-full h-44  flex mb-4 justify-center items-center">
             <View className=" w-[50%]  flex justify-center items-center h-36">
               <Image
@@ -100,14 +104,12 @@ export const Login = () => {
           backgroundColor={primarycolor}
           TextColor={whitecolor}
         />
-        <View className=" flex-row h-12 mt-36 w-full justify-center  ">
-          <View>
-            <Text style={[Textstyles.text_small]} className="text-center mt-6">
-              Don't have an account?
-            </Text>
-          </View>
-          <TouchableOpacity className=" mt-6 ml-1" onPress={handletosignup}>
-            <Text style={[Textstyles.text_small]} className=" text-[#0099b8]">
+        <View className="flex-row h-14 mt-36 gap-1 w-full justify-center items-center">
+          <Text style={[Textstyles.text_small]} className="text-center">
+            Don't have an account?
+          </Text>
+          <TouchableOpacity  onPress={handletosignup}>
+            <Text style={[Textstyles.text_small]} className="text-[#0099b8]">
               Sign up
             </Text>
           </TouchableOpacity>

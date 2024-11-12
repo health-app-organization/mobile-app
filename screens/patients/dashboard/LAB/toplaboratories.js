@@ -21,18 +21,17 @@ import HeaderTitle, {
   Header,
   Providercard,
   Providercard2,
-} from "../../mycomponents/mycomponent";
+} from "../../../mycomponents/mycomponent";
 import { useNavigation } from "@react-navigation/native";
 
-
-const Medicine = () => {
+const Toplabs = () => {
   const navigation = useNavigation();
 
   return (
     <View className="  h-screen">
       <StatusBar style="auto" />
 
-      <Header title="Medicine" />
+      <Header title="Laboratories" />
       <View className=" px-4 mt-4">
         <CustomInputSearch
           placeholder="Search for chat"
@@ -41,7 +40,7 @@ const Medicine = () => {
         />
       </View>
       <Text className=" text-[27px] font-[600] leading-[30px] mt-5 pl-6">
-        Top Pharmacist
+        Top Laboratory Scientist
       </Text>
       <View style={{ height: 200, width: "100%" }}>
         <ScrollView horizontal={true} className=" px-5 mt-4  ">
@@ -125,4 +124,4 @@ const Medicine = () => {
   );
 };
 
-export default Medicine;
+export default Toplabs;

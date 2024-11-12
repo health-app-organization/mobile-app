@@ -5,26 +5,44 @@ import {
 import ScreenDisplay from "../screens/onboarding/splashScreen";
 import Slider from "../screens/onboarding/slidersScreen";
 import {
+  ConfirmPassword,
+  Forgotpass,
   Login,
+  Otpverify,
 } from "../screens/onboarding/loginandforgetpass";
 import Registration from "../screens/onboarding/registration";
 import { Platform } from "react-native";
 
 import VerificationFlowStack from "../screens/verification/verification-stack";
 import Identity from "../screens/onboarding/identity";
-import HealthProviderRouter from "./healthProviderRouter";
+import Provider from "../screens/healthptype/healthtype";
+import Healthcare from "../screens/healthptype/healthsignup";
 import Messages from "../screens/patients/dashboard/messages";
-import HealthcareProviderScreen from "../screens/patients/dashboard/LAB/healthprovider";
-import DashboardScreen from "./dashboardScreen";
+import Appointments from "../screens/patients/dashboard/apponitments";
+
+import Cart from "../screens/patients/dashboard/cart";
 import Orcode from "../screens/patients/dashboard/userqrcode";
 import { PaymentScreen } from "../screens/patients/dashboard/payment";
-import Medicine from "../screens/patients/dashboard/medicine";
-import { LabIcon } from "../assets/iconsvg/Svgicon";
-import Wallet from "../screens/patients/dashboard/wallet";
-import Profile from "../screens/patients/dashboard/profile";
-import Chat from "../screens/patients/dashboard/chat";
-import Cart from "../screens/patients/dashboard/cart";
 import Notification from "../screens/patients/dashboard/notifications";
+import Medicine from "../screens/patients/dashboard/medicine";
+import Lab from "../screens/patients/dashboard/LAB/lab";
+import DashboardScreen from "./dashboardScreen";
+
+import Wallet from "../screens/patients/dashboard/wallet";
+import Profile from "../screens/patients/dashboard/profile/profile";
+import Chat from "../screens/patients/dashboard/chat";
+import HealthcareProviderScreen from "../screens/patients/dashboard/LAB/healthprovider";
+
+import OrderHistory from "../screens/patients/dashboard/orderhistory";
+import OrderTracking from "../screens/patients/dashboard/ordertracking";
+import Favourites from "../screens/patients/dashboard/favourites";
+import ProfileCompletion from "../screens/patients/dashboard/profile/profilecomplete";
+import Personal from "../screens/patients/dashboard/profile/personal";
+import Laboratories from "../screens//patients/dashboard/LAB/laboratories";
+import Address from "../screens/patients/dashboard/profile/manageaddress";
+import Settings from "../screens/patients/dashboard/profile/setings";
+import AppointmentDetails from "../screens/patients/dashboard/apponitmentdetails";
+import Toplabs from "../screens/patients/dashboard/LAB/toplaboratories";
 
 const StackWrapper = () => {
   const Stack = createStackNavigator();
@@ -62,6 +80,28 @@ const StackWrapper = () => {
         }}
         name="slider"
         component={Slider}
+      />
+      <Stack.Screen
+        options={{
+          gestureEnabled: false,
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
+        }}
+        name="apponitmentdetails"
+        component={AppointmentDetails}
+      />
+      <Stack.Screen
+        options={{
+          gestureEnabled: false,
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
+        }}
+        name="toplaboratories"
+        component={Toplabs}
       />
       <Stack.Screen
         options={{
@@ -104,9 +144,33 @@ const StackWrapper = () => {
               ? "horizontal"
               : Platform.OS === "android" && "vertical",
         }}
+        name="healthptype"
+        component={Provider}
+      />
+      <Stack.Screen
+        options={{
+          gestureEnabled: true,
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
+        }}
         name="dashboard"
         component={DashboardScreen}
       />
+
+      <Stack.Screen
+        options={{
+          gestureEnabled: true,
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
+        }}
+        name="healthsignup"
+        component={Healthcare}
+      />
+
       <Stack.Screen
         options={{
           gestureEnabled: true,
@@ -126,8 +190,31 @@ const StackWrapper = () => {
               ? "horizontal"
               : Platform.OS === "android" && "vertical",
         }}
-        name="messages"
+        name="settings"
+        component={Settings}
+      />
+      <Stack.Screen
+        options={{
+          gestureEnabled: true,
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
+        }}
+        name="Messages"
         component={Messages}
+      />
+
+      <Stack.Screen
+        options={{
+          gestureEnabled: true,
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
+        }}
+        name="apponitments"
+        component={Appointments}
       />
 
       <Stack.Screen
@@ -194,7 +281,7 @@ const StackWrapper = () => {
               : Platform.OS === "android" && "vertical",
         }}
         name="lab"
-        component={LabIcon}
+        component={Lab}
       />
       <Stack.Screen
         options={{
@@ -229,6 +316,84 @@ const StackWrapper = () => {
         name="chat"
         component={Chat}
       />
+
+      <Stack.Screen
+        options={{
+          gestureEnabled: true,
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
+        }}
+        name="orderhistory"
+        component={OrderHistory}
+      />
+      <Stack.Screen
+        options={{
+          gestureEnabled: true,
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
+        }}
+        name="ordertracking"
+        component={OrderTracking}
+      />
+      <Stack.Screen
+        options={{
+          gestureEnabled: true,
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
+        }}
+        name="favourites"
+        component={Favourites}
+      />
+      <Stack.Screen
+        options={{
+          gestureEnabled: true,
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
+        }}
+        name="profilecomplete"
+        component={ProfileCompletion}
+      />
+      <Stack.Screen
+        options={{
+          gestureEnabled: true,
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
+        }}
+        name="personal"
+        component={Personal}
+      />
+      <Stack.Screen
+        options={{
+          gestureEnabled: true,
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
+        }}
+        name="manageaddress"
+        component={Address}
+      />
+      <Stack.Screen
+        options={{
+          gestureEnabled: true,
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
+        }}
+        name="laborarories"
+        component={Laboratories}
+      />
       <Stack.Screen
         options={{
           gestureEnabled: true,
@@ -239,18 +404,6 @@ const StackWrapper = () => {
         }}
         name="verification"
         component={VerificationFlowStack}
-      />
-      {/* for all the doctor flow */}
-      <Stack.Screen
-        options={{
-          gestureEnabled: true,
-          gestureDirection:
-            Platform.OS === "ios"
-              ? "horizontal"
-              : Platform.OS === "android" && "vertical",
-        }}
-        name="health-provider-types"
-        component={HealthProviderRouter}
       />
     </Stack.Navigator>
   );
