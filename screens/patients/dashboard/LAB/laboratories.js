@@ -8,7 +8,7 @@ import {
 import { Textstyles } from "../../../../constants/fontsize";
 import { primarycolor, whitecolor } from "../../../../constants/color";
 
-const HealthcareProviderScreen = () => {
+const Laboratories = () => {
   // Handle selection
   // Handling the dropdown value change
   const handleDropdownChange = (selectedValue) => {
@@ -17,37 +17,25 @@ const HealthcareProviderScreen = () => {
 
   return (
     <View className="flex-1 bg-white">
-      <Header title="Healthcare Provider" marginLeft={-80} />
+      <Header title="Laboratories" />
       <Text
         className="text-[28px] font-semibold mt-5 ml-8 mb-7"
         style={[Textstyles.text_cmedium]}
       >
-        What sector will you like to book
+       What sector will you like to book
       </Text>
       <View className=" px-3">
         <CustomDropdownWithHeader
-          headerText="Healthcare provider"
-          placeholder="Select  Healthcare provider"
+          headerText="Choose sector"
+          placeholder="Choose sector"
           onChange={handleDropdownChange}
         />
         <View className=" h-3" />
         <CustomDropdownWithHeader
-          headerText="Department"
-          placeholder="Select Department"
-          onChange={handleDropdownChange}
-        />
-        <View className=" h-3" />
-        <CustomDropdownWithHeader
-          headerText="Urgency"
-          placeholder="How soon do you want care?"
-          onChange={handleDropdownChange}
-        />
-        <View className=" h-3" />
-        <CustomDropdownWithHeader
-          headerText="Location"
-          placeholder="Where do you want care?"
-          onChange={handleDropdownChange}
-        />
+        headerText="Location"
+        placeholder="Where do you want care?"
+        onChange={handleDropdownChange}
+      />
       </View>
       <View className=" mt-10 px-3">
         <CustomButton
@@ -61,4 +49,4 @@ const HealthcareProviderScreen = () => {
   );
 };
 
-export default HealthcareProviderScreen;
+export default Laboratories;
