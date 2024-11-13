@@ -21,6 +21,13 @@ import Footer from "../footer";
 import { primarycolor, whitecolor } from "../../../../constants/color";
 import { Textstyles } from "../../../../constants/fontsize";
 import { useState } from "react";
+import {
+  Favorites,
+  History,
+  Medical,
+  Tracking,
+  Wallet,
+} from "../../../../assets/iconsvg/Svgicon";
 
 const Profile = () => {
   const navigation = useNavigation();
@@ -126,22 +133,18 @@ const Profile = () => {
             onPress={() =>
               navigation.navigate("profileScreen", { screen: "personal" })
             }
-            className=" w-full h-[90px] flex justify-between items-center flex-row  border-b-1   "
+            className="w-full h-[90px] flex justify-between items-center flex-row border-b-1"
             style={{ borderBottomColor: "rgba(0, 0, 0, 0.2)" }}
           >
-            <View className=" flex-row w-[155px] justify-between items-center ml-[24px]">
-              <View className=" w-[45px] h-[45px] bg-[#00D5FD80] flex justify-center items-center rounded-[10px]">
-                <Image
-                  source={require("../../../../assets/images/iconwallet.png")} // Ensure the path is correct
-                  resizeMode="contain"
-                  className="w-[28px] h-[28px]"
-                />
+            <View className="flex-row w-[155px] justify-between items-center ml-[24px]">
+              <View className="w-[45px] h-[45px]  flex justify-center items-center rounded-[10px]">
+                <Wallet width={28} height={28} />
               </View>
               <View>
                 <Text style={[Textstyles.text_medium]}>My Profile</Text>
               </View>
             </View>
-            <View className=" flex justify-center items-center w-8 h-8 mr-[8]">
+            <View className="flex justify-center items-center w-8 h-8 mr-[8]">
               <Ionicons name="chevron-forward" size={32} color="#0099b8" />
             </View>
           </TouchableOpacity>
@@ -150,122 +153,84 @@ const Profile = () => {
             onPress={() =>
               navigation.navigate("profileScreen", { screen: "wallet" })
             }
-            className=" w-full h-[90px] flex justify-between items-center flex-row  border-b-1   "
+            className="w-full h-[90px] flex justify-between items-center flex-row border-b-1"
             style={{ borderBottomColor: "rgba(0, 0, 0, 0.2)" }}
           >
-            <View className=" flex-row w-[155px] justify-between items-center ml-[24px]">
-              <View className=" w-[45px] h-[45px] bg-[#00D5FD80] flex justify-center items-center rounded-[10px]">
-                <Image
-                  source={require("../../../../assets/images/iconwallet.png")} // Ensure the path is correct
-                  resizeMode="contain"
-                  className="w-[28px] h-[28px]"
-                />
+            <View className="flex-row w-[155px] justify-between items-center ml-[24px]">
+              <View className="w-[45px] h-[45px]  flex justify-center items-center rounded-[10px]">
+                <Wallet width={28} height={28} />
               </View>
               <View>
                 <Text style={[Textstyles.text_medium]}>My Wallet</Text>
               </View>
             </View>
-            <View className=" flex justify-center items-center w-8 h-8 mr-[8]">
-              <Ionicons name="chevron-forward" size={32} color="#0099b8" />
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() =>
-              navigation.navigate("profileScreen", {
-                screen: "profilecomplete",
-              })
-            }
-            className=" w-full h-[90px] flex justify-between items-center flex-row  border-b-1   "
-            style={{ borderBottomColor: "rgba(0, 0, 0, 0.2)" }}
-          >
-            <View className=" flex-row w-[250px]  justify-between items-center  ml-[24px]">
-              <View className=" w-[45px] h-[45px] bg-[#00D5FD80] flex justify-center items-center rounded-[10px]">
-                <Image
-                  source={require("../../../../assets/images/records.png")} // Ensure the path is correct
-                  resizeMode="contain"
-                  className="w-[28px] h-[28px]"
-                />
-              </View>
-              <View>
-                <Text style={[Textstyles.text_medium]}>My Medical Records</Text>
-              </View>
-            </View>
-            <View className=" flex justify-center items-center w-8 h-8 mr-[8]">
-              <Ionicons name="chevron-forward" size={32} color="#0099b8" />
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() =>
-              navigation.navigate("profileScreen", { screen: "orderhistory" })
-            }
-            className=" w-full h-[90px] flex justify-between items-center flex-row  border-b-1   "
-            style={{ borderBottomColor: "rgba(0, 0, 0, 0.2)" }}
-          >
-            <View className=" flex-row w-[185px]  justify-between items-center  ml-[24px]">
-              <View className=" w-[45px] h-[45px] bg-[#00D5FD80] flex justify-center items-center rounded-[10px]">
-                <Image
-                  source={require("../../../../assets/images/history.png")} // Ensure the path is correct
-                  resizeMode="contain"
-                  className="w-[28px] h-[28px]"
-                />
-              </View>
-              <View>
-                <Text style={[Textstyles.text_medium]}>Order History</Text>
-              </View>
-            </View>
-            <View className=" flex justify-center items-center w-8 h-8 mr-[8]">
+            <View className="flex justify-center items-center w-8 h-8 mr-[8]">
               <Ionicons name="chevron-forward" size={32} color="#0099b8" />
             </View>
           </TouchableOpacity>
 
           <TouchableOpacity
             onPress={() =>
-              navigation.navigate("profileScreen", { screen: "ordertracking" })
+              navigation.navigate("profileScreen", {
+                screen: "profilecomplete",
+              })
             }
-            className=" w-full h-[90px] flex justify-between items-center flex-row  border-b-1   "
+            className="w-full h-[90px] flex justify-between items-center flex-row border-b-1"
             style={{ borderBottomColor: "rgba(0, 0, 0, 0.2)" }}
           >
-            <View className=" flex-row w-[185px]  justify-between items-center  ml-[24px]">
-              <View className=" w-[45px] h-[45px] bg-[#00D5FD80] flex justify-center items-center rounded-[10px]">
-                <Image
-                  source={require("../../../../assets/images/history.png")} // Ensure the path is correct
-                  resizeMode="contain"
-                  className="w-[28px] h-[28px]"
-                />
+            <View className="flex-row w-[250px] justify-between items-center ml-[24px]">
+              <View className="w-[45px] h-[45px]  flex justify-center items-center rounded-[10px]">
+                <Medical width={28} height={28} />
               </View>
               <View>
-                <Text style={[Textstyles.text_medium]} className=" ml-4">
-                  Order Tracking
-                </Text>
+                <Text style={[Textstyles.text_medium]}>My Medical Records</Text>
               </View>
             </View>
-            <View className=" flex justify-center items-center w-8 h-8 mr-[8]">
+            <View className="flex justify-center items-center w-8 h-8 mr-[8]">
               <Ionicons name="chevron-forward" size={32} color="#0099b8" />
             </View>
           </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate("profileScreen", { screen: "orderhistory" })
+            }
+            className="w-full h-[90px] flex justify-between items-center flex-row border-b-1"
+            style={{ borderBottomColor: "rgba(0, 0, 0, 0.2)" }}
+          >
+            <View className="flex-row w-[185px] justify-between items-center ml-[24px]">
+              <View className="w-[45px] h-[45px]  flex justify-center items-center rounded-[10px]">
+                <History width={28} height={28} />
+              </View>
+              <View>
+                <Text style={[Textstyles.text_medium]}>Order History</Text>
+              </View>
+            </View>
+            <View className="flex justify-center items-center w-8 h-8 mr-[8]">
+              <Ionicons name="chevron-forward" size={32} color="#0099b8" />
+            </View>
+          </TouchableOpacity>
+
           <TouchableOpacity
             onPress={() =>
               navigation.navigate("profileScreen", { screen: "favourites" })
             }
-            className=" w-full h-[90px] flex justify-between items-center flex-row  border-b-1   "
+            className="w-full h-[90px] flex justify-between items-center flex-row border-b-1"
             style={{ borderBottomColor: "rgba(0, 0, 0, 0.2)" }}
           >
-            <View className=" flex-row w-[185px]  justify-between items-center  ml-[24px]">
-              <View className=" w-[45px] h-[45px] bg-[#00D5FD80] flex justify-center items-center rounded-[10px]">
-                <Image
-                  source={require("../../../../assets/images/history.png")} // Ensure the path is correct
-                  resizeMode="contain"
-                  className="w-[28px] h-[28px]"
-                />
+            <View className="flex-row w-[185px] justify-between items-center ml-[24px]">
+              <View className="w-[45px] h-[45px]  flex justify-center items-center rounded-[10px]">
+                <Favorites width={28} height={28} />
               </View>
               <View>
                 <Text style={[Textstyles.text_medium]}>My Favorites</Text>
               </View>
             </View>
-            <View className=" flex justify-center items-center w-8 h-8 mr-[8]">
+            <View className="flex justify-center items-center w-8 h-8 mr-[8]">
               <Ionicons name="chevron-forward" size={32} color="#0099b8" />
             </View>
           </TouchableOpacity>
+
           <TouchableOpacity
             onPress={() =>
               navigation.navigate("profileScreen", { screen: "manageaddress" })
@@ -274,7 +239,7 @@ const Profile = () => {
             style={{ borderBottomColor: "rgba(0, 0, 0, 0.2)" }}
           >
             <View className=" flex-row w-[185px]  justify-between items-center  ml-[24px]">
-              <View className=" w-[45px] h-[45px] bg-[#00D5FD80] flex justify-center items-center rounded-[10px]">
+              <View className=" w-[45px] h-[45px]  flex justify-center items-center rounded-[10px]">
                 <Image
                   source={require("../../../../assets/images/history.png")} // Ensure the path is correct
                   resizeMode="contain"
@@ -297,7 +262,7 @@ const Profile = () => {
             style={{ borderBottomColor: "rgba(0, 0, 0, 0.2)" }}
           >
             <View className=" flex-row w-[185px]  justify-between items-center  ml-[24px]">
-              <View className=" w-[45px] h-[45px] bg-[#00D5FD80] flex justify-center items-center rounded-[10px]">
+              <View className=" w-[45px] h-[45px]  flex justify-center items-center rounded-[10px]">
                 <Image
                   source={require("../../../../assets/images/history.png")} // Ensure the path is correct
                   resizeMode="contain"
@@ -322,7 +287,7 @@ const Profile = () => {
             style={{ borderBottomColor: "rgba(0, 0, 0, 0.2)" }}
           >
             <View className=" flex-row w-[185px]  justify-between items-center  ml-[24px]">
-              <View className=" w-[45px] h-[45px] bg-[#00D5FD80] flex justify-center items-center rounded-[10px]">
+              <View className=" w-[45px] h-[45px]  flex justify-center items-center rounded-[10px]">
                 <Image
                   source={require("../../../../assets/images/history.png")} // Ensure the path is correct
                   resizeMode="contain"
@@ -344,7 +309,7 @@ const Profile = () => {
             style={{ borderBottomColor: "rgba(0, 0, 0, 0.2)" }}
           >
             <View className=" flex-row w-[185px]  justify-between items-center  ml-[24px]">
-              <View className=" w-[45px] h-[45px] bg-[#00D5FD80] flex justify-center items-center rounded-[10px]">
+              <View className=" w-[45px] h-[45px]  flex justify-center items-center rounded-[10px]">
                 <Image
                   source={require("../../../../assets/images/history.png")} // Ensure the path is correct
                   resizeMode="contain"
@@ -368,7 +333,7 @@ const Profile = () => {
             style={{ borderBottomColor: "rgba(0, 0, 0, 0.2)" }}
           >
             <View className=" flex-row w-[185px]  justify-between items-center  ml-[24px]">
-              <View className=" w-[45px] h-[45px] bg-[#00D5FD80] flex justify-center items-center rounded-[10px]">
+              <View className=" w-[45px] h-[45px]  flex justify-center items-center rounded-[10px]">
                 <Image
                   source={require("../../../../assets/images/history.png")} // Ensure the path is correct
                   resizeMode="contain"

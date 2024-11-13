@@ -11,6 +11,8 @@ import OrderHistory from "../screens/patients/dashboard/orderhistory";
 import OrderTracking from "../screens/patients/dashboard/ordertracking";
 import Favourites from "../screens/patients/dashboard/favourites";
 import Wallet from "../screens/patients/dashboard/wallet";
+import Address from "../screens/patients/dashboard/profile/manageaddress";
+import Settings from "../screens/patients/dashboard/profile/setings";
 
 const ProfileScreen = () => {
   const Stack = createStackNavigator();
@@ -57,6 +59,26 @@ const ProfileScreen = () => {
         }}
         name="profilecomplete"
         component={ProfileCompletion}
+      />
+         <Stack.Screen
+        options={{
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
+        }}
+        name="manageaddress"
+        component={Address}
+      />
+         <Stack.Screen
+        options={{
+          gestureDirection:
+            Platform.OS === "ios"
+              ? "horizontal"
+              : Platform.OS === "android" && "vertical",
+        }}
+        name="settings"
+        component={Settings}
       />
       <Stack.Screen
         options={{
