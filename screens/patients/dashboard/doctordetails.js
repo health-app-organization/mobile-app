@@ -10,6 +10,7 @@ import { primarycolor, whitecolor } from "../../../constants/color";
 import { useNavigation } from "@react-navigation/native";
 import Footer from "./footer";
 import { Textstyles } from "../../../constants/fontsize";
+import { Hospital, Study } from "../../../assets/iconsvg/Svgicon";
 
 const Doctordetails = () => {
   const navigation = useNavigation();
@@ -236,7 +237,10 @@ const Doctordetails = () => {
               </View>
               <View className="h-16 w-full">
                 <Text style={[Textstyles.text_cmedium]}>Certification</Text>
-                <Text>Oyo state university</Text>
+                <View className="flex-row gap-2 items-center">
+                  <Study width={24} height={24} />
+                  <Text>Oyo state university</Text>
+                </View>
               </View>
             </View>
             <View className=" flex px-3 justify-center items-center -mt-1 ">
@@ -254,50 +258,68 @@ const Doctordetails = () => {
                   </Text>
                 </View>
               </View>
-              <View className=" w-full h-16 mt-2 mb-1">
-                <View>
-                  <Text style={[Textstyles.text_cmedium]}>
-                    Christ Bay Hospital
-                  </Text>
-                  <Text className=" font-bold text-[#00000080]">
-                    {" "}
-                    Medical Laboratory Scientist
-                  </Text>
-                </View>
-              </View>
-              <View className=" w-full h-16 mt-2 mb-1">
-                <View>
-                  <Text style={[Textstyles.text_cmedium]}>
-                    Christ Bay Hospital
-                  </Text>
-                  <Text className=" font-bold text-[#00000080]">
-                    {" "}
-                    Medical Laboratory Scientist
-                  </Text>
-                </View>
-              </View>
-              <View className=" w-full h-16 mt-2 mb-1">
-                <View>
-                  <Text style={[Textstyles.text_cmedium]}>
-                    Christ Bay Hospital
-                  </Text>
-                  <Text className=" font-bold text-[#00000080]">
-                    {" "}
-                    Medical Laboratory Scientist
-                  </Text>
-                </View>
-              </View>
-              <View className=" w-full h-16 mt-2 mb-1">
-                <View>
-                  <Text style={[Textstyles.text_cmedium]}>
-                    Christ Bay Hospital
-                  </Text>
-                  <Text className=" font-bold text-[#00000080]">
-                    {" "}
-                    Medical Laboratory Scientist
-                  </Text>
-                </View>
-              </View>
+              
+              <View className=" ml-9 w-full h-16 mt-2 mb-1">
+  <View className="flex-row items-start gap-2">
+    <View className=" mt-2">
+    <Hospital width={24} height={24}  />
+    </View>
+    <View>
+      <Text style={[Textstyles.text_cmedium]}>
+        Christ Bay Hospital
+      </Text>
+      <Text className="font-bold text-[#00000080]">
+        Medical Laboratory Scientist
+      </Text>
+    </View>
+  </View>
+</View>
+              <View className=" ml-9 w-full h-16 mt-2 mb-1">
+  <View className="flex-row items-start gap-2">
+    <View className=" mt-2">
+    <Hospital width={24} height={24}  />
+    </View>
+    <View>
+      <Text style={[Textstyles.text_cmedium]}>
+        Christ Bay Hospital
+      </Text>
+      <Text className="font-bold text-[#00000080]">
+        Medical Laboratory Scientist
+      </Text>
+    </View>
+  </View>
+</View>
+
+<View className="ml-9 w-full h-16 mt-2 mb-1">
+  <View className="flex-row items-start gap-2">
+    <View className=" mt-2">
+    <Hospital width={24} height={24}  />
+    </View>
+    <View>
+      <Text style={[Textstyles.text_cmedium]}>
+        Christ Bay Hospital
+      </Text>
+      <Text className="font-bold text-[#00000080]">
+        Medical Laboratory Scientist
+      </Text>
+    </View>
+  </View>
+</View>
+<View className="w-full ml-9 h-16 mt-2 mb-1">
+  <View className="flex-row items-start gap-2">
+    <View className=" mt-2">
+    <Hospital width={24} height={24}  />
+    </View>
+    <View>
+      <Text style={[Textstyles.text_cmedium]}>
+        Christ Bay Hospital
+      </Text>
+      <Text className="font-bold text-[#00000080]">
+        Medical Laboratory Scientist
+      </Text>
+    </View>
+  </View>
+</View>
             </View>
 
             <View className="w-full mt-3 px-8">

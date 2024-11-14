@@ -22,9 +22,14 @@ import { primarycolor, whitecolor } from "../../../../constants/color";
 import { Textstyles } from "../../../../constants/fontsize";
 import { useState } from "react";
 import {
+  Customer,
   Favorites,
   History,
+  Logout,
+  Manage,
   Medical,
+  Reminder,
+  Settings,
   Tracking,
   Wallet,
 } from "../../../../assets/iconsvg/Svgicon";
@@ -240,11 +245,7 @@ const Profile = () => {
           >
             <View className=" flex-row w-[185px]  justify-between items-center  ml-[24px]">
               <View className=" w-[45px] h-[45px]  flex justify-center items-center rounded-[10px]">
-                <Image
-                  source={require("../../../../assets/images/history.png")} // Ensure the path is correct
-                  resizeMode="contain"
-                  className="w-[28px] h-[28px]"
-                />
+              <Manage width={28} height={28} />
               </View>
               <View>
                 <Text style={[Textstyles.text_medium]} className=" ml-4">
@@ -263,11 +264,7 @@ const Profile = () => {
           >
             <View className=" flex-row w-[185px]  justify-between items-center  ml-[24px]">
               <View className=" w-[45px] h-[45px]  flex justify-center items-center rounded-[10px]">
-                <Image
-                  source={require("../../../../assets/images/history.png")} // Ensure the path is correct
-                  resizeMode="contain"
-                  className="w-[28px] h-[28px]"
-                />
+              <Reminder width={28} height={28} />
               </View>
               <View>
                 <Text style={[Textstyles.text_medium]} className=" ml-2">
@@ -288,11 +285,7 @@ const Profile = () => {
           >
             <View className=" flex-row w-[185px]  justify-between items-center  ml-[24px]">
               <View className=" w-[45px] h-[45px]  flex justify-center items-center rounded-[10px]">
-                <Image
-                  source={require("../../../../assets/images/history.png")} // Ensure the path is correct
-                  resizeMode="contain"
-                  className="w-[28px] h-[28px]"
-                />
+              <Settings width={28} height={28} />
               </View>
               <View>
                 <Text style={[Textstyles.text_medium]} className=" -ml-36">
@@ -310,11 +303,7 @@ const Profile = () => {
           >
             <View className=" flex-row w-[185px]  justify-between items-center  ml-[24px]">
               <View className=" w-[45px] h-[45px]  flex justify-center items-center rounded-[10px]">
-                <Image
-                  source={require("../../../../assets/images/history.png")} // Ensure the path is correct
-                  resizeMode="contain"
-                  className="w-[28px] h-[28px]"
-                />
+              <Customer width={28} height={28} />
               </View>
               <View>
                 <Text style={[Textstyles.text_medium]} className=" ml-2">
@@ -334,11 +323,7 @@ const Profile = () => {
           >
             <View className=" flex-row w-[185px]  justify-between items-center  ml-[24px]">
               <View className=" w-[45px] h-[45px]  flex justify-center items-center rounded-[10px]">
-                <Image
-                  source={require("../../../../assets/images/history.png")} // Ensure the path is correct
-                  resizeMode="contain"
-                  className="w-[28px] h-[28px]"
-                />
+              <Logout width={28} height={28} />
               </View>
               <View>
                 <Text style={[Textstyles.text_medium]} className=" -ml-32">
