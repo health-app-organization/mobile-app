@@ -9,7 +9,7 @@ import { DateComponent } from "../../mycomponents/mycomponent";
 
 const Appointments = () => {
   const navigation = useNavigation();
-  const [activeTab, setActiveTab] = useState("Upcoming");
+
 
   return (
     <View className="flex-1 bg-gray-100">
@@ -24,7 +24,20 @@ const Appointments = () => {
       <View className="w-full mb-4">
         <DateComponent />
       </View>
-      <View className="flex-row justify-center mt-2 mb-6">
+      <AppointmentComponrnt/>
+     
+
+      {/* Footer */}
+      <Footer activepros="Appointments" />
+    </View>
+  );
+};
+
+export const AppointmentComponrnt=()=>{
+  const [activeTab, setActiveTab] = useState("Upcoming");
+  return(
+    <>
+     <View className="flex-row justify-center mt-2 mb-6">
         {/* Upcoming Tab */}
         <TouchableOpacity
           className={`px-4 py-2 w-[162px] flex justify-center items-center h-[41px] rounded-xl mx-2 ${
@@ -89,11 +102,9 @@ const Appointments = () => {
           />
         </View>
       )}
+    </>
 
-      {/* Footer */}
-      <Footer activepros="Appointment" />
-    </View>
-  );
-};
+  )
+}
 
 export default Appointments;

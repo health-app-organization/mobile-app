@@ -11,7 +11,7 @@ const Orcode = () => {
       <StatusBar style="auto" />
 
       <Header title="Patient QR code" />
-      <Text className=" text-center  text-[17px] leading-[25] font-[500] text-gray-500 px-[78px] mt-12">
+      <Text className=" text-center  text-[17px]  font-[500] text-gray-500 px-[78px] mt-12">
         Your QR Code is Private. Your doctor can scan it with their camera on
         HEALTH to see yourmedical history
       </Text>
@@ -24,8 +24,8 @@ const Orcode = () => {
               className=" w-full"
             />
           </View>
-          <Text className=" text-center  text-[17px] leading-[25] font-[500] text-gray-500 px-[78px] mt-6">ID- HEALTH_987654321</Text>
-          <Text className=" text-center  text-[17px] leading-[25] font-[500] text-gray-500 px-[70px] mb-12 ">Member since September 2024</Text>
+          <Text className=" text-center  text-[17px] font-[500] text-gray-500 px-[78px] mt-6">ID- HEALTH_987654321</Text>
+          <Text className=" text-center  text-[17px]  font-[500] text-gray-500 px-[70px] mb-12 ">Member since September 2024</Text>
           <View className=" w-[201px] h-[201px] ">
           <Image
             source={require("../../../assets/images/qr.png")}

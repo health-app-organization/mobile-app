@@ -22,6 +22,7 @@ import { useState, useEffect } from "react";
 import { greycolortwo, linkcolor, primarycolor } from "../../constants/color";
 import { height, width } from "../../constants/mobileDimensions";
 import { Picker } from "@react-native-picker/picker";
+import { ArrowDownIcon, ArrowUpIcon } from "../../assets/iconsvg/Svgicon";
 
 export const CustomButton = ({
   Textname,
@@ -807,20 +808,10 @@ export const PaymentMethod = ({ selectedMethod, onSelect }) => {
 export const Header = ({ title, rightIcon, onRightIconPress, marginLeft }) => {
   const navigation = useNavigation();
   return (
-    <View
-      style={{
-        flexDirection: "row",
-        alignItems: "center",
-        paddingHorizontal: 30,
-        paddingTop: 30,
-        backgroundColor: "#00A8CC", // The color for the header background
-        justifyContent: "space-between", // Space between left and right items
-        width: "100%",
-      }}
-      className="h-1/6"
+    <View style={{backgroundColor:"#00A8CC",}} className="h-1/6 flex-row items-center justify-center w-full px-5"
     >
       {/* Back Button */}
-      <TouchableOpacity onPress={() => navigation.goBack()}>
+      <TouchableOpacity className="w-16 h-16 justify-center" onPress={() => navigation.goBack()}>
         <Ionicons name="chevron-back" size={32} color="white" />
       </TouchableOpacity>
 
@@ -832,13 +823,10 @@ export const Header = ({ title, rightIcon, onRightIconPress, marginLeft }) => {
           lineHeight: 30,
           fontWeight: "700",
           flex: 1, // Allow title to take available space
-          textAlign: "center", // Center the title
-          marginLeft: marginLeft || -150, // Use the passed marginLeft prop or default to -150
         }}
       >
         {title}
       </Text>
-
       {/* Right Icon (if provided) */}
       {rightIcon && (
         <TouchableOpacity onPress={onRightIconPress}>
@@ -1222,17 +1210,17 @@ export const Providercard2 = ({
     </TouchableOpacity>
   );
 };
-export const MenuButton = ({ icon, text }) => {
+
+export const MenuButton = ({ icon, text, onPress }) => {
   return (
-    <>
-      <TouchableOpacity
-        style={{ elevation: 4 }}
-        className="w-28 h-28 rounded-2xl bg-white flex justify-center items-center px-3 shadow-sm shadow-black"
-      >
-        {icon}
-        {text}
-      </TouchableOpacity>
-    </>
+    <TouchableOpacity
+      style={{ elevation: 4 }}
+      className="w-28 h-28 rounded-2xl bg-white flex justify-center items-center px-3 shadow-sm shadow-black"
+      onPress={onPress}
+    >
+      {icon}
+      {text}
+    </TouchableOpacity>
   );
 };
 
@@ -1276,6 +1264,7 @@ export const DateComponent = () => {
                   height: 100,
                   width: 60,
                 }}
+                key={index}
                 className="flex justify-center items-center"
               >
                 <Text style={[Textstyles.text_cmedium]}>{days[index]}</Text>
@@ -1468,7 +1457,7 @@ export const CustomDropdownWithHeader = ({
         <Picker
           selectedValue={selectedValue}
           enabled={!disable}
-          className={`h-12 text-gray-600 ${leftIconName ? "pl-12" : "pl-4"}`} // Adjust padding for the icon
+          className={`h-12 text-gray-600  ${leftIconName ? "pl-12" : "pl-4"}`} // Adjust padding for the icon
           onValueChange={(itemValue) => {
             setSelectedValue(itemValue);
             if (onChange) {
@@ -1664,7 +1653,8 @@ export const DoctorCard = ({ name, session, time, imageSource, onPress }) => {
       <View className=" flex justify-center items-center rounded-2xl">
         <Image
           source={imageSource}
-          className="w-[163px] h-[160px]  rounded-2xl " // Set image dimensions and vertically center it
+          className="w-[163px] h-[160px] object-bottom  rounded-2xl " // Set image dimensions and vertically center it
+          resizeMode="cover"
         />
       </View>
       <View className="flex-1  justify-center items-center">
@@ -1687,4 +1677,99 @@ export const DoctorCard = ({ name, session, time, imageSource, onPress }) => {
 
 
 
+export const CustomButtoncall = ({
+  Textname,
+  onPress,
+  backgroundColor,
+  TextColor,
+  borderWidth,
+  borderColor,
+  leftIcon,
+  rightIcon,
+  props,
+  width = 20,  // Default width set to 50
+  height = 20, // Default height set to 50
+}) => {
+  return (
+    <TouchableOpacity
+      style={[
+        {
+          backgroundColor: backgroundColor,
+          borderWidth: borderWidth || 0,
+          borderColor: borderColor || null,
+          width: width,  // Set the width (default 50)
+          height: height, // Set the height (default 50)
+          justifyContent: "center", // Center content vertically
+          alignItems: "center", // Center content horizontally
+          borderRadius: width / 2, // Make the button circular based on width/height
+        },
+        customstyle.buttonstyle, // Keep your existing custom styles if needed
+      ]}
+      onPress={onPress}
+      {...props}
+    >
+      {/* If no left or right icon is passed, show the phone icon */}
+      {!leftIcon && !rightIcon && (
+        <Ionicons name="call" size={24} color={TextColor || "white"} />
+      )}
 
+      {/* Display left icon if passed */}
+      {leftIcon}
+
+      {/* Display the text in the button */}
+      <Text style={[Textstyles.text_button, { color: TextColor }]}>
+        {Textname}
+      </Text>
+
+      {/* Display right icon if passed */}
+      {rightIcon}
+    </TouchableOpacity>
+  );
+};
+export const Selectionpicker =({Title,onPress})=>{
+  return(
+    <>
+    <TouchableOpacity onPress={()=>onPress()} className="justify-between px-3 flex-row items-center" style={{borderColor:primarycolor, borderWidth:1,height:50, borderRadius:10}}>
+      <Text style={[Textstyles.text_xmedium]}>
+        {Title}
+      </Text>
+      <ArrowDownIcon/>
+    </TouchableOpacity>
+    </>
+  )
+}
+export const DataDisplayModay=({data,setshowmodal,setSelectedValue,title})=>{
+
+  return(
+    <>
+    <View style={{backgroundColor:primarycolor}} className="opacity-70 h-full w-full absolute" />
+    <View className="h-[30vh] w-[80vw] relative z-50 rounded-2xl bg-white px-3 py-3">
+      <View className="justify-between flex-row">
+        <Text style={[Textstyles.text_xmedium]}>{title}</Text>
+      <TouchableOpacity onPress={()=>setshowmodal(false)}>
+      <ArrowUpIcon/>
+      </TouchableOpacity>
+
+      </View>
+  
+      <ScrollView
+      showsVerticalScrollIndicator={false}
+      >
+      <View className="py-4">
+          {data.map((item,index)=>(
+            <TouchableOpacity 
+            key={index}
+            className="h-12 border-b border-slate-100 flex justify-center"
+            onPress={()=>{setSelectedValue(item.value);setshowmodal(false)}}
+            >
+              <Text >{item.label}</Text>
+            </TouchableOpacity>
+          )) }
+
+        </View>
+      </ScrollView>
+      
+    </View>
+    </>
+  )
+}

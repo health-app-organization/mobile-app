@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import {
   View,
@@ -6,336 +6,173 @@ import {
   TouchableOpacity,
   Image,
   ScrollView,
-  Modal,
   Animated,
-  Easing,
+ 
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { FontAwesome } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons"; // Import Ionicons for arrow
-import { CustomButton, CustomButtonno } from "../../../mycomponents/mycomponent";
+import {
+  CustomButton,
+  CustomButtonno,
+} from "../../../mycomponents/mycomponent";
 import Footer from "../footer";
 import { primarycolor, whitecolor } from "../../../../constants/color";
 import { Textstyles } from "../../../../constants/fontsize";
-import { useState } from "react";
-
+import { AddressBookIcon, DocumentvalidationIcon, InvoiceIcon, LogIcon, ReminderIcon, SettingsIcon, ShipmenttrackIcon, ShopBagicon, UserIcon, WalletIcon } from "../../../../assets/iconsvg/Svgicon";
 
 const Profile = () => {
   const navigation = useNavigation();
   const [modalVisible, setModalVisible] = useState(false);
   const slideAnim = useRef(new Animated.Value(300)).current; // Starting position off-screen
 
-  const openModal = () => {
-    setModalVisible(true);
-    Animated.timing(slideAnim, {
-      toValue: 0,
-      duration: 300,
-      easing: Easing.ease,
+
+   const handleShowModal = () => {
+     setModalVisible(true);
+     Animated.spring(slideAnim, {
+      toValue: 0, // Slide into view
+      friction: 8, // Adjust for a more springy effect
+      tension: 40,
       useNativeDriver: true,
     }).start();
-  };
-
-  const closeModal = () => {
-    Animated.timing(slideAnim, {
-      toValue: 300, // Moves the modal off-screen
-      duration: 300,
-      easing: Easing.ease,
-      useNativeDriver: true,
-    }).start(() => setModalVisible(false));
-  };
+   };
 
   return (
-    <View className="flex-1 w-full h-screen">
+  <>
+   <View className="flex w-full h-full ">
       <StatusBar style="auto" />
-      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-        <View className="w-full bg-[#0099B8] h-[15.55%] rounded-b-3xl pt-20">
-          <Text
-            className="text-white text-2xl font-bold ml-8"
-            style={[Textstyles.text_medium]}
-          >
-            My Account
-          </Text>
-          <View className=" w-full flex justify-center mb-20   items-center">
-            <View className=" w-[232px] flex justify-center items-center h-[175px]   mt-16">
-              {/* Profile Picture */}
-              <View
-                className="w-[80px] mt-[86px] h-[80px]  flex justify-center items-center  rounded-tl-lg overflow-hidden"
-                style={{
-                  opacity: 1,
-                  borderWidth: 3, // Set the border width to 3
-                  borderColor: "#FFFFFF", // Set the border color to white
-                  borderRadius: 10,
-                }}
-              >
-                <Image
-                  source={require("../../../../assets/images/pro.png")} // Ensure the path is correct
-                  resizeMode="contain"
-                  className="w-full h-full"
-                />
-              </View>
-
-              {/* Camera Icon */}
-              <TouchableOpacity
-                className="w-8 h-8 bg-[#FFAA26] rounded-full -mt-6 ml-16"
-                style={{
-                  borderWidth: 3,
-                  borderColor: "#FFFFFF", // Set the border color to white
-                  opacity: 1,
-                }}
-              >
-                <FontAwesome
-                  name="camera"
-                  size={15}
-                  color="#000000"
-                  style={{
-                    alignSelf: "center",
-                    marginTop: "auto",
-                    marginBottom: "auto",
-                  }} // Center the icon
-                />
-              </TouchableOpacity>
-              <Text
-                className=" text-[24px] font-[700] leading-[36px] "
-                style={[Textstyles.text_medium]}
-              >
-                Praise icon
-              </Text>
-              <Text
-                className=" text-[16px] leading-[24px] mb-1 "
-                style={{ color: "rgba(0, 0, 0, 0.5)" }}
-              >
-                calebomojuko@gmail.com
-              </Text>
-              <Text
-                className=" text-[16px] leading-[24px] "
-                style={{ color: "rgba(0, 0, 0, 0.5)" }}
-              >
-                +234 8164724627
-              </Text>
+      <View className="w-full bg-[#0099B8] h-[25vh] rounded-b-3xl pt-20">
+        <Text
+          className="text-white text-2xl font-bold ml-8"
+          style={[Textstyles.text_medium]}
+        >
+          My Account
+        </Text>
+      </View>
+      <View className=" h-[10vh] -mt-10 mb-12 ">
+        <View className=" w-full flex justify-center   items-center">
+          <View className="   flex justify-center items-center    ">
+            {/* Profile Picture */}
+            <View
+              className="w-[80px]  h-[80px]  flex justify-center items-center  rounded-tl-lg overflow-hidden"
+              style={{
+                opacity: 1,
+                borderWidth: 3, // Set the border width to 3
+                borderColor: "#FFFFFF", // Set the border color to white
+                borderRadius: 10,
+              }}
+            >
+              <Image
+                source={require("../../../../assets/images/pro.png")} // Ensure the path is correct
+                resizeMode="contain"
+                className="w-full h-full"
+              />
             </View>
+
+            {/* Camera Icon */}
+            <TouchableOpacity
+              className="w-8 h-8 bg-[#FFAA26] rounded-full -mt-6 ml-16"
+              style={{
+                borderWidth: 3,
+                borderColor: "#FFFFFF", // Set the border color to white
+                opacity: 1,
+              }}
+            >
+              <FontAwesome
+                name="camera"
+                size={15}
+                color="#000000"
+                style={{
+                  alignSelf: "center",
+                  marginTop: "auto",
+                  marginBottom: "auto",
+                }} // Center the icon
+              />
+            </TouchableOpacity>
+            <Text
+              className=" text-[24px] font-[700] leading-[36px] "
+              style={[Textstyles.text_medium]}
+            >
+              Praise icon
+            </Text>
+            <Text
+              className=" text-[16px] leading-[24px] mb-1 "
+              style={{ color: "rgba(0, 0, 0, 0.5)" }}
+            >
+              calebomojuko@gmail.com
+            </Text>
+            <Text
+              className=" text-[16px] leading-[24px] "
+              style={{ color: "rgba(0, 0, 0, 0.5)" }}
+            >
+              +234 8164724627
+            </Text>
           </View>
+        </View>
+      </View>
 
+      <View className=" h-[55vh] ">
+        <ScrollView className="flex-1  pt-6 ">
+         <SelectMenu
+         label={'My Profile'}
+         icon={<UserIcon/>}
+         routename={'personal'}
+         />
+           <SelectMenu
+         label={'My Wallet'}
+         icon={<WalletIcon/>}
+         routename={'wallet'}
+         />
+        <SelectMenu
+         label={'My Medical Records'}
+         icon={<DocumentvalidationIcon/>}
+         routename={'profilecomplete'}
+         />
+          <SelectMenu
+         label={'Order History'}
+         icon={<InvoiceIcon/>}
+         routename={'orderhistory'}
+         />
+            <SelectMenu
+         label={'Order Tracking'}
+         icon={<ShipmenttrackIcon/>}
+         routename={'ordertracking'}
+         />
+        <SelectMenu
+         label={'My Favourites'}
+         icon={<ShopBagicon/>}
+         routename={'favourites'}
+         />
+         <SelectMenu
+         label={'Manage Address'}
+         icon={<AddressBookIcon/>}
+         routename={'manageaddress'}
+         />
+         <SelectMenu
+         label={'Medicine Reminder'}
+         icon={<ReminderIcon/>}
+         routename={'favourites'}
+         />
+         <SelectMenu
+         label={'Settings'}
+         icon={<SettingsIcon/>}
+         routename={'settings'}
+         />
+          <SelectMenu
+         label={'Customer Support'}
+         icon={<SettingsIcon/>}
+         />
           <TouchableOpacity
-            className=" w-full h-[90px] flex justify-between items-center flex-row  border-b-1   "
-            style={{ borderBottomColor: "rgba(0, 0, 0, 0.2)" }}
-          >
-            <View className=" flex-row w-[155px] justify-between items-center ml-[24px]">
-              <View className=" w-[45px] h-[45px] bg-[#00D5FD80] flex justify-center items-center rounded-[10px]">
-                <Image
-                  source={require("../../../../assets/images/iconwallet.png")} // Ensure the path is correct
-                  resizeMode="contain"
-                  className="w-[28px] h-[28px]"
-                />
-              </View>
-              <View>
-                <Text style={[Textstyles.text_medium]}>My Profile</Text>
-              </View>
-            </View>
-            <View className=" flex justify-center items-center w-8 h-8 mr-[8]">
-              <Ionicons name="chevron-forward" size={32} color="#0099b8" />
-            </View>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            className=" w-full h-[90px] flex justify-between items-center flex-row  border-b-1   "
-            style={{ borderBottomColor: "rgba(0, 0, 0, 0.2)" }}
-          >
-            <View className=" flex-row w-[155px] justify-between items-center ml-[24px]">
-              <View className=" w-[45px] h-[45px] bg-[#00D5FD80] flex justify-center items-center rounded-[10px]">
-                <Image
-                  source={require("../../../../assets/images/iconwallet.png")} // Ensure the path is correct
-                  resizeMode="contain"
-                  className="w-[28px] h-[28px]"
-                />
-              </View>
-              <View>
-                <Text style={[Textstyles.text_medium]}>My Wallet</Text>
-              </View>
-            </View>
-            <View className=" flex justify-center items-center w-8 h-8 mr-[8]">
-              <Ionicons name="chevron-forward" size={32} color="#0099b8" />
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity
-            className=" w-full h-[90px] flex justify-between items-center flex-row  border-b-1   "
-            style={{ borderBottomColor: "rgba(0, 0, 0, 0.2)" }}
-          >
-            <View className=" flex-row w-[250px]  justify-between items-center  ml-[24px]">
-              <View className=" w-[45px] h-[45px] bg-[#00D5FD80] flex justify-center items-center rounded-[10px]">
-                <Image
-                  source={require("../../../../assets/images/records.png")} // Ensure the path is correct
-                  resizeMode="contain"
-                  className="w-[28px] h-[28px]"
-                />
-              </View>
-              <View>
-                <Text style={[Textstyles.text_medium]}>My Medical Records</Text>
-              </View>
-            </View>
-            <View className=" flex justify-center items-center w-8 h-8 mr-[8]">
-              <Ionicons name="chevron-forward" size={32} color="#0099b8" />
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity
+          onPress={handleShowModal}
             className=" w-full h-[90px] flex justify-between items-center flex-row  border-b-1   "
             style={{ borderBottomColor: "rgba(0, 0, 0, 0.2)" }}
           >
             <View className=" flex-row w-[185px]  justify-between items-center  ml-[24px]">
               <View className=" w-[45px] h-[45px] bg-[#00D5FD80] flex justify-center items-center rounded-[10px]">
-                <Image
-                  source={require("../../../../assets/images/history.png")} // Ensure the path is correct
-                  resizeMode="contain"
-                  className="w-[28px] h-[28px]"
-                />
+                <LogIcon/>
               </View>
               <View>
-                <Text style={[Textstyles.text_medium]}>Order History</Text>
-              </View>
-            </View>
-            <View className=" flex justify-center items-center w-8 h-8 mr-[8]">
-              <Ionicons name="chevron-forward" size={32} color="#0099b8" />
-            </View>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            className=" w-full h-[90px] flex justify-between items-center flex-row  border-b-1   "
-            style={{ borderBottomColor: "rgba(0, 0, 0, 0.2)" }}
-          >
-            <View className=" flex-row w-[185px]  justify-between items-center  ml-[24px]">
-              <View className=" w-[45px] h-[45px] bg-[#00D5FD80] flex justify-center items-center rounded-[10px]">
-                <Image
-                  source={require("../../../../assets/images/history.png")} // Ensure the path is correct
-                  resizeMode="contain"
-                  className="w-[28px] h-[28px]"
-                />
-              </View>
-              <View>
-                <Text style={[Textstyles.text_medium]}>Order Tracking</Text>
-              </View>
-            </View>
-            <View className=" flex justify-center items-center w-8 h-8 mr-[8]">
-              <Ionicons name="chevron-forward" size={32} color="#0099b8" />
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity
-            className=" w-full h-[90px] flex justify-between items-center flex-row  border-b-1   "
-            style={{ borderBottomColor: "rgba(0, 0, 0, 0.2)" }}
-          >
-            <View className=" flex-row w-[185px]  justify-between items-center  ml-[24px]">
-              <View className=" w-[45px] h-[45px] bg-[#00D5FD80] flex justify-center items-center rounded-[10px]">
-                <Image
-                  source={require("../../../../assets/images/history.png")} // Ensure the path is correct
-                  resizeMode="contain"
-                  className="w-[28px] h-[28px]"
-                />
-              </View>
-              <View>
-                <Text style={[Textstyles.text_medium]}>My Favorites</Text>
-              </View>
-            </View>
-            <View className=" flex justify-center items-center w-8 h-8 mr-[8]">
-              <Ionicons name="chevron-forward" size={32} color="#0099b8" />
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity
-            className=" w-full h-[90px] flex justify-between items-center flex-row  border-b-1   "
-            style={{ borderBottomColor: "rgba(0, 0, 0, 0.2)" }}
-          >
-            <View className=" flex-row w-[185px]  justify-between items-center  ml-[24px]">
-              <View className=" w-[45px] h-[45px] bg-[#00D5FD80] flex justify-center items-center rounded-[10px]">
-                <Image
-                  source={require("../../../../assets/images/history.png")} // Ensure the path is correct
-                  resizeMode="contain"
-                  className="w-[28px] h-[28px]"
-                />
-              </View>
-              <View>
-                <Text style={[Textstyles.text_medium]}>Order History</Text>
-              </View>
-            </View>
-            <View className=" flex justify-center items-center w-8 h-8 mr-[8]">
-              <Ionicons name="chevron-forward" size={32} color="#0099b8" />
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity
-            className=" w-full h-[90px] flex justify-between items-center flex-row  border-b-1   "
-            style={{ borderBottomColor: "rgba(0, 0, 0, 0.2)" }}
-          >
-            <View className=" flex-row w-[185px]  justify-between items-center  ml-[24px]">
-              <View className=" w-[45px] h-[45px] bg-[#00D5FD80] flex justify-center items-center rounded-[10px]">
-                <Image
-                  source={require("../../../../assets/images/history.png")} // Ensure the path is correct
-                  resizeMode="contain"
-                  className="w-[28px] h-[28px]"
-                />
-              </View>
-              <View>
-                <Text style={[Textstyles.text_medium]} className=" -ml-32">
-                  Settings
-                </Text>
-              </View>
-            </View>
-            <View className=" flex justify-center items-center w-8 h-8 mr-[8]">
-              <Ionicons name="chevron-forward" size={32} color="#0099b8" />
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity
-            className=" w-full h-[90px] flex justify-between items-center flex-row  border-b-1   "
-            style={{ borderBottomColor: "rgba(0, 0, 0, 0.2)" }}
-          >
-            <View className=" flex-row w-[185px]  justify-between items-center  ml-[24px]">
-              <View className=" w-[45px] h-[45px] bg-[#00D5FD80] flex justify-center items-center rounded-[10px]">
-                <Image
-                  source={require("../../../../assets/images/history.png")} // Ensure the path is correct
-                  resizeMode="contain"
-                  className="w-[28px] h-[28px]"
-                />
-              </View>
-              <View>
-                <Text style={[Textstyles.text_medium]} className=" ml-2">
-                  Customer Support
-                </Text>
-              </View>
-            </View>
-            <View className=" flex justify-center items-center w-8 h-8 mr-[8]">
-              <Ionicons name="chevron-forward" size={32} color="#0099b8" />
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity
-            className=" w-full h-[90px] flex justify-between items-center flex-row  border-b-1   "
-            style={{ borderBottomColor: "rgba(0, 0, 0, 0.2)" }}
-          >
-            <View className=" flex-row w-[185px]  justify-between items-center  ml-[24px]">
-              <View className=" w-[45px] h-[45px] bg-[#00D5FD80] flex justify-center items-center rounded-[10px]">
-                <Image
-                  source={require("../../../../assets/images/history.png")} // Ensure the path is correct
-                  resizeMode="contain"
-                  className="w-[28px] h-[28px]"
-                />
-              </View>
-              <View>
-                <Text style={[Textstyles.text_medium]}>Order History</Text>
-              </View>
-            </View>
-            <View className=" flex justify-center items-center w-8 h-8 mr-[8]">
-              <Ionicons name="chevron-forward" size={32} color="#0099b8" />
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={openModal}
-            className=" w-full h-[90px] flex justify-between items-center flex-row  border-b-1   "
-            style={{ borderBottomColor: "rgba(0, 0, 0, 0.2)" }}
-          >
-            <View className=" flex-row w-[185px]  justify-between items-center  ml-[24px]">
-              <View className=" w-[45px] h-[45px] bg-[#00D5FD80] flex justify-center items-center rounded-[10px]">
-                <Image
-                  source={require("../../../../assets/images/history.png")} // Ensure the path is correct
-                  resizeMode="contain"
-                  className="w-[28px] h-[28px]"
-                />
-              </View>
-              <View>
-                <Text style={[Textstyles.text_medium]} className=" -ml-32">
+                <Text style={[Textstyles.text_xmedium]} className=" -ml-32">
                   Log out
                 </Text>
               </View>
@@ -344,52 +181,87 @@ const Profile = () => {
               <Ionicons name="chevron-forward" size={32} color="#0099b8" />
             </View>
           </TouchableOpacity>
-        </View>
-      </ScrollView>
-      <Footer activepros={"profilecomplete"} />
-      {/* Slide-up Modal */}
-      <Modal visible={modalVisible} transparent animationType="none">
-        <TouchableOpacity style={{ flex: 1 }} onPress={closeModal}>
-          <Animated.View
-            style={{
-              position: "absolute",
-              bottom: 0,
-              left: 0,
-              right: 0,
-              height: 290,
-              backgroundColor: "white",
-              borderTopLeftRadius: 25,
-              borderTopRightRadius: 25,
-              padding: 20,
-              transform: [{ translateY: slideAnim }],
-            }}
-            className="absolute bottom-0 left-0 right-0 h-50 bg-white rounded-t-lg p-5"
-          >
-            <Text className="text-2xl text-center font-bold mb-4  text-[#0099B8]">
-              WESTACRE
-            </Text>
-            <Text className="text-base text-center font-[600] text-black mb-8">
-              Are you sure you want to log out?
-            </Text>
-            <View className=" h-4 " />
-            <CustomButtonno
-              Textname={"No"}
-              onPress={closeModal}
-              backgroundColor="red"
-              TextColor={whitecolor}
-            />
-            <View className=" h-5 " />
-            <CustomButton
-              Textname={"Yes"}
-              onPress={closeModal}
-              backgroundColor={primarycolor}
-              TextColor={whitecolor}
-            />
-          </Animated.View>
-        </TouchableOpacity>
-      </Modal>
+        </ScrollView>
+      </View>
+      
     </View>
+    <Footer activepros={"profile"} />
+      {modalVisible && <Modallogout 
+      slideAnim={slideAnim} 
+      setModalVisible={(value)=>setModalVisible(value)}
+      />}
+  </>
+   
   );
 };
 
 export default Profile;
+
+const SelectMenu=({routename,label,icon})=>{
+ const  navigation=useNavigation()
+
+  return(
+    <TouchableOpacity
+    onPress={() =>
+      navigation.navigate("profileScreen", { screen: routename})
+    }
+    className=" w-full h-[90px] flex justify-between items-center flex-row  border-b-1"
+    style={{ borderBottomColor: "rgba(0, 0, 0, 0.2)" }}
+  >
+    <View className=" flex-row w-[185px]  items-center  ml-[24px]">
+      <View className=" w-[45px] h-[45px] bg-[#00D5FD80] flex justify-center items-center rounded-[10px]">
+        {icon}
+      </View>
+      <View>
+        <Text style={[Textstyles.text_xmedium]} className="ml-4">
+         {label}
+        </Text>
+      </View>
+    </View>
+    <View className=" flex justify-center items-center w-8 h-8 mr-[8]">
+      <Ionicons name="chevron-forward" size={32} color="#0099b8" />
+    </View>
+  </TouchableOpacity>
+  )
+}
+const Modallogout=({slideAnim,setModalVisible})=>{
+  const handlehideModal = () => {
+    setModalVisible(false);
+    Animated.timing(slideAnim, {
+      toValue: 300, // Slide into view
+      duration: 500, // Adjust duration as needed
+      useNativeDriver: true,
+    }).start();
+  };
+  return(
+    <View className="h-full w-full absolute">
+      <View style={{backgroundColor:primarycolor}} className="absolute h-full w-full opacity-70" />
+       <Animated.View style={[{ transform: [{ translateY: slideAnim }] }]} className="w-full h-[30vh] bg-white absolute z-50  bottom-0  rounded-t-2xl">
+        <View className="items-center mt-5">
+          <Text style={[Textstyles.text_xmedium]}>Westacare</Text>
+          <Text style={[Textstyles.text_x16small]}>Are you sure you want to logout ?</Text>
+        </View>
+        <View className="px-5 mt-3">
+          <CustomButton
+          TextColor={'white'}
+          Textname={'Yes'}
+          backgroundColor={'red'}
+
+          />
+          <View className="h-3"/>
+           <CustomButton
+           onPress={handlehideModal}
+          TextColor={'white'}
+          Textname={'No'}
+          backgroundColor={primarycolor}
+
+          />
+
+        </View>
+
+      </Animated.View>
+
+    </View>
+   
+  )
+}
