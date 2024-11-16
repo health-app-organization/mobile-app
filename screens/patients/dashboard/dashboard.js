@@ -1,6 +1,6 @@
 import { Avatar } from "react-native-paper";
 import { primarycolor, whitecolor } from "../../../constants/color";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import { Textstyles } from "../../../constants/fontsize";
 import {
   AmbulanceIcon,
@@ -13,8 +13,10 @@ import {
 } from "../../../assets/iconsvg/Svgicon";
 import { useNavigation } from "@react-navigation/native";
 import { QRCodeScreen } from "../../qrcodegen/Qrcode";
-import { MenuButton } from "../../mycomponents/mycomponent";
+import { AppointmentCard, DateComponent, MenuButton } from "../../mycomponents/mycomponent";
 import Footer from "./footer";
+import { useState } from "react";
+import { AppointmentComponrnt } from "./apponitments";
 
 const Dashboard = () => {
   return (
@@ -24,8 +26,11 @@ const Dashboard = () => {
         <View>
           <DashboardMenu />
         </View>
-        <View className="flex-1 mt-10 items-center">
-          <Appointment />
+        <View className="flex-1 mt-10 items-center mb-20">
+        <ScrollView>
+        <Appointment />
+            </ScrollView>
+         
         </View>
 
         <Footer activepros={"Home"} />
@@ -150,14 +155,58 @@ const DashboardMenu = () => {
   );
 };
 const Appointment = () => {
+    const [checkapointment,setcheckappointment]=useState(false)
   return (
     <>
-      <View className=" flex items-center  w-full">
+      {checkapointment &&<View className=" flex items-center  w-full">
         <Calender />
         <Text style={[Textstyles.text_xmedium]} className="mt-5">
           You have no Appointments yet
         </Text>
+      </View>}
+      {!checkapointment && <View className=" flex px-5 w-full">
+        <View className="">
+            <Text style={[Textstyles.text_xmedium]} className="">New Chats</Text>
+        </View>
+        <View style={{backgroundColor:'rgba(0, 153, 184, 0.05)'}} className="rounded-2xl relative flex-row px-3 py-2 w-full">
+            <View style={{backgroundColor:primarycolor}} className="absolute right-0 top-7 w-8 h-8 flex items-center justify-center rounded-full">
+                <Text style={[Textstyles.text_xmedium]} className="text-white">4</Text>
+            </View>
+           <View className="">
+           <Avatar.Image size={56} source={require('../../../assets/images/chat 1.png')} />
+            </View> 
+            <View className="w-5">
+
+            </View>
+            <View className="flex-row justify-between flex-1">
+                <View>
+                <Text style={[Textstyles.text_xmedium]} className="">
+                Dr. Sunmisola Olowofela
+                </Text>
+                    <Text>
+                    It's important to fuel your body properly, especially during busy times. Do you....
+                    </Text>
+                </View>
+                <Text>
+                    18:02
+                </Text>
+
+            </View>
+            
+
+        </View>
+        <View className="mt-3">
+        <Text style={[Textstyles.text_xmedium]} className="">Upcoming Appointments</Text>
+        </View>
+        <View className="mt-3">
+            <DateComponent/>
+        </View>
+        <View className="mt-3">
+            <AppointmentComponrnt/>
+        </View>
       </View>
+
+      }
     </>
   );
 };
