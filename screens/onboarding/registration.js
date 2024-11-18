@@ -37,7 +37,8 @@ import { height } from "../../constants/mobileDimensions";
 import { RadioButton } from "react-native-paper";
 import { customstyle } from "../../constants/customstyle";
 import DateModal from "../modals/datemodal";
-import { registerRequest } from "../../api/request-templates";
+import axios from "axios";
+import { registerUrl } from "../../api/end-point";
 
 export default function Registration() {
   const navigation = useNavigation();
@@ -66,22 +67,28 @@ export default function Registration() {
     transform: [{ translateY: translateY.value }],
   }));
 
-  const handleContinue = () => {
+  const handleContinue = async () => {
+    if (isLoading) return;
     if (currentStep === 2) {
       const data = {
         phoneNumber,
         firstName,
         lastName,
         email,
-        phoneNumber,
         birthDate,
         gender,
         password,
       };
-      const registerUser = registerRequest(data, setErrorMessage, setIsLoading, setIsSuccess);
-      console.log(registerUser);
-    } else if (currentStep === 0 && phoneNumber.length !== 10) {
-      return
+      setIsLoading(true);
+      const response = await axios.post(registerUrl("user"), data);
+      console.log(response.data);
+      setIsLoading(false);
+    } else if (currentStep === 0) {
+      const data = { phoneNumber };
+      if (phoneNumber.length !== 10) {
+        return;
+      }
+      setCurrentStep((prevStep) => prevStep + 1);
     } else {
       setErrorMessage(null);
       setCurrentStep((prevStep) => prevStep + 1);
@@ -390,12 +397,14 @@ export default function Registration() {
             <CustomButton
               backgroundColor={primarycolor}
               Textname={
-                currentStep === 2
-                  ? "Continue"
-                  : currentStep === 1
-                    ? "Verify"
-                    : "Send"
+                isLoading ? "Loading..." :
+                  currentStep === 2
+                    ? "Continue"
+                    : currentStep === 1
+                      ? "Verify"
+                      : "Send"
               }
+              isLoading={isLoading}
               TextColor={whitecolor}
               onPress={handleContinue}
             />

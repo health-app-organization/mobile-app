@@ -35,6 +35,7 @@ export const CustomButton = ({
   rightIcon,
   props,
   width,
+  isLoading,
 }) => {
   return (
     <>
@@ -45,6 +46,7 @@ export const CustomButton = ({
             borderWidth: borderWidth || 0,
             borderColor: borderColor || null,
             width: width || "100%",
+            opacity: isLoading ? 0.5 : 1,
           },
           customstyle.buttonstyle,
         ]}

@@ -1,4 +1,9 @@
-export const baseUrl = "http://Appychild.uk/healthapp-backend";
+export const baseUrl = "https://Appychild.uk/healthapp-backend";
+
+// ! Otp Urls
+export const sendOtpUrl = (userStatus) => `${baseUrl}/${userStatus}/password/reset/request-otp`;
+export const verifyOtpUrl = (userStatus) => `${baseUrl}/${userStatus}/password/reset/verify-otp`;
+export const resetPasswordUrl = (userStatus) => `${baseUrl}/${userStatus}/password/reset/reset_password`;
 
 //! Auth Urls
 //* [userStatus=string (user, provider)]
