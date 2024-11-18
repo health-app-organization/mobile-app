@@ -84,9 +84,7 @@ export const loginRequest = async (
 
 export const registerRequest = async (
     userStatus = "user",
-    email,
-    password,
-    phone,
+    data,
     additionalHeaders,
     setErrorMessage,
     setIsLoading,
@@ -95,7 +93,7 @@ export const registerRequest = async (
     const requestOptions = createRequest(
         "POST",
         registerUrl(userStatus),
-        { email, password, phone },
+        data,
         additionalHeaders
     );
     return await sendRequest(

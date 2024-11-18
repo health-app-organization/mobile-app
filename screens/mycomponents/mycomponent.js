@@ -270,6 +270,7 @@ export const CustomTextnumber = ({
   secureTextEntry,
   disable,
   value,
+  errorMessage
 }) => {
   const [isFocused, setIsFocused] = useState(false);
   const [inputValue, setInputValue] = useState(value);
@@ -277,9 +278,8 @@ export const CustomTextnumber = ({
   return (
     <>
       <View
-        className={`w-full relative flex justify-center border ${
-          isFocused ? "border-[#0099b8]" : "border-gray-300"
-        } rounded-lg`}
+        className={`w-full relative flex justify-center border ${isFocused ? "border-[#0099b8]" : "border-gray-300"
+          } rounded-lg`}
       >
         {/* +234 Country code on the left */}
         <View className="absolute left-2 z-50 flex flex-row items-center">
@@ -315,6 +315,7 @@ export const CustomTextnumber = ({
           editable={!disable}
         />
       </View>
+      <Text className="text-red-500">{errorMessage}</Text>
     </>
   );
 };
@@ -780,19 +781,17 @@ export const PaymentMethod = ({ selectedMethod, onSelect }) => {
       {paymentOptions.map((option) => (
         <TouchableOpacity
           key={option.id}
-          className={`flex flex-row items-center border p-4 rounded-lg ${
-            selectedMethod === option.id
+          className={`flex flex-row items-center border p-4 rounded-lg ${selectedMethod === option.id
               ? "border-[#0099b8]" // Highlighted border for selected method
               : "border-gray-300"
-          }`}
+            }`}
           onPress={() => onSelect(option.id)} // Set selected method on press
         >
           <View
-            className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
-              selectedMethod === option.id
+            className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${selectedMethod === option.id
                 ? "border-[#0099b8]"
                 : "border-gray-300"
-            }`}
+              }`}
           >
             {selectedMethod === option.id && (
               <View className="w-3 h-3 bg-[#0099b8] rounded-full" /> // Filled circle for selected method
@@ -808,7 +807,7 @@ export const PaymentMethod = ({ selectedMethod, onSelect }) => {
 export const Header = ({ title, rightIcon, onRightIconPress, marginLeft }) => {
   const navigation = useNavigation();
   return (
-    <View style={{backgroundColor:"#00A8CC",}} className="h-1/6 flex-row items-center justify-center w-full px-5"
+    <View style={{ backgroundColor: "#00A8CC", }} className="h-1/6 flex-row items-center justify-center w-full px-5"
     >
       {/* Back Button */}
       <TouchableOpacity className="w-16 h-16 justify-center" onPress={() => navigation.goBack()}>
@@ -1301,16 +1300,14 @@ export const OptionButton = ({ optionName, isSelected, onSelect, width }) => {
     <TouchableOpacity
       onPress={onSelect}
       style={{ width }} // Dynamic width from prop
-      className={`m-2 p-4 rounded-lg border-2 ${
-        isSelected
+      className={`m-2 p-4 rounded-lg border-2 ${isSelected
           ? "bg-[#0099B8] border-0"
           : "bg-white border-1 border-[#0099B8]"
-      }`}
+        }`}
     >
       <Text
-        className={`text-lg font-semibold ${
-          isSelected ? "text-white text-center" : "text-black text-center"
-        }`}
+        className={`text-lg font-semibold ${isSelected ? "text-white text-center" : "text-black text-center"
+          }`}
       >
         {optionName}
       </Text>
@@ -1339,9 +1336,8 @@ export const CustomTextnumberlabel = ({
         </Text>
       )}
       <View
-        className={`relative flex justify-center border ${
-          isFocused ? "border-[#0099b8]" : "border-gray-300"
-        } rounded-lg`}
+        className={`relative flex justify-center border ${isFocused ? "border-[#0099b8]" : "border-gray-300"
+          } rounded-lg`}
       >
         {/* +234 Country code on the left */}
         <View className="absolute left-2 z-50 flex flex-row items-center">
@@ -1441,9 +1437,8 @@ export const CustomDropdownWithHeader = ({
 
       {/* Dropdown Field */}
       <View
-        className={`relative border-1  rounded-lg bg-gray-100 ${
-          isFocused ? "border-[#0099b8] border-2" : "border-[#ccc]"
-        }`} // Change border color based on focus
+        className={`relative border-1  rounded-lg bg-gray-100 ${isFocused ? "border-[#0099b8] border-2" : "border-[#ccc]"
+          }`} // Change border color based on focus
       >
         {leftIconName && (
           <View className="absolute left-4 top-3 z-10">
@@ -1726,50 +1721,50 @@ export const CustomButtoncall = ({
     </TouchableOpacity>
   );
 };
-export const Selectionpicker =({Title,onPress})=>{
-  return(
+export const Selectionpicker = ({ Title, onPress }) => {
+  return (
     <>
-    <TouchableOpacity onPress={()=>onPress()} className="justify-between px-3 flex-row items-center" style={{borderColor:primarycolor, borderWidth:1,height:50, borderRadius:10}}>
-      <Text style={[Textstyles.text_xmedium]}>
-        {Title}
-      </Text>
-      <ArrowDownIcon/>
-    </TouchableOpacity>
+      <TouchableOpacity onPress={() => onPress()} className="justify-between px-3 flex-row items-center" style={{ borderColor: primarycolor, borderWidth: 1, height: 50, borderRadius: 10 }}>
+        <Text style={[Textstyles.text_xmedium]}>
+          {Title}
+        </Text>
+        <ArrowDownIcon />
+      </TouchableOpacity>
     </>
   )
 }
-export const DataDisplayModay=({data,setshowmodal,setSelectedValue,title})=>{
+export const DataDisplayModay = ({ data, setshowmodal, setSelectedValue, title }) => {
 
-  return(
+  return (
     <>
-    <View style={{backgroundColor:primarycolor}} className="opacity-70 h-full w-full absolute" />
-    <View className="h-[30vh] w-[80vw] relative z-50 rounded-2xl bg-white px-3 py-3">
-      <View className="justify-between flex-row">
-        <Text style={[Textstyles.text_xmedium]}>{title}</Text>
-      <TouchableOpacity onPress={()=>setshowmodal(false)}>
-      <ArrowUpIcon/>
-      </TouchableOpacity>
-
-      </View>
-  
-      <ScrollView
-      showsVerticalScrollIndicator={false}
-      >
-      <View className="py-4">
-          {data.map((item,index)=>(
-            <TouchableOpacity 
-            key={index}
-            className="h-12 border-b border-slate-100 flex justify-center"
-            onPress={()=>{setSelectedValue(item.value);setshowmodal(false)}}
-            >
-              <Text >{item.label}</Text>
-            </TouchableOpacity>
-          )) }
+      <View style={{ backgroundColor: primarycolor }} className="opacity-70 h-full w-full absolute" />
+      <View className="h-[30vh] w-[80vw] relative z-50 rounded-2xl bg-white px-3 py-3">
+        <View className="justify-between flex-row">
+          <Text style={[Textstyles.text_xmedium]}>{title}</Text>
+          <TouchableOpacity onPress={() => setshowmodal(false)}>
+            <ArrowUpIcon />
+          </TouchableOpacity>
 
         </View>
-      </ScrollView>
-      
-    </View>
+
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+        >
+          <View className="py-4">
+            {data.map((item, index) => (
+              <TouchableOpacity
+                key={index}
+                className="h-12 border-b border-slate-100 flex justify-center"
+                onPress={() => { setSelectedValue(item.value); setshowmodal(false) }}
+              >
+                <Text >{item.label}</Text>
+              </TouchableOpacity>
+            ))}
+
+          </View>
+        </ScrollView>
+
+      </View>
     </>
   )
 }
