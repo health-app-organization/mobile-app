@@ -27,6 +27,7 @@ import { Textstyles } from "../../constants/fontsize";
 import {
   CustomInputpassword,
   CustomInputWithHeader,
+  CustomTextInput,
 } from "../mycomponents/mycomponent";
 import { Box, CustomTextnumber } from "../mycomponents/mycomponent";
 import { primarycolor, whitecolor, greycolortwo } from "../../constants/color";
@@ -39,6 +40,8 @@ import { customstyle } from "../../constants/customstyle";
 import DateModal from "../modals/datemodal";
 import axios from "axios";
 import { registerUrl } from "../../api/end-point";
+import { RegisterDataOne, RegisterDataThree, RegisterDataTwo } from "../patients/fetchdata/fetchdata";
+
 
 export default function Registration() {
   const navigation = useNavigation();
@@ -66,10 +69,16 @@ export default function Registration() {
   const animatedStyles = useAnimatedStyle(() => ({
     transform: [{ translateY: translateY.value }],
   }));
+  const isValidEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
 
   const handleContinue = async () => {
     if (isLoading) return;
     if (currentStep === 2) {
+      console.log(phoneNumber)
       const data = {
         phoneNumber,
         firstName,
@@ -80,18 +89,22 @@ export default function Registration() {
         password,
       };
       setIsLoading(true);
-      const response = await axios.post(registerUrl("user"), data);
-      console.log(response.data);
+      const response=await RegisterDataThree(data, setIsLoading, setErrorMessage, setCurrentStep)
+      if(response==='ok'){
+        navigation.navigate('login')
+      }
+      
       setIsLoading(false);
     } else if (currentStep === 0) {
-      const data = { phoneNumber };
-      if (phoneNumber.length !== 10) {
+      if (!isValidEmail(email)) {
+        setErrorMessage('Invalid Email Address')
         return;
       }
-      setCurrentStep((prevStep) => prevStep + 1);
+      RegisterDataOne(email,setIsLoading,setErrorMessage,setCurrentStep);
+     
     } else {
-      setErrorMessage(null);
-      setCurrentStep((prevStep) => prevStep + 1);
+      const joinOtp=otp.join("")
+      RegisterDataTwo(email,joinOtp,setIsLoading, setErrorMessage, setCurrentStep)
     }
   };
 
@@ -128,6 +141,7 @@ export default function Registration() {
       } else {
         setErrorMessage(null);
         console.log("OTP Submitted:", otp.join(""));
+
         // Handle OTP submission logic here
       }
     } else {
@@ -153,22 +167,37 @@ export default function Registration() {
     }
   }, [confirmPassword]);
 
+  // Email validator function 
+  
+
+
   return (
     <>
+      
       {showDate && <DateModal
         setBirthDate={(value) => setBirthDate(value)}
         birthDate={birthDate}
         closeModal={(value) => setShowDate(value)}
       />}
-      <SafeAreaView style={{ height: height }}>
+      <View style={{ height: height }}>
         <StatusBar style="auto" />
-
         <View className="w-full h-full px-5 py-[88px] bg-white">
+               {/* Numeric Keyboard */}
+               {currentStep === 1 && (
+            <View className="absolute -bottom-5 z-40   items-center">
+              <Animated.View
+                className="w-full h-[500px]"
+                style={[animatedStyles]}
+              >
+                <NumericKeyboard onPress={(value) => handleOtpInput(value)} />
+              </Animated.View>
+            </View>
+          )}
           {/* Back button */}
           {currentStep > 0 && (
             <TouchableOpacity
               onPress={handleContinueBackwards}
-              className="absolute top-5 left-3"
+              className="absolute top-16 left-3"
             >
               <Feather name="arrow-left" size={24} color="black" />
             </TouchableOpacity>
@@ -185,7 +214,7 @@ export default function Registration() {
                   style={[Textstyles.text_small]}
                   className="text-center mb-6"
                 >
-                  Please enter your phone number to receive a 6-digit code via SMS
+                  Please enter your email to receive a 6-digit code via SMS
                 </Text>
               </>
             )}
@@ -242,13 +271,13 @@ export default function Registration() {
           {currentStep === 0 && (
             <>
               <View className="mb-5">
-                <CustomTextnumber
-                  placeholder={"XXX XXX XXXX"}
+                <CustomTextInput
+                  placeholder={"enter your email"}
                   placeholderTextColor={greycolortwo}
-                  onChange={(val) => setPhoneNumber(val)}
-                  value={phoneNumber}
-                  errorMessage={phoneNumber.length !== 10 ? "Invalid/Incomplete phone number" : null}
+                  onChange={(val) => setEmail(val)}
+                  value={email}
                 />
+                
               </View>
             </>
           )}
@@ -302,6 +331,7 @@ export default function Registration() {
                       leftIconName="envelope"
                       value={email}
                       onChange={(text) => setEmail(text)}
+                      disable
                     />
                     <View className="h-3" />
                     <CustomInputWithHeader
@@ -309,7 +339,8 @@ export default function Registration() {
                       placeholder="Enter your phone number"
                       leftIconName="phone"
                       value={`+234 ${phoneNumber}`}
-                      disable
+                      onChange={(text) => setPhoneNumber(text)}
+                    
                     />
                     <View className="h-3" />
                     <Text className="mb-2" style={[Textstyles.text_cmedium]}>
@@ -349,7 +380,7 @@ export default function Registration() {
                           onPress={() => setGender('male')}
                           color={primarycolor}
                         />
-                        {Platform.OS === 'ios' && <TouchableOpacity onPress={() => setGender('male')} style={{ marginRight: 10 }} className="bg-red-300 w-12 items-center h-5 justify-center rounded-xl"><Text>Male</Text></TouchableOpacity>}
+                        {Platform.OS === 'ios' && <TouchableOpacity onPress={() => setGender('male')} style={{ marginRight: 10 }} className="bg-cyan-300 w-16 items-center h-5 justify-center rounded-xl"><Text>Male</Text></TouchableOpacity>}
                         {Platform.OS === 'android' && <Text style={{ marginRight: 10 }}>Male</Text>}
                         <RadioButton
                           value="Female"
@@ -357,7 +388,7 @@ export default function Registration() {
                           onPress={() => setGender('female')}
                           color={primarycolor}
                         />
-                        {Platform.OS === 'ios' && <TouchableOpacity onPress={() => setGender('Female')} style={{ marginRight: 10 }} className="bg-red-300 w-12 items-center h-5 justify-center rounded-xl"><Text>Female</Text></TouchableOpacity>}
+                        {Platform.OS === 'ios' && <TouchableOpacity onPress={() => setGender('Female')} style={{ marginRight: 10 }} className="bg-cyan-500 w-16 items-center h-5  justify-center rounded-xl px-2"><Text>Female</Text></TouchableOpacity>}
                         {Platform.OS === 'android' && <Text style={{ marginRight: 10 }}>Female</Text>}
                       </View>
                     </View>
@@ -391,7 +422,7 @@ export default function Registration() {
             )}
           </>
 
-          <View>
+          <View className="relative z-50">
             <View className="h-8" />
             <Text className="text-red-500">{errorMessage}</Text>
             <CustomButton
@@ -410,19 +441,9 @@ export default function Registration() {
             />
           </View>
 
-          {/* Numeric Keyboard */}
-          {currentStep === 1 && (
-            <View className="absolute -bottom-5 z-50 items-center">
-              <Animated.View
-                className="w-full h-[467px]"
-                style={[animatedStyles]}
-              >
-                <NumericKeyboard onPress={(value) => handleOtpInput(value)} />
-              </Animated.View>
-            </View>
-          )}
+   
         </View>
-      </SafeAreaView>
+      </View>
     </>
   );
 }
