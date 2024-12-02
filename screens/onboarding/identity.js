@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Image,
   View,
@@ -21,6 +21,7 @@ import {
 } from "../mycomponents/mycomponent";
 import { useNavigation } from "@react-navigation/native";
 import { height, width } from "../../constants/mobileDimensions";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Identity = () => {
   const navigation = useNavigation();
@@ -30,7 +31,15 @@ const Identity = () => {
 
   // State for showing the confirmation modal
   const [showConfirmation, setShowConfirmation] = useState(false);
+  const [Role,setRole]=useState('')
 
+  const ChangeRole=async()=>{
+    await AsyncStorage.setItem('role',Role)
+  }
+  
+  useEffect(()=>{
+    ChangeRole()
+  },[Role])
   // Functions to handle navig// Function to handle the 'Create account' navigation
   const handletonewacc = () => {
     if (selectedIdentity === "identity2") {
@@ -89,7 +98,7 @@ const Identity = () => {
         {/* TouchableOpacity for Identity 1 */}
         <TouchableOpacity
           className="w-[143.01px] h-[188.56px] justify-center items-center relative"
-          onPress={() => handleSelection("identity1")}
+          onPress={() =>{ handleSelection("identity1");setRole('user')}}
         >
           <Image
             source={require("../../assets/images/Frame 8.png")}
@@ -107,7 +116,7 @@ const Identity = () => {
         {/* TouchableOpacity for Identity 2 (Health Provider) */}
         <TouchableOpacity
           className="w-[143.01px] h-[188.56px] justify-center items-center relative"
-          onPress={() => handleSelection("identity2")}
+          onPress={() =>{handleSelection("identity2");setRole('provider')}}
         >
           <Image
             source={require("../../assets/images/Frame 9.png")}

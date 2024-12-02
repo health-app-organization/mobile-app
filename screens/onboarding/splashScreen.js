@@ -84,6 +84,7 @@ const AnimatedBackground = () => {
             resizeMode="contain"
             className="h-24 w-24"
           />
+          
         </View>
         <Text className="text-white font-bold text-center text-3xl"><Text>Westa</Text><Text>Care</Text></Text>
       </Animated.View>

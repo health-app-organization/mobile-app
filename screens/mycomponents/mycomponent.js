@@ -6,11 +6,13 @@ import {
   Image,
   ScrollView,
 } from "react-native";
+import APP from "../../assets/images/free.png";
 import {
   customstyle,
   customstyle2,
   radioButtonStyles,
 } from "../../constants/customstyle";
+import { MaterialIcons } from "@expo/vector-icons";
 import { Textstyles } from "../../constants/fontsize";
 import { Ionicons } from "@expo/vector-icons"; // Import Ionicons for arrow
 import { TextInput } from "react-native-gesture-handler";
@@ -19,6 +21,8 @@ import { useNavigation } from "@react-navigation/native";
 import { useState, useEffect } from "react";
 import { greycolortwo, linkcolor, primarycolor } from "../../constants/color";
 import { height, width } from "../../constants/mobileDimensions";
+import { Picker } from "@react-native-picker/picker";
+import { ArrowDownIcon, ArrowUpIcon } from "../../assets/iconsvg/Svgicon";
 
 export const CustomButton = ({
   Textname,
@@ -31,6 +35,7 @@ export const CustomButton = ({
   rightIcon,
   props,
   width,
+  isLoading,
 }) => {
   return (
     <>
@@ -41,6 +46,7 @@ export const CustomButton = ({
             borderWidth: borderWidth || 0,
             borderColor: borderColor || null,
             width: width || "100%",
+            opacity: isLoading ? 0.5 : 1,
           },
           customstyle.buttonstyle,
         ]}
@@ -266,6 +272,7 @@ export const CustomTextnumber = ({
   secureTextEntry,
   disable,
   value,
+  errorMessage
 }) => {
   const [isFocused, setIsFocused] = useState(false);
   const [inputValue, setInputValue] = useState(value);
@@ -310,6 +317,7 @@ export const CustomTextnumber = ({
           editable={!disable}
         />
       </View>
+      <Text className="text-red-500">{errorMessage}</Text>
     </>
   );
 };
@@ -508,8 +516,8 @@ export const CustomInputSearch = ({
 
 const HeaderTitle = ({ title }) => {
   return (
-    <View className="w-full h-8 flex justify-start pl-6 mt-5">
-      <Text className="text-2xl font-bold">{title}</Text>
+    <View className="w-full h-[15%] pt-16 pb-4 mb-6 bg-[#0099B8] pl-8">
+      <Text className="text-2xl text-white font-bold">{title}</Text>
     </View>
   );
 };
@@ -533,40 +541,50 @@ export const Providercard = ({
       <TouchableOpacity
         onPress={onPress}
         className="flex-row bg-white rounded-xl mb-4 shadow-md w-[359px] h-[120px]"
-      />
-      {/* Left Section: Image */}
-      <View className="bg-gray-600 rounded-l-xl w-[130px] h-[120px] flex justify-center items-center mr-4">
-        <Image
-          source={require("../../assets/images/appo.png")}
-          className="w-full h-full" // Set height to full
-          resizeMode="contain"
-        />
-      </View>
+      >
+        <View className="bg-gray-600 rounded-l-xl w-[130px] h-[120px] flex justify-center items-center mr-4">
+          <Image
+            source={require("../../assets/images/appo.png")}
+            className="w-full h-full" // Set height to full
+            resizeMode="contain"
+          />
+        </View>
 
-      <View className="flex-1 mb-auto mt-auto">
-        <Text className="text-[18px] font-[500] leading-[27px] mb-1">
-          {name}
-        </Text>
-        <Text className="text-gray-500 text-[14px] font-[500] leading-[21px] mb-1">
-          {title}
-        </Text>
+        <View className="flex-1 mb-auto mt-auto">
+          <Text className="text-[18px] font-[500] leading-[27px] mb-1">
+            {name}
+          </Text>
+          <Text className="text-gray-500 text-[14px] font-[500] leading-[21px] mb-1">
+            {title}
+          </Text>
 
-        {/* Ratings and Likes */}
-        <View className="flex-row items-center mt-2">
-          {/* Stars */}
-          <View className="flex-row w-[60p] space-x-1">
-            {[...Array(rating)].map((_, index) => (
-              <FontAwesome key={index} name="star" size={16} color="#0099b8" />
-            ))}
-          </View>
+          {/* Ratings and Likes */}
+          <View className="flex-row items-center mt-2">
+            {/* Stars */}
+            <View className="flex-row w-[60p] space-x-1">
+              {[...Array(rating)].map((_, index) => (
+                <FontAwesome
+                  key={index}
+                  name="star"
+                  size={16}
+                  color="#0099b8"
+                />
+              ))}
+            </View>
 
-          {/* Likes */}
-          <View className=" flex-row space-x-1">
-            <Text className="ml-3 text-gray-600">{likes}</Text>
-            <FontAwesome name="heart" size={16} color="red" className="ml-1" />
+            {/* Likes */}
+            <View className=" flex-row space-x-1">
+              <Text className="ml-3 text-gray-600">{likes}</Text>
+              <FontAwesome
+                name="heart"
+                size={16}
+                color="red"
+                className="ml-1"
+              />
+            </View>
           </View>
         </View>
-      </View>
+      </TouchableOpacity>
     </TouchableOpacity>
   );
 };
@@ -577,7 +595,6 @@ export const Cartcard = ({ name, title, rating, likes, onPress }) => {
       onPress={onPress}
       className="flex-row bg-white rounded-2xl shadow-md w-[359px] h-[113px]"
     >
-      {/* Left Section: Image */}
       <View className="bg-gray-600 w-[91px] h-[113px] rounded-l-2xl  mr-4">
         {/* Placeholder for the image */}
       </View>
@@ -789,23 +806,13 @@ export const PaymentMethod = ({ selectedMethod, onSelect }) => {
   );
 };
 
-export const Header = ({ title, rightIcon, onRightIconPress }) => {
+export const Header = ({ title, rightIcon, onRightIconPress, marginLeft }) => {
   const navigation = useNavigation();
-
   return (
-    <View
-      style={{
-        flexDirection: "row",
-        alignItems: "center",
-        gap: 15,
-        paddingHorizontal: 30,
-        paddingTop: 30,
-        backgroundColor: "#00A8CC", // The color for the header background
-      }}
-      className=" h-1/6"
+    <View style={{ backgroundColor: "#00A8CC", }} className="h-1/6 flex-row items-center justify-center w-full px-5"
     >
       {/* Back Button */}
-      <TouchableOpacity onPress={() => navigation.goBack()}>
+      <TouchableOpacity className="w-16 h-16 justify-center" onPress={() => navigation.goBack()}>
         <Ionicons name="chevron-back" size={32} color="white" />
       </TouchableOpacity>
 
@@ -817,13 +824,10 @@ export const Header = ({ title, rightIcon, onRightIconPress }) => {
           lineHeight: 30,
           fontWeight: "700",
           flex: 1, // Allow title to take available space
-          textAlign: "center", // Center the title
-          marginLeft: -220, // Consider adjusting this value for better alignment
         }}
       >
         {title}
       </Text>
-
       {/* Right Icon (if provided) */}
       {rightIcon && (
         <TouchableOpacity onPress={onRightIconPress}>
@@ -1207,17 +1211,17 @@ export const Providercard2 = ({
     </TouchableOpacity>
   );
 };
-export const MenuButton = ({ icon, text }) => {
+
+export const MenuButton = ({ icon, text, onPress }) => {
   return (
-    <>
-      <TouchableOpacity
-        style={{ elevation: 4 }}
-        className="w-28 h-28 rounded-2xl bg-white flex justify-center items-center px-3 shadow-sm shadow-black"
-      >
-        {icon}
-        {text}
-      </TouchableOpacity>
-    </>
+    <TouchableOpacity
+      style={{ elevation: 4 }}
+      className="w-28 h-28 rounded-2xl bg-white flex justify-center items-center px-3 shadow-sm shadow-black"
+      onPress={onPress}
+    >
+      {icon}
+      {text}
+    </TouchableOpacity>
   );
 };
 
@@ -1261,6 +1265,7 @@ export const DateComponent = () => {
                   height: 100,
                   width: 60,
                 }}
+                key={index}
                 className="flex justify-center items-center"
               >
                 <Text style={[Textstyles.text_cmedium]}>{days[index]}</Text>
@@ -1373,3 +1378,395 @@ export const CustomTextnumberlabel = ({
     </View>
   );
 };
+
+export const Header9 = ({ profileName, profileCompletion }) => {
+  const navigation = useNavigation();
+
+  return (
+    <View
+      style={{
+        flexDirection: "row",
+        alignItems: "center",
+        paddingHorizontal: 20,
+        paddingTop: 40,
+        paddingBottom: 20,
+        // Add border radius for the bottom right corner
+        backgroundColor: "#00A8CC",
+        height: "15%", // Adjusted to match the rounded header style
+      }}
+    >
+      {/* Back Button */}
+      <TouchableOpacity onPress={() => navigation.goBack()}>
+        <Ionicons name="chevron-back" size={28} color="white" />
+      </TouchableOpacity>
+
+      {/* Profile Info */}
+      <View style={{ marginLeft: 25 }}>
+        <Text style={{ color: "white", fontSize: 25, fontWeight: "bold" }}>
+          {profileName}
+        </Text>
+        <Text style={{ color: "white", fontSize: 16, marginTop: 4 }}>
+          {profileCompletion}% profile completed
+        </Text>
+      </View>
+    </View>
+  );
+};
+
+export const CustomDropdownWithHeader = ({
+  headerText,
+  options = [],
+  placeholder,
+  onChange,
+  disable,
+  value,
+  leftIconName,
+  leftIconSize,
+  leftIconColor,
+}) => {
+  const [selectedValue, setSelectedValue] = useState(value);
+  const [isFocused, setIsFocused] = useState(false); // State for focus
+
+  return (
+    <View className="w-full mb-5">
+      {/* Input Header */}
+      <Text
+        className="text-lg font-bold mb-2"
+        style={[Textstyles.text_cmedium]}
+      >
+        {headerText}
+      </Text>
+
+      {/* Dropdown Field */}
+      <View
+        className={`relative border-1  rounded-lg bg-gray-100 ${isFocused ? "border-[#0099b8] border-2" : "border-[#ccc]"
+          }`} // Change border color based on focus
+      >
+        {leftIconName && (
+          <View className="absolute left-4 top-3 z-10">
+            <FontAwesome
+              name={leftIconName}
+              size={leftIconSize || 20}
+              color={leftIconColor || "#000"}
+            />
+          </View>
+        )}
+        <Picker
+          selectedValue={selectedValue}
+          enabled={!disable}
+          className={`h-12 text-gray-600  ${leftIconName ? "pl-12" : "pl-4"}`} // Adjust padding for the icon
+          onValueChange={(itemValue) => {
+            setSelectedValue(itemValue);
+            if (onChange) {
+              onChange(itemValue);
+            }
+          }}
+          onFocus={() => setIsFocused(true)} // Set focus state on focus
+          onBlur={() => setIsFocused(false)} // Reset focus state on blur
+        >
+          {/* Placeholder */}
+          <Picker.Item label={placeholder} value="" />
+          {options.map((option) => (
+            <Picker.Item
+              key={option.value}
+              label={option.label}
+              value={option.value}
+            />
+          ))}
+        </Picker>
+      </View>
+    </View>
+  );
+};
+
+export const FloatingActionButton = ({ onPress }) => {
+  return (
+    <TouchableOpacity
+      className="w-16 h-16 bg-[#00A8CC] rounded-full items-center justify-center absolute bottom-5 right-5 shadow-lg"
+      onPress={onPress}
+    >
+      <MaterialIcons name="add" size={40} color="white" />
+    </TouchableOpacity>
+  );
+};
+
+export const CustomInputWithHeader2 = ({
+  headerText,
+  placeholder,
+  autoCapitalize,
+  onChange,
+  secureTextEntry,
+  disable,
+  value,
+  leftIconName,
+  leftIconSize,
+  leftIconColor,
+}) => {
+  const [inputValue, setInputValue] = useState(value);
+  const [isFocused, setIsFocused] = useState(false);
+
+  return (
+    <View className="flex-1 flex flex-col">
+      {/* Input Header */}
+      <Text className="mb-2" style={[Textstyles.text_cmedium]}>
+        {headerText}
+      </Text>
+
+      {/* Input Field */}
+      <View className="relative flex justify-center">
+        {leftIconName && (
+          <View className="absolute left-4 z-50">
+            <FontAwesome
+              name={leftIconName}
+              size={leftIconSize || 20}
+              color={leftIconColor || "#000"}
+            />
+          </View>
+        )}
+        <TextInput
+          style={[
+            customstyle.textinputstyle,
+            {
+              width: "90%",
+              paddingLeft: leftIconName ? 45 : 15,
+              borderColor: isFocused ? "#0099b8" : "#ccc",
+              borderWidth: 1,
+              borderRadius: 10,
+              backgroundColor: "#F3F3F3",
+            },
+          ]}
+          placeholder={placeholder}
+          value={inputValue}
+          editable={!disable}
+          secureTextEntry={secureTextEntry}
+          autoCapitalize={autoCapitalize || "none"}
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
+          onChangeText={(text) => {
+            setInputValue(text);
+            if (onChange) {
+              onChange(text);
+            }
+          }}
+        />
+      </View>
+    </View>
+  );
+};
+
+export const CustomInputWithHeaderdes = ({
+  headerText,
+  placeholder, // New placeholder prop
+  autoCapitalize,
+  onChange,
+  secureTextEntry,
+  disable,
+  value,
+  leftIconName, // Use icon name as a string
+  leftIconSize, // Optional size for the icon
+  leftIconColor, // Optional color for the icon
+}) => {
+  const [inputValue, setInputValue] = useState(value); // Track the input value
+  const [isFocused, setIsFocused] = useState(false); // Track focus state
+
+  return (
+    <View className="w-full flex flex-col">
+      {/* Input Header */}
+      <Text className="mb-2" style={[Textstyles.text_cmedium]}>
+        {headerText}
+      </Text>
+
+      {/* Input Field */}
+      <View className="relative flex justify-center">
+        {/* Show left FontAwesome icon if iconName is provided */}
+        {leftIconName && (
+          <View className="absolute left-4 z-50">
+            <FontAwesome
+              name={leftIconName}
+              size={leftIconSize || 20}
+              color={leftIconColor || "#000"}
+            />
+          </View>
+        )}
+        <TextInput
+          style={[
+            customstyle.textinputstyle,
+            {
+              height: 150,
+              paddingLeft: leftIconName ? 45 : 15, // Adjust left padding based on icon presence
+              borderColor: isFocused ? "#0099b8" : "#ccc", // Change border color on focus
+              borderWidth: 1, // Add border width
+              borderRadius: 10, // Optional: add border radius
+              backgroundColor: "#F3F3F3",
+              textAlignVertical: "top",
+              paddingTop: 3,
+            },
+          ]}
+          placeholder={placeholder} // Set placeholder text
+          value={inputValue} // Use inputValue for the actual value
+          editable={!disable} // Allow editing based on disable prop
+          secureTextEntry={secureTextEntry}
+          autoCapitalize={autoCapitalize || "none"}
+          onFocus={() => setIsFocused(true)} // Set focus state
+          onBlur={() => setIsFocused(false)} // Reset focus state
+          onChangeText={(text) => {
+            setInputValue(text); // Update input value state
+            if (onChange) {
+              onChange(text); // Call the parent onChange handler if provided
+            }
+          }}
+        />
+      </View>
+    </View>
+  );
+};
+
+export const AppointmentCard = ({ title, doctorName, dateTime }) => {
+  return (
+    <View className="flex-row items-center p-4 bg-white rounded-lg shadow-md max-w-sm">
+      {/* Image Section */}
+      <View className="p-4 bg-[#0099B833] rounded-lg mr-4 flex items-center justify-center">
+        <Image
+          source={APP} // Replace with your actual image path
+          className="w-8 h-8"
+        />
+      </View>
+
+      {/* Content Section */}
+      <View className="flex-1">
+        <Text className="text-lg font-semibold text-black capitalize">
+          {title}
+        </Text>
+        <Text className="text-gray-500 font-medium">{doctorName}</Text>
+        <Text className="text-gray-400 text-sm">{dateTime}</Text>
+      </View>
+    </View>
+  );
+};
+
+export const DoctorCard = ({ name, session, time, imageSource, onPress }) => {
+  return (
+    <View className="bg-white h-[160px] rounded-2xl shadow-md flex-row space-x-4">
+      <View className=" flex justify-center items-center rounded-2xl">
+        <Image
+          source={imageSource}
+          className="w-[163px] h-[160px] object-bottom  rounded-2xl " // Set image dimensions and vertically center it
+          resizeMode="cover"
+        />
+      </View>
+      <View className="flex-1  justify-center items-center">
+        <Text className="text-xl text-center mb-5 font-semibold">{name}</Text>
+        <Text className="text-gray-500 text-center">{session}</Text>
+        <Text className="text-gray-500 text-center">{time}</Text>
+        <TouchableOpacity
+          onPress={onPress}
+          className="mt-4 bg-[#00D70733] w-[160px] rounded-lg py-3 px-4"
+        >
+          <Text className="text-black text-lg font-semibold text-center">
+            View Details
+          </Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
+};
+
+
+
+
+export const CustomButtoncall = ({
+  Textname,
+  onPress,
+  backgroundColor,
+  TextColor,
+  borderWidth,
+  borderColor,
+  leftIcon,
+  rightIcon,
+  props,
+  width = 20,  // Default width set to 50
+  height = 20, // Default height set to 50
+}) => {
+  return (
+    <TouchableOpacity
+      style={[
+        {
+          backgroundColor: backgroundColor,
+          borderWidth: borderWidth || 0,
+          borderColor: borderColor || null,
+          width: width,  // Set the width (default 50)
+          height: height, // Set the height (default 50)
+          justifyContent: "center", // Center content vertically
+          alignItems: "center", // Center content horizontally
+          borderRadius: width / 2, // Make the button circular based on width/height
+        },
+        customstyle.buttonstyle, // Keep your existing custom styles if needed
+      ]}
+      onPress={onPress}
+      {...props}
+    >
+      {/* If no left or right icon is passed, show the phone icon */}
+      {!leftIcon && !rightIcon && (
+        <Ionicons name="call" size={24} color={TextColor || "white"} />
+      )}
+
+      {/* Display left icon if passed */}
+      {leftIcon}
+
+      {/* Display the text in the button */}
+      <Text style={[Textstyles.text_button, { color: TextColor }]}>
+        {Textname}
+      </Text>
+
+      {/* Display right icon if passed */}
+      {rightIcon}
+    </TouchableOpacity>
+  );
+};
+export const Selectionpicker = ({ Title, onPress }) => {
+  return (
+    <>
+      <TouchableOpacity onPress={() => onPress()} className="justify-between px-3 flex-row items-center" style={{ borderColor: primarycolor, borderWidth: 1, height: 50, borderRadius: 10 }}>
+        <Text style={[Textstyles.text_xmedium]}>
+          {Title}
+        </Text>
+        <ArrowDownIcon />
+      </TouchableOpacity>
+    </>
+  )
+}
+export const DataDisplayModay = ({ data, setshowmodal, setSelectedValue, title }) => {
+
+  return (
+    <>
+      <View style={{ backgroundColor: primarycolor }} className="opacity-70 h-full w-full absolute" />
+      <View className="h-[30vh] w-[80vw] relative z-50 rounded-2xl bg-white px-3 py-3">
+        <View className="justify-between flex-row">
+          <Text style={[Textstyles.text_xmedium]}>{title}</Text>
+          <TouchableOpacity onPress={() => setshowmodal(false)}>
+            <ArrowUpIcon />
+          </TouchableOpacity>
+
+        </View>
+
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+        >
+          <View className="py-4">
+            {data.map((item, index) => (
+              <TouchableOpacity
+                key={index}
+                className="h-12 border-b border-slate-100 flex justify-center"
+                onPress={() => { setSelectedValue(item.value); setshowmodal(false) }}
+              >
+                <Text >{item.label}</Text>
+              </TouchableOpacity>
+            ))}
+
+          </View>
+        </ScrollView>
+
+      </View>
+    </>
+  )
+}

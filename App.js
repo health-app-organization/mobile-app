@@ -1,22 +1,34 @@
 import { NavigationContainer } from "@react-navigation/native";
 import "react-native-gesture-handler";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { StatusBar } from "expo-status-bar";
-import { ActivityIndicator, StyleSheet, Text, View,Platform } from "react-native";
+import { ActivityIndicator, StyleSheet, View } from "react-native";
 import { PaperProvider } from "react-native-paper";
 import StackWrapper from "./routers/stackrouter";
 import { createStackNavigator } from "@react-navigation/stack";
 import { useCallback, useEffect } from "react";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
+import './global.css'
+import { enableScreens } from 'react-native-screens'; // Import enableScreens
 
+// Enable screens
+enableScreens();
 
 export default function App() {
   const [fontsLoaded] = useFonts({
     TTFirsNeue: require("./assets/fonts/TTFirsNeueTrialVarRoman.ttf"),
     TTFirsNeueMedium: require("./assets/fonts/TTFirsNeueTrialMedium.ttf"),
   });
+
+  useEffect(() => {
+    const prepare = async () => {
+      if (fontsLoaded) {
+        await SplashScreen.hideAsync();
+      }
+    };
+    prepare();
+  }, [fontsLoaded]);
+
   const onLayoutRootView = useCallback(async () => {
     if (fontsLoaded) {
       await SplashScreen.hideAsync();
@@ -26,24 +38,22 @@ export default function App() {
   if (!fontsLoaded) {
     return <ActivityIndicator />;
   }
+
   const Stack = createStackNavigator();
 
   return (
-    <View className="h-full w-full" onLayout={onLayoutRootView}>
+    <GestureHandlerRootView style={{ flex: 1 }}>
       <PaperProvider>
-        <GestureHandlerRootView>
-          <NavigationContainer>
-            <Stack.Navigator screenOptions={{ headerShown: false }}>
-              <Stack.Screen
-                name="onboarding"
-                component={StackWrapper}
-              />
-              
-            </Stack.Navigator>
-          </NavigationContainer>
-        </GestureHandlerRootView>
+        <NavigationContainer>
+          <Stack.Navigator screenOptions={{ headerShown: false }}>
+            <Stack.Screen
+              name="onboarding"
+              component={StackWrapper}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
       </PaperProvider>
-    </View>
+    </GestureHandlerRootView>
   );
 }
 
@@ -55,4 +65,3 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
-

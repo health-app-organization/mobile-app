@@ -104,14 +104,12 @@ export const Login = () => {
           backgroundColor={primarycolor}
           TextColor={whitecolor}
         />
-        <View className=" flex-row h-12 mt-36 w-full justify-center  ">
-          <View>
-            <Text style={[Textstyles.text_small]} className="text-center mt-6">
-              Don't have an account?
-            </Text>
-          </View>
-          <TouchableOpacity className=" mt-6 ml-1" onPress={handletosignup}>
-            <Text style={[Textstyles.text_small]} className=" text-[#0099b8]">
+        <View className="flex-row h-14 mt-36 gap-1 w-full justify-center items-center">
+          <Text style={[Textstyles.text_small]} className="text-center">
+            Don't have an account?
+          </Text>
+          <TouchableOpacity  onPress={handletosignup}>
+            <Text style={[Textstyles.text_small]} className="text-[#0099b8]">
               Sign up
             </Text>
           </TouchableOpacity>

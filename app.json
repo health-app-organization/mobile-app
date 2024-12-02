@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "mobile-app",
-    "slug": "mobile-app",
+    "name": "WestaCareApp",
+    "slug": "WestaCareApp",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -12,47 +12,23 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true, 
-      "imageCompression": 1,
-      "imageFormats": [
-        "png",
-        "jpg",
-        "svg"
-      ]
-
-
+      "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "imageCompression": 1,
-      "imageFormats": [
-        "png",
-        "jpg",
-        "svg"
-      ]
+      "package": "com.yomzeew.WestaCareApp"
     },
-    
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
     },
-    "plugins": [
-      "expo-font",
-      "expo-asset",
-      [
-        "expo-camera",
-        {
-          "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera",
-          "microphonePermission": "Allow $(PRODUCT_NAME) to access your microphone",
-          "recordAudioAndroid": true
-        }
-      ]
-    ],
-    "assetBundlePatterns": [
-      "**/*"
-    ]
-
+    "extra": {
+      "eas": {
+        "projectId": "d7d2b4bd-960c-4363-b820-85c651ec9897"
+      }
+    }
   }
 }

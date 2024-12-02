@@ -16,11 +16,14 @@ const Footer = ({ activeProps }) => {
         navigation.navigate(value);
         setActive(value);
     };
+
     return (
         <>
             <View className="w-full h-24 bg-white absolute bottom-0 flex-row items-center justify-evenly z-50">
                 <TouchableOpacity
-                    onPress={() => handleNavigate("healthptype", { screen: "doctor-home" })}
+                    onPress={() =>
+                        handleNavigate("health-provider-types", { screen: "doctor-home" })
+                    }
                     style={
                         active === "doctor-home"
                             ? { backgroundColor: linkcolor }
@@ -83,4 +86,5 @@ const Footer = ({ activeProps }) => {
         </>
     );
 };
+
 export default Footer;
