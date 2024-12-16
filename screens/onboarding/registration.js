@@ -41,6 +41,7 @@ import DateModal from "../modals/datemodal";
 import axios from "axios";
 import { registerUrl } from "../../api/end-point";
 import { RegisterDataOne, RegisterDataThree, RegisterDataTwo } from "../patients/fetchdata/fetchdata";
+import SuccessModal from "../modals/successModal";
 
 
 export default function Registration() {
@@ -64,10 +65,15 @@ export default function Registration() {
   const [errorMessage, setErrorMessage] = useState(null);
   const [showKeyboard, setShowKeyboard] = useState(false); // State to toggle keyboard visibility
   const [otp, setOtp] = useState(["", "", "", "", "", ""]); // OTP input array
+  const [showloginModal,setshowloginModal]=useState(false)
 
   const translateY = useSharedValue(600); // Animation for the keyboard
   const animatedStyles = useAnimatedStyle(() => ({
     transform: [{ translateY: translateY.value }],
+  }));
+  const translateYsuccess = useSharedValue(600); // Animation for the keyboard
+  const animatedStylessucess = useAnimatedStyle(() => ({
+    transform: [{ translateY: translateYsuccess.value }],
   }));
   const isValidEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -91,7 +97,8 @@ export default function Registration() {
       setIsLoading(true);
       const response=await RegisterDataThree(data, setIsLoading, setErrorMessage, setCurrentStep)
       if(response==='ok'){
-        navigation.navigate('login')
+        setshowloginModal(true)
+        translateYsuccess.value = withSpring(0, { damping: 10, stiffness: 100 });
       }
       
       setIsLoading(false);
@@ -179,6 +186,23 @@ export default function Registration() {
         birthDate={birthDate}
         closeModal={(value) => setShowDate(value)}
       />}
+       {/* Success Modal Display */}
+       {currentStep === 2 && showloginModal && ( 
+        <>
+        <View style={{backgroundColor:primarycolor}} className="h-full w-full absolute z-40 opacity-70 " />
+        <Animated.View
+      className="absolute z-50 bottom-0 justify-center items-center w-full"
+      style={[animatedStylessucess]} // Spring animation applied here
+    >
+      <SuccessModal
+        handlenavigate={() => {
+          navigation.navigate("login");
+        }}
+      />
+    </Animated.View>
+    </>
+    )}
+           
       <View style={{ height: height }}>
         <StatusBar style="auto" />
         <View className="w-full h-full px-5 py-[88px] bg-white">
@@ -193,6 +217,7 @@ export default function Registration() {
               </Animated.View>
             </View>
           )}
+         
           {/* Back button */}
           {currentStep > 0 && (
             <TouchableOpacity

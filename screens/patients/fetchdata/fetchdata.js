@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createUsersUrl, registerUrlone, registerUrlthree, registerUrltwo } from "../patientsendpoint/endpoint";
+import { createUsersUrl, loginUrl, registerUrlone, registerUrlthree, registerUrltwo } from "../patientsendpoint/endpoint";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
@@ -134,5 +134,46 @@ export const RegisterDataTwo = async (email, otp, setIsLoading, setErrorMessage,
       setIsLoading(false);
     }
   };
+   export const loginfunction=async(data, setIsLoading, setErrorMessage,)=>{
+    console.log('ok')
+    const tokenget = await AsyncStorage.getItem("otptoken");
+    try {
+      setIsLoading(true);
+      const response = await axios.post(loginUrl, data, {
+        headers: {
+          Authorization: `Bearer ${tokenget}`,
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+      });
+      console.log(response.data);
+      if (response.status === 201 || response.status === 200 || response.status === 203) {
+        setErrorMessage(""); // Clear any error messages
+        const message='ok'
+        return message
+      }
+    } catch (error) {
+      if (error.response) {
+        console.error("Error response:", error.response.data);
   
+        // Extract the error message or compose it
+        const message =
+          error.response.data.error?.message ||
+          JSON.stringify(error.response.data.error) ||
+          "An error occurred. Please try again.";
+  
+        setErrorMessage(message);
+      } else if (error.request) {
+        console.error("Error request:", error.request);
+        setErrorMessage(
+          "No response from the server. Please check your network connection."
+        );
+      } else {
+        console.error("Error message:", error.message);
+        setErrorMessage("An unexpected error occurred. Please try again.");
+      }
+    } finally {
+      setIsLoading(false);
+    }
+   }
   
