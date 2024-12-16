@@ -34,13 +34,17 @@ import Animated, {
 } from "react-native-reanimated";
 import { height } from "../../constants/mobileDimensions";
 import { Drawer } from "../modals/drawer";
+import { loginfunction } from "../patients/fetchdata/fetchdata";
 
 export const Login = () => {
   const navigation = useNavigation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const handleShowPassword = () => {
+  const [IsLoading, setIsLoading]=useState(false);
+  const [errorMessage,setErrorMessage]=useState('')
+
+  const handleShowPass= () => {
     setShowPassword(!showPassword);
   };
 
@@ -48,7 +52,8 @@ export const Login = () => {
     navigation.navigate("signup");
   };
   const handletodashboard = () => {
-    navigation.navigate("dashboard");
+    const data={email,password}
+    loginfunction(data,setIsLoading,setErrorMessage)
   };
 
   return (
@@ -71,10 +76,10 @@ export const Login = () => {
             </View>
           </View>
           <CustomInputWithHeader
-            headerText="Phone Number"
-            placeholder="Enter your phone number"
-            leftIconName="phone" // Use FontAwesome email icon
-            onChange={(text) => console.log(text)}
+            headerText="email"
+            placeholder="Enter your email"
+            leftIconName="email" // Use FontAwesome email icon
+            onChange={(text) => setEmail(text)}
           />
 
           <View className="h-3" />
