@@ -20,27 +20,31 @@ import Animated, {
   useSharedValue,
   withSpring,
 } from "react-native-reanimated";
-import { height } from "../../constants/mobileDimensions";
-import { Textstyles } from "../../constants/fontsize";
+import { height } from "../../../constants/mobileDimensions";
+import { Textstyles } from "../../../constants/fontsize";
 import {
   CustomInputpassword,
   CustomInputWithHeader,
-} from "../mycomponents/mycomponent";
-import { Box, CustomTextnumber } from "../mycomponents/mycomponent";
+} from "../../mycomponents/mycomponent";
+import { Box, CustomTextnumber } from "../../mycomponents/mycomponent";
 import {
   primarycolor,
   whitecolor,
   primarycolortwo,
   greycolortwo,
-} from "../../constants/color";
-import { CustomButton, CustomTextInput } from "../mycomponents/mycomponent";
-import NumericKeyboard from "../modals/CustomKeyboard"; // Importing the Numeric Keyboard
+} from "../../../constants/color";
+import { CustomButton, CustomTextInput } from "../../mycomponents/mycomponent";
+import NumericKeyboard from "../../modals/CustomKeyboard"; // Importing the Numeric Keyboard
 
 export default function Healthcare() {
   const navigation = useNavigation();
   const [currentStep, setCurrentStep] = useState(0); // Steps: 0 = phone input, 1 = OTP, 2 = password
   const [email, setEmail] = useState("");
   const [password, setPassword] = React.useState("");
+
+  const handleContinue = () => {
+    navigation.navigate("health-provider-verification");
+  }
 
   return (
     <View style={{ height: height }} className="w-full px-5 py-[88px] bg-white">
@@ -50,10 +54,7 @@ export default function Healthcare() {
         </Text>
         <View className=" flex items-center justify-center w-full ">
           <View className=" w-[85%] ">
-            <Text
-              className=" text-center h-10  mb-5"
-              style={[Textstyles.text_small]}
-            >
+            <Text className=" text-center mb-5" style={[Textstyles.text_small]}>
               Please enter your personal information to create your account
             </Text>
           </View>
@@ -103,6 +104,7 @@ export default function Healthcare() {
         Textname={"Continue"}
         backgroundColor={primarycolor}
         TextColor={whitecolor}
+        onPress={handleContinue}
       />
       <View className="flex-row justify-center items-center mt-4 flex-wrap">
         <Text style={[Textstyles.text_small]} className="text-center">
