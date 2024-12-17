@@ -10,13 +10,6 @@ import AppointmentDetails from "../screens/patients/dashboard/apponitmentdetails
 import LabsScreen from "../screens/patients/dashboard/LAB/lab";
 import Toplabs from "../screens/patients/dashboard/LAB/toplaboratories";
 import Laboratories from "../screens/patients/dashboard/LAB/laboratories";
-import Address from "../screens/patients/dashboard/profile/manageaddress";
-import Personal from "../screens/patients/dashboard/profile/personal";
-import ProfileCompletion from "../screens/patients/dashboard/profile/profilecomplete";
-import Favourites from "../screens/patients/dashboard/favourites";
-import OrderTracking from "../screens/patients/dashboard/ordertracking";
-import OrderHistory from "../screens/patients/dashboard/orderhistory";
-import Chat from "../screens/patients/dashboard/chat";
 import Profile from "../screens/patients/dashboard/profile/profile";
 import Wallet from "../screens/patients/dashboard/wallet";
 import Medicine from "../screens/patients/dashboard/medicine";
@@ -25,9 +18,8 @@ import { PaymentScreen } from "../screens/patients/dashboard/payment";
 import Orcode from "../screens/patients/dashboard/userqrcode";
 import Cart from "../screens/patients/dashboard/cart";
 import Messages from "../screens/patients/dashboard/messages";
-import Settings from "../screens/patients/dashboard/profile/setings";
 import HealthcareProviderScreen from "../screens/patients/dashboard/LAB/healthprovider";
-import Healthcare from "../screens/healthptype/healthsignup";
+import Healthcare from "../screens/health-provider-types/doctors/auth/healthsignup";
 import ProfileScreen from "./profileScreen";
 import ListofHealthprovider from "../screens/patients/dashboard/LAB/Listofhealthprovider";
 
@@ -102,7 +94,7 @@ const DashboardScreen = () => {
         name="toplaboratories"
         component={Toplabs}
       />
-       <Stack.Screen
+      <Stack.Screen
         options={{
           gestureEnabled: true,
           gestureDirection:
@@ -125,7 +117,7 @@ const DashboardScreen = () => {
         name="healthprovider"
         component={HealthcareProviderScreen}
       />
-       <Stack.Screen
+      <Stack.Screen
         options={{
           gestureEnabled: true,
           gestureDirection:
@@ -136,8 +128,7 @@ const DashboardScreen = () => {
         name="listofhealthproviders"
         component={ListofHealthprovider}
       />
-      
-      
+
       <Stack.Screen
         options={{
           gestureEnabled: true,
@@ -217,7 +208,7 @@ const DashboardScreen = () => {
         name="medicine"
         component={Medicine}
       />
-  
+
       <Stack.Screen
         options={{
           gestureEnabled: true,
@@ -229,8 +220,7 @@ const DashboardScreen = () => {
         name="wallet"
         component={Wallet}
       />
-     
-      
+
       <Stack.Screen
         options={{
           gestureEnabled: true,
@@ -242,7 +232,7 @@ const DashboardScreen = () => {
         name="laborarories"
         component={Laboratories}
       />
-       <Stack.Screen
+      <Stack.Screen
         options={{
           gestureEnabled: true,
           gestureDirection:
@@ -254,7 +244,7 @@ const DashboardScreen = () => {
         component={Profile}
       />
 
-            <Stack.Screen
+      <Stack.Screen
         options={{
           gestureEnabled: true,
           gestureDirection:
@@ -265,7 +255,7 @@ const DashboardScreen = () => {
         name="profileScreen"
         component={ProfileScreen}
       />
-          {/* <Stack.Screen
+      {/* <Stack.Screen
         options={{
           gestureEnabled: true,
           gestureDirection:
@@ -276,7 +266,6 @@ const DashboardScreen = () => {
         name="lab"
         component={Lab}
       /> */}
-      
     </Stack.Navigator>
   );
 };
