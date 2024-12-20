@@ -55,7 +55,7 @@ export const CustomButton = ({
       >
         {leftIcon}
         <Text style={[Textstyles.text_button, { color: TextColor }]}>
-          {Textname}
+          {isLoading ? "Loading..." : Textname}
         </Text>
         {rightIcon}
       </TouchableOpacity>

@@ -35,25 +35,24 @@ import Animated, {
 import { height } from "../../constants/mobileDimensions";
 import { Drawer } from "../modals/drawer";
 import { loginfunction } from "../patients/fetchdata/fetchdata";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const Login = () => {
   const navigation = useNavigation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const [IsLoading, setIsLoading]=useState(false);
-  const [errorMessage,setErrorMessage]=useState('')
-
-  const handleShowPass= () => {
-    setShowPassword(!showPassword);
-  };
+  const [IsLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handletosignup = () => {
     navigation.navigate("signup");
   };
-  const handletodashboard = () => {
-    const data={email,password}
-    loginfunction(data,setIsLoading,setErrorMessage)
+  const handletodashboard = async () => {
+    const data = { email, password };
+    const response = await loginfunction(data, setIsLoading, setErrorMessage);
+    if (response) {
+      navigation.navigate("dashboard");
+    }
   };
 
   return (
@@ -76,9 +75,9 @@ export const Login = () => {
             </View>
           </View>
           <CustomInputWithHeader
-            headerText="email"
+            headerText="Email"
             placeholder="Enter your email"
-            leftIconName="email" // Use FontAwesome email icon
+            leftIconName="envelope" // Use FontAwesome email icon
             onChange={(text) => setEmail(text)}
           />
 
@@ -108,12 +107,13 @@ export const Login = () => {
           onPress={handletodashboard}
           backgroundColor={primarycolor}
           TextColor={whitecolor}
+          isLoading={IsLoading}
         />
         <View className="flex-row h-14 mt-36 gap-1 w-full justify-center items-center">
           <Text style={[Textstyles.text_small]} className="text-center">
             Don't have an account?
           </Text>
-          <TouchableOpacity  onPress={handletosignup}>
+          <TouchableOpacity onPress={handletosignup}>
             <Text style={[Textstyles.text_small]} className="text-[#0099b8]">
               Sign up
             </Text>
