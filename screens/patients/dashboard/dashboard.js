@@ -14,34 +14,14 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { QRCodeScreen } from "../../qrcodegen/Qrcode";
 import {
-  AppointmentCard,
   DateComponent,
   MenuButton,
 } from "../../mycomponents/mycomponent";
 import Footer from "./footer";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { AppointmentComponrnt } from "./apponitments";
-import axios from "axios";
-import { userProfileUrl } from "../../../api/end-point";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Dashboard = () => {
-  const getUser = async () => {
-    const userStatus = await AsyncStorage.getItem("role");
-    const token = await AsyncStorage.getItem("token");
-    const userDetail = await axios.post(userProfileUrl(userStatus), {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-    });
-    console.log(userDetail);
-  };
-  
-  useEffect(() => {
-    getUser();
-  }, []);
 
   return (
     <>
