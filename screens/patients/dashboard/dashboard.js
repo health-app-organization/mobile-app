@@ -13,12 +13,36 @@ import {
 } from "../../../assets/iconsvg/Svgicon";
 import { useNavigation } from "@react-navigation/native";
 import { QRCodeScreen } from "../../qrcodegen/Qrcode";
-import { AppointmentCard, DateComponent, MenuButton } from "../../mycomponents/mycomponent";
+import {
+  AppointmentCard,
+  DateComponent,
+  MenuButton,
+} from "../../mycomponents/mycomponent";
 import Footer from "./footer";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AppointmentComponrnt } from "./apponitments";
+import axios from "axios";
+import { userProfileUrl } from "../../../api/end-point";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Dashboard = () => {
+  const getUser = async () => {
+    const userStatus = await AsyncStorage.getItem("role");
+    const token = await AsyncStorage.getItem("token");
+    const userDetail = await axios.post(userProfileUrl(userStatus), {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    });
+    console.log(userDetail);
+  };
+  
+  useEffect(() => {
+    getUser();
+  }, []);
+
   return (
     <>
       <View className="h-full w-full flex">
@@ -27,10 +51,9 @@ const Dashboard = () => {
           <DashboardMenu />
         </View>
         <View className="flex-1 mt-10 items-center mb-20">
-        <ScrollView>
-        <Appointment />
-            </ScrollView>
-         
+          <ScrollView>
+            <Appointment />
+          </ScrollView>
         </View>
 
         <Footer activepros={"Home"} />
@@ -132,7 +155,7 @@ const DashboardMenu = () => {
         />
         <View className="w-4" />
         <MenuButton
-         onPress={() => navigation.navigate("medicine")}
+          onPress={() => navigation.navigate("medicine")}
           icon={<AmbulanceIcon width={40} height={40} />}
           text={
             <Text style={[Textstyles.text_xsmall]} className="text-center">
@@ -142,7 +165,7 @@ const DashboardMenu = () => {
         />
         <View className="w-4" />
         <MenuButton
-         onPress={() => navigation.navigate("laborarories")}
+          onPress={() => navigation.navigate("laborarories")}
           icon={<LabIcon width={40} height={40} />}
           text={
             <Text style={[Textstyles.text_xsmall]} className="text-center">
@@ -155,58 +178,69 @@ const DashboardMenu = () => {
   );
 };
 const Appointment = () => {
-    const [checkapointment,setcheckappointment]=useState(false)
+  const [checkapointment, setcheckappointment] = useState(false);
   return (
     <>
-      {checkapointment &&<View className=" flex items-center  w-full">
-        <Calender />
-        <Text style={[Textstyles.text_xmedium]} className="mt-5">
-          You have no Appointments yet
-        </Text>
-      </View>}
-      {!checkapointment && <View className=" flex px-5 w-full">
-        <View className="">
-            <Text style={[Textstyles.text_xmedium]} className="">New Chats</Text>
+      {checkapointment && (
+        <View className=" flex items-center  w-full">
+          <Calender />
+          <Text style={[Textstyles.text_xmedium]} className="mt-5">
+            You have no Appointments yet
+          </Text>
         </View>
-        <View style={{backgroundColor:'rgba(0, 153, 184, 0.05)'}} className="rounded-2xl relative flex-row px-3 py-2 w-full">
-            <View style={{backgroundColor:primarycolor}} className="absolute right-0 top-7 w-8 h-8 flex items-center justify-center rounded-full">
-                <Text style={[Textstyles.text_xmedium]} className="text-white">4</Text>
+      )}
+      {!checkapointment && (
+        <View className=" flex px-5 w-full">
+          <View className="">
+            <Text style={[Textstyles.text_xmedium]} className="">
+              New Chats
+            </Text>
+          </View>
+          <View
+            style={{ backgroundColor: "rgba(0, 153, 184, 0.05)" }}
+            className="rounded-2xl relative flex-row px-3 py-2 w-full"
+          >
+            <View
+              style={{ backgroundColor: primarycolor }}
+              className="absolute right-0 top-7 w-8 h-8 flex items-center justify-center rounded-full"
+            >
+              <Text style={[Textstyles.text_xmedium]} className="text-white">
+                4
+              </Text>
             </View>
-           <View className="">
-           <Avatar.Image size={56} source={require('../../../assets/images/chat 1.png')} />
-            </View> 
-            <View className="w-5">
-
+            <View className="">
+              <Avatar.Image
+                size={56}
+                source={require("../../../assets/images/chat 1.png")}
+              />
             </View>
+            <View className="w-5"></View>
             <View className="flex-row justify-between flex-1">
-                <View>
+              <View>
                 <Text style={[Textstyles.text_xmedium]} className="">
-                Dr. Sunmisola Olowofela
+                  Dr. Sunmisola Olowofela
                 </Text>
-                    <Text>
-                    It's important to fuel your body properly, especially during busy times. Do you....
-                    </Text>
-                </View>
                 <Text>
-                    18:02
+                  It's important to fuel your body properly, especially during
+                  busy times. Do you....
                 </Text>
-
+              </View>
+              <Text>18:02</Text>
             </View>
-            
-
+          </View>
+          <View className="mt-3">
+            <Text style={[Textstyles.text_xmedium]} className="">
+              Upcoming Appointments
+            </Text>
+          </View>
+          <View className="mt-3">
+            <DateComponent />
+          </View>
+          <View className="mt-3">
+            <AppointmentComponrnt />
+          </View>
         </View>
-        <View className="mt-3">
-        <Text style={[Textstyles.text_xmedium]} className="">Upcoming Appointments</Text>
-        </View>
-        <View className="mt-3">
-            <DateComponent/>
-        </View>
-        <View className="mt-3">
-            <AppointmentComponrnt/>
-        </View>
-      </View>
-
-      }
+      )}
     </>
   );
 };

@@ -10,10 +10,7 @@ import {
   StatusBar,
 } from "react-native";
 import {
-  MaterialIcons,
   Feather,
-  MaterialCommunityIcons,
-  FontAwesome5,
   FontAwesome,
 } from "@expo/vector-icons";
 import React, { useEffect, useState } from "react";
@@ -33,13 +30,10 @@ import { Box, CustomTextnumber } from "../mycomponents/mycomponent";
 import { primarycolor, whitecolor, greycolortwo } from "../../constants/color";
 import { CustomButton } from "../mycomponents/mycomponent";
 import NumericKeyboard from "../modals/CustomKeyboard"; // Importing the Numeric Keyboard
-import { SafeAreaView } from "react-native-safe-area-context";
 import { height } from "../../constants/mobileDimensions";
 import { RadioButton } from "react-native-paper";
 import { customstyle } from "../../constants/customstyle";
 import DateModal from "../modals/datemodal";
-import axios from "axios";
-import { registerUrl } from "../../api/end-point";
 import { RegisterDataOne, RegisterDataThree, RegisterDataTwo } from "../patients/fetchdata/fetchdata";
 import SuccessModal from "../modals/successModal";
 
@@ -59,13 +53,12 @@ export default function Registration() {
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const [isLoading, setIsLoading] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
   const [showDate, setShowDate] = useState(false);//for date picker
 
   const [errorMessage, setErrorMessage] = useState(null);
   const [showKeyboard, setShowKeyboard] = useState(false); // State to toggle keyboard visibility
   const [otp, setOtp] = useState(["", "", "", "", "", ""]); // OTP input array
-  const [showloginModal,setshowloginModal]=useState(false)
+  const [showloginModal, setshowloginModal] = useState(false)
 
   const translateY = useSharedValue(600); // Animation for the keyboard
   const animatedStyles = useAnimatedStyle(() => ({
@@ -95,23 +88,23 @@ export default function Registration() {
         password,
       };
       setIsLoading(true);
-      const response=await RegisterDataThree(data, setIsLoading, setErrorMessage, setCurrentStep)
-      if(response==='ok'){
+      const response = await RegisterDataThree(data, setIsLoading, setErrorMessage, setCurrentStep)
+      if (response === 'ok') {
         setshowloginModal(true)
         translateYsuccess.value = withSpring(0, { damping: 10, stiffness: 100 });
       }
-      
+
       setIsLoading(false);
     } else if (currentStep === 0) {
       if (!isValidEmail(email)) {
         setErrorMessage('Invalid Email Address')
         return;
       }
-      RegisterDataOne(email,setIsLoading,setErrorMessage,setCurrentStep);
-     
+      RegisterDataOne(email, setIsLoading, setErrorMessage, setCurrentStep);
+
     } else {
-      const joinOtp=otp.join("")
-      RegisterDataTwo(email,joinOtp,setIsLoading, setErrorMessage, setCurrentStep)
+      const joinOtp = otp.join("")
+      RegisterDataTwo(email, joinOtp, setIsLoading, setErrorMessage, setCurrentStep)
     }
   };
 
@@ -175,39 +168,39 @@ export default function Registration() {
   }, [confirmPassword]);
 
   // Email validator function 
-  
+
 
 
   return (
     <>
-      
+
       {showDate && <DateModal
         setBirthDate={(value) => setBirthDate(value)}
         birthDate={birthDate}
         closeModal={(value) => setShowDate(value)}
       />}
-       {/* Success Modal Display */}
-       {currentStep === 2 && showloginModal && ( 
+      {/* Success Modal Display */}
+      {currentStep === 2 && showloginModal && (
         <>
-        <View style={{backgroundColor:primarycolor}} className="h-full w-full absolute z-40 opacity-70 " />
-        <Animated.View
-      className="absolute z-50 bottom-0 justify-center items-center w-full"
-      style={[animatedStylessucess]} // Spring animation applied here
-    >
-      <SuccessModal
-        handlenavigate={() => {
-          navigation.navigate("login");
-        }}
-      />
-    </Animated.View>
-    </>
-    )}
-           
+          <View style={{ backgroundColor: primarycolor }} className="h-full w-full absolute z-40 opacity-70 " />
+          <Animated.View
+            className="absolute z-50 bottom-0 justify-center items-center w-full"
+            style={[animatedStylessucess]} // Spring animation applied here
+          >
+            <SuccessModal
+              handlenavigate={() => {
+                navigation.navigate("login");
+              }}
+            />
+          </Animated.View>
+        </>
+      )}
+
       <View style={{ height: height }}>
         <StatusBar style="auto" />
         <View className="w-full h-full px-5 py-[88px] bg-white">
-               {/* Numeric Keyboard */}
-               {currentStep === 1 && (
+          {/* Numeric Keyboard */}
+          {currentStep === 1 && (
             <View className="absolute -bottom-5 z-40   items-center">
               <Animated.View
                 className="w-full h-[500px]"
@@ -217,7 +210,7 @@ export default function Registration() {
               </Animated.View>
             </View>
           )}
-         
+
           {/* Back button */}
           {currentStep > 0 && (
             <TouchableOpacity
@@ -302,7 +295,7 @@ export default function Registration() {
                   onChange={(val) => setEmail(val)}
                   value={email}
                 />
-                
+
               </View>
             </>
           )}
@@ -365,7 +358,7 @@ export default function Registration() {
                       leftIconName="phone"
                       value={`+234 ${phoneNumber}`}
                       onChange={(text) => setPhoneNumber(text)}
-                    
+
                     />
                     <View className="h-3" />
                     <Text className="mb-2" style={[Textstyles.text_cmedium]}>
@@ -447,7 +440,7 @@ export default function Registration() {
             )}
           </>
 
-          <View className="relative z-50">
+          <View className="relative">
             <View className="h-8" />
             <Text className="text-red-500">{errorMessage}</Text>
             <CustomButton
@@ -466,7 +459,7 @@ export default function Registration() {
             />
           </View>
 
-   
+
         </View>
       </View>
     </>

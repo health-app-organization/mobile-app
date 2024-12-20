@@ -1,4 +1,5 @@
-export const baseUrl = "https://Appychild.uk/healthapp-backend";
+export const baseUrl = "https://Appychild.uk/healthapi";
+// export const baseUrl = "https://Appychild.uk/healthapp-backend";
 
 // ! Otp Urls
 export const sendOtpUrl = (userStatus) => `${baseUrl}/${userStatus}/password/reset/request-otp`;
