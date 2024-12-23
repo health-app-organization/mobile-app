@@ -36,10 +36,12 @@ export const CustomButton = ({
   props,
   width,
   isLoading,
+  disabled
 }) => {
   return (
     <>
       <TouchableOpacity
+        disabled={isLoading || disabled}
         style={[
           {
             backgroundColor: backgroundColor,
@@ -784,15 +786,15 @@ export const PaymentMethod = ({ selectedMethod, onSelect }) => {
         <TouchableOpacity
           key={option.id}
           className={`flex flex-row items-center border p-4 rounded-lg ${selectedMethod === option.id
-              ? "border-[#0099b8]" // Highlighted border for selected method
-              : "border-gray-300"
+            ? "border-[#0099b8]" // Highlighted border for selected method
+            : "border-gray-300"
             }`}
           onPress={() => onSelect(option.id)} // Set selected method on press
         >
           <View
             className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${selectedMethod === option.id
-                ? "border-[#0099b8]"
-                : "border-gray-300"
+              ? "border-[#0099b8]"
+              : "border-gray-300"
               }`}
           >
             {selectedMethod === option.id && (
@@ -1303,8 +1305,8 @@ export const OptionButton = ({ optionName, isSelected, onSelect, width }) => {
       onPress={onSelect}
       style={{ width }} // Dynamic width from prop
       className={`m-2 p-4 rounded-lg border-2 ${isSelected
-          ? "bg-[#0099B8] border-0"
-          : "bg-white border-1 border-[#0099B8]"
+        ? "bg-[#0099B8] border-0"
+        : "bg-white border-1 border-[#0099B8]"
         }`}
     >
       <Text
@@ -1388,11 +1390,9 @@ export const Header9 = ({ profileName, profileCompletion }) => {
         flexDirection: "row",
         alignItems: "center",
         paddingHorizontal: 20,
-        paddingTop: 40,
+        paddingTop: 20,
         paddingBottom: 20,
-        // Add border radius for the bottom right corner
         backgroundColor: "#00A8CC",
-        height: "15%", // Adjusted to match the rounded header style
       }}
     >
       {/* Back Button */}

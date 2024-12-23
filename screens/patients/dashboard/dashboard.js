@@ -20,6 +20,7 @@ import {
 import Footer from "./footer";
 import { useState } from "react";
 import { AppointmentComponrnt } from "./apponitments";
+import useAuthStore from "../../../store/auth-store";
 
 const Dashboard = () => {
 
@@ -45,6 +46,8 @@ export default Dashboard;
 
 const Dashheader = () => {
   const navigation = useNavigation();
+  const { getUser } = useAuthStore();
+  const user = getUser();
   return (
     <>
       <View
@@ -65,7 +68,7 @@ const Dashheader = () => {
             <View className="w-4" />
             <View>
               <Text style={[Textstyles.text_xmedium, { color: whitecolor }]}>
-                Hi Praise
+                {"Hi " + user?.firstName}
               </Text>
               <Text style={[Textstyles.text_xxmedium, { color: whitecolor }]}>
                 How’re you today?

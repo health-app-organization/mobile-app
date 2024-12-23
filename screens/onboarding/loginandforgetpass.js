@@ -1,4 +1,4 @@
-import { Image, View, Text, Pressable } from "react-native";
+import { Image, View, Text, Pressable, Alert } from "react-native";
 
 import {
   Box,
@@ -36,6 +36,7 @@ import { height } from "../../constants/mobileDimensions";
 import { Drawer } from "../modals/drawer";
 import { loginfunction } from "../patients/fetchdata/fetchdata";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import useAuthStore from "../../store/auth-store";
 
 export const Login = () => {
   const navigation = useNavigation();
@@ -47,10 +48,15 @@ export const Login = () => {
   const handletosignup = () => {
     navigation.navigate("signup");
   };
+
+  // const login = useAuthStore((state) => state.login);
+  const { login } = useAuthStore();
   const handletodashboard = async () => {
     const data = { email, password };
     const response = await loginfunction(data, setIsLoading, setErrorMessage);
-    if (response) {
+    if (response.message === 'ok') {
+      login(response.userDetails);
+      Alert.alert("Login Success");
       navigation.navigate("dashboard");
     }
   };
