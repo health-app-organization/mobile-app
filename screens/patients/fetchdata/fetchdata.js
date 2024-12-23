@@ -135,7 +135,6 @@ export const RegisterDataThree = async (data, setIsLoading, setErrorMessage, set
   }
 };
 export const loginfunction = async (data, setIsLoading, setErrorMessage,) => {
-  console.log('started')
   const tokenget = await AsyncStorage.getItem("otptoken");
   try {
     setIsLoading(true);
@@ -152,18 +151,21 @@ export const loginfunction = async (data, setIsLoading, setErrorMessage,) => {
     if (response.status === 201 || response.status === 200 || response.status === 203) {
       setErrorMessage(""); // Clear any error messages
       AsyncStorage.setItem("token", response.data.token);
-      return 'ok';
+      return {
+        message: "ok",
+        userDetails: response.data.me,
+      };
     }
   } catch (error) {
     if (error.response) {
       console.error("Error response:", error.response.data);
-      
+
       // Extract the error message or compose it
       const message =
-      error.response.data.error?.message ||
-      JSON.stringify(error.response.data.error) ||
-      "An error occurred. Please try again.";
-      
+        error.response.data.error?.message ||
+        JSON.stringify(error.response.data.error) ||
+        "An error occurred. Please try again.";
+
       setErrorMessage(message);
     } else if (error.request) {
       console.error("Error request:", error.request);

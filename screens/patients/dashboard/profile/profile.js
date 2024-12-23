@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import {
   View,
@@ -14,20 +14,18 @@ import { FontAwesome } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons"; // Import Ionicons for arrow
 import {
   CustomButton,
-  CustomButtonno,
 } from "../../../mycomponents/mycomponent";
 import Footer from "../footer";
-import { primarycolor, whitecolor } from "../../../../constants/color";
+import { primarycolor } from "../../../../constants/color";
 import { Textstyles } from "../../../../constants/fontsize";
 import { AddressBookIcon, DocumentvalidationIcon, InvoiceIcon, LogIcon, ReminderIcon, SettingsIcon, ShipmenttrackIcon, ShopBagicon, UserIcon, WalletIcon } from "../../../../assets/iconsvg/Svgicon";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import axios from "axios";
-import { userProfileUrl } from "../../../../api/end-point";
+import useAuthStore from "../../../../store/auth-store";
 
 const Profile = () => {
-  const navigation = useNavigation();
+  const { getUser } = useAuthStore();
   const [modalVisible, setModalVisible] = useState(false);
   const slideAnim = useRef(new Animated.Value(300)).current; // Starting position off-screen
+  const user = getUser();
 
 
   const handleShowModal = () => {
@@ -39,23 +37,6 @@ const Profile = () => {
       useNativeDriver: true,
     }).start();
   };
-
-  const getUser = async () => {
-    const userStatus = await AsyncStorage.getItem("role");
-    const token = await AsyncStorage.getItem("token");
-    const userDetail = await axios.post(userProfileUrl(userStatus), {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-    });
-    console.log(userDetail);
-  };
-
-  useEffect(() => {
-    getUser();
-  }, []);
 
   return (
     <>
@@ -113,19 +94,19 @@ const Profile = () => {
                 className=" text-[24px] font-[700] leading-[36px] "
                 style={[Textstyles.text_medium]}
               >
-                Praise icon
+                {user?.firstName + " " + user?.lastName}
               </Text>
               <Text
                 className=" text-[16px] leading-[24px] mb-1 "
                 style={{ color: "rgba(0, 0, 0, 0.5)" }}
               >
-                calebomojuko@gmail.com
+                {user?.email}
               </Text>
               <Text
                 className=" text-[16px] leading-[24px] "
                 style={{ color: "rgba(0, 0, 0, 0.5)" }}
               >
-                +234 8164724627
+                {user?.phoneNumber}
               </Text>
             </View>
           </View>
