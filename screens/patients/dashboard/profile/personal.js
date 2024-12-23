@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FlatList, Text, View } from "react-native";
+import { Alert, FlatList, Text, View } from "react-native";
 import {
   CustomInputWithHeader,
   CustomDropdownWithHeader,
@@ -18,6 +18,7 @@ import { useNavigation } from "@react-navigation/native";
 const Personal = () => {
   const { login, getUser } = useAuthStore();
   const user = getUser();
+  console.log(user)
   const navigation = useNavigation();
 
   const [formData, setFormData] = useState({
@@ -283,6 +284,7 @@ const Personal = () => {
       if (response.status === 201 || response.status === 200 || response.status === 203) {
         setErrorMessage("");
         login(response.data);
+        Alert.alert("Profile updated successfully");
         navigation.navigate("profile");
       }
     } catch (error) {

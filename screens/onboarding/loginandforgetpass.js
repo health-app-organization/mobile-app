@@ -1,4 +1,4 @@
-import { Image, View, Text, Pressable } from "react-native";
+import { Image, View, Text, Pressable, Alert } from "react-native";
 
 import {
   Box,
@@ -56,6 +56,7 @@ export const Login = () => {
     const response = await loginfunction(data, setIsLoading, setErrorMessage);
     if (response.message === 'ok') {
       login(response.userDetails);
+      Alert.alert("Login Success");
       navigation.navigate("dashboard");
     }
   };
