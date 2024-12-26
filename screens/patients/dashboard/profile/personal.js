@@ -351,8 +351,12 @@ const Personal = () => {
         ListFooterComponent={() => (
           <>
             {errorMessage && (
-              <Text>{errorMessage}</Text>
+              <Text className="text-red-500">{errorMessage}</Text>
             )}
+            {profileCompletion < 100 && (
+              <Text className="text-red-500">Complete all fields to save your profile</Text>
+            )}
+            <View className="h-1" />
             <CustomButton
               Textname="Save"
               backgroundColor={primarycolor}

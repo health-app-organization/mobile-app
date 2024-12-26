@@ -21,8 +21,6 @@ import { FontAwesome } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { useState, useEffect } from "react";
 import { greycolortwo, linkcolor, primarycolor } from "../../constants/color";
-import { height, width } from "../../constants/mobileDimensions";
-import { Picker } from "@react-native-picker/picker";
 import { ArrowDownIcon, ArrowUpIcon } from "../../assets/iconsvg/Svgicon";
 
 export const CustomButton = ({
