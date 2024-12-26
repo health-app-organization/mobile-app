@@ -18,7 +18,6 @@ import { useNavigation } from "@react-navigation/native";
 const Personal = () => {
   const { login, getUser } = useAuthStore();
   const user = getUser();
-  console.log(user)
   const navigation = useNavigation();
 
   const [formData, setFormData] = useState({
