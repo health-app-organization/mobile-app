@@ -5,6 +5,7 @@ import {
   StyleSheet,
   Image,
   ScrollView,
+  Modal,
 } from "react-native";
 import APP from "../../assets/images/free.png";
 import {
@@ -20,8 +21,6 @@ import { FontAwesome } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { useState, useEffect } from "react";
 import { greycolortwo, linkcolor, primarycolor } from "../../constants/color";
-import { height, width } from "../../constants/mobileDimensions";
-import { Picker } from "@react-native-picker/picker";
 import { ArrowDownIcon, ArrowUpIcon } from "../../assets/iconsvg/Svgicon";
 
 export const CustomButton = ({
@@ -1426,6 +1425,7 @@ export const CustomDropdownWithHeader = ({
 }) => {
   const [selectedValue, setSelectedValue] = useState(value);
   const [isFocused, setIsFocused] = useState(false); // State for focus
+  const [showOptions, setShowOptions] = useState(false); // State to show/hide options
 
   return (
     <View className="w-full mb-5">
@@ -1438,9 +1438,11 @@ export const CustomDropdownWithHeader = ({
       </Text>
 
       {/* Dropdown Field */}
-      <View
-        className={`relative border-1  rounded-lg bg-gray-100 ${isFocused ? "border-[#0099b8] border-2" : "border-[#ccc]"
+      <TouchableOpacity
+        className={`relative border-1 rounded-lg bg-gray-100 ${isFocused ? "border-[#0099b8] border-2" : "border-[#ccc]"
           }`} // Change border color based on focus
+        onPress={() => setShowOptions(!showOptions)} // Toggle options visibility
+        disabled={disable}
       >
         {leftIconName && (
           <View className="absolute left-4 top-3 z-10">
@@ -1451,30 +1453,50 @@ export const CustomDropdownWithHeader = ({
             />
           </View>
         )}
-        <Picker
-          selectedValue={selectedValue}
-          enabled={!disable}
-          className={`h-12 text-gray-600  ${leftIconName ? "pl-12" : "pl-4"}`} // Adjust padding for the icon
-          onValueChange={(itemValue) => {
-            setSelectedValue(itemValue);
-            if (onChange) {
-              onChange(itemValue);
-            }
-          }}
-          onFocus={() => setIsFocused(true)} // Set focus state on focus
-          onBlur={() => setIsFocused(false)} // Reset focus state on blur
+        <Text
+          className="h-12 flex items-center justify-center pl-4 pt-4"
         >
-          {/* Placeholder */}
-          <Picker.Item label={placeholder} value="" />
-          {options.map((option) => (
-            <Picker.Item
-              key={option.value}
-              label={option.label}
-              value={option.value}
-            />
-          ))}
-        </Picker>
-      </View>
+          {selectedValue ? options.find(option => option.value === selectedValue)?.label : placeholder}
+        </Text>
+      </TouchableOpacity>
+
+      {/* Options Modal */}
+      {showOptions && (
+        <Modal
+          transparent={true}
+          animationType="slide"
+          visible={showOptions}
+          onRequestClose={() => setShowOptions(false)}
+        >
+          <View className="flex-1 justify-center items-center">
+            <View className="w-4/5 bg-white rounded-lg p-4 max-h-80">
+              <ScrollView>
+                {options.map((option) => (
+                  <TouchableOpacity
+                    key={option.value}
+                    className="p-2 border-b border-gray-200"
+                    onPress={() => {
+                      setSelectedValue(option.value);
+                      setShowOptions(false);
+                      if (onChange) {
+                        onChange(option.value);
+                      }
+                    }}
+                  >
+                    <Text className="text-gray-700">{option.label}</Text>
+                  </TouchableOpacity>
+                ))}
+              </ScrollView>
+              <TouchableOpacity
+                className="mt-4 p-2 bg-gray-200 rounded-lg"
+                onPress={() => setShowOptions(false)}
+              >
+                <Text className="text-center text-gray-700">Close</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </Modal>
+      )}
     </View>
   );
 };

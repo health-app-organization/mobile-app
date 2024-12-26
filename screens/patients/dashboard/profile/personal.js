@@ -18,7 +18,6 @@ import { useNavigation } from "@react-navigation/native";
 const Personal = () => {
   const { login, getUser } = useAuthStore();
   const user = getUser();
-  console.log(user)
   const navigation = useNavigation();
 
   const [formData, setFormData] = useState({
@@ -352,8 +351,12 @@ const Personal = () => {
         ListFooterComponent={() => (
           <>
             {errorMessage && (
-              <Text>{errorMessage}</Text>
+              <Text className="text-red-500">{errorMessage}</Text>
             )}
+            {profileCompletion < 100 && (
+              <Text className="text-red-500">Complete all fields to save your profile</Text>
+            )}
+            <View className="h-1" />
             <CustomButton
               Textname="Save"
               backgroundColor={primarycolor}
