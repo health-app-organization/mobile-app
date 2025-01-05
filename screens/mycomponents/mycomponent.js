@@ -517,7 +517,7 @@ export const CustomInputSearch = ({
 
 const HeaderTitle = ({ title }) => {
   return (
-    <View className="w-full h-[15%] pt-16 pb-4 mb-6 bg-[#0099B8] pl-8">
+    <View className="w-full pt-12 pb-4 bg-[#0099B8] pl-8">
       <Text className="text-2xl text-white font-bold">{title}</Text>
     </View>
   );
