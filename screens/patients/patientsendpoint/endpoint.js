@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage"
 
-const BaseUrl = `https://appychild.uk/healthapi`
+const BaseUrl = `https://appychild.uk/healthapi/api`
 
 // !Registeration Endpoints
 export const registerUrlone = `${BaseUrl}/auth/user/register`
