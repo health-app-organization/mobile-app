@@ -1,4 +1,4 @@
-import { Image, View, Text, Pressable } from "react-native";
+import { Image, View, Text, Pressable, Alert } from "react-native";
 
 import {
   Box,
@@ -34,21 +34,31 @@ import Animated, {
 } from "react-native-reanimated";
 import { height } from "../../constants/mobileDimensions";
 import { Drawer } from "../modals/drawer";
+import { loginfunction } from "../patients/fetchdata/fetchdata";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import useAuthStore from "../../store/auth-store";
 
 export const Login = () => {
   const navigation = useNavigation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const handleShowPassword = () => {
-    setShowPassword(!showPassword);
-  };
+  const [IsLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handletosignup = () => {
     navigation.navigate("signup");
   };
-  const handletodashboard = () => {
-    navigation.navigate("dashboard");
+
+  // const login = useAuthStore((state) => state.login);
+  const { login } = useAuthStore();
+  const handletodashboard = async () => {
+    const data = { email, password };
+    const response = await loginfunction(data, setIsLoading, setErrorMessage);
+    if (response.message === 'ok') {
+      login(response.userDetails);
+      Alert.alert("Login Success");
+      navigation.navigate("dashboard");
+    }
   };
 
   return (
@@ -71,10 +81,10 @@ export const Login = () => {
             </View>
           </View>
           <CustomInputWithHeader
-            headerText="Phone Number"
-            placeholder="Enter your phone number"
-            leftIconName="phone" // Use FontAwesome email icon
-            onChange={(text) => console.log(text)}
+            headerText="Email"
+            placeholder="Enter your email"
+            leftIconName="envelope" // Use FontAwesome email icon
+            onChange={(text) => setEmail(text)}
           />
 
           <View className="h-3" />
@@ -103,12 +113,13 @@ export const Login = () => {
           onPress={handletodashboard}
           backgroundColor={primarycolor}
           TextColor={whitecolor}
+          isLoading={IsLoading}
         />
         <View className="flex-row h-14 mt-36 gap-1 w-full justify-center items-center">
           <Text style={[Textstyles.text_small]} className="text-center">
             Don't have an account?
           </Text>
-          <TouchableOpacity  onPress={handletosignup}>
+          <TouchableOpacity onPress={handletosignup}>
             <Text style={[Textstyles.text_small]} className="text-[#0099b8]">
               Sign up
             </Text>

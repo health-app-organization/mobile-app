@@ -7,15 +7,19 @@ import {
   UserIcon,
 } from "../../../assets/iconsvg/Svgicon";
 
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 
 const Footer = ({ activepros }) => {
   const [active, setactive] = useState(activepros);
   const navigation = useNavigation();
+  useEffect(() => {
+    setactive(activepros);
+  }, [active]);
   const handlenavigate = (value) => {
-    navigation.navigate(value);
     setactive(value);
+    navigation.navigate(value);
+    
   };
   return (
     <>
@@ -51,9 +55,9 @@ const Footer = ({ activepros }) => {
           />
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => handlenavigate("Appointment")}
+          onPress={() => handlenavigate("Appointments")}
           style={
-            active === "Appointment"
+            active === "Appointments"
               ? { backgroundColor: linkcolor }
               : { backgroundColor: whitecolor }
           }
@@ -62,7 +66,7 @@ const Footer = ({ activepros }) => {
           <CalenderIcon
             width={24}
             height={24}
-            color={active === "Appointment" ? primarycolor : "black"}
+            color={active === "Appointments" ? primarycolor : "black"}
           />
         </TouchableOpacity>
         <TouchableOpacity
