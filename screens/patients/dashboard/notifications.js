@@ -1,82 +1,37 @@
-import React from "react";
 import { StatusBar } from "expo-status-bar";
-import { View, Text, TouchableOpacity, ScrollView } from "react-native";
-import {
-  Header,
-  Header2,
-  Notificationcard,
-} from "../../mycomponents/mycomponent";
+import { FlatList } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { primarycolor } from "../../../constants/color";
 import { useNavigation } from "@react-navigation/native";
+import {
+  HeaderWithTitleAndBackButton,
+  NotificationCard,
+} from "../../mycomponents/mycomponent";
+import { notificationsMockData } from "../../../mock-data/mock-data";
 
-const Notification = () => {
+const Notifications = () => {
   const navigation = useNavigation();
 
   return (
-    <View
-      className="h-screen w-full flex justify-center items-center "
-      style={{ flex: 1 }}
-    >
-      <StatusBar style="auto" />
-
-      <Header2 title="Notifications" />
-      <ScrollView className=" -mt-5">
-        <Notificationcard
-          profileImage={require("../../../assets/images/appo.png")}
-          name="Emergency? Relax, we got you covered!"
-          message="Lorem ipsum dolor sit amet consectetur. Mauris at nec egestas elit at gravida urna morbi fermentum. "
-          time="1 mins ago"
-        />
-        <Notificationcard
-          profileImage={require("../../../assets/images/appo.png")}
-          name="Emergency? Relax, we got you covered!"
-          message="Lorem ipsum dolor sit amet consectetur. Mauris at nec egestas elit at gravida urna morbi fermentum. "
-          time="1 mins ago"
-        />
-        <Notificationcard
-          profileImage={require("../../../assets/images/appo.png")}
-          name="Emergency? Relax, we got you covered!"
-          message="Lorem ipsum dolor sit amet consectetur. Mauris at nec egestas elit at gravida urna morbi fermentum. "
-          time="1 mins ago"
-        />
-        <Notificationcard
-          profileImage={require("../../../assets/images/appo.png")}
-          name="Emergency? Relax, we got you covered!"
-          message="Lorem ipsum dolor sit amet consectetur. Mauris at nec egestas elit at gravida urna morbi fermentum. "
-          time="1 mins ago"
-        />
-        <Notificationcard
-          profileImage={require("../../../assets/images/appo.png")}
-          name="Emergency? Relax, we got you covered!"
-          message="Lorem ipsum dolor sit amet consectetur. Mauris at nec egestas elit at gravida urna morbi fermentum. "
-          time="1 mins ago"
-        />
-        <Notificationcard
-          profileImage={require("../../../assets/images/appo.png")}
-          name="Emergency? Relax, we got you covered!"
-          message="Lorem ipsum dolor sit amet consectetur. Mauris at nec egestas elit at gravida urna morbi fermentum. "
-          time="1 mins ago"
-        />
-        <Notificationcard
-          profileImage={require("../../../assets/images/appo.png")}
-          name="Emergency? Relax, we got you covered!"
-          message="Lorem ipsum dolor sit amet consectetur. Mauris at nec egestas elit at gravida urna morbi fermentum. "
-          time="1 mins ago"
-        />
-        <Notificationcard
-          profileImage={require("../../../assets/images/appo.png")}
-          name="Emergency? Relax, we got you covered!"
-          message="Lorem ipsum dolor sit amet consectetur. Mauris at nec egestas elit at gravida urna morbi fermentum. "
-          time="1 mins ago"
-        />
-        <Notificationcard
-          profileImage={require("../../../assets/images/appo.png")}
-          name="Emergency? Relax, we got you covered!"
-          message="Lorem ipsum dolor sit amet consectetur. Mauris at nec egestas elit at gravida urna morbi fermentum. "
-          time="1 mins ago"
-        />
-      </ScrollView>
-    </View>
+    <SafeAreaView>
+      <StatusBar style="auto" backgroundColor={primarycolor} />
+      <FlatList
+        ListHeaderComponent={() => (
+          <HeaderWithTitleAndBackButton title="Notifications" />
+        )}
+        data={notificationsMockData}
+        renderItem={({ item }) => (
+          <NotificationCard
+            title={item.title}
+            description={item.description}
+            type={item.type}
+            time={item.time}
+          />
+        )}
+        keyExtractor={(item) => item.id.toString()}
+      />
+    </SafeAreaView>
   );
 };
 
-export default Notification;
+export default Notifications;

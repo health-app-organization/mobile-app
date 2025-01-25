@@ -13,7 +13,7 @@ import {
   customstyle2,
   radioButtonStyles,
 } from "../../constants/customstyle";
-import { MaterialIcons } from "@expo/vector-icons";
+import { FontAwesome5, MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
 import { Textstyles } from "../../constants/fontsize";
 import { Ionicons } from "@expo/vector-icons"; // Import Ionicons for arrow
 import { TextInput } from "react-native-gesture-handler";
@@ -1113,54 +1113,52 @@ export const Chatlist = ({
   );
 };
 
-export const Notificationcard = ({
-  profileImage,
-  name,
-  message,
-  time,
-  unreadCount,
+export const NotificationCard = ({
+  title,
+  description,
+  type,
+  time
 }) => {
   return (
-    <TouchableOpacity className="flex-row items-center rounded-[10px]   mb-2 w-[364px] h-[105px]">
-      {/* Profile Image */}
-      <Image
-        source={
-          typeof profileImage === "string"
-            ? { uri: profileImage }
-            : profileImage
-        }
-        className=" w-[70px] h-[70px] rounded-[10px]"
-      />
-      {/* Name and Message */}
-      <View className="flex-1 ml-4">
-        <Text
-          style={{
-            fontSize: 16,
-            fontWeight: "600",
-            lineHeight: 24,
-            textAlign: "left",
-          }}
-          className=" font-bold mb-1"
-        >
-          {name}
-        </Text>
-        <Text
-          style={{
-            fontSize: 14,
-            fontWeight: "300",
-            lineHeight: 18,
-            textAlign: "left",
-          }}
-          className=" text-black"
-        >
-          {message}
-        </Text>
+    <View className="flex-row justify-between items-start p-4 border-b border-gray-300">
+      <View className="flex-row items-start">
+        <View className="">
+          {type === "order-details" ? (
+            <MaterialCommunityIcons
+              name="hospital-marker"
+              size={24}
+              color="#0099B8"
+            />
+          ) : type === "details" ? (
+            <FontAwesome5 name="hospital" size={24} color="#0099B8" />
+          ) : (
+            <FontAwesome5 name="ambulance" size={24} color="#0099B8" />
+          )}
+        </View>
+        <View className="ml-4">
+          <View className="flex-row items-center justify-between">
+            <Text className="font-bold">{title}</Text>
+            <Text className="text-xs text-[#888]">{time}</Text>
+          </View>
+          <Text className="text-[#888]">{description}</Text>
+          {type === "order-details" ? (
+            <TouchableOpacity
+              // onPress={() => navigation.navigate("OrderDetails")}
+              className=""
+            >
+              <Text className="text-[#0099B8] underline font-extrabold">View order details</Text>
+            </TouchableOpacity>
+          ) : type === "details" && (
+            <TouchableOpacity
+              // onPress={() => navigation.navigate("ReferralDetails")}
+              className=""
+            >
+              <Text className="text-[#0099B8] underline font-extrabold">View details</Text>
+            </TouchableOpacity>
+          )}
+        </View>
       </View>
-      {/* Time and Unread Messages Badge */}
-      <View className=" -mr-10 -mt-12">
-        <Text className="text-sm text-black mr-8">{time}</Text>
-      </View>
-    </TouchableOpacity>
+    </View>
   );
 };
 
@@ -1790,5 +1788,20 @@ export const DataDisplayModay = ({ data, setshowmodal, setSelectedValue, title }
 
       </View>
     </>
+  )
+}
+
+export const HeaderWithTitleAndBackButton = ({ title }) => {
+  const navigation = useNavigation();
+
+  return (
+    <View className="bg-[#0099b8]">
+      <View className="flex flex-row items-center p-4">
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Ionicons name="chevron-back" size={28} color="white" />
+        </TouchableOpacity>
+        <Text className="text-white text-2xl font-bold">{title}</Text>
+      </View>
+    </View>
   )
 }
