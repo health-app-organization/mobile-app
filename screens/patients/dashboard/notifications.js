@@ -2,7 +2,6 @@ import { StatusBar } from "expo-status-bar";
 import { FlatList } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { primarycolor } from "../../../constants/color";
-import { useNavigation } from "@react-navigation/native";
 import {
   HeaderWithTitleAndBackButton,
   NotificationCard,
@@ -10,8 +9,6 @@ import {
 import { notificationsMockData } from "../../../mock-data/mock-data";
 
 const Notifications = () => {
-  const navigation = useNavigation();
-
   return (
     <SafeAreaView>
       <StatusBar style="auto" backgroundColor={primarycolor} />
