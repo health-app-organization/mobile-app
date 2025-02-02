@@ -14,7 +14,7 @@ import { FontAwesome } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons"; // Import Ionicons for arrow
 import {
   CustomButton,
-} from "../../../mycomponents/mycomponent";
+} from "../../../../components/mycomponent";
 import Footer from "../footer";
 import { primarycolor } from "../../../../constants/color";
 import { Textstyles } from "../../../../constants/fontsize";

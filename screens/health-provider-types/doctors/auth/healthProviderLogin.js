@@ -6,7 +6,7 @@ import {
     CustomButton,
     CustomInputpassword,
     CustomInputWithHeader,
-} from "../../../mycomponents/mycomponent";
+} from "../../../../components/mycomponent";
 import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
 import { primarycolor, whitecolor } from "../../../../constants/color";

@@ -1,7 +1,7 @@
 import React from 'react';
 import { StatusBar } from "expo-status-bar";
 import { View } from 'react-native';
-import { Cartcard, Header } from '../../mycomponents/mycomponent';
+import { Cartcard, Header } from '../../../components/mycomponent';
 import { useNavigation } from '@react-navigation/native';
 
 

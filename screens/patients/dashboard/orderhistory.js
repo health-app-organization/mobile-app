@@ -2,7 +2,7 @@ import React from 'react';
 import { StatusBar } from "expo-status-bar";
 import { View ,Image,Text} from 'react-native';
 import { Textstyles } from '../../../constants/fontsize';
-import { Header } from '../../mycomponents/mycomponent';
+import { Header } from '../../../components/mycomponent';
 
 const OrderHistory = () => {
 

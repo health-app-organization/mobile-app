@@ -18,7 +18,7 @@ import {
   CustomButton2,
   CustomButtonsmall,
   CustomButtonsmall2,
-} from "../mycomponents/mycomponent";
+} from "../../components/mycomponent";
 import { useNavigation } from "@react-navigation/native";
 import { height, width } from "../../constants/mobileDimensions";
 import AsyncStorage from "@react-native-async-storage/async-storage";

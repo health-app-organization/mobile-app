@@ -21,7 +21,7 @@ import HeaderTitle, {
   Header,
   Providercard,
   Providercard2,
-} from "../../mycomponents/mycomponent";
+} from "../../../components/mycomponent";
 import { useNavigation } from "@react-navigation/native";
 
 

@@ -4,7 +4,7 @@ import {
   CustomButton,
   CustomDropdownWithHeader,
   Header,
-} from "../../../mycomponents/mycomponent";
+} from "../../../../components/mycomponent";
 import { Textstyles } from "../../../../constants/fontsize";
 import { primarycolor, whitecolor } from "../../../../constants/color";
 

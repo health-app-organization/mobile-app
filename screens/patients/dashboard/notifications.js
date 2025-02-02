@@ -5,7 +5,7 @@ import { primarycolor } from "../../../constants/color";
 import {
   HeaderWithTitleAndBackButton,
   NotificationCard,
-} from "../../mycomponents/mycomponent";
+} from "../../../components/mycomponent";
 import { notificationsMockData } from "../../../mock-data/mock-data";
 
 const Notifications = () => {

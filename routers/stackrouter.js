@@ -4,7 +4,7 @@ import {
 } from "@react-navigation/stack";
 import ScreenDisplay from "../screens/onboarding/splashScreen";
 import Slider from "../screens/onboarding/slidersScreen";
-import { Login } from "../screens/onboarding/loginandforgetpass";
+import { ForgotPassword, Login, RequestOtp } from "../screens/onboarding/loginandforgetpass";
 import Registration from "../screens/onboarding/registration";
 import { Platform } from "react-native";
 
@@ -75,6 +75,28 @@ const StackWrapper = () => {
           }}
           name="login"
           component={Login}
+        />
+        <Stack.Screen
+          options={{
+            gestureEnabled: true,
+            gestureDirection:
+              Platform.OS === "ios"
+                ? "horizontal"
+                : Platform.OS === "android" && "vertical",
+          }}
+          name="request-otp" //to request otp to reset password
+          component={RequestOtp}
+        />
+        <Stack.Screen
+          options={{
+            gestureEnabled: true,
+            gestureDirection:
+              Platform.OS === "ios"
+                ? "horizontal"
+                : Platform.OS === "android" && "vertical",
+          }}
+          name="forgot-password"
+          component={ForgotPassword}
         />
         <Stack.Screen
           options={{

@@ -4,7 +4,7 @@ import {
   CustomInputWithHeader,
   CustomDropdownWithHeader,
   CustomButton,
-} from "../../mycomponents/mycomponent";
+} from "../../../components/mycomponent";
 import { primarycolor, whitecolor } from "../../../constants/color";
 
 const Medical = () => {

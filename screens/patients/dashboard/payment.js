@@ -4,7 +4,7 @@ import {
   PaymentInput,
   CustomButton,
   PaymentMethod,
-} from "../../mycomponents/mycomponent";
+} from "../../../components/mycomponent";
 import { height } from "../../../constants/mobileDimensions";
 import { FontAwesome } from "@expo/vector-icons";
 import Animated, {

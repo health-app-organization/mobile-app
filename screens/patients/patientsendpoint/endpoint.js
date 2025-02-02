@@ -11,8 +11,8 @@ export const registerUrltwo = `${BaseUrl}/auth/user/verify_otp`
 //! Auth Urls
 //get userStatus
 export const userStatus = async () => {
-    const userStatus = await AsyncStorage.getItem('role')
-    return userStatus
+    const role = await AsyncStorage.getItem('role');
+    return role === 'user' ? 'user' : 'provider';
 }
 
 //* [userStatus=string (user, provider)]

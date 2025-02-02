@@ -7,21 +7,21 @@ import {
   ScrollView,
   Modal,
 } from "react-native";
-import APP from "../../assets/images/free.png";
+import APP from "../assets/images/free.png";
 import {
   customstyle,
   customstyle2,
   radioButtonStyles,
-} from "../../constants/customstyle";
+} from "../constants/customstyle";
 import { FontAwesome5, MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
-import { Textstyles } from "../../constants/fontsize";
+import { Textstyles } from "../constants/fontsize";
 import { Ionicons } from "@expo/vector-icons"; // Import Ionicons for arrow
 import { TextInput } from "react-native-gesture-handler";
 import { FontAwesome } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { useState, useEffect } from "react";
-import { greycolortwo, linkcolor, primarycolor } from "../../constants/color";
-import { ArrowDownIcon, ArrowUpIcon } from "../../assets/iconsvg/Svgicon";
+import { greycolortwo, linkcolor, primarycolor } from "../constants/color";
+import { ArrowDownIcon, ArrowUpIcon } from "../assets/iconsvg/Svgicon";
 
 export const CustomButton = ({
   Textname,
@@ -47,7 +47,7 @@ export const CustomButton = ({
             borderWidth: borderWidth || 0,
             borderColor: borderColor || null,
             width: width || "100%",
-            opacity: isLoading ? 0.5 : 1,
+            opacity: isLoading || disabled ? 0.5 : 1,
           },
           customstyle.buttonstyle,
         ]}
@@ -545,7 +545,7 @@ export const Providercard = ({
       >
         <View className="bg-gray-600 rounded-l-xl w-[130px] h-[120px] flex justify-center items-center mr-4">
           <Image
-            source={require("../../assets/images/appo.png")}
+            source={require("../assets/images/appo.png")}
             className="w-full h-full" // Set height to full
             resizeMode="contain"
           />
@@ -1178,7 +1178,7 @@ export const Providercard2 = ({
       {/* Left Section: Image */}
       <View className="bg-gray-600 w-[200px] h-[97px] flex justify-center  rounded-t-xl items-center mr-4">
         <Image
-          source={require("../../assets/images/appo.png")}
+          source={require("../assets/images/appo.png")}
           className="w-full h-full" // Set height to full
           resizeMode="contain"
         />

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Image, View, Text, TouchableOpacity, StatusBar } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import HeaderTitle from "../../mycomponents/mycomponent";
+import HeaderTitle from "../../../components/mycomponent";
 import Footer from "./footer";
 import appoImage from "../../../assets/images/appo.png";
-import { DoctorCard } from "../../mycomponents/mycomponent";
-import { DateComponent } from "../../mycomponents/mycomponent";
+import { DoctorCard } from "../../../components/mycomponent";
+import { DateComponent } from "../../../components/mycomponent";
 
 const Appointments = () => {
   const navigation = useNavigation();

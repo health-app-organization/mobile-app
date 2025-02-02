@@ -5,7 +5,7 @@ import {
   CustomButton,
   CustomButtoncall,
   DateComponent,
-} from "../../mycomponents/mycomponent";
+} from "../../../components/mycomponent";
 import { primarycolor, whitecolor } from "../../../constants/color";
 import { useNavigation } from "@react-navigation/native";
 import { Textstyles } from "../../../constants/fontsize";

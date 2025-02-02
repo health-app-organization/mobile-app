@@ -9,7 +9,7 @@ import {
   ScrollView,
   FlatList,
 } from "react-native";
-import { Chatlist } from "../../mycomponents/mycomponent";
+import { Chatlist } from "../../../components/mycomponent";
 import Footer from "./footer";
 
 import HeaderTitle, {
@@ -19,7 +19,7 @@ import HeaderTitle, {
   CustomButtonsmall2,
   CustomInputSearch,
   CustomTextInput,
-} from "../../mycomponents/mycomponent";
+} from "../../../components/mycomponent";
 import { useNavigation } from "@react-navigation/native";
 import { primarycolor } from "../../../constants/color";
 import { SafeAreaView } from "react-native-safe-area-context";

@@ -25,10 +25,10 @@ import {
   CustomInputpassword,
   CustomInputWithHeader,
   CustomTextInput,
-} from "../mycomponents/mycomponent";
-import { Box, CustomTextnumber } from "../mycomponents/mycomponent";
+} from "../../components/mycomponent";
+import { Box, CustomTextnumber } from "../../components/mycomponent";
 import { primarycolor, whitecolor, greycolortwo } from "../../constants/color";
-import { CustomButton } from "../mycomponents/mycomponent";
+import { CustomButton } from "../../components/mycomponent";
 import NumericKeyboard from "../modals/CustomKeyboard"; // Importing the Numeric Keyboard
 import { height } from "../../constants/mobileDimensions";
 import { RadioButton } from "react-native-paper";

@@ -1,6 +1,6 @@
 import LottieView from "lottie-react-native";
 import { View } from "react-native";
-import { CustomButton } from "../mycomponents/mycomponent";
+import { CustomButton } from "../../components/mycomponent";
 import { primarycolor } from "../../constants/color";
 
 const SuccessModal = ({ handlenavigate }) => {

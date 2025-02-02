@@ -16,7 +16,7 @@ import { QRCodeScreen } from "../../qrcodegen/Qrcode";
 import {
   DateComponent,
   MenuButton,
-} from "../../mycomponents/mycomponent";
+} from "../../../components/mycomponent";
 import Footer from "./footer";
 import { useState } from "react";
 import { AppointmentComponrnt } from "./apponitments";

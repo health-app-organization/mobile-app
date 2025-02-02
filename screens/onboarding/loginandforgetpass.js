@@ -5,9 +5,9 @@ import {
   CustomButton,
   CustomTextInput,
   MyDivider,
-} from "../mycomponents/mycomponent";
-import { CustomInputWithHeader } from "../mycomponents/mycomponent";
-import { CustomInputpassword } from "../mycomponents/mycomponent";
+} from "../../components/mycomponent";
+import { CustomInputWithHeader } from "../../components/mycomponent";
+import { CustomInputpassword } from "../../components/mycomponent";
 import {
   greycolorfive,
   greycolorthree,
@@ -37,6 +37,8 @@ import { Drawer } from "../modals/drawer";
 import { loginfunction } from "../patients/fetchdata/fetchdata";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import useAuthStore from "../../store/auth-store";
+import axios from "axios";
+import { baseUrl } from "../../api/end-point";
 
 export const Login = () => {
   const navigation = useNavigation();
@@ -61,10 +63,17 @@ export const Login = () => {
     }
   };
 
+  const handleForgotPassword = async () => {
+    navigation.navigate("request-otp");
+  }
+
   return (
     <>
-      <View className="h-screen w-full px-5 py-[88px]">
+      <View className="h-screen w-full px-5 py-[44px]">
         <>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <Feather name="arrow-left" size={24} color="black" />
+          </TouchableOpacity>
           <Text
             style={[Textstyles.text_medium]}
             className="text-3xl text-center mt-4"
@@ -99,7 +108,9 @@ export const Login = () => {
             leftIconSize={20}
           />
           <View className=" mt-3">
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={handleForgotPassword}
+            >
               <Text style={[Textstyles.text_small]} className=" text-[#0099b8]">
                 Forget Password ?
               </Text>
@@ -129,3 +140,209 @@ export const Login = () => {
     </>
   );
 };
+
+export function RequestOtp() {
+  const navigation = useNavigation();
+  const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const handletoverify = async () => {
+    setLoading(true);
+    setErrorMessage(null);
+
+    try {
+      const response = await axios.post(`${baseUrl}/user/password/reset/request-otp`, JSON.stringify({ email }));
+      const json = await response.data;
+      console.log(json)
+    } catch (error) {
+      console.log(error);
+      setErrorMessage(error.response?.data?.message || "An error occurred");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <>
+      <View className="h-screen w-full px-5 pt-[44px]">
+        <>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <Feather name="arrow-left" size={24} color="black" />
+          </TouchableOpacity>
+
+          <View className="h-10" />
+          <View className="gap-y-2">
+            <Text
+              style={[Textstyles.text_medium]}
+              className="text-3xl text-center"
+            >
+              Forgot Password
+            </Text>
+            <Text
+              style={[Textstyles.text_small]}
+              className="text-center"
+            >
+              Please enter your email address below
+            </Text>
+          </View>
+
+          <View className="h-10" />
+          <CustomInputWithHeader
+            headerText="Email"
+            placeholder="Enter your email"
+            leftIconName="envelope" // Use FontAwesome email icon
+            value={email}
+            onChange={(text) => setEmail(text)}
+          />
+        </>
+
+        <View className="h-10" />
+        {errorMessage && (
+          <Text style={[Textstyles.text_xxmedium]} className="text-error">(errorMessage)</Text>
+        )}
+        <CustomButton
+          Textname={"Request OTP"}
+          onPress={handletoverify}
+          backgroundColor={primarycolor}
+          TextColor={whitecolor}
+          isLoading={loading}
+          disabled={email === ""}
+        />
+      </View>
+    </>
+  );
+}
+
+export const ForgotPassword = () => {
+  const navigation = useNavigation();
+  const [code, setCode] = useState("");
+  const [IsLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
+
+  const handletoverify = () => {
+    navigation.navigate("verify");
+  };
+
+  const [showKeyboard, setShowKeyboard] = useState(false);
+  const [otp, setOtp] = useState(["", "", "", "", "", ""]); // OTP input array
+  const translateY = useSharedValue(565); // Animation for the keyboard
+  const animatedStyles = useAnimatedStyle(() => ({
+    transform: [{ translateY: translateY.value }],
+  }));
+  // Toggle keyboard visibility
+  const handleShowKeys = () => {
+    setShowKeyboard((prevState) => !prevState);
+    translateY.value = showKeyboard ? withSpring(565) : withSpring(165);
+  };
+  // Function to handle OTP input
+  const handleOtpInput = (value) => {
+    if (value === "") {
+      // Handle deletion of the last inputted digit
+      setOtp((prevOtp) => {
+        const lastFilledIndex = prevOtp.findLastIndex((digit) => digit !== "");
+        if (lastFilledIndex > -1) {
+          const newOtp = [...prevOtp];
+          newOtp[lastFilledIndex] = "";
+          return newOtp;
+        }
+        return prevOtp;
+      });
+    } else if (value === "*") {
+      // Handle OTP submission when "*" is pressed
+      if (otp.some((digit) => digit === "")) {
+        setErrorMsg("Incomplete OTP");
+      } else {
+        setErrorMsg(null);
+        console.log("OTP Submitted:", otp.join(""));
+        // Handle OTP submission logic here
+      }
+    } else {
+      // Add new digit to the first empty slot
+      setOtp((prevOtp) => {
+        const nextEmptyIndex = prevOtp.indexOf("");
+        if (nextEmptyIndex > -1) {
+          const newOtp = [...prevOtp];
+          newOtp[nextEmptyIndex] = value;
+          return newOtp;
+        }
+        return prevOtp;
+      });
+    }
+  };
+
+  return (
+    <>
+      <View className="h-screen w-full px-5 pt-[44px]">
+        <>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <Feather name="arrow-left" size={24} color="black" />
+          </TouchableOpacity>
+
+          <View className="h-10" />
+          <View className="gap-y-2">
+            <Text
+              style={[Textstyles.text_medium]}
+              className="text-3xl text-center"
+            >
+              Forgot Password
+            </Text>
+            <Text
+              style={[Textstyles.text_small]}
+              className="text-center"
+            >
+              Please enter the 6 digit code sent to your email below
+            </Text>
+          </View>
+
+          <View className="h-10" />
+          <View style={{ alignItems: "center", marginTop: 40 }}>
+            {errorMessage && (
+              <Text style={[Textstyles.text_xsmall]} className="text-red-300">
+                {errorMessage}
+              </Text>
+            )}
+            <Pressable
+              onPress={handleShowKeys}
+              className="flex-row justify-center items-center"
+            >
+              {otp.map((digit, index) => (
+                <View
+                  key={index}
+                  style={{ flexDirection: "row", alignItems: "center" }}
+                >
+                  <Box inputText={digit} />
+                  {index < otp.length - 1 && <View className="w-4" />}
+                </View>
+              ))}
+            </Pressable>
+          </View>
+          <View className="flex-row items-center gap-x-2 mt-3">
+            <Text style={[Textstyles.text_small]}>Didn’t get a code?</Text>
+            <TouchableOpacity>
+              <Text style={[Textstyles.text_small]} className=" text-[#0099b8]">
+                Resend code
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </>
+
+        <View className="h-10" />
+        <CustomButton
+          Textname={"Verify"}
+          onPress={handletoverify}
+          backgroundColor={primarycolor}
+          TextColor={whitecolor}
+          isLoading={IsLoading}
+        />
+      </View>
+
+      {/* Numerical keyboard */}
+      <View className="absolute -bottom-5 z-50 items-center">
+        <Animated.View className="w-full h-[467px]" style={[animatedStyles]}>
+          <NumericKeyboard onPress={(value) => handleOtpInput(value)} />
+        </Animated.View>
+      </View>
+    </>
+  );
+}

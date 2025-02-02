@@ -3,8 +3,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { height } from "../../../constants/mobileDimensions";
 import { Textstyles } from "../../../constants/fontsize";
 import { useNavigation } from "@react-navigation/native";
-import { AntDesign } from "@expo/vector-icons";
-import { Box, CustomButton } from "../../mycomponents/mycomponent";
+import { Feather } from "@expo/vector-icons";
+import { Box, CustomButton } from "../../../components/mycomponent";
 import { useState } from "react";
 import Animated, {
     useAnimatedStyle,
@@ -25,9 +25,6 @@ export default function Verification() {
     }));
 
     const navigation = useNavigation();
-    const handleGoBack = () => {
-        navigation.goBack();
-    };
 
     const handleToLogin = () => {
         navigation.navigate("health-provider-login");
@@ -77,8 +74,8 @@ export default function Verification() {
 
     return (
         <SafeAreaView style={{ height: height }} className="py-2 px-4">
-            <TouchableOpacity onPress={handleGoBack}>
-                <AntDesign name="left" size={30} color="black" />
+            <TouchableOpacity onPress={() => navigation.goBack()}>
+                <Feather name="arrow-left" size={24} color="black" />
             </TouchableOpacity>
             <View className="h-10" />
             <View>

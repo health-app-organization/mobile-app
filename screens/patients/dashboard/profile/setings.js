@@ -5,7 +5,7 @@ import {
   CustomInputpassword,
   CustomInputWithHeader,
   Header,
-} from "../../../mycomponents/mycomponent";
+} from "../../../../components/mycomponent";
 import { Textstyles } from "../../../../constants/fontsize";
 
 import { useNavigation } from "@react-navigation/native";

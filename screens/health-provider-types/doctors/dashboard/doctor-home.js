@@ -5,7 +5,7 @@ import { height } from "../../../../constants/mobileDimensions";
 import Footer from "../../../mycomponents/doctor/footer";
 import RoundProgressTracker from "../../../mycomponents/doctor/round-progress-tracker";
 import { Textstyles } from "../../../../constants/fontsize";
-import { CustomButton } from "../../../mycomponents/mycomponent";
+import { CustomButton } from "../../../../components/mycomponent";
 import { primarycolor, whitecolor } from "../../../../constants/color";
 import { useNavigation } from "@react-navigation/native";
 

@@ -11,12 +11,12 @@ import { Textstyles } from "../../../../constants/fontsize";
 import {
   CustomInputpassword,
   CustomInputWithHeader,
-} from "../../../mycomponents/mycomponent";
+} from "../../../../components/mycomponent";
 import {
   primarycolor,
   whitecolor,
 } from "../../../../constants/color";
-import { CustomButton } from "../../../mycomponents/mycomponent";
+import { CustomButton } from "../../../../components/mycomponent";
 
 export default function Healthcare() {
   const navigation = useNavigation();

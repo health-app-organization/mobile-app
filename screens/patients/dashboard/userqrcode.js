@@ -2,7 +2,7 @@ import React from "react";
 import { StatusBar } from "expo-status-bar";
 import { View, Image, Text, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { Header } from "../../mycomponents/mycomponent";
+import { Header } from "../../../components/mycomponent";
 
 const Orcode = () => {
   const navigation = useNavigation();

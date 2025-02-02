@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
-import { Header, Header9 } from "../../../mycomponents/mycomponent";
+import { Header, Header9 } from "../../../../components/mycomponent";
 import Medical from "../medical";
 import TestReport from "./testreport";
 

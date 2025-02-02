@@ -3,7 +3,7 @@ import { StatusBar } from "expo-status-bar";
 import { View, Text, TouchableOpacity,Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons"; // Import Ionicons for arrow
-import { CustomButton } from "../../mycomponents/mycomponent";
+import { CustomButton } from "../../../components/mycomponent";
 import { primarycolor,whitecolor } from "../../../constants/color";
 
 const Wallet = () => {

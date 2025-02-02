@@ -1,5 +1,5 @@
 import { ScrollView, View } from "react-native"
-import { CustomInputSearch, Header, Providercard } from "../../../mycomponents/mycomponent"
+import { CustomInputSearch, Header, Providercard } from "../../../../components/mycomponent"
 import { useNavigation } from "@react-navigation/native"
 
 const ListofHealthprovider=()=>{

@@ -8,7 +8,7 @@ import {
   CustomInputWithHeaderdes,
   CustomButton,
   AppointmentCard,
-} from "../../../mycomponents/mycomponent";
+} from "../../../../components/mycomponent";
 import { primarycolor, whitecolor } from "../../../../constants/color";
 
 const TestReport = () => {

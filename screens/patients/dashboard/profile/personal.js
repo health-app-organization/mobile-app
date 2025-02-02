@@ -5,7 +5,7 @@ import {
   CustomDropdownWithHeader,
   CustomButton,
   Header9,
-} from "../../../mycomponents/mycomponent";
+} from "../../../../components/mycomponent";
 import { primarycolor, whitecolor } from "../../../../constants/color";
 import useAuthStore from "../../../../store/auth-store";
 import { SafeAreaView } from "react-native-safe-area-context";

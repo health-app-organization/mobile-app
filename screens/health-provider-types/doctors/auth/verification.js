@@ -4,7 +4,7 @@ import { height } from "../../../../constants/mobileDimensions";
 import { Textstyles } from "../../../../constants/fontsize";
 import { useNavigation } from "@react-navigation/native";
 import { AntDesign } from "@expo/vector-icons";
-import { Box, CustomButton } from "../../../mycomponents/mycomponent";
+import { Box, CustomButton } from "../../../../components/mycomponent";
 import { useState } from "react";
 import Animated, {
     useAnimatedStyle,
