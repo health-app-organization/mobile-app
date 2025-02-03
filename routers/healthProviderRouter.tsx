@@ -15,9 +15,8 @@ const HealthProviderRouter = () => {
     return (
         <Stack.Navigator
             initialRouteName="select-health-provider"
-            navigationOption=""
             screenOptions={{
-                headerTitle: null, // Remove the title for all screens
+                headerTitle: undefined, // Remove the title for all screens
                 headerShown: false,
                 // gestureEnabled: true,
                 // gestureDirection: Platform.OS === "ios" ? "horizontal" : Platform.OS === "android" && "vertical",
@@ -30,7 +29,7 @@ const HealthProviderRouter = () => {
                     gestureDirection:
                         Platform.OS === "ios"
                             ? "horizontal"
-                            : Platform.OS === "android" && "vertical",
+                            : "vertical",
                 }}
                 name="select-health-provider"
                 component={Provider}
@@ -41,7 +40,7 @@ const HealthProviderRouter = () => {
                     gestureDirection:
                         Platform.OS === "ios"
                             ? "horizontal"
-                            : Platform.OS === "android" && "vertical",
+                            : "vertical",
                 }}
                 name="doctor-signup"
                 component={Healthcare}
@@ -52,7 +51,7 @@ const HealthProviderRouter = () => {
                     gestureDirection:
                         Platform.OS === "ios"
                             ? "horizontal"
-                            : Platform.OS === "android" && "vertical",
+                            : "vertical",
                 }}
                 name="doctor-verification"
                 component={Verification}
@@ -63,7 +62,7 @@ const HealthProviderRouter = () => {
                     gestureDirection:
                         Platform.OS === "ios"
                             ? "horizontal"
-                            : Platform.OS === "android" && "vertical",
+                            : "vertical",
                 }}
                 name="doctor-login"
                 component={HealthProviderLogin}
@@ -74,7 +73,7 @@ const HealthProviderRouter = () => {
                     gestureDirection:
                         Platform.OS === "ios"
                             ? "horizontal"
-                            : Platform.OS === "android" && "vertical",
+                            : "vertical",
                 }}
                 name="doctor-home"
                 component={DoctorHome}
@@ -85,7 +84,7 @@ const HealthProviderRouter = () => {
                     gestureDirection:
                         Platform.OS === "ios"
                             ? "horizontal"
-                            : Platform.OS === "android" && "vertical",
+                            : "vertical",
                 }}
                 name="doctor-extra-info"
                 component={ExtraInfo}

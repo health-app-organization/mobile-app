@@ -18,10 +18,9 @@ const ProfileScreen = () => {
   const Stack = createStackNavigator();
   return (
     <Stack.Navigator
-      navigationOption=""
       initialRouteName="profile"
       screenOptions={{
-        headerTitle: null, // Remove the title for all screens
+        headerTitle: undefined, // Remove the title for all screens
         headerShown: false,
         // gestureEnabled: true,
         // gestureDirection: Platform.OS === "ios" ? "horizontal" : Platform.OS === "android" && "vertical",
@@ -35,7 +34,9 @@ const ProfileScreen = () => {
           gestureDirection:
             Platform.OS === "ios"
               ? "horizontal"
-              : Platform.OS === "android" && "vertical",
+              : Platform.OS === "android"
+                ? "vertical"
+                : undefined,
         }}
         name="profile"
         component={Profile}
@@ -46,7 +47,9 @@ const ProfileScreen = () => {
           gestureDirection:
             Platform.OS === "ios"
               ? "horizontal"
-              : Platform.OS === "android" && "vertical",
+              : Platform.OS === "android"
+                ? "vertical"
+                : undefined,
         }}
         name="wallet"
         component={Wallet}
@@ -56,7 +59,9 @@ const ProfileScreen = () => {
           gestureDirection:
             Platform.OS === "ios"
               ? "horizontal"
-              : Platform.OS === "android" && "vertical",
+              : Platform.OS === "android"
+                ? "vertical"
+                : undefined,
         }}
         name="settings"
         component={Settings}
@@ -66,7 +71,9 @@ const ProfileScreen = () => {
           gestureDirection:
             Platform.OS === "ios"
               ? "horizontal"
-              : Platform.OS === "android" && "vertical",
+              : Platform.OS === "android"
+                ? "vertical"
+                : undefined,
         }}
         name="personal"
         component={Personal}
@@ -76,7 +83,9 @@ const ProfileScreen = () => {
           gestureDirection:
             Platform.OS === "ios"
               ? "horizontal"
-              : Platform.OS === "android" && "vertical",
+              : Platform.OS === "android"
+                ? "vertical"
+                : undefined,
         }}
         name="profilecomplete"
         component={ProfileCompletion}
@@ -86,7 +95,9 @@ const ProfileScreen = () => {
           gestureDirection:
             Platform.OS === "ios"
               ? "horizontal"
-              : Platform.OS === "android" && "vertical",
+              : Platform.OS === "android"
+                ? "vertical"
+                : undefined,
         }}
         name="orderhistory"
         component={OrderHistory}
@@ -96,7 +107,9 @@ const ProfileScreen = () => {
           gestureDirection:
             Platform.OS === "ios"
               ? "horizontal"
-              : Platform.OS === "android" && "vertical",
+              : Platform.OS === "android"
+                ? "vertical"
+                : undefined,
         }}
         name="ordertracking"
         component={OrderTracking}
@@ -106,7 +119,9 @@ const ProfileScreen = () => {
           gestureDirection:
             Platform.OS === "ios"
               ? "horizontal"
-              : Platform.OS === "android" && "vertical",
+              : Platform.OS === "android"
+                ? "vertical"
+                : undefined,
         }}
         name="favourites"
         component={Favourites}

@@ -7,7 +7,7 @@ import Dashboard from "../screens/patients/dashboard/dashboard";
 import Appointments from "../screens/patients/dashboard/apponitments";
 import AppointmentDetails from "../screens/patients/dashboard/apponitmentdetails";
 
-import LabsScreen from "../screens/patients/dashboard/LAB/lab";
+import LabsScreen from "../screens/patients/dashboard/LAB/lab.js";
 import Toplabs from "../screens/patients/dashboard/LAB/toplaboratories";
 import Laboratories from "../screens/patients/dashboard/LAB/laboratories";
 import Profile from "../screens/patients/dashboard/profile/profile";
@@ -27,10 +27,9 @@ const DashboardScreen = () => {
   const Stack = createStackNavigator();
   return (
     <Stack.Navigator
-      navigationOption=""
       initialRouteName="Home"
       screenOptions={{
-        headerTitle: null, // Remove the title for all screens
+        headerTitle: undefined, // Remove the title for all screens
         headerShown: false,
         // gestureEnabled: true,
         // gestureDirection: Platform.OS === "ios" ? "horizontal" : Platform.OS === "android" && "vertical",
@@ -44,7 +43,9 @@ const DashboardScreen = () => {
           gestureDirection:
             Platform.OS === "ios"
               ? "horizontal"
-              : Platform.OS === "android" && "vertical",
+              : Platform.OS === "android"
+                ? "vertical"
+                : undefined,
         }}
         name="Home"
         component={Dashboard}
@@ -55,10 +56,12 @@ const DashboardScreen = () => {
           gestureDirection:
             Platform.OS === "ios"
               ? "horizontal"
-              : Platform.OS === "android" && "vertical",
+              : Platform.OS === "android"
+                ? "vertical"
+                : undefined,
         }}
         name="lab"
-        component={LabsScreen}
+        component={(props: any) => <LabsScreen {...props} onSave={() => {}} />}
       />
       <Stack.Screen
         options={{
@@ -66,7 +69,9 @@ const DashboardScreen = () => {
           gestureDirection:
             Platform.OS === "ios"
               ? "horizontal"
-              : Platform.OS === "android" && "vertical",
+              : Platform.OS === "android"
+                ? "vertical"
+                : undefined,
         }}
         name="Appointments"
         component={Appointments}
@@ -78,7 +83,9 @@ const DashboardScreen = () => {
           gestureDirection:
             Platform.OS === "ios"
               ? "horizontal"
-              : Platform.OS === "android" && "vertical",
+              : Platform.OS === "android"
+                ? "vertical"
+                : undefined,
         }}
         name="apponitmentdetails"
         component={AppointmentDetails}
@@ -89,7 +96,9 @@ const DashboardScreen = () => {
           gestureDirection:
             Platform.OS === "ios"
               ? "horizontal"
-              : Platform.OS === "android" && "vertical",
+              : Platform.OS === "android"
+                ? "vertical"
+                : undefined,
         }}
         name="toplaboratories"
         component={Toplabs}
@@ -100,7 +109,9 @@ const DashboardScreen = () => {
           gestureDirection:
             Platform.OS === "ios"
               ? "horizontal"
-              : Platform.OS === "android" && "vertical",
+              : Platform.OS === "android"
+                ? "vertical"
+                : undefined,
         }}
         name="healthsignup"
         component={Healthcare}
@@ -112,7 +123,9 @@ const DashboardScreen = () => {
           gestureDirection:
             Platform.OS === "ios"
               ? "horizontal"
-              : Platform.OS === "android" && "vertical",
+              : Platform.OS === "android"
+                ? "vertical"
+                : undefined,
         }}
         name="healthprovider"
         component={HealthcareProviderScreen}
@@ -123,7 +136,9 @@ const DashboardScreen = () => {
           gestureDirection:
             Platform.OS === "ios"
               ? "horizontal"
-              : Platform.OS === "android" && "vertical",
+              : Platform.OS === "android"
+                ? "vertical"
+                : undefined,
         }}
         name="listofhealthproviders"
         component={ListofHealthprovider}
@@ -135,7 +150,9 @@ const DashboardScreen = () => {
           gestureDirection:
             Platform.OS === "ios"
               ? "horizontal"
-              : Platform.OS === "android" && "vertical",
+              : Platform.OS === "android"
+                ? "vertical"
+                : undefined,
         }}
         name="Messages"
         component={Messages}
@@ -147,7 +164,9 @@ const DashboardScreen = () => {
           gestureDirection:
             Platform.OS === "ios"
               ? "horizontal"
-              : Platform.OS === "android" && "vertical",
+              : Platform.OS === "android"
+                ? "vertical"
+                : undefined,
         }}
         name="Appointment"
         component={Appointments}
@@ -159,7 +178,9 @@ const DashboardScreen = () => {
           gestureDirection:
             Platform.OS === "ios"
               ? "horizontal"
-              : Platform.OS === "android" && "vertical",
+              : Platform.OS === "android"
+                ? "vertical"
+                : undefined,
         }}
         name="cart"
         component={Cart}
@@ -170,7 +191,9 @@ const DashboardScreen = () => {
           gestureDirection:
             Platform.OS === "ios"
               ? "horizontal"
-              : Platform.OS === "android" && "vertical",
+              : Platform.OS === "android"
+                ? "vertical"
+                : undefined,
         }}
         name="userqrcode"
         component={Orcode}
@@ -181,7 +204,9 @@ const DashboardScreen = () => {
           gestureDirection:
             Platform.OS === "ios"
               ? "horizontal"
-              : Platform.OS === "android" && "vertical",
+              : Platform.OS === "android"
+                ? "vertical"
+                : undefined,
         }}
         name="payment"
         component={PaymentScreen}
@@ -192,7 +217,9 @@ const DashboardScreen = () => {
           gestureDirection:
             Platform.OS === "ios"
               ? "horizontal"
-              : Platform.OS === "android" && "vertical",
+              : Platform.OS === "android"
+                ? "vertical"
+                : undefined,
         }}
         name="notifications"
         component={Notification}
@@ -203,7 +230,9 @@ const DashboardScreen = () => {
           gestureDirection:
             Platform.OS === "ios"
               ? "horizontal"
-              : Platform.OS === "android" && "vertical",
+              : Platform.OS === "android"
+                ? "vertical"
+                : undefined,
         }}
         name="medicine"
         component={Medicine}
@@ -215,7 +244,9 @@ const DashboardScreen = () => {
           gestureDirection:
             Platform.OS === "ios"
               ? "horizontal"
-              : Platform.OS === "android" && "vertical",
+              : Platform.OS === "android"
+                ? "vertical"
+                : undefined,
         }}
         name="wallet"
         component={Wallet}
@@ -227,7 +258,9 @@ const DashboardScreen = () => {
           gestureDirection:
             Platform.OS === "ios"
               ? "horizontal"
-              : Platform.OS === "android" && "vertical",
+              : Platform.OS === "android"
+                ? "vertical"
+                : undefined,
         }}
         name="laborarories"
         component={Laboratories}
@@ -238,7 +271,9 @@ const DashboardScreen = () => {
           gestureDirection:
             Platform.OS === "ios"
               ? "horizontal"
-              : Platform.OS === "android" && "vertical",
+              : Platform.OS === "android"
+                ? "vertical"
+                : undefined,
         }}
         name="profile"
         component={Profile}
@@ -250,7 +285,9 @@ const DashboardScreen = () => {
           gestureDirection:
             Platform.OS === "ios"
               ? "horizontal"
-              : Platform.OS === "android" && "vertical",
+              : Platform.OS === "android"
+                ? "vertical"
+                : undefined,
         }}
         name="profileScreen"
         component={ProfileScreen}
@@ -259,9 +296,11 @@ const DashboardScreen = () => {
         options={{
           gestureEnabled: true,
           gestureDirection:
-            Platform.OS === "ios"
-              ? "horizontal"
-              : Platform.OS === "android" && "vertical",
+              Platform.OS === "ios"
+                ? "horizontal"
+                : Platform.OS === "android"
+                  ? "vertical"
+                  : undefined,
         }}
         name="lab"
         component={Lab}

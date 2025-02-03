@@ -23,7 +23,7 @@ import { useState, useEffect } from "react";
 import { greycolortwo, linkcolor, primarycolor } from "../constants/color";
 import { ArrowDownIcon, ArrowUpIcon } from "../assets/iconsvg/Svgicon";
 
-export const CustomButton = ({
+export const CustomButton: React.FC<CustomButtonProps> = ({
   Textname,
   onPress,
   backgroundColor,
@@ -64,7 +64,7 @@ export const CustomButton = ({
   );
 };
 
-export const CustomButtonmedium = ({
+export const CustomButtonmedium: React.FC<CustomButtonProps> = ({
   Textname,
   onPress,
   backgroundColor,
@@ -101,7 +101,7 @@ export const CustomButtonmedium = ({
   );
 };
 
-export const CustomButtonsmall = ({
+export const CustomButtonsmall: React.FC<CustomButtonProps> = ({
   Textname,
   onPress,
   backgroundColor,
@@ -141,7 +141,7 @@ export const CustomButtonsmall = ({
   );
 };
 
-export const CustomButtonsmall2 = ({
+export const CustomButtonsmall2: React.FC<CustomButtonProps> = ({
   Textname,
   onPress,
   backgroundColor,
@@ -179,7 +179,7 @@ export const CustomButtonsmall2 = ({
   );
 };
 
-export const CustomButton2 = ({
+export const CustomButton2: React.FC<CustomButtonProps> = ({
   Textname,
   onPress,
   backgroundColor,
@@ -214,15 +214,15 @@ export const CustomButton2 = ({
   );
 };
 
-export const CustomTextInput = ({
+export const CustomTextInput: React.FC<CustomInputProps> = ({
   autoCapitalize,
   placeholder,
   placeholderTextColor,
-  sideicon,
+  leftIcon,
   rightIcon,
   onChange,
   secureTextEntry,
-  disable,
+  disabled,
   value,
 }) => {
   const [showicon, seticon] = useState(true); // Initially, show the icon
@@ -234,7 +234,7 @@ export const CustomTextInput = ({
       <View className="w-full relative flex justify-center">
         {/* Show icon only when input is empty and not focused */}
         {showicon && inputValue === "" && (
-          <View className="absolute left-2 z-50">{sideicon}</View>
+          <View className="absolute left-2 z-50">{leftIcon}</View>
         )}
         <TextInput
           onFocus={() => seticon(false)} // Hide icon when focused
@@ -251,11 +251,13 @@ export const CustomTextInput = ({
           ]}
           onChangeText={(text) => {
             setInputValue(text); // Update input value state
-            onChange(text); // Call the parent onChange handler if provided
+            if (onChange) {
+              onChange(text); // Call the parent onChange handler if provided
+            }
           }}
           secureTextEntry={secureTextEntry}
           value={inputValue}
-          editable={disable}
+          editable={disabled}
         />
         {rightIcon && (
           <View className="absolute right-2 z-50">{rightIcon}</View>
@@ -265,13 +267,13 @@ export const CustomTextInput = ({
   );
 };
 
-export const CustomTextnumber = ({
+export const CustomTextnumber: React.FC<CustomInputProps> = ({
   autoCapitalize,
   placeholder,
   placeholderTextColor,
   onChange,
   secureTextEntry,
-  disable,
+  disabled,
   value,
   errorMessage
 }) => {
@@ -315,7 +317,7 @@ export const CustomTextnumber = ({
           }}
           secureTextEntry={secureTextEntry}
           value={inputValue}
-          editable={!disable}
+          editable={!disabled}
         />
       </View>
       <Text className="text-red-500">{errorMessage}</Text>
@@ -323,7 +325,7 @@ export const CustomTextnumber = ({
   );
 };
 
-export const CustomSelect = ({
+export const CustomSelect: React.FC<CustomSelectProps> = ({
   leftIcon,
   rightIcon,
   placeHolder,
@@ -345,8 +347,8 @@ export const CustomSelect = ({
   );
 };
 
-export const CustomSelectRadioBox = ({ options, selected, setSelected }) => {
-  const handleSelectedOption = (selectedValue) => {
+export const CustomSelectRadioBox: React.FC<CustomSelectRadioProps> = ({ options, selected, setSelected }) => {
+  const handleSelectedOption = (selectedValue: string) => {
     setSelected(selectedValue);
   };
   return (
@@ -372,7 +374,7 @@ export const CustomSelectRadioBox = ({ options, selected, setSelected }) => {
   );
 };
 
-export const Box = ({ inputText }) => {
+export const Box: React.FC<BoxProps> = ({ inputText }) => {
   return (
     <View
       style={[customstyle.boxstyle]}
@@ -382,7 +384,8 @@ export const Box = ({ inputText }) => {
     </View>
   );
 };
-export const Iconplaceholder = ({ backgroundColor, width, height, Icon }) => {
+
+export const Iconplaceholder: React.FC<IconplaceholderProps> = ({ backgroundColor, width, height, Icon }) => {
   return (
     <View
       style={{ backgroundColor: backgroundColor, width: width, height: height }}
@@ -393,17 +396,15 @@ export const Iconplaceholder = ({ backgroundColor, width, height, Icon }) => {
   );
 };
 
-export const CustomInputWithHeader = ({
+export const CustomInputWithHeader: React.FC<CustomInputProps> = ({
   headerText,
   placeholder, // New placeholder prop
   autoCapitalize,
   onChange,
   secureTextEntry,
-  disable,
+  disabled,
   value,
-  leftIconName, // Use icon name as a string
-  leftIconSize, // Optional size for the icon
-  leftIconColor, // Optional color for the icon
+  leftIcon,
 }) => {
   const [inputValue, setInputValue] = useState(value); // Track the input value
   const [isFocused, setIsFocused] = useState(false); // Track focus state
@@ -418,20 +419,16 @@ export const CustomInputWithHeader = ({
       {/* Input Field */}
       <View className="relative flex justify-center">
         {/* Show left FontAwesome icon if iconName is provided */}
-        {leftIconName && (
+        {leftIcon && (
           <View className="absolute left-4 z-50">
-            <FontAwesome
-              name={leftIconName}
-              size={leftIconSize || 20}
-              color={leftIconColor || "#000"}
-            />
+            {leftIcon}
           </View>
         )}
         <TextInput
           style={[
             customstyle.textinputstyle,
             {
-              paddingLeft: leftIconName ? 45 : 15, // Adjust left padding based on icon presence
+              paddingLeft: leftIcon ? 45 : 15, // Adjust left padding based on icon presence
               borderColor: isFocused ? "#0099b8" : "#ccc", // Change border color on focus
               borderWidth: 1, // Add border width
               borderRadius: 10, // Optional: add border radius
@@ -440,7 +437,7 @@ export const CustomInputWithHeader = ({
           ]}
           placeholder={placeholder} // Set placeholder text
           value={inputValue} // Use inputValue for the actual value
-          editable={!disable} // Allow editing based on disable prop
+          editable={!disabled} // Allow editing based on disable prop
           secureTextEntry={secureTextEntry}
           autoCapitalize={autoCapitalize || "none"}
           onFocus={() => setIsFocused(true)} // Set focus state
@@ -457,16 +454,14 @@ export const CustomInputWithHeader = ({
   );
 };
 
-export const CustomInputSearch = ({
+export const CustomInputSearch: React.FC<CustomInputProps> = ({
   placeholder, // New placeholder prop
   autoCapitalize,
   onChange,
   secureTextEntry,
-  disable,
+  disabled,
   value,
-  leftIconName, // Use icon name as a string
-  leftIconSize, // Optional size for the icon
-  leftIconColor, // Optional color for the icon
+  leftIcon,
 }) => {
   const [inputValue, setInputValue] = useState(value); // Track the input value
   const [isFocused, setIsFocused] = useState(false); // Track focus state
@@ -476,20 +471,16 @@ export const CustomInputSearch = ({
       {/* Input Field */}
       <View className="relative flex justify-center">
         {/* Show left FontAwesome icon if iconName is provided */}
-        {leftIconName && (
+        {leftIcon && (
           <View className="absolute left-4 z-50">
-            <FontAwesome
-              name={leftIconName}
-              size={leftIconSize || 20}
-              color={leftIconColor || "#000"}
-            />
+            {leftIcon}
           </View>
         )}
         <TextInput
           style={[
             customstyle.textinputstyle,
             {
-              paddingLeft: leftIconName ? 45 : 15, // Adjust left padding based on icon presence
+              paddingLeft: leftIcon ? 45 : 15, // Adjust left padding based on icon presence
               borderColor: isFocused ? "#0099b8" : "#ccc", // Change border color on focus
               borderWidth: 1, // Add border width
               borderRadius: 10, // Optional: add border radius
@@ -498,7 +489,7 @@ export const CustomInputSearch = ({
           ]}
           placeholder={placeholder} // Set placeholder text
           value={inputValue} // Use inputValue for the actual value
-          editable={!disable} // Allow editing based on disable prop
+          editable={!disabled} // Allow editing based on disable prop
           secureTextEntry={secureTextEntry}
           autoCapitalize={autoCapitalize || "none"}
           onFocus={() => setIsFocused(true)} // Set focus state
@@ -515,7 +506,7 @@ export const CustomInputSearch = ({
   );
 };
 
-const HeaderTitle = ({ title }) => {
+const HeaderTitle: React.FC<CustomHeaderProps> = ({ title }) => {
   return (
     <View className="w-full pt-12 pb-4 bg-[#0099B8] pl-8">
       <Text className="text-2xl text-white font-bold">{title}</Text>
@@ -525,7 +516,7 @@ const HeaderTitle = ({ title }) => {
 
 export default HeaderTitle;
 
-export const Providercard = ({
+export const Providercard: React.FC<ProviderCardProps> = ({
   name,
   title,
   rating,
@@ -590,7 +581,7 @@ export const Providercard = ({
   );
 };
 
-export const Cartcard = ({ name, title, rating, likes, onPress }) => {
+export const Cartcard: React.FC<CartCardProps> = ({ name, title, rating, likes, onPress }) => {
   return (
     <TouchableOpacity
       onPress={onPress}
@@ -615,17 +606,15 @@ export const Cartcard = ({ name, title, rating, likes, onPress }) => {
   );
 };
 
-export const CustomInputpassword = ({
+export const CustomInputpassword: React.FC<CustomInputProps> = ({
   headerText,
   placeholder,
   autoCapitalize,
   onChange,
   secureTextEntry, // This will be initially passed as true for password fields
-  disable,
+  disabled,
   value,
-  leftIconName,
-  leftIconSize,
-  leftIconColor,
+  leftIcon,
 }) => {
   const [inputValue, setInputValue] = useState(value); // Track the input value
   const [isFocused, setIsFocused] = useState(false); // Track focus state
@@ -646,13 +635,9 @@ export const CustomInputpassword = ({
       {/* Input Field */}
       <View className="relative flex justify-center">
         {/* Show left FontAwesome icon if iconName is provided */}
-        {leftIconName && (
+        {leftIcon && (
           <View className="absolute left-4 z-50">
-            <FontAwesome
-              name={leftIconName}
-              size={leftIconSize || 20}
-              color={leftIconColor || "#000"}
-            />
+            {leftIcon}
           </View>
         )}
 
@@ -660,7 +645,7 @@ export const CustomInputpassword = ({
           style={[
             customstyle.textinputstyle,
             {
-              paddingLeft: leftIconName ? 45 : 15, // Adjust left padding based on icon presence
+              paddingLeft: leftIcon ? 45 : 15, // Adjust left padding based on icon presence
               paddingRight: 45, // Add right padding for the eye icon
               borderColor: isFocused ? "#0099B8" : "#ccc", // Change border color on focus
               borderWidth: 1,
@@ -670,7 +655,7 @@ export const CustomInputpassword = ({
           ]}
           placeholder={placeholder}
           value={inputValue}
-          editable={!disable}
+          editable={!disabled}
           secureTextEntry={secureTextEntry && !isPasswordVisible} // Toggle secureTextEntry based on visibility
           autoCapitalize={autoCapitalize || "none"}
           onFocus={() => setIsFocused(true)}
@@ -1694,7 +1679,21 @@ export const DoctorCard = ({ name, session, time, imageSource, onPress }) => {
 
 
 
-export const CustomButtoncall = ({
+interface CustomButtoncallProps {
+  Textname: string;
+  onPress: () => void;
+  backgroundColor: string;
+  TextColor: string;
+  borderWidth?: number;
+  borderColor?: string;
+  leftIcon?: React.ReactNode;
+  rightIcon?: React.ReactNode;
+  props?: any;
+  width?: number;
+  height?: number;
+}
+
+export const CustomButtoncall: React.FC<CustomButtoncallProps> = ({
   Textname,
   onPress,
   backgroundColor,
@@ -1743,7 +1742,12 @@ export const CustomButtoncall = ({
     </TouchableOpacity>
   );
 };
-export const Selectionpicker = ({ Title, onPress }) => {
+interface SelectionpickerProps {
+  Title: string;
+  onPress: () => void;
+}
+
+export const Selectionpicker: React.FC<SelectionpickerProps> = ({ Title, onPress }) => {
   return (
     <>
       <TouchableOpacity onPress={() => onPress()} className="justify-between px-3 flex-row items-center" style={{ borderColor: primarycolor, borderWidth: 1, height: 50, borderRadius: 10 }}>
@@ -1755,7 +1759,19 @@ export const Selectionpicker = ({ Title, onPress }) => {
     </>
   )
 }
-export const DataDisplayModay = ({ data, setshowmodal, setSelectedValue, title }) => {
+interface DataItem {
+  value: string;
+  label: string;
+}
+
+interface DataDisplayModayProps {
+  data: DataItem[];
+  setshowmodal: (show: boolean) => void;
+  setSelectedValue: (value: string) => void;
+  title: string;
+}
+
+export const DataDisplayModay: React.FC<DataDisplayModayProps> = ({ data, setshowmodal, setSelectedValue, title }) => {
 
   return (
     <>

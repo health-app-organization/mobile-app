@@ -21,9 +21,8 @@ const StackWrapper = () => {
     <AuthProvider>
       <Stack.Navigator
         initialRouteName="start"
-        navigationOption=""
         screenOptions={{
-          headerTitle: null, // Remove the title for all screens
+          headerTitle: "", // Remove the title for all screens
           headerShown: false,
           // gestureEnabled: true,
           // gestureDirection: Platform.OS === "ios" ? "horizontal" : Platform.OS === "android" && "vertical",
@@ -37,7 +36,9 @@ const StackWrapper = () => {
             gestureDirection:
               Platform.OS === "ios"
                 ? "horizontal"
-                : Platform.OS === "android" && "vertical",
+                : Platform.OS === "android"
+                  ? "vertical"
+                  : undefined,
           }}
           name="start"
           component={ScreenDisplay}
@@ -48,7 +49,9 @@ const StackWrapper = () => {
             gestureDirection:
               Platform.OS === "ios"
                 ? "horizontal"
-                : Platform.OS === "android" && "vertical",
+                : Platform.OS === "android"
+                  ? "vertical"
+                  : undefined,
           }}
           name="slider"
           component={Slider}
@@ -60,7 +63,9 @@ const StackWrapper = () => {
             gestureDirection:
               Platform.OS === "ios"
                 ? "horizontal"
-                : Platform.OS === "android" && "vertical",
+                : Platform.OS === "android"
+                  ? "vertical"
+                  : undefined,
           }}
           name="identity"
           component={Identity}
@@ -71,7 +76,9 @@ const StackWrapper = () => {
             gestureDirection:
               Platform.OS === "ios"
                 ? "horizontal"
-                : Platform.OS === "android" && "vertical",
+                : Platform.OS === "android"
+                  ? "vertical"
+                  : undefined,
           }}
           name="login"
           component={Login}
@@ -82,7 +89,9 @@ const StackWrapper = () => {
             gestureDirection:
               Platform.OS === "ios"
                 ? "horizontal"
-                : Platform.OS === "android" && "vertical",
+                : Platform.OS === "android"
+                  ? "vertical"
+                  : undefined,
           }}
           name="request-otp" //to request otp to reset password
           component={RequestOtp}
@@ -93,7 +102,9 @@ const StackWrapper = () => {
             gestureDirection:
               Platform.OS === "ios"
                 ? "horizontal"
-                : Platform.OS === "android" && "vertical",
+                : Platform.OS === "android"
+                  ? "vertical"
+                  : undefined,
           }}
           name="forgot-password"
           component={ForgotPassword}
@@ -104,7 +115,9 @@ const StackWrapper = () => {
             gestureDirection:
               Platform.OS === "ios"
                 ? "horizontal"
-                : Platform.OS === "android" && "vertical",
+                : Platform.OS === "android"
+                  ? "vertical"
+                  : undefined,
           }}
           name="signup"
           component={Registration}
@@ -115,7 +128,9 @@ const StackWrapper = () => {
             gestureDirection:
               Platform.OS === "ios"
                 ? "horizontal"
-                : Platform.OS === "android" && "vertical",
+                : Platform.OS === "android"
+                  ? "vertical"
+                  : undefined,
           }}
           name="dashboard"
           component={DashboardScreen}
@@ -126,7 +141,9 @@ const StackWrapper = () => {
             gestureDirection:
               Platform.OS === "ios"
                 ? "horizontal"
-                : Platform.OS === "android" && "vertical",
+                : Platform.OS === "android"
+                  ? "vertical"
+                  : undefined,
           }}
           name="healthsignup"
           component={Healthcare}
@@ -137,7 +154,9 @@ const StackWrapper = () => {
             gestureDirection:
               Platform.OS === "ios"
                 ? "horizontal"
-                : Platform.OS === "android" && "vertical",
+                : Platform.OS === "android"
+                  ? "vertical"
+                  : undefined,
           }}
           name="verification"
           component={VerificationFlowStack}
@@ -149,7 +168,9 @@ const StackWrapper = () => {
             gestureDirection:
               Platform.OS === "ios"
                 ? "horizontal"
-                : Platform.OS === "android" && "vertical",
+                : Platform.OS === "android"
+                  ? "vertical"
+                  : undefined,
           }}
           name="healthptype"
           component={HealthProviderRouter}
