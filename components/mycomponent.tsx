@@ -19,7 +19,7 @@ import { Ionicons } from "@expo/vector-icons"; // Import Ionicons for arrow
 import { TextInput } from "react-native-gesture-handler";
 import { FontAwesome } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { greycolortwo, linkcolor, primarycolor } from "../constants/color";
 import { ArrowDownIcon, ArrowUpIcon } from "../assets/iconsvg/Svgicon";
 
@@ -686,13 +686,13 @@ export const CustomInputpassword: React.FC<CustomInputProps> = ({
   );
 };
 
-export const PaymentInput = ({
+export const PaymentInput: React.FC<PaymentInputProps> = ({
   placeholder,
   placeholderTextColor,
   onChange,
   value,
   sideIcon,
-  disable,
+  disabled,
   onFocusCustomKeyboard,
 }) => {
   const [inputValue, setInputValue] = useState(value);
@@ -715,7 +715,9 @@ export const PaymentInput = ({
         onFocus={() => {
           setIsFocused(true);
           setShowIcon(false); // Hide the icon when focused
-          onFocusCustomKeyboard(); // Trigger the custom numeric keyboard
+          if (onFocusCustomKeyboard) {
+            onFocusCustomKeyboard(); // Trigger the custom numeric keyboard
+          }
         }}
         onBlur={() => {
           setIsFocused(false);
@@ -730,7 +732,7 @@ export const PaymentInput = ({
           onChange(formattedText); // Call parent component's onChange to sync state
         }}
         value={inputValue}
-        editable={!disable} // Disable input if the 'disable' prop is true
+        editable={!disabled} // Disable input if the 'disable' prop is true
         showSoftInputOnFocus={false} // Disable the default keyboard
       />
     </View>
@@ -758,7 +760,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export const PaymentMethod = ({ selectedMethod, onSelect }) => {
+export const PaymentMethod: React.FC<PaymentMethodProps> = ({ selectedMethod, onSelect }) => {
   const paymentOptions = [
     { id: "paystack", label: "PayStack" },
     { id: "interswitch", label: "Interswitch" },
@@ -792,7 +794,7 @@ export const PaymentMethod = ({ selectedMethod, onSelect }) => {
   );
 };
 
-export const Header = ({ title, rightIcon, onRightIconPress, marginLeft }) => {
+export const Header: React.FC<CustomHeaderProps> = ({ title, rightIcon, onRightIconPress }) => {
   const navigation = useNavigation();
   return (
     <View style={{ backgroundColor: "#00A8CC", }} className="h-1/6 flex-row items-center justify-center w-full px-5"
@@ -817,14 +819,14 @@ export const Header = ({ title, rightIcon, onRightIconPress, marginLeft }) => {
       {/* Right Icon (if provided) */}
       {rightIcon && (
         <TouchableOpacity onPress={onRightIconPress}>
-          <FontAwesome name={rightIcon} size={24} color="white" />
+          {rightIcon}
         </TouchableOpacity>
       )}
     </View>
   );
 };
 
-export const Header2 = ({ title, rightIcon, onRightIconPress }) => {
+export const Header2: React.FC<CustomHeaderProps> = ({ title, rightIcon, onRightIconPress }) => {
   const navigation = useNavigation();
 
   return (
@@ -862,14 +864,14 @@ export const Header2 = ({ title, rightIcon, onRightIconPress }) => {
       {/* Right Icon (if provided) */}
       {rightIcon && (
         <TouchableOpacity onPress={onRightIconPress}>
-          <FontAwesome name={rightIcon} size={24} color="white" />
+          {rightIcon}
         </TouchableOpacity>
       )}
     </View>
   );
 };
 
-export const Header6 = ({ title, rightIcon, onRightIconPress }) => {
+export const Header6: React.FC<CustomHeaderProps> = ({ title, rightIcon, onRightIconPress }) => {
   const navigation = useNavigation();
 
   return (
@@ -907,14 +909,14 @@ export const Header6 = ({ title, rightIcon, onRightIconPress }) => {
       {/* Right Icon (if provided) */}
       {rightIcon && (
         <TouchableOpacity onPress={onRightIconPress}>
-          <FontAwesome name={rightIcon} size={24} color="white" />
+          {rightIcon}
         </TouchableOpacity>
       )}
     </View>
   );
 };
 
-export const Header5 = ({ title, rightIcon, onRightIconPress }) => {
+export const Header5: React.FC<CustomHeaderProps> = ({ title, rightIcon, onRightIconPress }) => {
   const navigation = useNavigation();
 
   return (
@@ -952,14 +954,14 @@ export const Header5 = ({ title, rightIcon, onRightIconPress }) => {
       {/* Right Icon (if provided) */}
       {rightIcon && (
         <TouchableOpacity onPress={onRightIconPress}>
-          <FontAwesome name={rightIcon} size={24} color="white" />
+          {rightIcon}
         </TouchableOpacity>
       )}
     </View>
   );
 };
 
-export const Header3 = ({ title, rightIcon, onRightIconPress }) => {
+export const Header3: React.FC<CustomHeaderProps> = ({ title, rightIcon, onRightIconPress }) => {
   const navigation = useNavigation();
 
   return (
@@ -997,14 +999,14 @@ export const Header3 = ({ title, rightIcon, onRightIconPress }) => {
       {/* Right Icon (if provided) */}
       {rightIcon && (
         <TouchableOpacity onPress={onRightIconPress}>
-          <FontAwesome name={rightIcon} size={24} color="white" />
+          {rightIcon}
         </TouchableOpacity>
       )}
     </View>
   );
 };
 
-export const Header4 = ({ title, rightIcon, onRightIconPress }) => {
+export const Header4: React.FC<CustomHeaderProps> = ({ title, rightIcon, onRightIconPress }) => {
   const navigation = useNavigation();
 
   return (
@@ -1032,14 +1034,14 @@ export const Header4 = ({ title, rightIcon, onRightIconPress }) => {
       {/* Right Icon (if provided) */}
       {rightIcon && (
         <TouchableOpacity onPress={onRightIconPress}>
-          <FontAwesome name={rightIcon} size={24} color="white" />
+          {rightIcon}
         </TouchableOpacity>
       )}
     </View>
   );
 };
 
-export const Chatlist = ({
+export const Chatlist: React.FC<ChatListProps> = ({
   profileImage,
   name,
   message,
@@ -1098,7 +1100,7 @@ export const Chatlist = ({
   );
 };
 
-export const NotificationCard = ({
+export const NotificationCard: React.FC<NotificationCardProps> = ({
   title,
   description,
   type,
@@ -1147,7 +1149,7 @@ export const NotificationCard = ({
   );
 };
 
-export const Providercard2 = ({
+export const Providercard2: React.FC<ProviderCardProps> = ({
   name,
   title,
   rating,
@@ -1196,7 +1198,7 @@ export const Providercard2 = ({
   );
 };
 
-export const MenuButton = ({ icon, text, onPress }) => {
+export const MenuButton: React.FC<MenuButtonProps> = ({ icon, text, onPress }) => {
   return (
     <TouchableOpacity
       style={{ elevation: 4 }}
@@ -1210,7 +1212,7 @@ export const MenuButton = ({ icon, text, onPress }) => {
 };
 
 export const DateComponent = () => {
-  const [getdayArray, setdayArray] = useState([]);
+  const [getdayArray, setdayArray] = useState<number[]>([]);
   const days = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
   const currentDate = new Date();
   function getWeekDates() {
@@ -1263,7 +1265,7 @@ export const DateComponent = () => {
   );
 };
 
-export const StatsCard = ({ icon, value, label }) => {
+export const StatsCard: React.FC<StatsCardProps> = ({ icon, value, label }) => {
   return (
     <View className="w-[50px] h-[87px]">
       <View className="w-[50px] h-[50px] flex justify-center items-center rounded-[25px] bg-[#D9D9D980] mb-2">
@@ -1281,11 +1283,11 @@ export const StatsCard = ({ icon, value, label }) => {
   );
 };
 
-export const OptionButton = ({ optionName, isSelected, onSelect, width }) => {
+export const OptionButton: React.FC<OptionButtonProps> = ({ optionName, isSelected, onSelect, width }) => {
   return (
     <TouchableOpacity
       onPress={onSelect}
-      style={{ width }} // Dynamic width from prop
+      style={{ width: typeof width === 'number' ? width : undefined }} // Ensure width is a number or undefined
       className={`m-2 p-4 rounded-lg border-2 ${isSelected
         ? "bg-[#0099B8] border-0"
         : "bg-white border-1 border-[#0099B8]"
@@ -1301,14 +1303,14 @@ export const OptionButton = ({ optionName, isSelected, onSelect, width }) => {
   );
 };
 
-export const CustomTextnumberlabel = ({
+export const CustomTextnumberlabel: React.FC<CustomTextNumberLabel> = ({
   label, // Add label prop
   autoCapitalize,
   placeholder,
   placeholderTextColor,
   onChange,
   secureTextEntry,
-  disable,
+  disabled,
   value,
 }) => {
   const [isFocused, setIsFocused] = useState(false);
@@ -1356,14 +1358,14 @@ export const CustomTextnumberlabel = ({
           }}
           secureTextEntry={secureTextEntry}
           value={inputValue}
-          editable={!disable}
+          editable={!disabled}
         />
       </View>
     </View>
   );
 };
 
-export const Header9 = ({ profileName, profileCompletion }) => {
+export const Header9: React.FC<CustomHeaderProps> = ({ profileName, profileCompletion }) => {
   const navigation = useNavigation();
 
   return (
@@ -1395,16 +1397,14 @@ export const Header9 = ({ profileName, profileCompletion }) => {
   );
 };
 
-export const CustomDropdownWithHeader = ({
+export const CustomDropdownWithHeader: React.FC<CustomDropdownProps> = ({
   headerText,
   options = [],
   placeholder,
   onChange,
   disable,
   value,
-  leftIconName,
-  leftIconSize,
-  leftIconColor,
+  leftIcon,
 }) => {
   const [selectedValue, setSelectedValue] = useState(value);
   const [isFocused, setIsFocused] = useState(false); // State for focus
@@ -1427,13 +1427,9 @@ export const CustomDropdownWithHeader = ({
         onPress={() => setShowOptions(!showOptions)} // Toggle options visibility
         disabled={disable}
       >
-        {leftIconName && (
+        {leftIcon && (
           <View className="absolute left-4 top-3 z-10">
-            <FontAwesome
-              name={leftIconName}
-              size={leftIconSize || 20}
-              color={leftIconColor || "#000"}
-            />
+            {leftIcon}
           </View>
         )}
         <Text
@@ -1484,7 +1480,7 @@ export const CustomDropdownWithHeader = ({
   );
 };
 
-export const FloatingActionButton = ({ onPress }) => {
+export const FloatingActionButton: React.FC<FloatingActionButtonProps> = ({ onPress }) => {
   return (
     <TouchableOpacity
       className="w-16 h-16 bg-[#00A8CC] rounded-full items-center justify-center absolute bottom-5 right-5 shadow-lg"
@@ -1495,17 +1491,15 @@ export const FloatingActionButton = ({ onPress }) => {
   );
 };
 
-export const CustomInputWithHeader2 = ({
+export const CustomInputWithHeader2: React.FC<CustomInputProps> = ({
   headerText,
   placeholder,
   autoCapitalize,
   onChange,
   secureTextEntry,
-  disable,
+  disabled,
   value,
-  leftIconName,
-  leftIconSize,
-  leftIconColor,
+  leftIcon,
 }) => {
   const [inputValue, setInputValue] = useState(value);
   const [isFocused, setIsFocused] = useState(false);
@@ -1519,13 +1513,9 @@ export const CustomInputWithHeader2 = ({
 
       {/* Input Field */}
       <View className="relative flex justify-center">
-        {leftIconName && (
+        {leftIcon && (
           <View className="absolute left-4 z-50">
-            <FontAwesome
-              name={leftIconName}
-              size={leftIconSize || 20}
-              color={leftIconColor || "#000"}
-            />
+            {leftIcon}
           </View>
         )}
         <TextInput
@@ -1533,7 +1523,7 @@ export const CustomInputWithHeader2 = ({
             customstyle.textinputstyle,
             {
               width: "90%",
-              paddingLeft: leftIconName ? 45 : 15,
+              paddingLeft: leftIcon ? 45 : 15,
               borderColor: isFocused ? "#0099b8" : "#ccc",
               borderWidth: 1,
               borderRadius: 10,
@@ -1542,7 +1532,7 @@ export const CustomInputWithHeader2 = ({
           ]}
           placeholder={placeholder}
           value={inputValue}
-          editable={!disable}
+          editable={!disabled}
           secureTextEntry={secureTextEntry}
           autoCapitalize={autoCapitalize || "none"}
           onFocus={() => setIsFocused(true)}
@@ -1559,17 +1549,15 @@ export const CustomInputWithHeader2 = ({
   );
 };
 
-export const CustomInputWithHeaderdes = ({
+export const CustomInputWithHeaderdes: React.FC<CustomInputProps> = ({
   headerText,
   placeholder, // New placeholder prop
   autoCapitalize,
   onChange,
   secureTextEntry,
-  disable,
+  disabled,
   value,
-  leftIconName, // Use icon name as a string
-  leftIconSize, // Optional size for the icon
-  leftIconColor, // Optional color for the icon
+  leftIcon,
 }) => {
   const [inputValue, setInputValue] = useState(value); // Track the input value
   const [isFocused, setIsFocused] = useState(false); // Track focus state
@@ -1584,13 +1572,9 @@ export const CustomInputWithHeaderdes = ({
       {/* Input Field */}
       <View className="relative flex justify-center">
         {/* Show left FontAwesome icon if iconName is provided */}
-        {leftIconName && (
+        {leftIcon && (
           <View className="absolute left-4 z-50">
-            <FontAwesome
-              name={leftIconName}
-              size={leftIconSize || 20}
-              color={leftIconColor || "#000"}
-            />
+            {leftIcon}
           </View>
         )}
         <TextInput
@@ -1598,7 +1582,7 @@ export const CustomInputWithHeaderdes = ({
             customstyle.textinputstyle,
             {
               height: 150,
-              paddingLeft: leftIconName ? 45 : 15, // Adjust left padding based on icon presence
+              paddingLeft: leftIcon ? 45 : 15, // Adjust left padding based on icon presence
               borderColor: isFocused ? "#0099b8" : "#ccc", // Change border color on focus
               borderWidth: 1, // Add border width
               borderRadius: 10, // Optional: add border radius
@@ -1609,7 +1593,7 @@ export const CustomInputWithHeaderdes = ({
           ]}
           placeholder={placeholder} // Set placeholder text
           value={inputValue} // Use inputValue for the actual value
-          editable={!disable} // Allow editing based on disable prop
+          editable={!disabled} // Allow editing based on disable prop
           secureTextEntry={secureTextEntry}
           autoCapitalize={autoCapitalize || "none"}
           onFocus={() => setIsFocused(true)} // Set focus state
@@ -1626,7 +1610,7 @@ export const CustomInputWithHeaderdes = ({
   );
 };
 
-export const AppointmentCard = ({ title, doctorName, dateTime }) => {
+export const AppointmentCard: React.FC<AppointmentCardProps> = ({ title, doctorName, dateTime }) => {
   return (
     <View className="flex-row items-center p-4 bg-white rounded-lg shadow-md max-w-sm">
       {/* Image Section */}
@@ -1649,7 +1633,7 @@ export const AppointmentCard = ({ title, doctorName, dateTime }) => {
   );
 };
 
-export const DoctorCard = ({ name, session, time, imageSource, onPress }) => {
+export const DoctorCard: React.FC<DoctorCardProps> = ({ name, session, time, imageSource, onPress }) => {
   return (
     <View className="bg-white h-[160px] rounded-2xl shadow-md flex-row space-x-4">
       <View className=" flex justify-center items-center rounded-2xl">
@@ -1676,24 +1660,7 @@ export const DoctorCard = ({ name, session, time, imageSource, onPress }) => {
   );
 };
 
-
-
-
-interface CustomButtoncallProps {
-  Textname: string;
-  onPress: () => void;
-  backgroundColor: string;
-  TextColor: string;
-  borderWidth?: number;
-  borderColor?: string;
-  leftIcon?: React.ReactNode;
-  rightIcon?: React.ReactNode;
-  props?: any;
-  width?: number;
-  height?: number;
-}
-
-export const CustomButtoncall: React.FC<CustomButtoncallProps> = ({
+export const CustomButtoncall: React.FC<CustomButtonProps> = ({
   Textname,
   onPress,
   backgroundColor,
@@ -1717,7 +1684,7 @@ export const CustomButtoncall: React.FC<CustomButtoncallProps> = ({
           height: height, // Set the height (default 50)
           justifyContent: "center", // Center content vertically
           alignItems: "center", // Center content horizontally
-          borderRadius: width / 2, // Make the button circular based on width/height
+          borderRadius: typeof width === 'number' ? width / 2 : 0, // Make the button circular based on width/height
         },
         customstyle.buttonstyle, // Keep your existing custom styles if needed
       ]}
@@ -1807,7 +1774,7 @@ export const DataDisplayModay: React.FC<DataDisplayModayProps> = ({ data, setsho
   )
 }
 
-export const HeaderWithTitleAndBackButton = ({ title }) => {
+export const HeaderWithTitleAndBackButton: React.FC<CustomHeaderProps> = ({ title }) => {
   const navigation = useNavigation();
 
   return (
