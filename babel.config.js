@@ -3,7 +3,8 @@ module.exports = function (api) {
   return {
     presets: [
       ["babel-preset-expo", { jsxImportSource: "nativewind" }],
-      "nativewind/babel",
+      "@babel/preset-typescript",
+      "nativewind/babel"
     ],
     plugins: [
       "react-native-reanimated/plugin" // Ensure this is at the end of the plugin array
