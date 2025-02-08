@@ -6,12 +6,8 @@ import { Platform } from "react-native";
 import Dashboard from "../screens/patients/dashboard/dashboard";
 import Appointments from "../screens/patients/dashboard/apponitments";
 import AppointmentDetails from "../screens/patients/dashboard/apponitmentdetails";
-
-import LabsScreen from "../screens/patients/dashboard/LAB/lab.js";
 import Toplabs from "../screens/patients/dashboard/LAB/toplaboratories";
 import Laboratories from "../screens/patients/dashboard/LAB/laboratories";
-import Profile from "../screens/patients/dashboard/profile/profile";
-import Wallet from "../screens/patients/dashboard/wallet";
 import Medicine from "../screens/patients/dashboard/medicine";
 import Notification from "../screens/patients/dashboard/notifications";
 import { PaymentScreen } from "../screens/patients/dashboard/payment";
@@ -19,12 +15,13 @@ import Orcode from "../screens/patients/dashboard/userqrcode";
 import Cart from "../screens/patients/dashboard/cart";
 import Messages from "../screens/patients/dashboard/messages";
 import HealthcareProviderScreen from "../screens/patients/dashboard/LAB/healthprovider";
-import Healthcare from "../screens/health-provider-types/doctors/auth/healthsignup";
 import ProfileScreen from "./profileScreen";
 import ListofHealthprovider from "../screens/patients/dashboard/LAB/Listofhealthprovider";
+import LabsScreen from "../screens/patients/dashboard/LAB/lab";
+import { RootStackParamList } from "../types/stack";
 
 const DashboardScreen = () => {
-  const Stack = createStackNavigator();
+  const Stack = createStackNavigator<RootStackParamList>();
   return (
     <Stack.Navigator
       initialRouteName="Home"
@@ -61,7 +58,7 @@ const DashboardScreen = () => {
                 : undefined,
         }}
         name="lab"
-        component={(props: any) => <LabsScreen {...props} onSave={() => {}} />}
+        component={LabsScreen}
       />
       <Stack.Screen
         options={{
@@ -102,19 +99,6 @@ const DashboardScreen = () => {
         }}
         name="toplaboratories"
         component={Toplabs}
-      />
-      <Stack.Screen
-        options={{
-          gestureEnabled: true,
-          gestureDirection:
-            Platform.OS === "ios"
-              ? "horizontal"
-              : Platform.OS === "android"
-                ? "vertical"
-                : undefined,
-        }}
-        name="healthsignup"
-        component={Healthcare}
       />
 
       <Stack.Screen
@@ -248,35 +232,8 @@ const DashboardScreen = () => {
                 ? "vertical"
                 : undefined,
         }}
-        name="wallet"
-        component={Wallet}
-      />
-
-      <Stack.Screen
-        options={{
-          gestureEnabled: true,
-          gestureDirection:
-            Platform.OS === "ios"
-              ? "horizontal"
-              : Platform.OS === "android"
-                ? "vertical"
-                : undefined,
-        }}
         name="laborarories"
         component={Laboratories}
-      />
-      <Stack.Screen
-        options={{
-          gestureEnabled: true,
-          gestureDirection:
-            Platform.OS === "ios"
-              ? "horizontal"
-              : Platform.OS === "android"
-                ? "vertical"
-                : undefined,
-        }}
-        name="profile"
-        component={Profile}
       />
 
       <Stack.Screen

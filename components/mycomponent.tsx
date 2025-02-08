@@ -226,15 +226,15 @@ export const CustomTextInput: React.FC<CustomInputProps> = ({
   value,
 }) => {
   const [showicon, seticon] = useState(true); // Initially, show the icon
-  const [inputValue, setInputValue] = useState(value); // Track the input value
+  const [inputValue, setInputValue] = useState<string | undefined>(value); // Track the input value
   const [isFocused, setIsFocused] = useState(false); // Track focus state
 
   return (
     <>
-      <View className="w-full relative flex justify-center">
+      <View className="w-full relative flex justify-center p-1">
         {/* Show icon only when input is empty and not focused */}
         {showicon && inputValue === "" && (
-          <View className="absolute left-2 z-50">{leftIcon}</View>
+          <View className="absolute z-50">{leftIcon}</View>
         )}
         <TextInput
           onFocus={() => seticon(false)} // Hide icon when focused
@@ -278,7 +278,7 @@ export const CustomTextnumber: React.FC<CustomInputProps> = ({
   errorMessage
 }) => {
   const [isFocused, setIsFocused] = useState(false);
-  const [inputValue, setInputValue] = useState(value);
+  const [inputValue, setInputValue] = useState<string | undefined>(value);
 
   return (
     <>
@@ -615,6 +615,7 @@ export const CustomInputpassword: React.FC<CustomInputProps> = ({
   disabled,
   value,
   leftIcon,
+  className,
 }) => {
   const [inputValue, setInputValue] = useState(value); // Track the input value
   const [isFocused, setIsFocused] = useState(false); // Track focus state
@@ -626,7 +627,7 @@ export const CustomInputpassword: React.FC<CustomInputProps> = ({
   };
 
   return (
-    <View className="w-full flex flex-col">
+    <View className={`w-full flex flex-col ${className}`}>
       {/* Input Header */}
       <Text className="mb-2" style={[Textstyles.text_cmedium]}>
         {headerText}

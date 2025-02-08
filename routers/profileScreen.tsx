@@ -13,9 +13,10 @@ import Favourites from "../screens/patients/dashboard/favourites";
 import Wallet from "../screens/patients/dashboard/wallet";
 import Profile from "../screens/patients/dashboard/profile/profile";
 import Settings from "../screens/patients/dashboard/profile/setings";
+import { RootStackParamList } from "../types/stack";
 
 const ProfileScreen = () => {
-  const Stack = createStackNavigator();
+  const Stack = createStackNavigator<RootStackParamList>();
   return (
     <Stack.Navigator
       initialRouteName="profile"

@@ -9,9 +9,10 @@ import Verification from "../screens/health-provider-types/doctors/auth/verifica
 import DoctorHome from "../screens/health-provider-types/doctors/dashboard/doctor-home";
 import ExtraInfo from "../screens/health-provider-types/doctors/dashboard/extra-info";
 import Provider from "../screens/health-provider-types/doctors/auth/healthtype";
+import { RootStackParamList } from "../types/stack";
 
 const HealthProviderRouter = () => {
-    const Stack = createStackNavigator();
+    const Stack = createStackNavigator<RootStackParamList>();
     return (
         <Stack.Navigator
             initialRouteName="select-health-provider"

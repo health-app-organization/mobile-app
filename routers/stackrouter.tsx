@@ -14,9 +14,10 @@ import Healthcare from "../screens/health-provider-types/doctors/auth/healthsign
 import DashboardScreen from "./dashboardScreen";
 import HealthProviderRouter from "./healthProviderRouter";
 import AuthProvider from "../providers/auth-provider";
+import { RootStackParamList } from "../types/stack";
 
 const StackWrapper = () => {
-  const Stack = createStackNavigator();
+  const Stack = createStackNavigator<RootStackParamList>();
   return (
     <AuthProvider>
       <Stack.Navigator
@@ -59,7 +60,7 @@ const StackWrapper = () => {
 
         <Stack.Screen
           options={{
-            gestureEnabled: true,
+            gestureEnabled: false,
             gestureDirection:
               Platform.OS === "ios"
                 ? "horizontal"

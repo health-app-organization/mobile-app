@@ -1,6 +1,6 @@
 interface CustomButtonProps {
-    Textname: string;
-    onPress: () => void;
+    Textname?: string;
+    onPress?: () => void;
     backgroundColor: string | undefined;
     TextColor: string | undefined;
     borderWidth?: number;
@@ -16,8 +16,7 @@ interface CustomButtonProps {
 
 interface CustomInputProps {
     placeholder: string;
-    value: string;
-    onChangeText: (text: string) => void;
+    value: string | undefined;
     secureTextEntry?: boolean;
     keyboardType?: string;
     autoCapitalize?: "none" | "sentences" | "words" | "characters" | undefined;
@@ -34,6 +33,7 @@ interface CustomInputProps {
     onChange: (text: string) => void;
     errorMessage?: string;
     headerText?: string;
+    className?: string;
 };
 
 interface CustomSelectProps {
@@ -61,13 +61,14 @@ interface IconplaceholderProps {
 }
 
 interface CustomHeaderProps {
-    title: string;
+    title?: string;
     rightIcon?: React.ReactNode;
     onRightIconPress?: () => void;
     // header9
     profileName?: string;
     profileCompletion?: string;
-    // 
+    //
+    marginLeft?: number;
 }
 
 interface ProviderCardProps {
@@ -82,9 +83,9 @@ interface ProviderCardProps {
 
 interface CartCardProps {
     name: string;
-    title: string;
-    rating: number;
-    likes: number;
+    title?: string;
+    rating?: number;
+    likes?: number;
     onPress: () => void;
 }
 
@@ -93,7 +94,7 @@ interface PaymentInputProps {
     placeholderTextColor: string;
     onChange: (text: string) => void;
     value: string;
-    sideIcon: React.ReactNode;
+    sideIcon?: React.ReactNode;
     disabled?: boolean;
     onFocusCustomKeyboard?: () => void;
 }
@@ -154,8 +155,8 @@ interface CustomDropdownProps {
     placeholder: string;
     onChange: (value: string) => void;
     disable?: boolean;
-    value: string;
-    leftIcon: React.ReactNode;
+    value: string | undefined;
+    leftIcon?: React.ReactNode;
 }
 
 interface FloatingActionButtonProps {
