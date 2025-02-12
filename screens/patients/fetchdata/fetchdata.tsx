@@ -169,11 +169,12 @@ export const loginfunction = async (
     password: string;
   },
   setIsLoading: Dispatch<SetStateAction<boolean>>,
-  setErrorMessage: Dispatch<SetStateAction<string>>
+  setErrorMessage: Dispatch<SetStateAction<string | null>>
 ) => {
   const tokenget = await AsyncStorage.getItem("otptoken");
   try {
     setIsLoading(true);
+    setErrorMessage(null);
 
     // Serialize data to x-www-form-urlencoded format
     const serializedData = new URLSearchParams(data).toString();
@@ -201,12 +202,12 @@ export const loginfunction = async (
       console.error("Error response:", error.response.data);
 
       // Extract the error message or compose it
-      const message =
-        error.response.data.error?.message ||
-        JSON.stringify(error.response.data.error) ||
-        "An error occurred. Please try again.";
+      // const message =
+      //   error.response.data.error?.message ||
+      //   JSON.stringify(error.response.data.error) ||
+      //   "An error occurred. Please try again.";
 
-      setErrorMessage(message);
+      setErrorMessage(error.response.data.error);
     } else if (error.request) {
       console.error("Error request:", error.request);
       setErrorMessage(

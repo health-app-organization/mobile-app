@@ -41,6 +41,7 @@ export type ScreenNames = [
     "login",
     "request-otp",
     "forgot-password",
+    "set-new-password",
     "signup",
     "dashboard",
     "healthsignup",

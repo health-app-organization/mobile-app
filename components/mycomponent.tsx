@@ -224,6 +224,7 @@ export const CustomTextInput: React.FC<CustomInputProps> = ({
   secureTextEntry,
   disabled,
   value,
+  className,
 }) => {
   const [showicon, seticon] = useState(true); // Initially, show the icon
   const [inputValue, setInputValue] = useState<string | undefined>(value); // Track the input value
@@ -231,10 +232,10 @@ export const CustomTextInput: React.FC<CustomInputProps> = ({
 
   return (
     <>
-      <View className="w-full relative flex justify-center p-1">
+      <View className={`w-full relative flex justify-center p-1 ${className}`}>
         {/* Show icon only when input is empty and not focused */}
         {showicon && inputValue === "" && (
-          <View className="absolute z-50">{leftIcon}</View>
+          <View className="absolute z-10 left-4">{leftIcon}</View>
         )}
         <TextInput
           onFocus={() => seticon(false)} // Hide icon when focused
