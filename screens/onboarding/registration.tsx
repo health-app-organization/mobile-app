@@ -76,7 +76,9 @@ export default function Registration() {
   };
 
   const handleContinue = async () => {
-    if (isLoading) return;
+    if (isLoading) {
+      return;
+    }
     if (currentStep === 2) {
       console.log(phoneNumber);
       const data = {
@@ -280,7 +282,7 @@ export default function Registration() {
                   placeholderTextColor={greycolortwo}
                   onChange={(val) => setEmail(val)}
                   value={email}
-                  leftIcon={<FontAwesome name="envelope" color="#000" size={20} />}
+                  leftIcon={<FontAwesome name="envelope" color="#ccc" size={20} />}
                 />
               </View>
             </>

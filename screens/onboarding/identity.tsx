@@ -28,19 +28,20 @@ const Identity = () => {
   const navigation = useNavigation<StackNavigation>();
 
   // State for identity selection
-  const [selectedIdentity, setSelectedIdentity] = useState<IdentitySelectionProps["identity"]>(null);
+  const [selectedIdentity, setSelectedIdentity] =
+    useState<IdentitySelectionProps["identity"]>(null);
 
   // State for showing the confirmation modal
   const [showConfirmation, setShowConfirmation] = useState(false);
-  const [Role,setRole]=useState('')
+  const [Role, setRole] = useState("");
 
-  const ChangeRole=async()=>{
-    await AsyncStorage.setItem('role',Role)
-  }
-  
-  useEffect(()=>{
-    ChangeRole()
-  },[Role])
+  const ChangeRole = async () => {
+    await AsyncStorage.setItem("role", Role);
+  };
+
+  useEffect(() => {
+    ChangeRole();
+  }, [Role]);
   // Functions to handle navig// Function to handle the 'Create account' navigation
   const handletonewacc = () => {
     if (selectedIdentity === "identity2") {
@@ -98,7 +99,10 @@ const Identity = () => {
         {/* TouchableOpacity for Identity 1 */}
         <TouchableOpacity
           className="w-[143.01px] h-[188.56px] justify-center items-center relative"
-          onPress={() =>{ handleSelection("identity1");setRole('user')}}
+          onPress={() => {
+            handleSelection("identity1");
+            setRole("user");
+          }}
         >
           <Image
             source={require("../../assets/images/Frame 8.png")}
@@ -116,7 +120,10 @@ const Identity = () => {
         {/* TouchableOpacity for Identity 2 (Health Provider) */}
         <TouchableOpacity
           className="w-[143.01px] h-[188.56px] justify-center items-center relative"
-          onPress={() =>{handleSelection("identity2");setRole('provider')}}
+          onPress={() => {
+            handleSelection("identity2");
+            setRole("provider");
+          }}
         >
           <Image
             source={require("../../assets/images/Frame 9.png")}
@@ -132,9 +139,32 @@ const Identity = () => {
         </TouchableOpacity>
       </View>
 
+      <View className="flex-row items-center justify-evenly w-full h-64">
+        {/* TouchableOpacity for Identity 3 (Hospitals) */}
+        <TouchableOpacity
+          className="w-[143.01px] h-[188.56px] justify-center items-center relative"
+          onPress={() => {
+            handleSelection("identity3");
+            //! setRole("provider");
+          }}
+        >
+          <Image
+            source={require("../../assets/images/hospital-identity.png")}
+            resizeMode="contain"
+            className="w-full"
+          />
+          {/* Show check mark if this one is selected */}
+          {selectedIdentity === "identity3" && (
+            <View className="absolute top-2 right-2 bg-black p-1 rounded-full z-10">
+              <FontAwesome name="check" size={16} color={whitecolor} />
+            </View>
+          )}
+        </TouchableOpacity>
+      </View>
+
       {/* Conditionally show buttons when an identity is selected */}
       {selectedIdentity && (
-        <View className="px-4 mt-36">
+        <View className="px-4 mt-10">
           <CustomButton
             Textname={"Login"}
             onPress={handletologin}
