@@ -1,37 +1,50 @@
 import { View, TouchableOpacity } from "react-native";
-import { linkcolor, primarycolor, whitecolor } from "../../../constants/color";
+import { linkcolor, primarycolor, whitecolor } from "../constants/color";
 import {
   CalenderIcon,
   HomeIcon,
   MessageIcon,
   UserIcon,
-} from "../../../assets/iconsvg/Svgicon";
+} from "../assets/iconsvg/Svgicon";
 
 import { useState, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
-import { StackNavigation } from "../../../types/stack";
+import { StackNavigation } from "../types/stack";
 
-const Footer = ({ activepros }: { activepros: string }) => {
-  const [active, setactive] = useState(activepros);
+const PatientFooter = ({
+  activeProps,
+}: {
+  activeProps: "Home" | "Messages" | "Appointments" | "profile";
+}) => {
+  const [active, setActive] = useState(activeProps);
   const navigation = useNavigation<StackNavigation>();
   useEffect(() => {
-    setactive(activepros);
+    setActive(activeProps);
   }, [active]);
-  const handlenavigate = (value: string) => {
-    setactive(value);
+  const handleNavigate = (
+    value: "Home" | "Messages" | "Appointments" | "profile"
+  ) => {
+    if (value === active) {
+      return;
+    }
+    if (value === "profile") {
+      navigation.navigate("profileScreen", { screen: "profile" });
+      return;
+    }
+    setActive(value);
     navigation.navigate(value as any);
   };
   return (
     <>
       <View className="w-full h-20 bg-white absolute bottom-0 flex-row items-center justify-evenly z-50">
         <TouchableOpacity
-          onPress={() => handlenavigate("Home")}
+          onPress={() => handleNavigate("Home")}
           style={
             active === "Home"
               ? { backgroundColor: linkcolor }
               : { backgroundColor: whitecolor }
           }
-          className="w-12 h-12 flex justify-center items-center rounded-xl"
+          className="w-16 h-12 flex justify-center items-center rounded-xl"
         >
           <HomeIcon
             width={24}
@@ -40,13 +53,13 @@ const Footer = ({ activepros }: { activepros: string }) => {
           />
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => handlenavigate("Messages")}
+          onPress={() => handleNavigate("Messages")}
           style={
             active === "Messages"
               ? { backgroundColor: linkcolor }
               : { backgroundColor: whitecolor }
           }
-          className="w-12 h-12 flex justify-center items-center rounded-xl"
+          className="w-16 h-12 flex justify-center items-center rounded-xl"
         >
           <MessageIcon
             width={24}
@@ -55,13 +68,13 @@ const Footer = ({ activepros }: { activepros: string }) => {
           />
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => handlenavigate("Appointments")}
+          onPress={() => handleNavigate("Appointments")}
           style={
             active === "Appointments"
               ? { backgroundColor: linkcolor }
               : { backgroundColor: whitecolor }
           }
-          className="w-12 h-12 flex justify-center items-center rounded-xl"
+          className="w-16 h-12 flex justify-center items-center rounded-xl"
         >
           <CalenderIcon
             width={24}
@@ -70,13 +83,13 @@ const Footer = ({ activepros }: { activepros: string }) => {
           />
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => handlenavigate("profile")}
+          onPress={() => handleNavigate("profile")}
           style={
             active === "profile"
               ? { backgroundColor: linkcolor }
               : { backgroundColor: whitecolor }
           }
-          className="w-12 h-12 flex justify-center items-center rounded-xl"
+          className="w-16 h-12 flex justify-center items-center rounded-xl"
         >
           <UserIcon
             width={24}
@@ -88,4 +101,4 @@ const Footer = ({ activepros }: { activepros: string }) => {
     </>
   );
 };
-export default Footer;
+export default PatientFooter;

@@ -4,8 +4,10 @@ import { Textstyles } from "../../../../constants/fontsize";
 import { primarycolor, whitecolor } from "../../../../constants/color";
 import { CustomButton, CustomInputWithHeader, Header } from "../../../../components/mycomponent";
 import { FontAwesome } from "@expo/vector-icons";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { StatusBar } from "expo-status-bar";
 
-const Address = () => {
+const ManageAddress = () => {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -20,7 +22,8 @@ const Address = () => {
   }
 
   return (
-    <View className="flex-1 bg-white">
+    <SafeAreaView className="flex-1 bg-primaryTwo">
+      <StatusBar backgroundColor={primarycolor} />
       <Header title="Manage Address" />
       <Text
         className="text-[28px] font-semibold mt-5 ml-8 mb-4"
@@ -69,8 +72,8 @@ const Address = () => {
           onPress={() => handleSelect("Save")} // Trigger the save action
         />
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
-export default Address;
+export default ManageAddress;

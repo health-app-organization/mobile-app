@@ -34,6 +34,10 @@ export type ScreenNames = [
     "orderhistory",
     "ordertracking",
     "favourites",
+    "manage-address",
+    "medicine-reminder",
+    "medicine-reminder-add",
+    "customer-support",
     // stackRouter
     "start",
     "slider",
@@ -56,6 +60,6 @@ export type ScreenNames = [
 ];
 export type RootStackParamList = Record<
     ScreenNames[number],
-    undefined
+    undefined | { screen?: string, params?: any }
 >;
 export type StackNavigation = NavigationProp<RootStackParamList>;

@@ -80,7 +80,7 @@ const Identity = () => {
   return (
     <View
       style={{ height: height, width: width }}
-      className="bg-white py-[40px]"
+      className="bg-primaryTwo py-[40px]"
     >
       <StatusBar />
 

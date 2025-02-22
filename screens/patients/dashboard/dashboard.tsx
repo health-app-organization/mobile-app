@@ -14,11 +14,11 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { QRCodeScreen } from "../../qrcodegen/Qrcode";
 import { DateComponent, MenuButton } from "../../../components/mycomponent";
-import Footer from "./footer";
 import { useState } from "react";
-import { AppointmentComponrnt } from "./apponitments";
+import { AppointmentComponrnt } from "./appointments";
 import useAuthStore from "../../../store/auth-store";
 import { StackNavigation } from "../../../types/stack";
+import PatientFooter from "components/patient-footer";
 
 const Dashboard = () => {
   return (
@@ -34,7 +34,7 @@ const Dashboard = () => {
           </ScrollView>
         </View>
 
-        <Footer activepros={"Home"} />
+        <PatientFooter activeProps={"Home"} />
       </View>
     </>
   );

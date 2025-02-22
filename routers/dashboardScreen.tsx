@@ -4,7 +4,7 @@ import {
 } from "@react-navigation/stack";
 import { Platform } from "react-native";
 import Dashboard from "../screens/patients/dashboard/dashboard";
-import Appointments from "../screens/patients/dashboard/apponitments";
+import Appointments from "../screens/patients/dashboard/appointments";
 import AppointmentDetails from "../screens/patients/dashboard/apponitmentdetails";
 import Toplabs from "../screens/patients/dashboard/LAB/toplaboratories";
 import Laboratories from "../screens/patients/dashboard/LAB/laboratories";

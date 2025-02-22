@@ -7,27 +7,98 @@ import {
   Image,
   ScrollView,
   Animated,
-
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { FontAwesome } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons"; // Import Ionicons for arrow
-import {
-  CustomButton,
-} from "../../../../components/mycomponent";
-import Footer from "../footer";
+import { CustomButton } from "../../../../components/mycomponent";
 import { primarycolor } from "../../../../constants/color";
 import { Textstyles } from "../../../../constants/fontsize";
-import { AddressBookIcon, DocumentvalidationIcon, InvoiceIcon, LogIcon, ReminderIcon, SettingsIcon, ShipmenttrackIcon, ShopBagicon, UserIcon, WalletIcon } from "../../../../assets/iconsvg/Svgicon";
+import {
+  AddressBookIcon,
+  DocumentvalidationIcon,
+  InvoiceIcon,
+  LogIcon,
+  ReminderIcon,
+  SettingsIcon,
+  ShipmenttrackIcon,
+  ShopBagicon,
+  UserIcon,
+  WalletIcon,
+} from "../../../../assets/iconsvg/Svgicon";
 import useAuthStore from "../../../../store/auth-store";
-import { StackNavigation } from "../../../../types/stack";
+import { StackNavigation } from "types/stack";
+import PatientFooter from "components/patient-footer";
+import { SelectMenuProps } from "types/general";
+
+const data = [
+  {
+    id: 1,
+    name: "My Profile",
+    icon: <UserIcon />,
+    routeName: "personal",
+  },
+  {
+    id: 2,
+    name: "My Wallet",
+    icon: <WalletIcon />,
+    routeName: "wallet",
+  },
+  {
+    id: 3,
+    name: "My Medical Records",
+    icon: <DocumentvalidationIcon />,
+    routeName: "profilecomplete",
+  },
+  {
+    id: 4,
+    name: "Order History",
+    icon: <InvoiceIcon />,
+    routeName: "orderhistory",
+  },
+  {
+    id: 5,
+    name: "Order Tracking",
+    icon: <ShipmenttrackIcon />,
+    routeName: "ordertracking",
+  },
+  {
+    id: 6,
+    name: "My Favourites",
+    icon: <ShopBagicon />,
+    routeName: "favourites",
+  },
+  {
+    id: 7,
+    name: "Manage Address",
+    icon: <AddressBookIcon />,
+    routeName: "manage-address",
+  },
+  {
+    id: 8,
+    name: "Medicine Reminder",
+    icon: <ReminderIcon />,
+    routeName: "medicine-reminder",
+  },
+  {
+    id: 9,
+    name: "Settings",
+    icon: <SettingsIcon />,
+    routeName: "settings",
+  },
+  {
+    id: 10,
+    name: "Customer Support",
+    icon: <SettingsIcon />,
+    routeName: "customer-support",
+  },
+];
 
 const Profile = () => {
   const { getUser } = useAuthStore();
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const slideAnim = useRef(new Animated.Value(300)).current; // Starting position off-screen
   const user = getUser();
-
 
   const handleShowModal = () => {
     setModalVisible(true);
@@ -41,9 +112,9 @@ const Profile = () => {
 
   return (
     <>
-      <View className="flex w-full h-full ">
+      <View className="flex w-full h-full bg-primaryTwo">
         <StatusBar style="auto" />
-        <View className="w-full bg-[#0099B8] h-[25vh] rounded-b-3xl pt-20">
+        <View className="w-full bg-primary h-[25vh] rounded-b-3xl pt-20">
           <Text
             className="text-white text-2xl font-bold ml-8"
             style={[Textstyles.text_medium]}
@@ -115,59 +186,17 @@ const Profile = () => {
 
         <View className=" h-[55vh] ">
           <ScrollView className="flex-1  pt-6 ">
-            <SelectMenu
-              label={'My Profile'}
-              icon={<UserIcon />}
-              routeName={'personal'}
-            />
-            <SelectMenu
-              label={'My Wallet'}
-              icon={<WalletIcon />}
-              routeName={'wallet'}
-            />
-            <SelectMenu
-              label={'My Medical Records'}
-              icon={<DocumentvalidationIcon />}
-              routeName={'profilecomplete'}
-            />
-            <SelectMenu
-              label={'Order History'}
-              icon={<InvoiceIcon />}
-              routeName={'orderhistory'}
-            />
-            <SelectMenu
-              label={'Order Tracking'}
-              icon={<ShipmenttrackIcon />}
-              routeName={'ordertracking'}
-            />
-            <SelectMenu
-              label={'My Favourites'}
-              icon={<ShopBagicon />}
-              routeName={'favourites'}
-            />
-            <SelectMenu
-              label={'Manage Address'}
-              icon={<AddressBookIcon />}
-              routeName={'manageaddress'}
-            />
-            <SelectMenu
-              label={'Medicine Reminder'}
-              icon={<ReminderIcon />}
-              routeName={'favourites'}
-            />
-            <SelectMenu
-              label={'Settings'}
-              icon={<SettingsIcon />}
-              routeName={'settings'}
-            />
-            <SelectMenu
-              label={'Customer Support'}
-              icon={<SettingsIcon />}
-              routeName={'customersupport'}
-            />
+            {data.map((item) => (
+              <SelectMenu
+                key={item.id}
+                label={item.name}
+                icon={item.icon}
+                routeName={item.routeName}
+              />
+            ))}
             <TouchableOpacity
               onPress={handleShowModal}
-              className=" w-full h-[90px] flex justify-between items-center flex-row  border-b-1   "
+              className="h-[90px] flex justify-between items-center flex-row  border-b-1 pr-4"
               style={{ borderBottomColor: "rgba(0, 0, 0, 0.2)" }}
             >
               <View className=" flex-row w-[185px]  justify-between items-center  ml-[24px]">
@@ -186,29 +215,27 @@ const Profile = () => {
             </TouchableOpacity>
           </ScrollView>
         </View>
-
       </View>
-      <Footer activepros={"profile"} />
-      {modalVisible && <Modallogout
-        slideAnim={slideAnim}
-        setModalVisible={(value: boolean) => setModalVisible(value)}
-      />}
+      <PatientFooter activeProps={"profile"} />
+      {modalVisible && (
+        <Modallogout
+          slideAnim={slideAnim}
+          setModalVisible={(value: boolean) => setModalVisible(value)}
+        />
+      )}
     </>
-
   );
 };
 
 export default Profile;
 
 const SelectMenu: React.FC<SelectMenuProps> = ({ routeName, label, icon }) => {
-  const navigation = useNavigation<StackNavigation>()
+  const navigation = useNavigation<StackNavigation>();
 
   return (
     <TouchableOpacity
-      onPress={() =>
-        navigation.navigate(routeName as any)
-      }
-      className=" w-full h-[90px] flex justify-between items-center flex-row  border-b-1"
+      onPress={() => navigation.navigate(routeName as any)}
+      className="h-[90px] flex justify-between items-center flex-row  border-b-1 pr-4"
       style={{ borderBottomColor: "rgba(0, 0, 0, 0.2)" }}
     >
       <View className=" flex-row w-[185px]  items-center  ml-[24px]">
@@ -225,9 +252,13 @@ const SelectMenu: React.FC<SelectMenuProps> = ({ routeName, label, icon }) => {
         <Ionicons name="chevron-forward" size={32} color="#0099b8" />
       </View>
     </TouchableOpacity>
-  )
-}
-const Modallogout: React.FC<{ slideAnim: Animated.Value, setModalVisible: (value: boolean) => void }> = ({ slideAnim, setModalVisible }) => {
+  );
+};
+
+const Modallogout: React.FC<{
+  slideAnim: Animated.Value;
+  setModalVisible: (value: boolean) => void;
+}> = ({ slideAnim, setModalVisible }) => {
   const handlehideModal = () => {
     setModalVisible(false);
     Animated.timing(slideAnim, {
@@ -238,33 +269,35 @@ const Modallogout: React.FC<{ slideAnim: Animated.Value, setModalVisible: (value
   };
   return (
     <View className="h-full w-full absolute">
-      <View style={{ backgroundColor: primarycolor }} className="absolute h-full w-full opacity-70" />
-      <Animated.View style={[{ transform: [{ translateY: slideAnim }] }]} className="w-full h-[30vh] bg-white absolute z-50  bottom-0  rounded-t-2xl">
+      <View
+        style={{ backgroundColor: primarycolor }}
+        className="absolute h-full w-full opacity-70"
+      />
+      <Animated.View
+        style={[{ transform: [{ translateY: slideAnim }] }]}
+        className="w-full h-[25vh] bg-white absolute z-50  bottom-0  rounded-t-2xl"
+      >
         <View className="items-center mt-5">
           <Text style={[Textstyles.text_xmedium]}>Westacare</Text>
-          <Text style={[Textstyles.text_x16small]}>Are you sure you want to logout ?</Text>
+          <Text style={[Textstyles.text_x16small]}>
+            Are you sure you want to logout ?
+          </Text>
         </View>
         <View className="px-5 mt-3">
           <CustomButton
-            TextColor={'white'}
-            Textname={'Yes'}
-            backgroundColor={'red'}
-
+            TextColor={"white"}
+            Textname={"Yes"}
+            backgroundColor={"red"}
           />
           <View className="h-3" />
           <CustomButton
             onPress={handlehideModal}
-            TextColor={'white'}
-            Textname={'No'}
+            TextColor={"white"}
+            Textname={"No"}
             backgroundColor={primarycolor}
-
           />
-
         </View>
-
       </Animated.View>
-
     </View>
-
-  )
-}
+  );
+};

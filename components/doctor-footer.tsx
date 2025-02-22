@@ -1,16 +1,16 @@
 import { View, TouchableOpacity } from "react-native";
-import { linkcolor, primarycolor, whitecolor } from "../../../constants/color";
+import { linkcolor, primarycolor, whitecolor } from "../constants/color";
 import {
     CalenderIcon,
     HomeIcon,
     MessageIcon,
     UserIcon,
-} from "../../../assets/iconsvg/Svgicon";
+} from "../assets/iconsvg/Svgicon";
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
-import { StackNavigation } from "../../../types/stack";
+import { StackNavigation } from "../types/stack";
 
-const Footer = ({ activeProps }: { activeProps: string }) => {
+const DoctorFooter = ({ activeProps }: { activeProps: "doctor-home" | "Messages" | "Appointment" | "settings" }) => {
     const [active, setActive] = useState(activeProps);
     const navigation = useNavigation<StackNavigation>();
     const handleNavigate = (value: "doctor-home" | "Messages" | "Appointment" | "settings") => {
@@ -50,7 +50,7 @@ const Footer = ({ activeProps }: { activeProps: string }) => {
                     <MessageIcon
                         width={24}
                         height={24}
-                        color={active === "Message" ? primarycolor : "black"}
+                        color={active === "Messages" ? primarycolor : "black"}
                     />
                 </TouchableOpacity>
                 <TouchableOpacity
@@ -88,4 +88,4 @@ const Footer = ({ activeProps }: { activeProps: string }) => {
     );
 };
 
-export default Footer;
+export default DoctorFooter;

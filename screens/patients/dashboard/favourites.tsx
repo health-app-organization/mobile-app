@@ -3,11 +3,13 @@ import { StatusBar } from "expo-status-bar";
 import { View, Image, Text } from "react-native";
 import { Header } from "../../../components/mycomponent";
 import { Textstyles } from "../../../constants/fontsize";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { primarycolor } from "constants/color";
 
 const Favourites = () => {
   return (
-    <View className="h-screen w-full">
-      <StatusBar style="auto" />
+    <SafeAreaView className="h-screen w-full bg-primaryTwo">
+      <StatusBar backgroundColor={primarycolor} />
 
       <Header title="My Favourites" />
 
@@ -23,7 +25,7 @@ const Favourites = () => {
           </Text>
         </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
