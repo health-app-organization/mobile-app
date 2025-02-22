@@ -1,4 +1,6 @@
+import dayjs from "dayjs";
 import { Dispatch, SetStateAction } from "react";
+import { DateType } from "react-native-ui-datepicker";
 
 export const handleOtpInput = ({
     value,
@@ -60,3 +62,11 @@ export const handleKeyboardInput = (
         setAmount((prev) => prev + value); // Append the new digit
     }
 };
+
+export const formatDate = (date: DateType) => {
+    return dayjs(date).format('YYYY-MM-DD');
+}
+
+export const formatTime = (date: DateType) => {
+    return dayjs(date).format('HH:mm');
+}

@@ -18,7 +18,6 @@ export const customstyle = StyleSheet.create({
   textinputstyle: {
     height: 55,
     borderRadius: 10,
-    backgroundColor: greycolor,
     width: "100%",
     paddingLeft: 36,
     // columnGap: 2,
@@ -86,7 +85,7 @@ export const radioButtonStyles = StyleSheet.create({
     width: 15,
     borderRadius: 12,
     borderWidth: 1,
-    borderColor: primarycolortwo,
+    borderColor: primarycolor,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -94,6 +93,6 @@ export const radioButtonStyles = StyleSheet.create({
     height: 9,
     width: 9,
     borderRadius: 12,
-    backgroundColor: primarycolortwo,
+    backgroundColor: primarycolor,
   },
 });

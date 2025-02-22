@@ -1,4 +1,4 @@
-const { primarycolor, linkcolor } = require('./constants/color');
+const { primarycolor, linkcolor, primarycolortwo } = require('./constants/color');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -16,10 +16,13 @@ module.exports = {
       },
       colors: {
         primary: primarycolor,
+        primaryTwo: primarycolortwo,
         // secondary: colors.secondary,
         // tertiary: colors.tertiary,
+        greyText: "#949494",
         error: "#ED4337",
         link: linkcolor,
+        purple1: "#9647FF",
       },
     },
   },

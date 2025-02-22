@@ -20,14 +20,14 @@ import { TextInput } from "react-native-gesture-handler";
 import { FontAwesome } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import React, { useState, useEffect } from "react";
-import { greycolortwo, linkcolor, primarycolor } from "../constants/color";
+import { greycolortwo, linkcolor, primarycolor, primarycolortwo } from "../constants/color";
 import { ArrowDownIcon, ArrowUpIcon } from "../assets/iconsvg/Svgicon";
 
 export const CustomButton: React.FC<CustomButtonProps> = ({
   Textname,
   onPress,
-  backgroundColor,
-  TextColor,
+  backgroundColor = primarycolor,
+  TextColor = "white",
   borderWidth,
   borderColor,
   leftIcon,
@@ -375,6 +375,22 @@ export const CustomSelectRadioBox: React.FC<CustomSelectRadioProps> = ({ options
   );
 };
 
+export const CustomRadioSingleOption: React.FC<CustomRadioSingleOptionProps> = ({ value, onPress, selected }) => {
+  return (
+    <TouchableOpacity
+      onPress={onPress}
+      className="border border-primary bg-[#f3f3f3] rounded-lg py-4 px-2 flex-row items-center"
+    >
+      <View style={radioButtonStyles.radioButton}>
+        {selected && (
+          <View style={radioButtonStyles.radioButtonSelected} />
+        )}
+      </View>
+      <Text style={[Textstyles.text_small]} className="ml-4">{value}</Text>
+    </TouchableOpacity>
+  );
+}
+
 export const Box: React.FC<BoxProps> = ({ inputText }) => {
   return (
     <View
@@ -408,7 +424,6 @@ export const CustomInputWithHeader: React.FC<CustomInputProps> = ({
   leftIcon,
 }) => {
   const [inputValue, setInputValue] = useState(value); // Track the input value
-  const [isFocused, setIsFocused] = useState(false); // Track focus state
 
   return (
     <View className="w-full flex flex-col">
@@ -430,10 +445,9 @@ export const CustomInputWithHeader: React.FC<CustomInputProps> = ({
             customstyle.textinputstyle,
             {
               paddingLeft: leftIcon ? 45 : 15, // Adjust left padding based on icon presence
-              borderColor: isFocused ? "#0099b8" : "#ccc", // Change border color on focus
+              borderColor: primarycolor, // Change border color on focus
               borderWidth: 1, // Add border width
               borderRadius: 10, // Optional: add border radius
-              backgroundColor: "#F3F3F3",
             },
           ]}
           placeholder={placeholder} // Set placeholder text
@@ -441,8 +455,6 @@ export const CustomInputWithHeader: React.FC<CustomInputProps> = ({
           editable={!disabled} // Allow editing based on disable prop
           secureTextEntry={secureTextEntry}
           autoCapitalize={autoCapitalize || "none"}
-          onFocus={() => setIsFocused(true)} // Set focus state
-          onBlur={() => setIsFocused(false)} // Reset focus state
           onChangeText={(text) => {
             setInputValue(text); // Update input value state
             if (onChange) {
@@ -619,7 +631,6 @@ export const CustomInputpassword: React.FC<CustomInputProps> = ({
   className,
 }) => {
   const [inputValue, setInputValue] = useState(value); // Track the input value
-  const [isFocused, setIsFocused] = useState(false); // Track focus state
   const [isPasswordVisible, setIsPasswordVisible] = useState(false); // Track password visibility
 
   // Toggle password visibility
@@ -649,10 +660,9 @@ export const CustomInputpassword: React.FC<CustomInputProps> = ({
             {
               paddingLeft: leftIcon ? 45 : 15, // Adjust left padding based on icon presence
               paddingRight: 45, // Add right padding for the eye icon
-              borderColor: isFocused ? "#0099B8" : "#ccc", // Change border color on focus
+              borderColor: primarycolor, // Change border color on focus
               borderWidth: 1,
               borderRadius: 10,
-              backgroundColor: "#F3F3F3",
             },
           ]}
           placeholder={placeholder}
@@ -660,8 +670,6 @@ export const CustomInputpassword: React.FC<CustomInputProps> = ({
           editable={!disabled}
           secureTextEntry={secureTextEntry && !isPasswordVisible} // Toggle secureTextEntry based on visibility
           autoCapitalize={autoCapitalize || "none"}
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
           onChangeText={(text) => {
             setInputValue(text);
             if (onChange) {
@@ -799,10 +807,10 @@ export const PaymentMethod: React.FC<PaymentMethodProps> = ({ selectedMethod, on
 export const Header: React.FC<CustomHeaderProps> = ({ title, rightIcon, onRightIconPress }) => {
   const navigation = useNavigation();
   return (
-    <View style={{ backgroundColor: "#00A8CC", }} className="h-1/6 flex-row items-center justify-center w-full px-5"
+    <View style={{ backgroundColor: primarycolor, }} className="p-5 flex-row items-center justify-center w-full px-5"
     >
       {/* Back Button */}
-      <TouchableOpacity className="w-16 h-16 justify-center" onPress={() => navigation.goBack()}>
+      <TouchableOpacity className="justify-center" onPress={() => navigation.goBack()}>
         <Ionicons name="chevron-back" size={32} color="white" />
       </TouchableOpacity>
 
@@ -1409,23 +1417,23 @@ export const CustomDropdownWithHeader: React.FC<CustomDropdownProps> = ({
   leftIcon,
 }) => {
   const [selectedValue, setSelectedValue] = useState(value);
-  const [isFocused, setIsFocused] = useState(false); // State for focus
   const [showOptions, setShowOptions] = useState(false); // State to show/hide options
 
   return (
-    <View className="w-full mb-5">
+    <View className="w-full">
       {/* Input Header */}
-      <Text
-        className="text-lg font-bold mb-2"
-        style={[Textstyles.text_cmedium]}
-      >
-        {headerText}
-      </Text>
+      {headerText && (
+        <Text
+          className="text-lg font-bold mb-2"
+          style={[Textstyles.text_cmedium]}
+        >
+          {headerText}
+        </Text>
+      )}
 
       {/* Dropdown Field */}
       <TouchableOpacity
-        className={`relative border-1 rounded-lg bg-gray-100 ${isFocused ? "border-[#0099b8] border-2" : "border-[#ccc]"
-          }`} // Change border color based on focus
+        className="relative border border-primary rounded-lg p-4"
         onPress={() => setShowOptions(!showOptions)} // Toggle options visibility
         disabled={disable}
       >
@@ -1435,7 +1443,7 @@ export const CustomDropdownWithHeader: React.FC<CustomDropdownProps> = ({
           </View>
         )}
         <Text
-          className="h-12 flex items-center justify-center pl-4 pt-4"
+          className="flex items-center justify-center"
         >
           {selectedValue ? options.find(option => option.value === selectedValue)?.label : placeholder}
         </Text>
@@ -1448,32 +1456,36 @@ export const CustomDropdownWithHeader: React.FC<CustomDropdownProps> = ({
           animationType="slide"
           visible={showOptions}
           onRequestClose={() => setShowOptions(false)}
+          style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
         >
-          <View className="flex-1 justify-center items-center">
-            <View className="w-4/5 bg-white rounded-lg p-4 max-h-80">
-              <ScrollView>
-                {options.map((option) => (
-                  <TouchableOpacity
-                    key={option.value}
-                    className="p-2 border-b border-gray-200"
-                    onPress={() => {
-                      setSelectedValue(option.value);
-                      setShowOptions(false);
-                      if (onChange) {
-                        onChange(option.value);
-                      }
-                    }}
-                  >
-                    <Text className="text-gray-700">{option.label}</Text>
-                  </TouchableOpacity>
-                ))}
-              </ScrollView>
-              <TouchableOpacity
-                className="mt-4 p-2 bg-gray-200 rounded-lg"
-                onPress={() => setShowOptions(false)}
-              >
-                <Text className="text-center text-gray-700">Close</Text>
-              </TouchableOpacity>
+          <View className="flex-1 h-screen w-full bg-[#00000050]">
+            <View className="flex-1 justify-center items-center">
+              <View className="w-[80%] bg-white rounded-lg p-4">
+                <TouchableOpacity
+                  className="p-4 bg-gray-200 rounded-lg flex-row justify-between"
+                  onPress={() => setShowOptions(false)}
+                >
+                  <Text className="text-center text-gray-700">Select Option</Text>
+                  <FontAwesome name="arrow-down" size={16} color={primarycolor} />
+                </TouchableOpacity>
+                <ScrollView>
+                  {options.map((option) => (
+                    <TouchableOpacity
+                      key={option.value}
+                      className="p-4"
+                      onPress={() => {
+                        setSelectedValue(option.value);
+                        setShowOptions(false);
+                        if (onChange) {
+                          onChange(option.value);
+                        }
+                      }}
+                    >
+                      <Text className="text-gray-700">{option.label}</Text>
+                    </TouchableOpacity>
+                  ))}
+                </ScrollView>
+              </View>
             </View>
           </View>
         </Modal>

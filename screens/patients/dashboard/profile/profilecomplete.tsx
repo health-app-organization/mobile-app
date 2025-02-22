@@ -3,6 +3,9 @@ import { View, Text, TouchableOpacity } from "react-native";
 import { Header, Header9 } from "../../../../components/mycomponent";
 import Medical from "../medical";
 import TestReport from "./testreport";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { StatusBar } from "expo-status-bar";
+import { primarycolor } from "constants/color";
 
 const ProfileCompletion = () => {
   const [currentTab, setCurrentTab] = useState(0);
@@ -20,7 +23,8 @@ const ProfileCompletion = () => {
   };
 
   return (
-    <View className="flex-1 bg-white">
+    <SafeAreaView className="flex-1 bg-primaryTwo">
+      <StatusBar backgroundColor={primarycolor} />
       <Header9 profileName="Caleb Omojuko" profileCompletion="42" />
 
       {/* Tab Header */}
@@ -29,7 +33,7 @@ const ProfileCompletion = () => {
           <Text
             className={
               currentTab === 0
-                ? "text-black text-[20px] font-bold border-b-2 border-[#0099B8] pb-2"
+                ? "text-black text-[20px] font-bold border-b-2 border-primary pb-2"
                 : "text-gray-400 font-bold text-[20px] pb-2"
             }
           >
@@ -40,7 +44,7 @@ const ProfileCompletion = () => {
           <Text
             className={
               currentTab === 1
-                ? "text-black text-[20px] font-bold border-b-2 border-[#0099B8] pb-2"
+                ? "text-black text-[20px] font-bold border-b-2 border-primary pb-2"
                 : "text-gray-400 font-bold text-[20px] pb-2"
             }
           >
@@ -51,7 +55,7 @@ const ProfileCompletion = () => {
 
       {/* Tab Content */}
       <View className="p-5">{renderTabContent()}</View>
-    </View>
+    </SafeAreaView>
   );
 };
 

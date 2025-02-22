@@ -1,4 +1,4 @@
-import { View, Text, StatusBar, TouchableOpacity, Switch } from "react-native";
+import { View, Text, Switch } from "react-native";
 import React, { useState } from "react";
 import {
   CustomButton,
@@ -8,6 +8,9 @@ import {
 import { Textstyles } from "../../../../constants/fontsize";
 import { primarycolor, whitecolor } from "../../../../constants/color";
 import { FontAwesome } from "@expo/vector-icons";
+import { Divider } from "react-native-paper";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { StatusBar } from "expo-status-bar";
 
 const Settings = () => {
   const [isEnabled, setIsEnabled] = useState(false);
@@ -31,7 +34,8 @@ const Settings = () => {
   }
 
   return (
-    <View className="flex-1 bg-white">
+    <SafeAreaView className="flex-1 bg-primaryTwo">
+      <StatusBar backgroundColor={primarycolor} />
       <Header title="Settings" />
       <View className="flex-row items-center justify-between px-3  py-4 ">
         <Text
@@ -48,6 +52,7 @@ const Settings = () => {
           value={isEnabled}
         />
       </View>
+      <Divider className="mx-4" />
       <View className=" h-3" />
       <View className=" px-4">
         <Text className=" font-semibold ml-2" style={[Textstyles.text_cmedium]}>
@@ -67,7 +72,6 @@ const Settings = () => {
           secureTextEntry={true}
           onChange={(text) => setPassword(text)}
           leftIcon={<FontAwesome name="lock" color="#000" size={20} />}
-          className="mb-32"
         />
 
         <CustomInputpassword
@@ -76,7 +80,6 @@ const Settings = () => {
           secureTextEntry={true}
           onChange={(text) => setPassword(text)}
           leftIcon={<FontAwesome name="lock" color="#000" size={20} />}
-          className="mb-32"
         />
       </View>
       <View className=" mt-10 px-3">
@@ -87,7 +90,7 @@ const Settings = () => {
           onPress={() => handleSelect("Save")} // Trigger the save action
         />
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

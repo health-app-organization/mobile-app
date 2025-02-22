@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity, StatusBar } from "react-native";
 import HeaderTitle from "../../../components/mycomponent";
-import Footer from "./footer";
 import appoImage from "../../../assets/images/appo.png";
 import { DoctorCard } from "../../../components/mycomponent";
 import { DateComponent } from "../../../components/mycomponent";
+import PatientFooter from "components/patient-footer";
 
 const Appointments = () => {
 
@@ -24,7 +24,7 @@ const Appointments = () => {
       <AppointmentComponrnt />
 
       {/* Footer */}
-      <Footer activepros="Appointments" />
+      <PatientFooter activeProps="Appointments" />
     </View>
   );
 };

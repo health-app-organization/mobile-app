@@ -58,7 +58,7 @@ export const Login = () => {
 
   return (
     <>
-      <View className="h-screen w-full px-5 py-[44px]">
+      <View className="h-screen w-full px-5 py-[44px] bg-primaryTwo">
         <>
           <TouchableOpacity onPress={() => navigation.goBack()}>
             <Feather name="arrow-left" size={24} color="black" />
@@ -184,7 +184,7 @@ export function RequestOtp() {
 
   return (
     <>
-      <View className="h-screen w-full px-5 pt-[44px]">
+      <View className="h-screen w-full px-5 pt-[44px] bg-primaryTwo">
         <>
           <TouchableOpacity onPress={() => navigation.goBack()}>
             <Feather name="arrow-left" size={24} color="black" />
@@ -348,7 +348,7 @@ export const ForgotPassword = () => {
 
   return (
     <>
-      <View className="h-screen w-full px-5 pt-[44px]">
+      <View className="h-screen w-full px-5 pt-[44px] bg-primaryTwo">
         <>
           <TouchableOpacity onPress={() => navigation.goBack()}>
             <Feather name="arrow-left" size={24} color="black" />
@@ -480,7 +480,7 @@ export const SetNewPassword = () => {
 
   return (
     <>
-      <View className="h-screen w-full px-5 pt-[44px]">
+      <View className="h-screen w-full px-5 pt-[44px] bg-primaryTwo">
         <>
           <TouchableOpacity onPress={() => navigation.goBack()}>
             <Feather name="arrow-left" size={24} color="black" />

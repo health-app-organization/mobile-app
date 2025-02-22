@@ -2,7 +2,7 @@ import { StatusBar } from "expo-status-bar";
 import { Image, View, Text, TouchableOpacity, ScrollView } from "react-native";
 import React, { useState } from "react";
 import { primarycolor, whitecolor } from "../../../constants/color";
-import Footer from "./footer";
+import Footer from "../../../components/patient-footer";
 import { Textstyles } from "../../../constants/fontsize";
 import { CustomButton, DateComponent, StatsCard } from "../../../components/mycomponent";
 

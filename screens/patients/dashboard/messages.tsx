@@ -1,24 +1,13 @@
 import React, { useEffect, useState } from "react";
 import {
-  Image,
   View,
-  Text,
-  TouchableOpacity,
   StatusBar,
-  Modal,
-  ScrollView,
   FlatList,
 } from "react-native";
 import { Chatlist } from "../../../components/mycomponent";
-import Footer from "./footer";
 
 import HeaderTitle, {
-  CustomButton,
-  CustomButton2,
-  CustomButtonsmall,
-  CustomButtonsmall2,
   CustomInputSearch,
-  CustomTextInput,
 } from "../../../components/mycomponent";
 import { useNavigation } from "@react-navigation/native";
 import { primarycolor } from "../../../constants/color";
@@ -28,6 +17,7 @@ import { baseUrl } from "../../../api/end-point";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { FontAwesome } from "@expo/vector-icons";
 import { StackNavigation } from "../../../types/stack";
+import PatientFooter from "components/patient-footer";
 
 const Messages = () => {
   const navigation = useNavigation<StackNavigation>();
@@ -78,7 +68,7 @@ const Messages = () => {
   };
 
   useEffect(() => {
-    getChatLists();
+    // getChatLists();
   }, []);
 
   return (
@@ -213,7 +203,7 @@ const Messages = () => {
         keyExtractor={(item) => item.id.toString()}
       />
       <View className="h-[5.2rem]">
-        <Footer activepros={"Messages"} />
+        <PatientFooter activeProps={"Messages"} />
       </View>
     </SafeAreaView>
   );

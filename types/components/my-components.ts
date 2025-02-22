@@ -1,8 +1,8 @@
 interface CustomButtonProps {
     Textname?: string;
     onPress?: () => void;
-    backgroundColor: string | undefined;
-    TextColor: string | undefined;
+    backgroundColor?: string | undefined;
+    TextColor?: string | undefined;
     borderWidth?: number;
     borderColor?: string;
     leftIcon?: React.ReactNode;
@@ -47,6 +47,12 @@ interface CustomSelectRadioProps {
     options: string[];
     selected: string;
     setSelected: (value: string) => void;
+}
+
+interface CustomRadioSingleOptionProps {
+    value: string;
+    onPress: () => void;
+    selected: boolean;
 }
 
 interface BoxProps {
@@ -150,9 +156,9 @@ interface CustomTextNumberLabel {
 }
 
 interface CustomDropdownProps {
-    headerText: string;
+    headerText?: string;
     options: { value: string; label: string }[];
-    placeholder: string;
+    placeholder: string | React.ReactNode;
     onChange: (value: string) => void;
     disable?: boolean;
     value: string | undefined;

@@ -16,6 +16,11 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigation } from "../../../../types/stack";
 import { FontAwesome } from "@expo/vector-icons";
+import { TouchableOpacity } from "react-native";
+import { Textstyles } from "constants/fontsize";
+import DateTimePicker, { DateType } from "react-native-ui-datepicker";
+import { formatDate } from "utilities/utility";
+import { UserFormData } from "types/general";
 
 const Personal = () => {
   const { login, getUser } = useAuthStore();
@@ -42,7 +47,9 @@ const Personal = () => {
 
   const calculateProfileCompletion = () => {
     const totalFields = Object.keys(formData).length;
-    const completedFields = Object.values(formData).filter(value => value !== "" && value !== null).length;
+    const completedFields = Object.values(formData).filter(
+      (value) => value !== "" && value !== null
+    ).length;
     return (completedFields / totalFields) * 100;
   };
 
@@ -51,7 +58,7 @@ const Personal = () => {
   const bloodGroupOptions = [
     { label: "A+", value: "A+" },
     { label: "A-", value: "A-" },
-    { label: "A", value: "A" },//!to be removed
+    { label: "A", value: "A" }, //!to be removed
     { label: "B+", value: "B+" },
     { label: "B-", value: "B-" },
     { label: "AB+", value: "AB+" },
@@ -133,7 +140,7 @@ const Personal = () => {
       onChange: (text: string) => handleInputChange("phoneNumber", text),
     },
     {
-      inputType: "input",
+      inputType: "date-picker",
       headerText: "Date of birth",
       placeHolder: "Enter your date of birth",
       leftIconName: "calendar",
@@ -150,7 +157,7 @@ const Personal = () => {
         { label: "Female", value: "female" },
       ],
       value: formData.gender,
-      onChange: (value: string) => handleInputChange("birthDate", value),
+      onChange: (value: string) => handleInputChange("gender", value),
     },
     {
       inputType: "dropdown",
@@ -262,7 +269,7 @@ const Personal = () => {
       options: occupationOptions,
       value: formData.occupation,
       onChange: (text: string) => handleInputChange("occupation", text),
-    }
+    },
   ];
 
   const handleUpdateUser = async () => {
@@ -276,14 +283,22 @@ const Personal = () => {
 
     try {
       if (user) {
-        const response = await axios.put(`${baseUrl}/users/update/${user.id}`, { ...filteredFormData, role }, {
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`
+        const response = await axios.put(
+          `${baseUrl}/users/update/${user.id}`,
+          { ...filteredFormData, role },
+          {
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
           }
-        })
-        if (response.status === 201 || response.status === 200 || response.status === 203) {
+        );
+        if (
+          response.status === 201 ||
+          response.status === 200 ||
+          response.status === 203
+        ) {
           setErrorMessage("");
           login(response.data, {});
           Alert.alert("Profile updated successfully");
@@ -315,12 +330,18 @@ const Personal = () => {
     }
   };
 
+  const [selected, setSelected] = useState<DateType>();
+  const [openDateModal, setOpenDateModal] = useState(false);
+
   return (
-    <SafeAreaView>
+    <SafeAreaView className="bg-primaryTwo">
       <StatusBar style="auto" backgroundColor="#00A8CC" />
       <FlatList
         ListHeaderComponent={() => (
-          <Header9 profileName={user?.firstName + " " + user?.lastName} profileCompletion={profileCompletion.toFixed(0)} />
+          <Header9
+            profileName={user?.firstName + " " + user?.lastName}
+            profileCompletion={profileCompletion.toFixed(0)}
+          />
         )}
         data={formList}
         renderItem={({ item }) => {
@@ -330,7 +351,15 @@ const Personal = () => {
                 <CustomInputWithHeader
                   headerText={item.headerText}
                   placeholder={item.placeHolder}
-                  leftIcon={<FontAwesome name={item.leftIconName as keyof typeof FontAwesome.glyphMap} color="#000" size={20} />}
+                  leftIcon={
+                    <FontAwesome
+                      name={
+                        item.leftIconName as keyof typeof FontAwesome.glyphMap
+                      }
+                      color="#000"
+                      size={20}
+                    />
+                  }
                   value={item.value}
                   onChange={item.onChange}
                 />
@@ -348,6 +377,24 @@ const Personal = () => {
                 />
               </View>
             );
+          } else if (item.inputType === "date-picker") {
+            return (
+              <View className="mx-4 my-1">
+                <Text
+                  className="text-lg font-bold mb-2"
+                  style={[Textstyles.text_cmedium]}
+                >
+                  Date of Birth
+                </Text>
+                <TouchableOpacity
+                  className="border border-primary rounded-md p-4 flex-row items-center gap-x-4"
+                  onPress={() => setOpenDateModal(true)}
+                >
+                  <FontAwesome name="calendar" size={20} color="#000" />
+                  <Text className="">{formatDate(selected)}</Text>
+                </TouchableOpacity>
+              </View>
+            );
           }
           return null;
         }}
@@ -358,7 +405,9 @@ const Personal = () => {
               <Text className="text-red-500">{errorMessage}</Text>
             )}
             {profileCompletion < 100 && (
-              <Text className="text-red-500">Complete all fields to save your profile</Text>
+              <Text className="text-red-500">
+                Complete all fields to save your profile
+              </Text>
             )}
             <View className="h-1" />
             <CustomButton
@@ -373,6 +422,24 @@ const Personal = () => {
         )}
         ListFooterComponentStyle={{ padding: 10 }}
       />
+      {openDateModal && (
+        <View className="absolute flex-1 bg-[#00000050] h-screen w-full justify-center">
+          <View className="w-[80%] mx-auto bg-white rounded-md p-4">
+            <TouchableOpacity onPress={() => setOpenDateModal(false)} className="flex-row justify-end">
+              <FontAwesome name="times" size={20} color={primarycolor} />
+            </TouchableOpacity>
+            <View className="h-10" />
+            <DateTimePicker
+              mode="single"
+              date={selected}
+              onChange={({ date }) => {
+                setSelected(date);
+                formData.birthDate = formatDate(date);
+              }}
+            />
+          </View>
+        </View>
+      )}
     </SafeAreaView>
   );
 };
