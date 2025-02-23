@@ -6,7 +6,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 const CustomerSupport: React.FC = () => {
     return (
-        <SafeAreaView className="flex-1">
+        <SafeAreaView className="flex-1 bg-primaryTwo">
             <StatusBar backgroundColor={primarycolor} />
             <Header title="Customer Support" />
             <ScrollView className="py-4 px-6">

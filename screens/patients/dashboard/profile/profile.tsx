@@ -7,6 +7,7 @@ import {
   Image,
   ScrollView,
   Animated,
+  Alert,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { FontAwesome } from "@expo/vector-icons";
@@ -30,6 +31,7 @@ import useAuthStore from "../../../../store/auth-store";
 import { StackNavigation } from "types/stack";
 import PatientFooter from "components/patient-footer";
 import { SelectMenuProps } from "types/general";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const data = [
   {
@@ -259,6 +261,9 @@ const Modallogout: React.FC<{
   slideAnim: Animated.Value;
   setModalVisible: (value: boolean) => void;
 }> = ({ slideAnim, setModalVisible }) => {
+
+  const navigation = useNavigation<StackNavigation>();
+
   const handlehideModal = () => {
     setModalVisible(false);
     Animated.timing(slideAnim, {
@@ -267,6 +272,14 @@ const Modallogout: React.FC<{
       useNativeDriver: true,
     }).start();
   };
+
+  const handleLogout = async () => {
+    await AsyncStorage.clear();
+    setModalVisible(false);
+    navigation.navigate("identity");
+    Alert.alert("Logout", "You have successfully logged out");
+  };
+
   return (
     <View className="h-full w-full absolute">
       <View
@@ -288,6 +301,7 @@ const Modallogout: React.FC<{
             TextColor={"white"}
             Textname={"Yes"}
             backgroundColor={"red"}
+            onPress={handleLogout}
           />
           <View className="h-3" />
           <CustomButton

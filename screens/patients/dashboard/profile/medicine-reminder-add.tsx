@@ -6,7 +6,6 @@ import { useState } from "react";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import DateTimePicker, { DateType } from "react-native-ui-datepicker";
-import { Ionicons } from "@expo/vector-icons";
 
 const MedicineReminderAdd: React.FC<{}> = () => {
     const [medicineName, setMedicineName] = useState<string>("");
@@ -32,12 +31,7 @@ const MedicineReminderAdd: React.FC<{}> = () => {
                 <CustomDropdownWithHeader
                     headerText="Dosage"
                     options={[{ value: "dos1", label: "dos1" }]}
-                    placeholder={
-                        <View className="flex-row items-center justify-between w-full">
-                            <Text>Select dosage</Text>
-                            <Ionicons name="chevron-down" size={20} color="black" />
-                        </View>
-                    }
+                    placeholder="Select Dosage"
                     value={dosage}
                     onChange={(val: string) => setDosage(val)}
                 />
@@ -64,17 +58,12 @@ const MedicineReminderAdd: React.FC<{}> = () => {
                     </Text>
                     <View className="flex-row items-center justify-start gap-x-2">
                         <TouchableOpacity className="p-4 border border-purple1 border-dashed rounded-lg">
-                            <Text>00:00</Text>
+                            <Text>12:12</Text>
                         </TouchableOpacity>
-                        <View className="">
+                        <View className="w-20">
                             <CustomDropdownWithHeader
                                 options={[{ value: "am", label: "AM" }, { value: "pm", label: "PM" }]}
-                                placeholder={
-                                    <View className="flex-row items-center">
-                                        <Text>am</Text>
-                                        <Ionicons name="chevron-down" size={20} color="black" />
-                                    </View>
-                                }
+                                placeholder="am"
                                 value={time}
                                 onChange={(val: string) => setTime(val)}
                             />
