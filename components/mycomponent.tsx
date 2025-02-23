@@ -13,14 +13,23 @@ import {
   customstyle2,
   radioButtonStyles,
 } from "../constants/customstyle";
-import { FontAwesome5, MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
+import {
+  FontAwesome5,
+  MaterialCommunityIcons,
+  MaterialIcons,
+} from "@expo/vector-icons";
 import { Textstyles } from "../constants/fontsize";
 import { Ionicons } from "@expo/vector-icons"; // Import Ionicons for arrow
 import { TextInput } from "react-native-gesture-handler";
 import { FontAwesome } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import React, { useState, useEffect } from "react";
-import { greycolortwo, linkcolor, primarycolor, primarycolortwo } from "../constants/color";
+import {
+  greycolortwo,
+  linkcolor,
+  primarycolor,
+  primarycolortwo,
+} from "../constants/color";
 import { ArrowDownIcon, ArrowUpIcon } from "../assets/iconsvg/Svgicon";
 
 export const CustomButton: React.FC<CustomButtonProps> = ({
@@ -35,7 +44,7 @@ export const CustomButton: React.FC<CustomButtonProps> = ({
   props,
   width,
   isLoading,
-  disabled
+  disabled,
 }) => {
   return (
     <>
@@ -276,7 +285,7 @@ export const CustomTextnumber: React.FC<CustomInputProps> = ({
   secureTextEntry,
   disabled,
   value,
-  errorMessage
+  errorMessage,
 }) => {
   const [isFocused, setIsFocused] = useState(false);
   const [inputValue, setInputValue] = useState<string | undefined>(value);
@@ -348,7 +357,11 @@ export const CustomSelect: React.FC<CustomSelectProps> = ({
   );
 };
 
-export const CustomSelectRadioBox: React.FC<CustomSelectRadioProps> = ({ options, selected, setSelected }) => {
+export const CustomSelectRadioBox: React.FC<CustomSelectRadioProps> = ({
+  options,
+  selected,
+  setSelected,
+}) => {
   const handleSelectedOption = (selectedValue: string) => {
     setSelected(selectedValue);
   };
@@ -375,21 +388,23 @@ export const CustomSelectRadioBox: React.FC<CustomSelectRadioProps> = ({ options
   );
 };
 
-export const CustomRadioSingleOption: React.FC<CustomRadioSingleOptionProps> = ({ value, onPress, selected }) => {
+export const CustomRadioSingleOption: React.FC<
+  CustomRadioSingleOptionProps
+> = ({ value, onPress, selected }) => {
   return (
     <TouchableOpacity
       onPress={onPress}
       className="border border-primary bg-[#f3f3f3] rounded-lg py-4 px-2 flex-row items-center"
     >
       <View style={radioButtonStyles.radioButton}>
-        {selected && (
-          <View style={radioButtonStyles.radioButtonSelected} />
-        )}
+        {selected && <View style={radioButtonStyles.radioButtonSelected} />}
       </View>
-      <Text style={[Textstyles.text_small]} className="ml-4">{value}</Text>
+      <Text style={[Textstyles.text_small]} className="ml-4">
+        {value}
+      </Text>
     </TouchableOpacity>
   );
-}
+};
 
 export const Box: React.FC<BoxProps> = ({ inputText }) => {
   return (
@@ -402,7 +417,12 @@ export const Box: React.FC<BoxProps> = ({ inputText }) => {
   );
 };
 
-export const Iconplaceholder: React.FC<IconplaceholderProps> = ({ backgroundColor, width, height, Icon }) => {
+export const Iconplaceholder: React.FC<IconplaceholderProps> = ({
+  backgroundColor,
+  width,
+  height,
+  Icon,
+}) => {
   return (
     <View
       style={{ backgroundColor: backgroundColor, width: width, height: height }}
@@ -435,11 +455,7 @@ export const CustomInputWithHeader: React.FC<CustomInputProps> = ({
       {/* Input Field */}
       <View className="relative flex justify-center">
         {/* Show left FontAwesome icon if iconName is provided */}
-        {leftIcon && (
-          <View className="absolute left-4 z-50">
-            {leftIcon}
-          </View>
-        )}
+        {leftIcon && <View className="absolute left-4 z-50">{leftIcon}</View>}
         <TextInput
           style={[
             customstyle.textinputstyle,
@@ -484,11 +500,7 @@ export const CustomInputSearch: React.FC<CustomInputProps> = ({
       {/* Input Field */}
       <View className="relative flex justify-center">
         {/* Show left FontAwesome icon if iconName is provided */}
-        {leftIcon && (
-          <View className="absolute left-4 z-50">
-            {leftIcon}
-          </View>
-        )}
+        {leftIcon && <View className="absolute left-4 z-50">{leftIcon}</View>}
         <TextInput
           style={[
             customstyle.textinputstyle,
@@ -594,7 +606,13 @@ export const Providercard: React.FC<ProviderCardProps> = ({
   );
 };
 
-export const Cartcard: React.FC<CartCardProps> = ({ name, title, rating, likes, onPress }) => {
+export const Cartcard: React.FC<CartCardProps> = ({
+  name,
+  title,
+  rating,
+  likes,
+  onPress,
+}) => {
   return (
     <TouchableOpacity
       onPress={onPress}
@@ -648,11 +666,7 @@ export const CustomInputpassword: React.FC<CustomInputProps> = ({
       {/* Input Field */}
       <View className="relative flex justify-center">
         {/* Show left FontAwesome icon if iconName is provided */}
-        {leftIcon && (
-          <View className="absolute left-4 z-50">
-            {leftIcon}
-          </View>
-        )}
+        {leftIcon && <View className="absolute left-4 z-50">{leftIcon}</View>}
 
         <TextInput
           style={[
@@ -770,7 +784,10 @@ const styles = StyleSheet.create({
   },
 });
 
-export const PaymentMethod: React.FC<PaymentMethodProps> = ({ selectedMethod, onSelect }) => {
+export const PaymentMethod: React.FC<PaymentMethodProps> = ({
+  selectedMethod,
+  onSelect,
+}) => {
   const paymentOptions = [
     { id: "paystack", label: "PayStack" },
     { id: "interswitch", label: "Interswitch" },
@@ -804,13 +821,22 @@ export const PaymentMethod: React.FC<PaymentMethodProps> = ({ selectedMethod, on
   );
 };
 
-export const Header: React.FC<CustomHeaderProps> = ({ title, rightIcon, onRightIconPress }) => {
+export const Header: React.FC<CustomHeaderProps> = ({
+  title,
+  rightIcon,
+  onRightIconPress,
+}) => {
   const navigation = useNavigation();
   return (
-    <View style={{ backgroundColor: primarycolor, }} className="p-5 flex-row items-center justify-center w-full px-5"
+    <View
+      style={{ backgroundColor: primarycolor }}
+      className="p-5 flex-row items-center justify-center w-full px-5"
     >
       {/* Back Button */}
-      <TouchableOpacity className="justify-center" onPress={() => navigation.goBack()}>
+      <TouchableOpacity
+        className="justify-center"
+        onPress={() => navigation.goBack()}
+      >
         <Ionicons name="chevron-back" size={32} color="white" />
       </TouchableOpacity>
 
@@ -836,7 +862,11 @@ export const Header: React.FC<CustomHeaderProps> = ({ title, rightIcon, onRightI
   );
 };
 
-export const Header2: React.FC<CustomHeaderProps> = ({ title, rightIcon, onRightIconPress }) => {
+export const Header2: React.FC<CustomHeaderProps> = ({
+  title,
+  rightIcon,
+  onRightIconPress,
+}) => {
   const navigation = useNavigation();
 
   return (
@@ -881,7 +911,11 @@ export const Header2: React.FC<CustomHeaderProps> = ({ title, rightIcon, onRight
   );
 };
 
-export const Header6: React.FC<CustomHeaderProps> = ({ title, rightIcon, onRightIconPress }) => {
+export const Header6: React.FC<CustomHeaderProps> = ({
+  title,
+  rightIcon,
+  onRightIconPress,
+}) => {
   const navigation = useNavigation();
 
   return (
@@ -926,7 +960,11 @@ export const Header6: React.FC<CustomHeaderProps> = ({ title, rightIcon, onRight
   );
 };
 
-export const Header5: React.FC<CustomHeaderProps> = ({ title, rightIcon, onRightIconPress }) => {
+export const Header5: React.FC<CustomHeaderProps> = ({
+  title,
+  rightIcon,
+  onRightIconPress,
+}) => {
   const navigation = useNavigation();
 
   return (
@@ -971,7 +1009,11 @@ export const Header5: React.FC<CustomHeaderProps> = ({ title, rightIcon, onRight
   );
 };
 
-export const Header3: React.FC<CustomHeaderProps> = ({ title, rightIcon, onRightIconPress }) => {
+export const Header3: React.FC<CustomHeaderProps> = ({
+  title,
+  rightIcon,
+  onRightIconPress,
+}) => {
   const navigation = useNavigation();
 
   return (
@@ -1016,7 +1058,11 @@ export const Header3: React.FC<CustomHeaderProps> = ({ title, rightIcon, onRight
   );
 };
 
-export const Header4: React.FC<CustomHeaderProps> = ({ title, rightIcon, onRightIconPress }) => {
+export const Header4: React.FC<CustomHeaderProps> = ({
+  title,
+  rightIcon,
+  onRightIconPress,
+}) => {
   const navigation = useNavigation();
 
   return (
@@ -1114,7 +1160,7 @@ export const NotificationCard: React.FC<NotificationCardProps> = ({
   title,
   description,
   type,
-  time
+  time,
 }) => {
   return (
     <View className="flex-row justify-between items-start p-4 border-b border-gray-300">
@@ -1143,15 +1189,21 @@ export const NotificationCard: React.FC<NotificationCardProps> = ({
               // onPress={() => navigation.navigate("OrderDetails")}
               className=""
             >
-              <Text className="text-[#0099B8] underline font-extrabold">View order details</Text>
+              <Text className="text-[#0099B8] underline font-extrabold">
+                View order details
+              </Text>
             </TouchableOpacity>
-          ) : type === "details" && (
-            <TouchableOpacity
-              // onPress={() => navigation.navigate("ReferralDetails")}
-              className=""
-            >
-              <Text className="text-[#0099B8] underline font-extrabold">View details</Text>
-            </TouchableOpacity>
+          ) : (
+            type === "details" && (
+              <TouchableOpacity
+                // onPress={() => navigation.navigate("ReferralDetails")}
+                className=""
+              >
+                <Text className="text-[#0099B8] underline font-extrabold">
+                  View details
+                </Text>
+              </TouchableOpacity>
+            )
           )}
         </View>
       </View>
@@ -1208,7 +1260,11 @@ export const Providercard2: React.FC<ProviderCardProps> = ({
   );
 };
 
-export const MenuButton: React.FC<MenuButtonProps> = ({ icon, text, onPress }) => {
+export const MenuButton: React.FC<MenuButtonProps> = ({
+  icon,
+  text,
+  onPress,
+}) => {
   return (
     <TouchableOpacity
       style={{ elevation: 4 }}
@@ -1293,11 +1349,16 @@ export const StatsCard: React.FC<StatsCardProps> = ({ icon, value, label }) => {
   );
 };
 
-export const OptionButton: React.FC<OptionButtonProps> = ({ optionName, isSelected, onSelect, width }) => {
+export const OptionButton: React.FC<OptionButtonProps> = ({
+  optionName,
+  isSelected,
+  onSelect,
+  width,
+}) => {
   return (
     <TouchableOpacity
       onPress={onSelect}
-      style={{ width: typeof width === 'number' ? width : undefined }} // Ensure width is a number or undefined
+      style={{ width: typeof width === "number" ? width : undefined }} // Ensure width is a number or undefined
       className={`m-2 p-4 rounded-lg border-2 ${isSelected
         ? "bg-[#0099B8] border-0"
         : "bg-white border-1 border-[#0099B8]"
@@ -1375,7 +1436,10 @@ export const CustomTextnumberlabel: React.FC<CustomTextNumberLabel> = ({
   );
 };
 
-export const Header9: React.FC<CustomHeaderProps> = ({ profileName, profileCompletion }) => {
+export const Header9: React.FC<CustomHeaderProps> = ({
+  profileName,
+  profileCompletion,
+}) => {
   const navigation = useNavigation();
 
   return (
@@ -1438,14 +1502,17 @@ export const CustomDropdownWithHeader: React.FC<CustomDropdownProps> = ({
         disabled={disable}
       >
         {leftIcon && (
-          <View className="absolute left-4 top-3 z-10">
-            {leftIcon}
-          </View>
+          <View className="absolute left-4 top-3 z-10">{leftIcon}</View>
         )}
-        <Text
-          className="flex items-center justify-center"
-        >
-          {selectedValue ? options.find(option => option.value === selectedValue)?.label : placeholder}
+        <Text className="flex items-center justify-center">
+          {selectedValue ? (
+            options.find((option) => option.value === selectedValue)?.label
+          ) : (
+            <View className="flex-row items-center justify-between w-full">
+              <Text>{placeholder}</Text>
+              <Ionicons name="chevron-down" size={20} color="black" />
+            </View>
+          )}
         </Text>
       </TouchableOpacity>
 
@@ -1460,15 +1527,21 @@ export const CustomDropdownWithHeader: React.FC<CustomDropdownProps> = ({
         >
           <View className="flex-1 h-screen w-full bg-[#00000050]">
             <View className="flex-1 justify-center items-center">
-              <View className="w-[80%] bg-white rounded-lg p-4">
+              <View className="w-[350px] bg-white rounded-2xl py-3 px-4 border border-primary">
                 <TouchableOpacity
                   className="p-4 bg-gray-200 rounded-lg flex-row justify-between"
                   onPress={() => setShowOptions(false)}
                 >
-                  <Text className="text-center text-gray-700">Select Option</Text>
-                  <FontAwesome name="arrow-down" size={16} color={primarycolor} />
+                  <Text className="text-center" style={[Textstyles.text_xsma]}>
+                    Select Option
+                  </Text>
+                  <Ionicons
+                    name="chevron-up"
+                    size={20}
+                    color="black"
+                  />
                 </TouchableOpacity>
-                <ScrollView>
+                <ScrollView showsVerticalScrollIndicator={false} style={{ maxHeight: 400 }}>
                   {options.map((option) => (
                     <TouchableOpacity
                       key={option.value}
@@ -1481,7 +1554,7 @@ export const CustomDropdownWithHeader: React.FC<CustomDropdownProps> = ({
                         }
                       }}
                     >
-                      <Text className="text-gray-700">{option.label}</Text>
+                      <Text style={[Textstyles.text_xsma]}>{option.label}</Text>
                     </TouchableOpacity>
                   ))}
                 </ScrollView>
@@ -1494,7 +1567,9 @@ export const CustomDropdownWithHeader: React.FC<CustomDropdownProps> = ({
   );
 };
 
-export const FloatingActionButton: React.FC<FloatingActionButtonProps> = ({ onPress }) => {
+export const FloatingActionButton: React.FC<FloatingActionButtonProps> = ({
+  onPress,
+}) => {
   return (
     <TouchableOpacity
       className="w-16 h-16 bg-[#00A8CC] rounded-full items-center justify-center absolute bottom-5 right-5 shadow-lg"
@@ -1527,11 +1602,7 @@ export const CustomInputWithHeader2: React.FC<CustomInputProps> = ({
 
       {/* Input Field */}
       <View className="relative flex justify-center">
-        {leftIcon && (
-          <View className="absolute left-4 z-50">
-            {leftIcon}
-          </View>
-        )}
+        {leftIcon && <View className="absolute left-4 z-50">{leftIcon}</View>}
         <TextInput
           style={[
             customstyle.textinputstyle,
@@ -1586,11 +1657,7 @@ export const CustomInputWithHeaderdes: React.FC<CustomInputProps> = ({
       {/* Input Field */}
       <View className="relative flex justify-center">
         {/* Show left FontAwesome icon if iconName is provided */}
-        {leftIcon && (
-          <View className="absolute left-4 z-50">
-            {leftIcon}
-          </View>
-        )}
+        {leftIcon && <View className="absolute left-4 z-50">{leftIcon}</View>}
         <TextInput
           style={[
             customstyle.textinputstyle,
@@ -1624,7 +1691,11 @@ export const CustomInputWithHeaderdes: React.FC<CustomInputProps> = ({
   );
 };
 
-export const AppointmentCard: React.FC<AppointmentCardProps> = ({ title, doctorName, dateTime }) => {
+export const AppointmentCard: React.FC<AppointmentCardProps> = ({
+  title,
+  doctorName,
+  dateTime,
+}) => {
   return (
     <View className="flex-row items-center p-4 bg-white rounded-lg shadow-md max-w-sm">
       {/* Image Section */}
@@ -1647,7 +1718,13 @@ export const AppointmentCard: React.FC<AppointmentCardProps> = ({ title, doctorN
   );
 };
 
-export const DoctorCard: React.FC<DoctorCardProps> = ({ name, session, time, imageSource, onPress }) => {
+export const DoctorCard: React.FC<DoctorCardProps> = ({
+  name,
+  session,
+  time,
+  imageSource,
+  onPress,
+}) => {
   return (
     <View className="bg-white h-[160px] rounded-2xl shadow-md flex-row space-x-4">
       <View className=" flex justify-center items-center rounded-2xl">
@@ -1684,7 +1761,7 @@ export const CustomButtoncall: React.FC<CustomButtonProps> = ({
   leftIcon,
   rightIcon,
   props,
-  width = 20,  // Default width set to 50
+  width = 20, // Default width set to 50
   height = 20, // Default height set to 50
 }) => {
   return (
@@ -1694,11 +1771,11 @@ export const CustomButtoncall: React.FC<CustomButtonProps> = ({
           backgroundColor: backgroundColor,
           borderWidth: borderWidth || 0,
           borderColor: borderColor || null,
-          width: width,  // Set the width (default 50)
+          width: width, // Set the width (default 50)
           height: height, // Set the height (default 50)
           justifyContent: "center", // Center content vertically
           alignItems: "center", // Center content horizontally
-          borderRadius: typeof width === 'number' ? width / 2 : 0, // Make the button circular based on width/height
+          borderRadius: typeof width === "number" ? width / 2 : 0, // Make the button circular based on width/height
         },
         customstyle.buttonstyle, // Keep your existing custom styles if needed
       ]}
@@ -1728,18 +1805,28 @@ interface SelectionpickerProps {
   onPress: () => void;
 }
 
-export const Selectionpicker: React.FC<SelectionpickerProps> = ({ Title, onPress }) => {
+export const Selectionpicker: React.FC<SelectionpickerProps> = ({
+  Title,
+  onPress,
+}) => {
   return (
     <>
-      <TouchableOpacity onPress={() => onPress()} className="justify-between px-3 flex-row items-center" style={{ borderColor: primarycolor, borderWidth: 1, height: 50, borderRadius: 10 }}>
-        <Text style={[Textstyles.text_xmedium]}>
-          {Title}
-        </Text>
+      <TouchableOpacity
+        onPress={() => onPress()}
+        className="justify-between px-3 flex-row items-center"
+        style={{
+          borderColor: primarycolor,
+          borderWidth: 1,
+          height: 50,
+          borderRadius: 10,
+        }}
+      >
+        <Text style={[Textstyles.text_xmedium]}>{Title}</Text>
         <ArrowDownIcon />
       </TouchableOpacity>
     </>
-  )
-}
+  );
+};
 interface DataItem {
   value: string;
   label: string;
@@ -1752,43 +1839,50 @@ interface DataDisplayModayProps {
   title: string;
 }
 
-export const DataDisplayModay: React.FC<DataDisplayModayProps> = ({ data, setshowmodal, setSelectedValue, title }) => {
-
+export const DataDisplayModay: React.FC<DataDisplayModayProps> = ({
+  data,
+  setshowmodal,
+  setSelectedValue,
+  title,
+}) => {
   return (
     <>
-      <View style={{ backgroundColor: primarycolor }} className="opacity-70 h-full w-full absolute" />
+      <View
+        style={{ backgroundColor: primarycolor }}
+        className="opacity-70 h-full w-full absolute"
+      />
       <View className="h-[30vh] w-[80vw] relative z-50 rounded-2xl bg-white px-3 py-3">
         <View className="justify-between flex-row">
           <Text style={[Textstyles.text_xmedium]}>{title}</Text>
           <TouchableOpacity onPress={() => setshowmodal(false)}>
             <ArrowUpIcon />
           </TouchableOpacity>
-
         </View>
 
-        <ScrollView
-          showsVerticalScrollIndicator={false}
-        >
+        <ScrollView showsVerticalScrollIndicator={false}>
           <View className="py-4">
             {data.map((item, index) => (
               <TouchableOpacity
                 key={index}
                 className="h-12 border-b border-slate-100 flex justify-center"
-                onPress={() => { setSelectedValue(item.value); setshowmodal(false) }}
+                onPress={() => {
+                  setSelectedValue(item.value);
+                  setshowmodal(false);
+                }}
               >
-                <Text >{item.label}</Text>
+                <Text>{item.label}</Text>
               </TouchableOpacity>
             ))}
-
           </View>
         </ScrollView>
-
       </View>
     </>
-  )
-}
+  );
+};
 
-export const HeaderWithTitleAndBackButton: React.FC<CustomHeaderProps> = ({ title }) => {
+export const HeaderWithTitleAndBackButton: React.FC<CustomHeaderProps> = ({
+  title,
+}) => {
   const navigation = useNavigation();
 
   return (
@@ -1800,5 +1894,5 @@ export const HeaderWithTitleAndBackButton: React.FC<CustomHeaderProps> = ({ titl
         <Text className="text-white text-2xl font-bold">{title}</Text>
       </View>
     </View>
-  )
-}
+  );
+};

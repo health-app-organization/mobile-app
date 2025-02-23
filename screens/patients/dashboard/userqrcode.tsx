@@ -1,14 +1,14 @@
 import React from "react";
 import { StatusBar } from "expo-status-bar";
 import { View, Image, Text, TouchableOpacity } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 import { Header } from "../../../components/mycomponent";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { primarycolor } from "constants/color";
 
 const Orcode = () => {
-  const navigation = useNavigation();
   return (
-    <View className="h-screen w-full  " style={{ flex: 1 }}>
-      <StatusBar style="auto" />
+    <SafeAreaView className="h-screen w-full bg-primaryTwo" style={{ flex: 1 }}>
+      <StatusBar backgroundColor={primarycolor} />
 
       <Header title="Patient QR code" />
       <Text className=" text-center  text-[17px]  font-[500] text-gray-500 px-[78px] mt-12">
@@ -39,7 +39,7 @@ const Orcode = () => {
           </View>
         </TouchableOpacity>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

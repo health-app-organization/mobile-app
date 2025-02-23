@@ -337,6 +337,7 @@ const Personal = () => {
     <SafeAreaView className="bg-primaryTwo">
       <StatusBar style="auto" backgroundColor="#00A8CC" />
       <FlatList
+        alwaysBounceVertical={false}
         ListHeaderComponent={() => (
           <Header9
             profileName={user?.firstName + " " + user?.lastName}
