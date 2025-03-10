@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from "react";
-import {
-  View,
-  StatusBar,
-  FlatList,
-} from "react-native";
-import { Chatlist } from "../../../components/mycomponent";
+import { View, StatusBar, FlatList } from "react-native";
+import { ChatList } from "../../../components/mycomponent";
 
 import HeaderTitle, {
   CustomInputSearch,
@@ -89,95 +85,95 @@ const Messages = () => {
             </View>
           </>
         )}
-        // data={[
-        //   {
-        //     profileImage: require("../../../assets/images/chat 1.png"),
-        //     id: 1,
-        //     name: "Dr. Sunmisola Olowofela",
-        //     message:
-        //       "Lorem ipsum dolor sit amet consectetur. Tellus potenti et sed in scelerisque imperdiet..",
-        //     time: "18:52",
-        //     unreadCount: 4,
-        //   },
-        //   {
-        //     profileImage: require("../../../assets/images/chat 1.png"),
-        //     id: 2,
-        //     name: "Dr. Sunmisola Olowofela",
-        //     message:
-        //       "Lorem ipsum dolor sit amet consectetur. Tellus potenti et sed in scelerisque imperdiet..",
-        //     time: "18:52",
-        //   },
-        //   {
-        //     profileImage: require("../../../assets/images/chat 1.png"),
-        //     id: 3,
-        //     name: "Dr. Sunmisola Olowofela",
-        //     message:
-        //       "Lorem ipsum dolor sit amet consectetur. Tellus potenti et sed in scelerisque imperdiet..",
-        //     time: "18:52",
-        //   },
-        //   {
-        //     profileImage: require("../../../assets/images/chat 1.png"),
-        //     id: 4,
-        //     name: "Dr. Sunmisola Olowofela",
-        //     message:
-        //       "Lorem ipsum dolor sit amet consectetur. Tellus potenti et sed in scelerisque imperdiet..",
-        //     time: "18:52",
-        //     unreadCount: 3,
-        //   },
-        //   {
-        //     profileImage: require("../../../assets/images/chat 1.png"),
-        //     id: 5,
-        //     name: "Dr. Sunmisola Olowofela",
-        //     message:
-        //       "Lorem ipsum dolor sit amet consectetur. Tellus potenti et sed in scelerisque imperdiet..",
-        //     time: "18:52",
-        //     unreadCount: 5,
-        //   },
-        //   {
-        //     profileImage: require("../../../assets/images/chat 1.png"),
-        //     id: 6,
-        //     name: "Dr. Sunmisola Olowofela",
-        //     message:
-        //       "Lorem ipsum dolor sit amet consectetur. Tellus potenti et sed in scelerisque imperdiet..",
-        //     time: "18:52",
-        //     unreadCount: 4,
-        //   },
-        //   {
-        //     profileImage: require("../../../assets/images/chat 1.png"),
-        //     id: 7,
-        //     name: "Dr. Sunmisola Olowofela",
-        //     message:
-        //       "Lorem ipsum dolor sit amet consectetur. Tellus potenti et sed in scelerisque imperdiet..",
-        //     time: "18:52",
-        //   },
-        //   {
-        //     profileImage: require("../../../assets/images/chat 1.png"),
-        //     id: 8,
-        //     name: "Dr. Sunmisola Olowofela",
-        //     message:
-        //       "Lorem ipsum dolor sit amet consectetur. Tellus potenti et sed in scelerisque imperdiet..",
-        //     time: "18:52",
-        //   },
-        //   {
-        //     profileImage: require("../../../assets/images/chat 1.png"),
-        //     id: 9,
-        //     name: "Dr. Sunmisola Olowofela",
-        //     message:
-        //       "Lorem ipsum dolor sit amet consectetur. Tellus potenti et sed in scelerisque imperdiet..",
-        //     time: "18:52",
-        //     unreadCount: 3,
-        //   },
-        //   {
-        //     profileImage: require("../../../assets/images/chat 1.png"),
-        //     id: 10,
-        //     name: "Dr. Sunmisola Olowofela",
-        //     message:
-        //       "Lorem ipsum dolor sit amet consectetur. Tellus potenti et sed in scelerisque imperdiet..",
-        //     time: "18:52",
-        //     unreadCount: 5,
-        //   },
-        // ]}
-        data={chatPeers}
+        data={[
+          {
+            profileImage: require("../../../assets/images/chat 1.png"),
+            id: 1,
+            name: "Dr. Sunmisola Olowofela",
+            message:
+              "Lorem ipsum dolor sit amet consectetur. Tellus potenti et sed in scelerisque imperdiet..",
+            time: "18:52",
+            unreadCount: 4,
+          },
+          {
+            profileImage: require("../../../assets/images/chat 1.png"),
+            id: 2,
+            name: "Dr. Sunmisola Olowofela",
+            message:
+              "Lorem ipsum dolor sit amet consectetur. Tellus potenti et sed in scelerisque imperdiet..",
+            time: "18:52",
+          },
+          {
+            profileImage: require("../../../assets/images/chat 1.png"),
+            id: 3,
+            name: "Dr. Sunmisola Olowofela",
+            message:
+              "Lorem ipsum dolor sit amet consectetur. Tellus potenti et sed in scelerisque imperdiet..",
+            time: "18:52",
+          },
+          {
+            profileImage: require("../../../assets/images/chat 1.png"),
+            id: 4,
+            name: "Dr. Sunmisola Olowofela",
+            message:
+              "Lorem ipsum dolor sit amet consectetur. Tellus potenti et sed in scelerisque imperdiet..",
+            time: "18:52",
+            unreadCount: 3,
+          },
+          {
+            profileImage: require("../../../assets/images/chat 1.png"),
+            id: 5,
+            name: "Dr. Sunmisola Olowofela",
+            message:
+              "Lorem ipsum dolor sit amet consectetur. Tellus potenti et sed in scelerisque imperdiet..",
+            time: "18:52",
+            unreadCount: 5,
+          },
+          {
+            profileImage: require("../../../assets/images/chat 1.png"),
+            id: 6,
+            name: "Dr. Sunmisola Olowofela",
+            message:
+              "Lorem ipsum dolor sit amet consectetur. Tellus potenti et sed in scelerisque imperdiet..",
+            time: "18:52",
+            unreadCount: 4,
+          },
+          {
+            profileImage: require("../../../assets/images/chat 1.png"),
+            id: 7,
+            name: "Dr. Sunmisola Olowofela",
+            message:
+              "Lorem ipsum dolor sit amet consectetur. Tellus potenti et sed in scelerisque imperdiet..",
+            time: "18:52",
+          },
+          {
+            profileImage: require("../../../assets/images/chat 1.png"),
+            id: 8,
+            name: "Dr. Sunmisola Olowofela",
+            message:
+              "Lorem ipsum dolor sit amet consectetur. Tellus potenti et sed in scelerisque imperdiet..",
+            time: "18:52",
+          },
+          {
+            profileImage: require("../../../assets/images/chat 1.png"),
+            id: 9,
+            name: "Dr. Sunmisola Olowofela",
+            message:
+              "Lorem ipsum dolor sit amet consectetur. Tellus potenti et sed in scelerisque imperdiet..",
+            time: "18:52",
+            unreadCount: 3,
+          },
+          {
+            profileImage: require("../../../assets/images/chat 1.png"),
+            id: 10,
+            name: "Dr. Sunmisola Olowofela",
+            message:
+              "Lorem ipsum dolor sit amet consectetur. Tellus potenti et sed in scelerisque imperdiet..",
+            time: "18:52",
+            unreadCount: 5,
+          },
+        ]}
+        // data={chatPeers}
         renderItem={({
           item,
         }: {
@@ -186,12 +182,12 @@ const Messages = () => {
             name: string;
             message: string;
             time: string;
-            unreadCount: number;
-            id: string;
+            unreadCount?: number;
+            id: number;
           };
         }) => (
           <View className="px-4">
-            <Chatlist
+            <ChatList
               profileImage={item.profileImage}
               name={item.name}
               message={item.message}

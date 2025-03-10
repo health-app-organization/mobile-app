@@ -26,11 +26,14 @@ import { useNavigation } from "@react-navigation/native";
 import React, { useState, useEffect } from "react";
 import {
   greycolortwo,
+  lightBlue,
+  lightGreen,
   linkcolor,
   primarycolor,
   primarycolortwo,
 } from "../constants/color";
 import { ArrowDownIcon, ArrowUpIcon } from "../assets/iconsvg/Svgicon";
+import { StackNavigation } from "types/stack";
 
 export const CustomButton: React.FC<CustomButtonProps> = ({
   Textname,
@@ -533,7 +536,7 @@ export const CustomInputSearch: React.FC<CustomInputProps> = ({
 
 const HeaderTitle: React.FC<CustomHeaderProps> = ({ title }) => {
   return (
-    <View className="w-full pt-12 pb-4 bg-[#0099B8] pl-8">
+    <View className="w-full p-5 bg-[#0099B8]">
       <Text className="text-2xl text-white font-bold">{title}</Text>
     </View>
   );
@@ -606,7 +609,7 @@ export const Providercard: React.FC<ProviderCardProps> = ({
   );
 };
 
-export const Cartcard: React.FC<CartCardProps> = ({
+export const CartCard: React.FC<CartCardProps> = ({
   name,
   title,
   rating,
@@ -830,7 +833,7 @@ export const Header: React.FC<CustomHeaderProps> = ({
   return (
     <View
       style={{ backgroundColor: primarycolor }}
-      className="p-5 flex-row items-center justify-center w-full px-5"
+      className="p-5 flex-row items-center justify-center w-full"
     >
       {/* Back Button */}
       <TouchableOpacity
@@ -1097,7 +1100,7 @@ export const Header4: React.FC<CustomHeaderProps> = ({
   );
 };
 
-export const Chatlist: React.FC<ChatListProps> = ({
+export const ChatList: React.FC<ChatListProps> = ({
   profileImage,
   name,
   message,
@@ -1105,67 +1108,78 @@ export const Chatlist: React.FC<ChatListProps> = ({
   unreadCount,
 }) => {
   return (
-    <TouchableOpacity
-      style={{ backgroundColor: "rgba(0, 153, 184, 0.05)" }}
-      className="flex-row items-center p-4 rounded-lg my-2 -mb-1 "
-    >
-      {/* Profile Image */}
-      <Image
-        source={
-          typeof profileImage === "string"
-            ? { uri: profileImage }
-            : profileImage
-        }
-        className="w-12 h-12 rounded-full"
-      />
-      {/* Name and Message */}
-      <View className="flex-1 ml-4">
-        <Text
-          style={{
-            fontSize: 16,
-            fontWeight: "600",
-            lineHeight: 24,
-            textAlign: "left",
-          }}
-          className=" font-bold"
-        >
-          {name}
-        </Text>
-        <Text
-          style={{
-            fontSize: 12,
-            fontWeight: "300",
-            lineHeight: 18,
-            textAlign: "left",
-          }}
-          className=" text-black"
-        >
-          {message}
-        </Text>
-      </View>
-      {/* Time and Unread Messages Badge */}
-      <View className="items-end">
-        <Text className="text-sm text-gray-500 mr-8">{time}</Text>
-        {unreadCount > 0 && (
-          <View className="bg-[#0099B8] rounded-full w-6 h-6 justify-center items-center mt-1">
-            <Text className="text-white text-xs">{unreadCount}</Text>
-          </View>
-        )}
-      </View>
-    </TouchableOpacity>
+    <>
+      <View className="h-1" />
+      <TouchableOpacity
+        style={{
+          backgroundColor:
+            unreadCount! > 0 ? "rgba(0, 153, 184, 0.05)" : "white",
+        }}
+        className="flex-row items-center p-4 rounded-lg"
+        onPress={() => console.log("Open chat")}
+      >
+        {/* Profile Image */}
+        <Image
+          source={
+            typeof profileImage === "string"
+              ? { uri: profileImage }
+              : profileImage
+          }
+          className="w-12 h-12 rounded-full"
+        />
+        {/* Name and Message */}
+        <View className="flex-1 ml-4">
+          <Text
+            style={{
+              fontSize: 16,
+              fontWeight: "600",
+              lineHeight: 24,
+              textAlign: "left",
+            }}
+            className=" font-bold"
+          >
+            {name}
+          </Text>
+          <Text
+            style={{
+              fontSize: 12,
+              fontWeight: "300",
+              lineHeight: 18,
+              textAlign: "left",
+            }}
+            className=" text-black"
+          >
+            {message}
+          </Text>
+        </View>
+        {/* Time and Unread Messages Badge */}
+        <View className="items-end">
+          <Text className="text-sm text-gray-500 mr-8">{time}</Text>
+          {unreadCount! > 0 && (
+            <View className="bg-[#0099B8] rounded-full w-4 justify-center items-center mt-1">
+              <Text className="text-white text-xs">{unreadCount}</Text>
+            </View>
+          )}
+        </View>
+      </TouchableOpacity>
+      <View className="h-1" />
+    </>
   );
 };
 
 export const NotificationCard: React.FC<NotificationCardProps> = ({
+  id,
   title,
   description,
   type,
   time,
 }) => {
+  const navigation = useNavigation<StackNavigation>();
+
   return (
-    <View className="flex-row justify-between items-start p-4 border-b border-gray-300">
+    <View className="flex-row justify-between items-start p-4 border-b border-gray-300 w-full">
       <View className="flex-row items-start">
-        <View className="">
+        <View className="w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-md">
           {type === "order-details" ? (
             <MaterialCommunityIcons
               name="hospital-marker"
@@ -1173,33 +1187,52 @@ export const NotificationCard: React.FC<NotificationCardProps> = ({
               color="#0099B8"
             />
           ) : type === "details" ? (
-            <FontAwesome5 name="hospital" size={24} color="#0099B8" />
+            <FontAwesome5 name="hospital" size={16} color="#0099B8" />
           ) : (
-            <FontAwesome5 name="ambulance" size={24} color="#0099B8" />
+            <FontAwesome5 name="ambulance" size={12} color="#0099B8" />
           )}
         </View>
-        <View className="ml-4">
+        <View className="w-4" />
+        <View className="w-[85%]">
           <View className="flex-row items-center justify-between">
-            <Text className="font-bold">{title}</Text>
-            <Text className="text-xs text-[#888]">{time}</Text>
+            <Text style={[Textstyles.text_x16small]}>{title}</Text>
+            <Text style={[Textstyles.text_xsma, { color: "black" }]}>
+              {time}
+            </Text>
           </View>
-          <Text className="text-[#888]">{description}</Text>
+          <Text style={[Textstyles.text_xsma]}>{description}</Text>
           {type === "order-details" ? (
             <TouchableOpacity
-              // onPress={() => navigation.navigate("OrderDetails")}
+              onPress={() =>
+                navigation.navigate("profileScreen", {
+                  screen: "drug-referral-details",
+                  params: { id },
+                })
+              }
               className=""
             >
-              <Text className="text-[#0099B8] underline font-extrabold">
+              <Text
+                className="text-[#0099B8] font-extrabold"
+                style={{ textDecorationLine: "underline" }}
+              >
                 View order details
               </Text>
             </TouchableOpacity>
           ) : (
             type === "details" && (
               <TouchableOpacity
-                // onPress={() => navigation.navigate("ReferralDetails")}
+                onPress={() =>
+                  navigation.navigate("profileScreen", {
+                    screen: "referral-details",
+                    params: { id },
+                  })
+                }
                 className=""
               >
-                <Text className="text-[#0099B8] underline font-extrabold">
+                <Text
+                  className="text-[#0099B8] font-extrabold"
+                  style={{ textDecorationLine: "underline" }}
+                >
                   View details
                 </Text>
               </TouchableOpacity>
@@ -1278,56 +1311,71 @@ export const MenuButton: React.FC<MenuButtonProps> = ({
 };
 
 export const DateComponent = () => {
-  const [getdayArray, setdayArray] = useState<number[]>([]);
-  const days = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
+  const [getDayArray, setDayArray] = useState<Date[]>([]);
   const currentDate = new Date();
-  function getWeekDates() {
-    // Get today's date
-    const weekDates = [];
+  const [selectedDate, setSelectedDate] = useState<Date | null>(currentDate);
+  const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-    // Calculate the difference from the current day to the previous Sunday
-    const firstDayOfWeek = new Date(
-      currentDate.setDate(currentDate.getDate() - currentDate.getDay())
-    );
-
-    // Loop through the week and add only the day of the month (date)
-    for (let i = 0; i < 7; i++) {
-      const weekDate = new Date(firstDayOfWeek); // Copy the date
-      weekDate.setDate(firstDayOfWeek.getDate() + i); // Set date to Sunday + i days
-      weekDates.push(weekDate.getDate()); // Add only the date to the array
+  function getSurroundingDates() {
+    const surroundingDates = [];
+    for (let i = -2; i <= 31; i++) {
+      const date = new Date(currentDate);
+      date.setDate(currentDate.getDate() + i);
+      surroundingDates.push(date);
     }
-
-    return weekDates; // Return the dates as a comma-separated string
+    return surroundingDates;
   }
+
   useEffect(() => {
-    setdayArray(getWeekDates());
+    setDayArray(getSurroundingDates());
   }, []);
 
   return (
-    <>
-      <View className="px-3">
-        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-          <View className="w-full flex-row gap-3 items-center justify-evenly  px-2">
-            {getdayArray.map((item, index) => (
+    <View className="px-3">
+      <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+        <View className="w-full flex-row gap-3 items-center justify-evenly">
+          {getDayArray.map((date, index) => {
+            const isSelectedDate =
+              selectedDate &&
+              date.toDateString() === selectedDate.toDateString();
+            return (
               <TouchableOpacity
                 style={{
                   borderColor: linkcolor,
-                  borderWidth: 1,
+                  borderWidth: isSelectedDate ? 0 : 1,
                   borderRadius: 30,
                   height: 100,
                   width: 60,
+                  backgroundColor: isSelectedDate
+                    ? primarycolor
+                    : "transparent",
                 }}
                 key={index}
                 className="flex justify-center items-center"
+                onPress={() => setSelectedDate(date)}
               >
-                <Text style={[Textstyles.text_cmedium]}>{days[index]}</Text>
-                <Text style={[Textstyles.text_cmedium]}>{item}</Text>
+                <Text
+                  style={[
+                    Textstyles.text_cmedium,
+                    { color: isSelectedDate ? "white" : "black" },
+                  ]}
+                >
+                  {days[date.getDay()]}
+                </Text>
+                <Text
+                  style={[
+                    Textstyles.text_cmedium,
+                    { color: isSelectedDate ? "white" : "black" },
+                  ]}
+                >
+                  {date.getDate()}
+                </Text>
               </TouchableOpacity>
-            ))}
-          </View>
-        </ScrollView>
-      </View>
-    </>
+            );
+          })}
+        </View>
+      </ScrollView>
+    </View>
   );
 };
 
@@ -1535,13 +1583,12 @@ export const CustomDropdownWithHeader: React.FC<CustomDropdownProps> = ({
                   <Text className="text-center" style={[Textstyles.text_xsma]}>
                     Select Option
                   </Text>
-                  <Ionicons
-                    name="chevron-up"
-                    size={20}
-                    color="black"
-                  />
+                  <Ionicons name="chevron-up" size={20} color="black" />
                 </TouchableOpacity>
-                <ScrollView showsVerticalScrollIndicator={false} style={{ maxHeight: 400 }}>
+                <ScrollView
+                  showsVerticalScrollIndicator={false}
+                  style={{ maxHeight: 400 }}
+                >
                   {options.map((option) => (
                     <TouchableOpacity
                       key={option.value}
@@ -1724,28 +1771,27 @@ export const DoctorCard: React.FC<DoctorCardProps> = ({
   time,
   imageSource,
   onPress,
+  status = "upcoming",
 }) => {
   return (
-    <View className="bg-white h-[160px] rounded-2xl shadow-md flex-row space-x-4">
-      <View className=" flex justify-center items-center rounded-2xl">
-        <Image
-          source={imageSource}
-          className="w-[163px] h-[160px] object-bottom  rounded-2xl " // Set image dimensions and vertically center it
-          resizeMode="cover"
-        />
+    <View className="w-full flex-row rounded-xl overflow-hidden bg-white">
+      <View style={{ aspectRatio: 1 }} className="w-[50%] overflow-hidden">
+        <Image source={imageSource} className="w-full h-full" />
       </View>
-      <View className="flex-1  justify-center items-center">
-        <Text className="text-xl text-center mb-5 font-semibold">{name}</Text>
-        <Text className="text-gray-500 text-center">{session}</Text>
-        <Text className="text-gray-500 text-center">{time}</Text>
-        <TouchableOpacity
+      <View className="flex-1 p-4 flex-col justify-between">
+        <Text style={[Textstyles.text_medium]} className="text-center">
+          Dr Micheal Brains
+        </Text>
+        <View>
+          <Text className="text-center">Morning Session</Text>
+          <Text className="text-center">09:00AM Prompt</Text>
+        </View>
+        <CustomButton
+          Textname="View Details"
+          backgroundColor={status === "upcoming" ? lightGreen : lightBlue}
+          TextColor="black"
           onPress={onPress}
-          className="mt-4 bg-[#00D70733] w-[160px] rounded-lg py-3 px-4"
-        >
-          <Text className="text-black text-lg font-semibold text-center">
-            View Details
-          </Text>
-        </TouchableOpacity>
+        />
       </View>
     </View>
   );

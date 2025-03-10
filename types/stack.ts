@@ -57,9 +57,12 @@ export type ScreenNames = [
     "step-3",
     "step-4",
     "step-5",
+    // dynamic pages
+    "referral-details",
+    "drug-referral-details",
 ];
 export type RootStackParamList = Record<
     ScreenNames[number],
-    undefined | { screen?: string, params?: any }
+    undefined | { screen?: string, params?: any } | { id?: string | number }
 >;
 export type StackNavigation = NavigationProp<RootStackParamList>;

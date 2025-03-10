@@ -32,6 +32,7 @@ import { StackNavigation } from "types/stack";
 import PatientFooter from "components/patient-footer";
 import { SelectMenuProps } from "types/general";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const data = [
   {
@@ -114,8 +115,8 @@ const Profile = () => {
 
   return (
     <>
-      <View className="flex w-full h-full bg-primaryTwo">
-        <StatusBar style="auto" />
+      <SafeAreaView className="flex flex-1 w-full h-full bg-primaryTwo">
+        <StatusBar style="auto" backgroundColor={primarycolor} />
         <View className="w-full bg-primary h-[25vh] rounded-b-3xl pt-20">
           <Text
             className="text-white text-2xl font-bold ml-8"
@@ -186,8 +187,8 @@ const Profile = () => {
           </View>
         </View>
 
-        <View className=" h-[55vh] ">
-          <ScrollView className="flex-1  pt-6 ">
+        <View className="h-[55vh]">
+          <ScrollView className="pt-6">
             {data.map((item) => (
               <SelectMenu
                 key={item.id}
@@ -217,8 +218,8 @@ const Profile = () => {
             </TouchableOpacity>
           </ScrollView>
         </View>
-      </View>
-      <PatientFooter activeProps={"profile"} />
+        <PatientFooter activeProps={"profile"} />
+      </SafeAreaView>
       {modalVisible && (
         <Modallogout
           slideAnim={slideAnim}
@@ -261,7 +262,6 @@ const Modallogout: React.FC<{
   slideAnim: Animated.Value;
   setModalVisible: (value: boolean) => void;
 }> = ({ slideAnim, setModalVisible }) => {
-
   const navigation = useNavigation<StackNavigation>();
 
   const handlehideModal = () => {
