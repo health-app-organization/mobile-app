@@ -2,7 +2,6 @@ import {
     createStackNavigator,
     CardStyleInterpolators,
 } from "@react-navigation/stack";
-import { Platform } from "react-native";
 import HealthProviderLogin from "../screens/health-provider-types/doctors/auth/healthProviderLogin";
 import Healthcare from "../screens/health-provider-types/doctors/auth/healthsignup";
 import Verification from "../screens/health-provider-types/doctors/auth/verification";
@@ -19,74 +18,30 @@ const HealthProviderRouter = () => {
             screenOptions={{
                 headerTitle: undefined, // Remove the title for all screens
                 headerShown: false,
-                // gestureEnabled: true,
-                // gestureDirection: Platform.OS === "ios" ? "horizontal" : Platform.OS === "android" && "vertical",
                 cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
             }}
         >
             <Stack.Screen
-                options={{
-                    gestureEnabled: true,
-                    gestureDirection:
-                        Platform.OS === "ios"
-                            ? "horizontal"
-                            : "vertical",
-                }}
                 name="select-health-provider"
                 component={Provider}
             />
             <Stack.Screen
-                options={{
-                    gestureEnabled: true,
-                    gestureDirection:
-                        Platform.OS === "ios"
-                            ? "horizontal"
-                            : "vertical",
-                }}
                 name="doctor-signup"
                 component={Healthcare}
             />
             <Stack.Screen
-                options={{
-                    gestureEnabled: true,
-                    gestureDirection:
-                        Platform.OS === "ios"
-                            ? "horizontal"
-                            : "vertical",
-                }}
                 name="doctor-verification"
                 component={Verification}
             />
             <Stack.Screen
-                options={{
-                    gestureEnabled: true,
-                    gestureDirection:
-                        Platform.OS === "ios"
-                            ? "horizontal"
-                            : "vertical",
-                }}
                 name="doctor-login"
                 component={HealthProviderLogin}
             />
             <Stack.Screen
-                options={{
-                    gestureEnabled: true,
-                    gestureDirection:
-                        Platform.OS === "ios"
-                            ? "horizontal"
-                            : "vertical",
-                }}
                 name="doctor-home"
                 component={DoctorHome}
             />
             <Stack.Screen
-                options={{
-                    gestureEnabled: true,
-                    gestureDirection:
-                        Platform.OS === "ios"
-                            ? "horizontal"
-                            : "vertical",
-                }}
                 name="doctor-extra-info"
                 component={ExtraInfo}
             />

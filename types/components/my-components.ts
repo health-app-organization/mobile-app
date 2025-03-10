@@ -115,13 +115,14 @@ interface ChatListProps {
     name: string;
     message: string;
     time: string;
-    unreadCount: number;
+    unreadCount?: number;
 }
 
 interface NotificationCardProps {
+    id: number;
     title: string;
     description: string;
-    type: string;
+    type: "order-details" | "details" | "emergency";
     time: string;
 }
 
@@ -181,4 +182,5 @@ interface DoctorCardProps {
     time: string;
     imageSource: any;
     onPress: () => void;
+    status: "upcoming" | "completed";
 }

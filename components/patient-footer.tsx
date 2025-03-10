@@ -1,4 +1,4 @@
-import { View, TouchableOpacity } from "react-native";
+import { View, TouchableOpacity, Text } from "react-native";
 import { linkcolor, primarycolor, whitecolor } from "../constants/color";
 import {
   CalenderIcon,
@@ -36,7 +36,7 @@ const PatientFooter = ({
   };
   return (
     <>
-      <View className="w-full h-20 bg-white absolute bottom-0 flex-row items-center justify-evenly z-50">
+      <View className="w-full h-20 bg-white flex-row items-center justify-evenly mt-1">
         <TouchableOpacity
           onPress={() => handleNavigate("Home")}
           style={
@@ -44,7 +44,7 @@ const PatientFooter = ({
               ? { backgroundColor: linkcolor }
               : { backgroundColor: whitecolor }
           }
-          className="w-16 h-12 flex justify-center items-center rounded-xl"
+          className="w-12 h-12 flex justify-center items-center rounded-xl"
         >
           <HomeIcon
             width={24}
@@ -59,13 +59,20 @@ const PatientFooter = ({
               ? { backgroundColor: linkcolor }
               : { backgroundColor: whitecolor }
           }
-          className="w-16 h-12 flex justify-center items-center rounded-xl"
+          className="w-12 h-12 flex justify-center items-center rounded-xl"
         >
-          <MessageIcon
-            width={24}
-            height={24}
-            color={active === "Messages" ? primarycolor : "black"}
-          />
+          <View className="p-2">
+            <MessageIcon
+              width={24}
+              height={24}
+              color={active === "Messages" ? primarycolor : "black"}
+            />
+            {true && (
+              <View className="bg-primary absolute top-0 right-0 rounded-full h-4 w-4 flex justify-center items-center">
+                <Text className="text-xs">6</Text>
+              </View>
+            )}
+          </View>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => handleNavigate("Appointments")}
@@ -74,7 +81,7 @@ const PatientFooter = ({
               ? { backgroundColor: linkcolor }
               : { backgroundColor: whitecolor }
           }
-          className="w-16 h-12 flex justify-center items-center rounded-xl"
+          className="w-12 h-12 flex justify-center items-center rounded-xl"
         >
           <CalenderIcon
             width={24}
@@ -89,7 +96,7 @@ const PatientFooter = ({
               ? { backgroundColor: linkcolor }
               : { backgroundColor: whitecolor }
           }
-          className="w-16 h-12 flex justify-center items-center rounded-xl"
+          className="w-12 h-12 flex justify-center items-center rounded-xl"
         >
           <UserIcon
             width={24}

@@ -2,7 +2,6 @@ import {
   createStackNavigator,
   CardStyleInterpolators,
 } from "@react-navigation/stack";
-import { Platform } from "react-native";
 import Dashboard from "../screens/patients/dashboard/dashboard";
 import Appointments from "../screens/patients/dashboard/appointments";
 import AppointmentDetails from "../screens/patients/dashboard/apponitmentdetails";
@@ -35,217 +34,73 @@ const DashboardScreen = () => {
     >
       {/* <Stack.Screen  name="start" component={Home} /> */}
       <Stack.Screen
-        options={{
-          gestureEnabled: false,
-          gestureDirection:
-            Platform.OS === "ios"
-              ? "horizontal"
-              : Platform.OS === "android"
-                ? "vertical"
-                : undefined,
-        }}
         name="Home"
         component={Dashboard}
       />
       <Stack.Screen
-        options={{
-          gestureEnabled: false,
-          gestureDirection:
-            Platform.OS === "ios"
-              ? "horizontal"
-              : Platform.OS === "android"
-                ? "vertical"
-                : undefined,
-        }}
         name="lab"
         component={LabsScreen}
       />
       <Stack.Screen
-        options={{
-          gestureEnabled: true,
-          gestureDirection:
-            Platform.OS === "ios"
-              ? "horizontal"
-              : Platform.OS === "android"
-                ? "vertical"
-                : undefined,
-        }}
         name="Appointments"
         component={Appointments}
       />
 
       <Stack.Screen
-        options={{
-          gestureEnabled: true,
-          gestureDirection:
-            Platform.OS === "ios"
-              ? "horizontal"
-              : Platform.OS === "android"
-                ? "vertical"
-                : undefined,
-        }}
         name="apponitmentdetails"
         component={AppointmentDetails}
       />
       <Stack.Screen
-        options={{
-          gestureEnabled: false,
-          gestureDirection:
-            Platform.OS === "ios"
-              ? "horizontal"
-              : Platform.OS === "android"
-                ? "vertical"
-                : undefined,
-        }}
         name="toplaboratories"
         component={Toplabs}
       />
 
       <Stack.Screen
-        options={{
-          gestureEnabled: true,
-          gestureDirection:
-            Platform.OS === "ios"
-              ? "horizontal"
-              : Platform.OS === "android"
-                ? "vertical"
-                : undefined,
-        }}
         name="healthprovider"
         component={HealthcareProviderScreen}
       />
       <Stack.Screen
-        options={{
-          gestureEnabled: true,
-          gestureDirection:
-            Platform.OS === "ios"
-              ? "horizontal"
-              : Platform.OS === "android"
-                ? "vertical"
-                : undefined,
-        }}
         name="listofhealthproviders"
         component={ListofHealthprovider}
       />
 
       <Stack.Screen
-        options={{
-          gestureEnabled: true,
-          gestureDirection:
-            Platform.OS === "ios"
-              ? "horizontal"
-              : Platform.OS === "android"
-                ? "vertical"
-                : undefined,
-        }}
         name="Messages"
         component={Messages}
       />
 
       <Stack.Screen
-        options={{
-          gestureEnabled: true,
-          gestureDirection:
-            Platform.OS === "ios"
-              ? "horizontal"
-              : Platform.OS === "android"
-                ? "vertical"
-                : undefined,
-        }}
         name="Appointment"
         component={Appointments}
       />
 
       <Stack.Screen
-        options={{
-          gestureEnabled: true,
-          gestureDirection:
-            Platform.OS === "ios"
-              ? "horizontal"
-              : Platform.OS === "android"
-                ? "vertical"
-                : undefined,
-        }}
         name="cart"
         component={Cart}
       />
       <Stack.Screen
-        options={{
-          gestureEnabled: true,
-          gestureDirection:
-            Platform.OS === "ios"
-              ? "horizontal"
-              : Platform.OS === "android"
-                ? "vertical"
-                : undefined,
-        }}
         name="userqrcode"
         component={Orcode}
       />
       <Stack.Screen
-        options={{
-          gestureEnabled: true,
-          gestureDirection:
-            Platform.OS === "ios"
-              ? "horizontal"
-              : Platform.OS === "android"
-                ? "vertical"
-                : undefined,
-        }}
         name="payment"
         component={PaymentScreen}
       />
       <Stack.Screen
-        options={{
-          gestureEnabled: true,
-          gestureDirection:
-            Platform.OS === "ios"
-              ? "horizontal"
-              : Platform.OS === "android"
-                ? "vertical"
-                : undefined,
-        }}
         name="notifications"
         component={Notification}
       />
       <Stack.Screen
-        options={{
-          gestureEnabled: true,
-          gestureDirection:
-            Platform.OS === "ios"
-              ? "horizontal"
-              : Platform.OS === "android"
-                ? "vertical"
-                : undefined,
-        }}
         name="medicine"
         component={Medicine}
       />
 
       <Stack.Screen
-        options={{
-          gestureEnabled: true,
-          gestureDirection:
-            Platform.OS === "ios"
-              ? "horizontal"
-              : Platform.OS === "android"
-                ? "vertical"
-                : undefined,
-        }}
         name="laborarories"
         component={Laboratories}
       />
 
       <Stack.Screen
-        options={{
-          gestureEnabled: true,
-          gestureDirection:
-            Platform.OS === "ios"
-              ? "horizontal"
-              : Platform.OS === "android"
-                ? "vertical"
-                : undefined,
-        }}
         name="profileScreen"
         component={ProfileScreen}
       />

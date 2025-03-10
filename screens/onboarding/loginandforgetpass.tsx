@@ -29,8 +29,7 @@ import { handleOtpInput } from "../../utilities/utility";
 import { StackNavigation } from "../../types/stack";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export const Login = () => {
-  const navigation = useNavigation<StackNavigation>();
+export const Login = ({ navigation }: { navigation: StackNavigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [IsLoading, setIsLoading] = useState(false);
