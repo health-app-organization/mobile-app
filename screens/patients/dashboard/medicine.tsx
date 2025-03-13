@@ -6,16 +6,11 @@ import {
   StatusBar,
   ScrollView,
 } from "react-native";
-
-import {
-  CustomInputSearch,
-  Header,
-  Providercard,
-  Providercard2,
-} from "../../../components/mycomponent";
 import { useNavigation } from "@react-navigation/native";
 import { FontAwesome } from "@expo/vector-icons";
 import { StackNavigation } from "../../../types/stack";
+import { CustomInputSearch } from "components/utilities/inputs";
+import { ProviderCard, ProviderCard2 } from "components/utilities/provider-card";
 
 
 const Medicine = () => {
@@ -23,10 +18,7 @@ const Medicine = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
   return (
-    <View className="  h-screen">
-      <StatusBar />
-
-      <Header title="Medicine" />
+    <View className="  h-full">
       <View className=" px-4 mt-4">
         <CustomInputSearch
           placeholder="Search for chat"
@@ -40,7 +32,7 @@ const Medicine = () => {
       </Text>
       <View style={{ height: 200, width: "100%" }}>
         <ScrollView horizontal={true} className=" px-5 mt-4  ">
-          <Providercard2
+          <ProviderCard2
             name="Dr Micheal Brains"
             title="Healthcare Provider"
             rating={5}
@@ -49,7 +41,7 @@ const Medicine = () => {
             image="image_url"
             onPress={() => navigation.navigate("apponitmentdetails")}
           />
-          <Providercard2
+          <ProviderCard2
             name="Dr Micheal Brains"
             title="Healthcare Provider"
             rating={5}
@@ -58,7 +50,7 @@ const Medicine = () => {
             image="image_url"
             onPress={() => navigation.navigate("apponitmentdetails")}
           />
-          <Providercard2
+          <ProviderCard2
             name="Dr Micheal Brains"
             title="Healthcare Provider"
             rating={5}
@@ -67,7 +59,7 @@ const Medicine = () => {
             image="image_url"
             onPress={() => navigation.navigate("apponitmentdetails")}
           />
-          <Providercard2
+          <ProviderCard2
             name="Dr Micheal Brains"
             title="Healthcare Provider"
             rating={5}
@@ -80,7 +72,7 @@ const Medicine = () => {
       </View>
       <View className=" mt-2 pl-6">
         <ScrollView className=" mb-[420px]">
-          <Providercard
+          <ProviderCard
             name="Dr Micheal Brains"
             title="Healthcare Provider"
             rating={5}
@@ -88,7 +80,7 @@ const Medicine = () => {
             image="image_url"
             onPress={() => navigation.navigate("apponitmentdetails")}
           />
-          <Providercard
+          <ProviderCard
             name="Dr Micheal Brains"
             title="Healthcare Provider"
             rating={5}
@@ -96,7 +88,7 @@ const Medicine = () => {
             image="image_url"
             onPress={() => navigation.navigate("apponitmentdetails")}
           />
-          <Providercard
+          <ProviderCard
             name="Dr Micheal Brains"
             title="Healthcare Provider"
             rating={5}
@@ -104,7 +96,7 @@ const Medicine = () => {
             image="image_url"
             onPress={() => navigation.navigate("apponitmentdetails")}
           />
-          <Providercard
+          <ProviderCard
             name="Dr Micheal Brains"
             title="Healthcare Provider"
             rating={5}
@@ -112,7 +104,7 @@ const Medicine = () => {
             image="image_url"
             onPress={() => navigation.navigate("apponitmentdetails")}
           />
-          <Providercard
+          <ProviderCard
             name="Dr Micheal Brains"
             title="Healthcare Provider"
             rating={5}
@@ -120,7 +112,7 @@ const Medicine = () => {
             image="image_url"
             onPress={() => navigation.navigate("apponitmentdetails")}
           />
-          <Providercard
+          <ProviderCard
             name="Dr Micheal Brains"
             title="Healthcare Provider"
             rating={5}

@@ -7,7 +7,6 @@ import {
   View,
   KeyboardAvoidingView,
   Platform,
-  StatusBar,
 } from "react-native";
 import { Feather, FontAwesome } from "@expo/vector-icons";
 import React, { useEffect, useState } from "react";
@@ -17,30 +16,27 @@ import Animated, {
   useSharedValue,
   withSpring,
 } from "react-native-reanimated";
-import { Textstyles } from "../../constants/fontsize";
-import {
-  CustomInputpassword,
-  CustomInputWithHeader,
-  CustomTextInput,
-} from "../../components/mycomponent";
-import { Box } from "../../components/mycomponent";
-import { primarycolor, whitecolor, greycolortwo } from "../../constants/color";
-import { CustomButton } from "../../components/mycomponent";
-import NumericKeyboard from "../modals/CustomKeyboard"; // Importing the Numeric Keyboard
-import { height } from "../../constants/mobileDimensions";
+import { Textstyles } from "../../../constants/fontsize";
+import { primarycolor, whitecolor, greycolortwo } from "../../../constants/color";
+import NumericKeyboard from "../../../components/modals/custom-keyboard"; // Importing the Numeric Keyboard
+import { height } from "../../../constants/mobileDimensions";
 import { RadioButton } from "react-native-paper";
-import { customstyle } from "../../constants/customstyle";
-import DateModal from "../modals/datemodal";
+import { customstyle } from "../../../constants/customstyle";
+import DateModal from "../../../components/modals/date-modal";
 import {
   RegisterDataOne,
   RegisterDataThree,
   RegisterDataTwo,
-} from "../patients/fetchdata/fetchdata";
-import SuccessModal from "../modals/successModal";
-import { handleOtpInput } from "../../utilities/utility";
-import { StackNavigation } from "../../types/stack";
+} from "../../patients/fetchdata/fetchdata";
+import SuccessModal from "../../../components/modals/success-modal";
+import { handleOtpInput } from "../../../utilities/utility";
+import { StackNavigation } from "../../../types/stack";
+import { StatusBar } from "expo-status-bar";
+import { Box } from "components/utilities/box";
+import { CustomInputPassword, CustomInputWithHeader, CustomTextInput } from "components/utilities/inputs";
+import { CustomButton } from "components/utilities/buttons";
 
-export default function Registration() {
+export default function SignUp() {
   const navigation = useNavigation<StackNavigation>();
   const [currentStep, setCurrentStep] = useState(0); // Steps: 0 = phone input, 1 = OTP, 2 = password
   // step 0
@@ -150,6 +146,7 @@ export default function Registration() {
 
   return (
     <>
+      <StatusBar backgroundColor="white" />
       {showDate && (
         <DateModal
           setBirthDate={(value) => setBirthDate(value)}
@@ -170,7 +167,7 @@ export default function Registration() {
           >
             <SuccessModal
               handlenavigate={() => {
-                navigation.navigate("login");
+                navigation.navigate("health-seeker", { screen: "login" });
               }}
             />
           </Animated.View>
@@ -178,8 +175,7 @@ export default function Registration() {
       )}
 
       <View style={{ height: height }}>
-        <StatusBar />
-        <View className="w-full h-full px-5 py-[88px] bg-white">
+        <View className="w-full h-full px-5 py-[88px]">
           {/* Numeric Keyboard */}
           {currentStep === 1 && (
             <View className="absolute -bottom-5 z-40   items-center">
@@ -307,7 +303,7 @@ export default function Registration() {
                       <View className="w-full h-28 mb-5 flex justify-center items-center">
                         <View className="w-[117.91px] justify-center flex items-center h-[109.36px] rounded-xl">
                           <Image
-                            source={require("../../assets/images/pro.png")}
+                            source={require("../../../assets/images/pro.png")}
                             resizeMode="contain"
                             className="w-full"
                           />
@@ -419,7 +415,7 @@ export default function Registration() {
                       </View>
                     </View>
                     <View className="h-3" />
-                    <CustomInputpassword
+                    <CustomInputPassword
                       headerText="Password"
                       placeholder="Enter your password"
                       value={password}
@@ -429,7 +425,7 @@ export default function Registration() {
                     />
                     <View className="h-3" />
                     <Text className="text-red-500">{errorMessage}</Text>
-                    <CustomInputpassword
+                    <CustomInputPassword
                       headerText="Confirm password"
                       placeholder="Enter your password again"
                       value={confirmPassword}

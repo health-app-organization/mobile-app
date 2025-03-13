@@ -2,11 +2,12 @@ import { StatusBar } from "expo-status-bar";
 import { Image, View, Text, TouchableOpacity, ScrollView } from "react-native";
 import React, { useState } from "react";
 import { primarycolor, whitecolor } from "../../../constants/color";
-import Footer from "../../../components/patient-footer";
 import { Textstyles } from "../../../constants/fontsize";
-import { CustomButton, DateComponent, StatsCard } from "../../../components/mycomponent";
+import { StatsCard } from "components/utilities/stats-card";
+import { DateComponent } from "components/utilities/date-component";
+import { CustomButton } from "components/utilities/buttons";
 
-const Doctordetails = () => {
+const DoctorDetails = () => {
 
   const months = [
     "January",
@@ -303,9 +304,8 @@ const Doctordetails = () => {
           </ScrollView>
         </View>
       </View>
-      <Footer activepros={"Appointment"} />
     </>
   );
 };
 
-export default Doctordetails;
+export default DoctorDetails;

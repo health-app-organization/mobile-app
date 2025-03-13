@@ -1,10 +1,10 @@
-import { CustomButton, CustomDropdownWithHeader, CustomInputWithHeader, Header } from "components/mycomponent";
+import { CustomButton } from "components/utilities/buttons";
+import { CustomDropdownWithHeader } from "components/utilities/dropdowns";
+import { CustomInputWithHeader } from "components/utilities/inputs";
 import { primarycolor } from "constants/color";
 import { Textstyles } from "constants/fontsize";
-import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import DateTimePicker, { DateType } from "react-native-ui-datepicker";
 
 const MedicineReminderAdd: React.FC<{}> = () => {
@@ -17,9 +17,7 @@ const MedicineReminderAdd: React.FC<{}> = () => {
     const [selected, setSelected] = useState<DateType>(new Date());
 
     return (
-        <SafeAreaView className="flex-1 bg-primaryTwo">
-            <StatusBar backgroundColor={primarycolor} />
-            <Header title="Add Medicine Reminder" />
+        <>
             <ScrollView className="p-6">
                 <CustomInputWithHeader
                     headerText="Medicine Name"
@@ -85,7 +83,7 @@ const MedicineReminderAdd: React.FC<{}> = () => {
                     }}
                 />
             </ScrollView>
-        </SafeAreaView>
+        </>
     );
 };
 

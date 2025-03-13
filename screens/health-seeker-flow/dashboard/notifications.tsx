@@ -1,21 +1,14 @@
 import { StatusBar } from "expo-status-bar";
-import { FlatList } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { FlatList, View } from "react-native";
 import { primarycolor } from "../../../constants/color";
-import {
-  HeaderWithTitleAndBackButton,
-  NotificationCard,
-} from "../../../components/mycomponent";
 import { notificationsMockData } from "../../../mock-data/mock-data";
+import { NotificationCard } from "components/health-seeker/notification-card";
 
 const Notifications = () => {
   return (
-    <SafeAreaView className="flex-1 bg-primaryTwo">
+    <View>
       <StatusBar style="auto" backgroundColor={primarycolor} />
       <FlatList
-        ListHeaderComponent={() => (
-          <HeaderWithTitleAndBackButton title="Notifications" />
-        )}
         data={notificationsMockData}
         renderItem={({
           item,
@@ -38,7 +31,7 @@ const Notifications = () => {
         )}
         keyExtractor={(item) => item.id.toString()}
       />
-    </SafeAreaView>
+    </View>
   );
 };
 

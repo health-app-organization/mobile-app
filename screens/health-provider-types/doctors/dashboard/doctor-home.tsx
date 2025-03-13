@@ -5,10 +5,10 @@ import { height } from "../../../../constants/mobileDimensions";
 import Footer from "../../../../components/doctor-footer";
 import RoundProgressTracker from "../../../mycomponents/doctor/round-progress-tracker";
 import { Textstyles } from "../../../../constants/fontsize";
-import { CustomButton } from "../../../../components/mycomponent";
 import { primarycolor, whitecolor } from "../../../../constants/color";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigation } from "../../../../types/stack";
+import { CustomButton } from "components/utilities/buttons";
 
 const DoctorHome = () => {
     const navigation = useNavigation<StackNavigation>();

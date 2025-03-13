@@ -2,10 +2,11 @@ import { View, Text } from "react-native";
 import React, { useState } from "react";
 import { Textstyles } from "../../../../constants/fontsize";
 import { primarycolor, whitecolor } from "../../../../constants/color";
-import { CustomButton, CustomInputWithHeader, Header } from "../../../../components/mycomponent";
 import { FontAwesome } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
+import { CustomInputWithHeader } from "components/utilities/inputs";
+import { CustomButton } from "components/utilities/buttons";
 
 const ManageAddress = () => {
   const [fullName, setFullName] = useState("");
@@ -22,9 +23,7 @@ const ManageAddress = () => {
   }
 
   return (
-    <SafeAreaView className="flex-1 bg-primaryTwo">
-      <StatusBar backgroundColor={primarycolor} />
-      <Header title="Manage Address" />
+    <>
       <Text
         className="text-[28px] font-semibold mt-5 ml-8 mb-4"
         style={[Textstyles.text_cmedium]}
@@ -72,7 +71,7 @@ const ManageAddress = () => {
           onPress={() => handleSelect("Save")} // Trigger the save action
         />
       </View>
-    </SafeAreaView>
+    </>
   );
 };
 

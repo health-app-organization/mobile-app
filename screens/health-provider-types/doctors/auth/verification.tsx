@@ -4,17 +4,18 @@ import { height } from "../../../../constants/mobileDimensions";
 import { Textstyles } from "../../../../constants/fontsize";
 import { useNavigation } from "@react-navigation/native";
 import { AntDesign } from "@expo/vector-icons";
-import { Box, CustomButton } from "../../../../components/mycomponent";
 import { useState } from "react";
 import Animated, {
     useAnimatedStyle,
     useSharedValue,
     withSpring,
 } from "react-native-reanimated";
-import NumericKeyboard from "../../../modals/CustomKeyboard";
+import NumericKeyboard from "../../../../components/modals/custom-keyboard";
 import { primarycolor, whitecolor } from "../../../../constants/color";
 import { handleOtpInput } from "../../../../utilities/utility";
 import { StackNavigation } from "../../../../types/stack";
+import { Box } from "components/utilities/box";
+import { CustomButton } from "components/utilities/buttons";
 
 export default function Verification() {
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -94,7 +95,7 @@ export default function Verification() {
             {/* Numerical keyboard */}
             <View className="absolute -bottom-5 z-50 items-center">
                 <Animated.View className="w-full h-[467px]" style={[animatedStyles]}>
-                    <NumericKeyboard onPress={(value: string) => handleOtpInput({value, setOtp, otp, setErrorMessage})} />
+                    <NumericKeyboard onPress={(value: string) => handleOtpInput({ value, setOtp, otp, setErrorMessage })} />
                 </Animated.View>
             </View>
         </SafeAreaView>

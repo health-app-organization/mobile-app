@@ -1,11 +1,5 @@
 import React, { useState } from "react";
 import { Alert, FlatList, Text, View } from "react-native";
-import {
-  CustomInputWithHeader,
-  CustomDropdownWithHeader,
-  CustomButton,
-  Header9,
-} from "../../../../components/mycomponent";
 import { primarycolor, whitecolor } from "../../../../constants/color";
 import useAuthStore from "../../../../store/auth-store";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -21,6 +15,10 @@ import { Textstyles } from "constants/fontsize";
 import DateTimePicker, { DateType } from "react-native-ui-datepicker";
 import { formatDate } from "utilities/utility";
 import { UserFormData } from "types/general";
+import { Header9 } from "components/utilities/headers";
+import { CustomInputWithHeader } from "components/utilities/inputs";
+import { CustomDropdownWithHeader } from "components/utilities/dropdowns";
+import { CustomButton } from "components/utilities/buttons";
 
 const Personal = () => {
   const { login, getUser } = useAuthStore();

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
-import { Header, Header9 } from "../../../../components/mycomponent";
 import Medical from "../medical";
 import TestReport from "./testreport";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import { primarycolor } from "constants/color";
+import { Header9 } from "components/utilities/headers";
 
 const ProfileCompletion = () => {
   const [currentTab, setCurrentTab] = useState(0);

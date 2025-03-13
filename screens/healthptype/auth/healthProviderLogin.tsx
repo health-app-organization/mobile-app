@@ -6,8 +6,9 @@ import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
 import { primarycolor, whitecolor } from "../../../constants/color";
 import { FontAwesome } from "@expo/vector-icons";
-import { CustomButton, CustomInputpassword, CustomInputWithHeader } from "../../../components/mycomponent";
 import { StackNavigation } from "../../../types/stack";
+import { CustomInputPassword, CustomInputWithHeader } from "components/utilities/inputs";
+import { CustomButton } from "components/utilities/buttons";
 
 export default function HealthProviderLogin() {
     const navigation = useNavigation<StackNavigation>();
@@ -36,14 +37,14 @@ export default function HealthProviderLogin() {
                     Welcome Back !! provider...
                 </Text>
                 <View className="w-full h-44  flex mb-4 justify-center items-center">
-                        <View className=" w-[50%]  flex justify-center items-center h-36">
-                            <Image
-                                source={require("../../../assets/images/logo-2.png")}
-                                resizeMode="contain"
-                                className=" h-36 w-36"
-                            />
-                        </View>
+                    <View className=" w-[50%]  flex justify-center items-center h-36">
+                        <Image
+                            source={require("../../../assets/images/logo-2.png")}
+                            resizeMode="contain"
+                            className=" h-36 w-36"
+                        />
                     </View>
+                </View>
                 <CustomInputWithHeader
                     headerText="Phone Number"
                     placeholder="Enter your phone number"
@@ -53,7 +54,7 @@ export default function HealthProviderLogin() {
                 />
 
                 <View className="h-3" />
-                <CustomInputpassword
+                <CustomInputPassword
                     headerText="Password"
                     placeholder="Enter your password"
                     value={password}

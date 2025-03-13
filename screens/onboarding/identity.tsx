@@ -13,16 +13,11 @@ import {
   primarycolortwo,
   whitecolor,
 } from "../../constants/color";
-import {
-  CustomButton,
-  CustomButton2,
-  CustomButtonsmall,
-  CustomButtonsmall2,
-} from "../../components/mycomponent";
 import { useNavigation } from "@react-navigation/native";
 import { height, width } from "../../constants/mobileDimensions";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { StackNavigation } from "../../types/stack";
+import { CustomButton, CustomButton2, CustomButtonSmall, CustomButtonSmall2 } from "components/utilities/buttons";
 
 const Identity = () => {
   const navigation = useNavigation<StackNavigation>();
@@ -44,19 +39,19 @@ const Identity = () => {
   }, [Role]);
   // Functions to handle navig// Function to handle the 'Create account' navigation
   const handletonewacc = () => {
-    if (selectedIdentity === "identity2") {
-      navigation.navigate("healthptype"); // Navigate to healthtype for health provider
-    } else {
-      navigation.navigate("signup");
+    if (selectedIdentity === "health-provider") {
+      // navigation.navigate("healthptype"); // Navigate to healthtype for health provider
+    } else if (selectedIdentity === "health-seeker") {
+      navigation.navigate("health-seeker", { screen: "signup" });
     }
   };
 
   // Function to handle the 'Login' navigation
   const handletologin = () => {
-    if (selectedIdentity === "identity2") {
-      navigation.navigate("doctor-login"); // Navigate to healthtype for health provider
+    if (selectedIdentity === "health-provider") {
+      // navigation.navigate("doctor-login"); // Navigate to healthtype for health provider
     } else {
-      navigation.navigate("login");
+      navigation.navigate("health-seeker", { screen: "login" });
     }
   };
 
@@ -67,8 +62,8 @@ const Identity = () => {
   // Function to proceed after confirmation
   const handleConfirmationContinue = () => {
     setShowConfirmation(false);
-    if (selectedIdentity === "identity2") {
-      navigation.navigate("healthptype"); // Adjust the route for health provider login/signup
+    if (selectedIdentity === "health-provider") {
+      // navigation.navigate("healthptype"); // Adjust the route for health provider login/signup
     }
   };
 
@@ -100,7 +95,7 @@ const Identity = () => {
         <TouchableOpacity
           className="w-[143.01px] h-[188.56px] justify-center items-center relative"
           onPress={() => {
-            handleSelection("identity1");
+            handleSelection("health-seeker");
             setRole("user");
           }}
         >
@@ -110,7 +105,7 @@ const Identity = () => {
             className="w-full"
           />
           {/* Show check mark if this one is selected */}
-          {selectedIdentity === "identity1" && (
+          {selectedIdentity === "health-seeker" && (
             <View className="absolute top-0 right-2 bg-black p-1 rounded-full">
               <FontAwesome name="check" size={16} color={whitecolor} />
             </View>
@@ -121,7 +116,7 @@ const Identity = () => {
         <TouchableOpacity
           className="w-[143.01px] h-[188.56px] justify-center items-center relative"
           onPress={() => {
-            handleSelection("identity2");
+            handleSelection("health-provider");
             setRole("provider");
           }}
         >
@@ -131,7 +126,7 @@ const Identity = () => {
             className="w-full"
           />
           {/* Show check mark if this one is selected */}
-          {selectedIdentity === "identity2" && (
+          {selectedIdentity === "health-provider" && (
             <View className="absolute top-2 right-2 bg-black p-1 rounded-full z-10">
               <FontAwesome name="check" size={16} color={whitecolor} />
             </View>
@@ -144,7 +139,7 @@ const Identity = () => {
         <TouchableOpacity
           className="w-[143.01px] h-[188.56px] justify-center items-center relative"
           onPress={() => {
-            handleSelection("identity3");
+            handleSelection("hospitals");
             //! setRole("provider");
           }}
         >
@@ -154,7 +149,7 @@ const Identity = () => {
             className="w-full"
           />
           {/* Show check mark if this one is selected */}
-          {selectedIdentity === "identity3" && (
+          {selectedIdentity === "hospitals" && (
             <View className="absolute top-2 right-2 bg-black p-1 rounded-full z-10">
               <FontAwesome name="check" size={16} color={whitecolor} />
             </View>
@@ -197,13 +192,13 @@ const Identity = () => {
               This is for trained health care providers only.
             </Text>
             <View className=" flex-row  w-full justify-between px-6">
-              <CustomButtonsmall
+              <CustomButtonSmall
                 Textname={"Continue"}
                 onPress={handleConfirmationContinue}
                 backgroundColor={primarycolor}
                 TextColor={whitecolor}
               />
-              <CustomButtonsmall2
+              <CustomButtonSmall2
                 Textname={"Back"}
                 onPress={handleConfirmationBack}
                 backgroundColor={primarycolortwo}

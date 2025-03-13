@@ -1,16 +1,9 @@
 import React from "react";
-import { StatusBar } from "expo-status-bar";
 import { View, Image, Text, TouchableOpacity } from "react-native";
-import { Header } from "../../../components/mycomponent";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { primarycolor } from "constants/color";
 
-const Orcode = () => {
+const UserQrCode = () => {
   return (
-    <SafeAreaView className="h-screen w-full bg-primaryTwo" style={{ flex: 1 }}>
-      <StatusBar backgroundColor={primarycolor} />
-
-      <Header title="Patient QR code" />
+    <>
       <Text className=" text-center  text-[17px]  font-[500] text-gray-500 px-[78px] mt-12">
         Your QR Code is Private. Your doctor can scan it with their camera on
         HEALTH to see yourmedical history
@@ -39,8 +32,8 @@ const Orcode = () => {
           </View>
         </TouchableOpacity>
       </View>
-    </SafeAreaView>
+    </>
   );
 };
 
-export default Orcode;
+export default UserQrCode;

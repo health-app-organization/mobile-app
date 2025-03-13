@@ -1,13 +1,9 @@
 import { StatusBar } from "expo-status-bar";
 import { Image, View, Text, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
-import {
-  CustomButton,
-  CustomButtoncall,
-  DateComponent,
-} from "../../../components/mycomponent";
-import { useNavigation } from "@react-navigation/native";
 import { Textstyles } from "../../../constants/fontsize";
+import { DateComponent } from "components/utilities/date-component";
+import { CustomButton, CustomButtonCall } from "components/utilities/buttons";
 
 const AppointmentDetails = () => {
 
@@ -163,7 +159,7 @@ const AppointmentDetails = () => {
               TextColor="black"
             />
             <View className=" w-[20%]">
-              <CustomButtoncall backgroundColor="#00D70733" TextColor="black" />
+              <CustomButtonCall backgroundColor="#00D70733" TextColor="black" />
             </View>
             <View></View>
           </View>

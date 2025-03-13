@@ -5,13 +5,10 @@ import { useState } from "react";
 import { height } from "../../../constants/mobileDimensions";
 import { Textstyles } from "../../../constants/fontsize";
 import { primarycolor, whitecolor } from "../../../constants/color";
-import {
-  CustomButton,
-  CustomInputpassword,
-  CustomInputWithHeader,
-} from "../../../components/mycomponent";
 import { FontAwesome } from "@expo/vector-icons";
 import { StackNavigation } from "../../../types/stack";
+import { CustomInputPassword, CustomInputWithHeader } from "components/utilities/inputs";
+import { CustomButton } from "components/utilities/buttons";
 
 export default function Healthcare() {
   const navigation = useNavigation<StackNavigation>();
@@ -56,7 +53,7 @@ export default function Healthcare() {
       />
       <View className="h-5" />
 
-      <CustomInputpassword
+      <CustomInputPassword
         headerText="Password"
         placeholder="Enter your password"
         value={password}
@@ -66,7 +63,7 @@ export default function Healthcare() {
       />
       <View className="h-5" />
 
-      <CustomInputpassword
+      <CustomInputPassword
         headerText="Confirm  password"
         placeholder="Enter your password again"
         value={password}

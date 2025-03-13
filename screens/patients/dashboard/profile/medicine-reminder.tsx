@@ -1,9 +1,5 @@
-import { Header } from "components/mycomponent";
-import { primarycolor } from "constants/color";
 import { Textstyles } from "constants/fontsize";
-import { StatusBar } from "expo-status-bar";
 import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigation } from "types/stack";
@@ -12,9 +8,7 @@ const MedicineReminder: React.FC<{}> = () => {
     const navigation = useNavigation<StackNavigation>();
 
     return (
-        <SafeAreaView className="flex-1 bg-primaryTwo">
-            <StatusBar backgroundColor={primarycolor} />
-            <Header title="Medicine Reminder" />
+        <>
             <ScrollView className="p-6">
                 <ReminderTab />
                 <ReminderTab />
@@ -25,7 +19,7 @@ const MedicineReminder: React.FC<{}> = () => {
             >
                 <FontAwesome name="plus" size={30} color="white" />
             </TouchableOpacity>
-        </SafeAreaView>
+        </>
     );
 };
 

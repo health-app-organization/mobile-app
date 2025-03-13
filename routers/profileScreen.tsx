@@ -15,8 +15,8 @@ import Favourites from "screens/patients/dashboard/favourites";
 import MedicineReminder from "screens/patients/dashboard/profile/medicine-reminder";
 import MedicineReminderAdd from "screens/patients/dashboard/profile/medicine-reminder-add";
 import CustomerSupport from "screens/patients/dashboard/profile/customer-support";
-import ReferralDetails from "screens/patients/dashboard/notifications/referral-details";
-import DrugReferralDetails from "screens/patients/dashboard/notifications/drug-referral-details";
+import ReferralDetails from "screens/health-seeker-flow/dashboard/notifications/referral-details";
+import DrugReferralDetails from "screens/health-seeker-flow/dashboard/notifications/drug-referral-details";
 
 const ProfileScreen = () => {
   const Stack = createStackNavigator<RootStackParamList>();

@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { FontAwesome, Ionicons } from "@expo/vector-icons"; // Import Ionicons for arrow
-import { CustomButton, CustomInputWithHeader, CustomRadioSingleOption } from "../../../components/mycomponent";
+import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import { primarycolor, whitecolor } from "../../../constants/color";
 import { StackNavigation } from "../../../types/stack";
 import useAuthStore from "store/auth-store";
 import { Textstyles } from "constants/fontsize";
+import { CustomInputWithHeader } from "components/utilities/inputs";
+import { CustomRadioSingleOption } from "components/utilities/selects";
+import { CustomButton } from "components/utilities/buttons";
 
 const Wallet = () => {
   const navigation = useNavigation<StackNavigation>();
