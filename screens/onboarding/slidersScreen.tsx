@@ -1,11 +1,11 @@
 import { StatusBar } from "expo-status-bar";
 import { Image, View, Text, TouchableOpacity } from "react-native";
-import { CustomButton } from "../../components/mycomponent";
 import { primarycolor, whitecolor } from "../../constants/color";
 import { Textstyles } from "../../constants/fontsize";
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigation } from "../../types/stack";
+import { CustomButton } from "components/utilities/buttons";
 
 // Slider component
 const Slider = () => {

@@ -8,7 +8,7 @@ config.resolver.extraNodeModules = {
     "@components": path.resolve(__dirname, "components"),
     "@screens": path.resolve(__dirname, "screens"),
     "@utils": path.resolve(__dirname, "utilities"),
-    "@assets": path.resolve(__dirname, "src/assets"),
+    "@assets": path.resolve(__dirname, "assets"),
 };
 
 config.watchFolders = [

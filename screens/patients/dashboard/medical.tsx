@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import { KeyboardAvoidingView, ScrollView, View } from "react-native";
-import {
-  CustomDropdownWithHeader,
-  CustomButton,
-} from "../../../components/mycomponent";
 import { primarycolor, whitecolor } from "../../../constants/color";
+import { CustomDropdownWithHeader } from "components/utilities/dropdowns";
+import { CustomButton } from "components/utilities/buttons";
 
 const Medical = () => {
   const [allergy, setAllergy] = useState("Lactose");

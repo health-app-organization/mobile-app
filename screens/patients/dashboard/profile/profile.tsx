@@ -12,7 +12,6 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { FontAwesome } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons"; // Import Ionicons for arrow
-import { CustomButton } from "../../../../components/mycomponent";
 import { primarycolor } from "../../../../constants/color";
 import { Textstyles } from "../../../../constants/fontsize";
 import {
@@ -29,10 +28,10 @@ import {
 } from "../../../../assets/iconsvg/Svgicon";
 import useAuthStore from "../../../../store/auth-store";
 import { StackNavigation } from "types/stack";
-import PatientFooter from "components/patient-footer";
 import { SelectMenuProps } from "types/general";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { CustomButton } from "components/utilities/buttons";
 
 const data = [
   {
@@ -218,7 +217,6 @@ const Profile = () => {
             </TouchableOpacity>
           </ScrollView>
         </View>
-        <PatientFooter activeProps={"profile"} />
       </SafeAreaView>
       {modalVisible && (
         <Modallogout

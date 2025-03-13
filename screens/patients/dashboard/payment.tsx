@@ -1,10 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native"; // Ensure StyleSheet is imported
-import {
-  PaymentInput,
-  CustomButton,
-  PaymentMethod,
-} from "../../../components/mycomponent";
+import { View, Text, Image, TouchableOpacity } from "react-native";
 import { height } from "../../../constants/mobileDimensions";
 import { FontAwesome } from "@expo/vector-icons";
 import Animated, {
@@ -12,8 +7,11 @@ import Animated, {
   useAnimatedStyle,
   withSpring,
 } from "react-native-reanimated";
-import NumericKeyboard from "../../modals/CustomKeyboard"; // Your numeric keyboard component
+import NumericKeyboard from "../../../components/modals/custom-keyboard"; // Your numeric keyboard component
 import { handleKeyboardInput } from "../../../utilities/utility";
+import { PaymentInput } from "components/utilities/payment-input";
+import { CustomButton } from "components/utilities/buttons";
+import { PaymentMethod } from "components/health-seeker/payment-method";
 
 export const PaymentScreen = () => {
   const [amount, setAmount] = useState<string>("");

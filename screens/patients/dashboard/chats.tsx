@@ -1,10 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { View, StatusBar, FlatList } from "react-native";
-import { ChatList } from "../../../components/mycomponent";
-
-import HeaderTitle, {
-  CustomInputSearch,
-} from "../../../components/mycomponent";
 import { useNavigation } from "@react-navigation/native";
 import { primarycolor } from "../../../constants/color";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -13,9 +8,11 @@ import { baseUrl } from "../../../api/end-point";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { FontAwesome } from "@expo/vector-icons";
 import { StackNavigation } from "../../../types/stack";
-import PatientFooter from "components/patient-footer";
+import HeaderTitle from "components/utilities/headers";
+import { CustomInputSearch } from "components/utilities/inputs";
+import { ChatList } from "components/health-seeker/chats/chat-list";
 
-const Messages = () => {
+const Chats = () => {
   const navigation = useNavigation<StackNavigation>();
   const handletocheck = () => {
     navigation.navigate("Appointments");
@@ -198,11 +195,8 @@ const Messages = () => {
         )}
         keyExtractor={(item) => item.id.toString()}
       />
-      <View className="h-[5.2rem]">
-        <PatientFooter activeProps={"Messages"} />
-      </View>
     </SafeAreaView>
   );
 };
 
-export default Messages;
+export default Chats;

@@ -1,12 +1,10 @@
 import { View, Text, StatusBar, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
-import {
-  CustomButton,
-  CustomDropdownWithHeader,
-  Header,
-} from "../../../../components/mycomponent";
 import { Textstyles } from "../../../../constants/fontsize";
 import { primarycolor, whitecolor } from "../../../../constants/color";
+import { Header } from "components/utilities/headers";
+import { CustomDropdownWithHeader } from "components/utilities/dropdowns";
+import { CustomButton } from "components/utilities/buttons";
 
 const Laboratories = () => {
   const [sector, setSector] = useState("Laboratory test");
@@ -51,7 +49,7 @@ const Laboratories = () => {
           Textname={"Save"}
           backgroundColor={primarycolor}
           TextColor={whitecolor}
-          // onPress={() => handleSelect("Save")} // Trigger the save action
+        // onPress={() => handleSelect("Save")} // Trigger the save action
         />
       </View>
     </View>

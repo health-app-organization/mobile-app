@@ -2,16 +2,13 @@ import { Image, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { height } from "../../../../constants/mobileDimensions";
 import { Textstyles } from "../../../../constants/fontsize";
-import {
-    CustomButton,
-    CustomInputpassword,
-    CustomInputWithHeader,
-} from "../../../../components/mycomponent";
 import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
 import { primarycolor, whitecolor } from "../../../../constants/color";
 import { FontAwesome } from "@expo/vector-icons";
 import { StackNavigation } from "../../../../types/stack";
+import { CustomInputPassword, CustomInputWithHeader } from "components/utilities/inputs";
+import { CustomButton } from "components/utilities/buttons";
 
 export default function HealthProviderLogin() {
     const navigation = useNavigation<StackNavigation>();
@@ -55,7 +52,7 @@ export default function HealthProviderLogin() {
                     onChange={(text) => setPhoneNumber(text)}
                 />
                 <View className="h-3" />
-                <CustomInputpassword
+                <CustomInputPassword
                     headerText="Password"
                     placeholder="Enter your password"
                     value={password}

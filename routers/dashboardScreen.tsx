@@ -2,17 +2,17 @@ import {
   createStackNavigator,
   CardStyleInterpolators,
 } from "@react-navigation/stack";
-import Dashboard from "../screens/patients/dashboard/dashboard";
-import Appointments from "../screens/patients/dashboard/appointments";
+import Dashboard from "../screens/health-seeker-flow/dashboard";
+import Appointments from "../screens/health-seeker-flow/appointments";
 import AppointmentDetails from "../screens/patients/dashboard/apponitmentdetails";
 import Toplabs from "../screens/patients/dashboard/LAB/toplaboratories";
 import Laboratories from "../screens/patients/dashboard/LAB/laboratories";
 import Medicine from "../screens/patients/dashboard/medicine";
-import Notification from "../screens/patients/dashboard/notifications";
+import Notification from "../screens/health-seeker-flow/dashboard/notifications";
 import { PaymentScreen } from "../screens/patients/dashboard/payment";
-import Orcode from "../screens/patients/dashboard/userqrcode";
+import Orcode from "../screens/health-seeker-flow/profile/user-qr-code";
 import Cart from "../screens/patients/dashboard/cart";
-import Messages from "../screens/patients/dashboard/messages";
+import Messages from "../screens/patients/dashboard/chats";
 import HealthcareProviderScreen from "../screens/patients/dashboard/LAB/healthprovider";
 import ProfileScreen from "./profileScreen";
 import ListofHealthprovider from "../screens/patients/dashboard/LAB/Listofhealthprovider";
@@ -43,7 +43,8 @@ const DashboardScreen = () => {
       />
       <Stack.Screen
         name="Appointments"
-        component={Appointments}
+        component={Appointm
+          ents}
       />
 
       <Stack.Screen

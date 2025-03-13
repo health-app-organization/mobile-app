@@ -1,4 +1,4 @@
-import { Header } from "components/mycomponent";
+import { Header } from "components/utilities/headers";
 import { primarycolor } from "constants/color";
 import { StatusBar } from "expo-status-bar";
 import { ScrollView, Text, View } from "react-native";

@@ -1,32 +1,17 @@
 import React, { useState } from "react";
-import { View, Text, TouchableOpacity, StatusBar, ScrollView } from "react-native";
-import HeaderTitle from "../../../components/mycomponent";
-import appoImage from "../../../assets/images/appo.png";
-import { DoctorCard } from "../../../components/mycomponent";
-import { DateComponent } from "../../../components/mycomponent";
-import PatientFooter from "components/patient-footer";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { primarycolor } from "constants/color";
+import { View, Text, TouchableOpacity, ScrollView } from "react-native";
+import appoImage from "../../assets/images/appo.png";
+import { DateComponent } from "components/utilities/date-component";
+import { DoctorCard } from "components/health-seeker/appointment/doctor-card";
 
 const Appointments = () => {
   return (
-    <SafeAreaView className="flex-1 bg-gray-100">
-      <StatusBar backgroundColor={primarycolor} />
-
-      {/* Header Section */}
-      <HeaderTitle title="My Appointment" />
-
-      {/* Tabs Section */}
-
-      {/* Date Component */}
+    <>
       <ScrollView className="pt-4 px-4">
         <DateComponent />
         <AppointmentComponent />
       </ScrollView>
-
-      {/* Footer */}
-      <PatientFooter activeProps="Appointments" />
-    </SafeAreaView>
+    </>
   );
 };
 

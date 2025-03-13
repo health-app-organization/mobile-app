@@ -1,3 +1,3 @@
 interface IdentitySelectionProps {
-    identity: "identity1" | "identity2" | "identity3" | null;
+    identity: "health-seeker" | "health-provider" | "hospitals" | null;
 }

@@ -1,16 +1,14 @@
 import { View, Text, Switch } from "react-native";
 import React, { useState } from "react";
-import {
-  CustomButton,
-  CustomInputpassword,
-  Header,
-} from "../../../../components/mycomponent";
 import { Textstyles } from "../../../../constants/fontsize";
 import { primarycolor, whitecolor } from "../../../../constants/color";
 import { FontAwesome } from "@expo/vector-icons";
 import { Divider } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
+import { Header } from "components/utilities/headers";
+import { CustomInputPassword } from "components/utilities/inputs";
+import { CustomButton } from "components/utilities/buttons";
 
 const Settings = () => {
   const [isEnabled, setIsEnabled] = useState(false);
@@ -58,7 +56,7 @@ const Settings = () => {
         <Text className=" font-semibold ml-2" style={[Textstyles.text_cmedium]}>
           Change Password
         </Text>
-        <CustomInputpassword
+        <CustomInputPassword
           placeholder="Old password"
           value={password}
           secureTextEntry={true}
@@ -66,7 +64,7 @@ const Settings = () => {
           leftIcon={<FontAwesome name="lock" color="#000" size={20} />}
         />
 
-        <CustomInputpassword
+        <CustomInputPassword
           placeholder="New password"
           value={password}
           secureTextEntry={true}
@@ -74,7 +72,7 @@ const Settings = () => {
           leftIcon={<FontAwesome name="lock" color="#000" size={20} />}
         />
 
-        <CustomInputpassword
+        <CustomInputPassword
           placeholder="Confirm Pasword"
           value={password}
           secureTextEntry={true}

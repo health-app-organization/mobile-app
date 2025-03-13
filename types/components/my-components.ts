@@ -59,7 +59,7 @@ interface BoxProps {
     inputText: string;
 }
 
-interface IconplaceholderProps {
+interface IconPlaceholderProps {
     backgroundColor: string;
     width: number;
     height: number;

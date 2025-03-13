@@ -1,7 +1,7 @@
 
 import "react-native-gesture-handler";
 import { ActivityIndicator, StyleSheet, View } from "react-native";
-import StackWrapper from "./routers/stackrouter";
+import StackWrapper from "./routers/stack-router";
 import { createStackNavigator } from "@react-navigation/stack";
 import { useCallback, useEffect } from "react";
 import { useFonts } from "expo-font";

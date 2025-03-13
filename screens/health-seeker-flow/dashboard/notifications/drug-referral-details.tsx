@@ -2,11 +2,9 @@ import React from "react";
 import { View, Text, ScrollView } from "react-native";
 import { RouteProp, useRoute } from "@react-navigation/native";
 import { RootStackParamList } from "types/stack";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { CustomButton, Header } from "components/mycomponent";
-import { StatusBar } from "expo-status-bar";
 import { lightBlue, primarycolor } from "constants/color";
 import { Textstyles } from "constants/fontsize";
+import { CustomButton } from "components/utilities/buttons";
 
 type ReferralDetailsRouteProp = RouteProp<RootStackParamList, "drug-referral-details"> & {
     params: {
@@ -20,11 +18,9 @@ const DrugReferralDetails: React.FC = () => {
     console.log("ID: ", id);
 
     return (
-        <SafeAreaView className="flex-1 bg-primaryTwo">
-            <StatusBar backgroundColor={primarycolor} />
-            <Header title="Drug Referral Details" />
+        <>
             <View className="pt-6 px-6">
-                <ScrollView className="h-[78%]">
+                <ScrollView className="h-[83%]">
                     <View>
                         <Text style={[Textstyles.text_cfmedium]}>Patient Information</Text>
                         <Text style={[Textstyles.text_small, { fontWeight: 700 }]}>
@@ -78,7 +74,7 @@ const DrugReferralDetails: React.FC = () => {
                     />
                 </View>
             </View>
-        </SafeAreaView>
+        </>
     );
 };
 

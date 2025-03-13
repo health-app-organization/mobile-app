@@ -1,18 +1,11 @@
 import React from 'react';
-import { StatusBar } from "expo-status-bar";
 import { View, Image, Text } from 'react-native';
 import { Textstyles } from '../../../constants/fontsize';
-import { Header } from '../../../components/mycomponent';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { primarycolor } from 'constants/color';
 
 const OrderHistory = () => {
 
   return (
-    <SafeAreaView className="h-screen w-full bg-primaryTwo">
-      <StatusBar backgroundColor={primarycolor} />
-
-      <Header title="Order History" />
+    <>
       <View className=" w-full flex mt-52 justify-center items-center">
         <View className="w-[154px] h-[139px] ">
           <Image
@@ -23,7 +16,7 @@ const OrderHistory = () => {
           <Text style={[Textstyles.text_xsma]} className=" text-center" >Your orders will appear here</Text>
         </View>
       </View>
-    </SafeAreaView>
+    </>
   );
 };
 

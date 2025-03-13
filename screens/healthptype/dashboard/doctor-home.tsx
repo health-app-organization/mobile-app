@@ -7,8 +7,8 @@ import RoundProgressTracker from '../../mycomponents/doctor/round-progress-track
 import { Textstyles } from '../../../constants/fontsize'
 import { primarycolor, whitecolor } from '../../../constants/color'
 import { useNavigation } from '@react-navigation/native'
-import { CustomButton } from '../../../components/mycomponent'
 import { StackNavigation } from '../../../types/stack'
+import { CustomButton } from 'components/utilities/buttons'
 
 const DoctorHome = () => {
     const navigation = useNavigation<StackNavigation>();
@@ -38,6 +38,4 @@ const DoctorHome = () => {
     )
 }
 
-export default DoctorHome
-
-const styles = StyleSheet.create({})
+export default DoctorHome;

@@ -6,16 +6,12 @@ import {
   StatusBar,
   ScrollView,
 } from "react-native";
-
-import {
-  CustomInputSearch,
-  Header,
-  Providercard,
-  Providercard2,
-} from "../../../../components/mycomponent";
 import { useNavigation } from "@react-navigation/native";
 import { FontAwesome } from "@expo/vector-icons";
 import { StackNavigation } from "../../../../types/stack";
+import { Header } from "components/utilities/headers";
+import { CustomInputSearch } from "components/utilities/inputs";
+import { ProviderCard, ProviderCard2 } from "components/utilities/provider-card";
 
 const Toplabs = () => {
   const navigation = useNavigation<StackNavigation>();
@@ -39,7 +35,7 @@ const Toplabs = () => {
       </Text>
       <View style={{ height: 200, width: "100%" }}>
         <ScrollView horizontal={true} className=" px-5 mt-4  ">
-          <Providercard2
+          <ProviderCard2
             name="Dr Micheal Brains"
             title="Healthcare Provider"
             rating={5}
@@ -48,7 +44,7 @@ const Toplabs = () => {
             image="image_url"
             onPress={() => navigation.navigate("apponitmentdetails")}
           />
-          <Providercard2
+          <ProviderCard2
             name="Dr Micheal Brains"
             title="Healthcare Provider"
             rating={5}
@@ -57,7 +53,7 @@ const Toplabs = () => {
             image="image_url"
             onPress={() => navigation.navigate("apponitmentdetails")}
           />
-          <Providercard2
+          <ProviderCard2
             name="Dr Micheal Brains"
             title="Healthcare Provider"
             rating={5}
@@ -66,7 +62,7 @@ const Toplabs = () => {
             image="image_url"
             onPress={() => navigation.navigate("apponitmentdetails")}
           />
-          <Providercard2
+          <ProviderCard2
             name="Dr Micheal Brains"
             title="Healthcare Provider"
             rating={5}
@@ -79,7 +75,7 @@ const Toplabs = () => {
       </View>
       <View className=" mt-2 pl-6">
         <ScrollView className=" mb-[420px]">
-          <Providercard
+          <ProviderCard
             name="Dr Micheal Brains"
             title="Healthcare Provider"
             rating={5}
@@ -87,7 +83,7 @@ const Toplabs = () => {
             image="image_url"
             onPress={() => navigation.navigate("apponitmentdetails")}
           />
-          <Providercard
+          <ProviderCard
             name="Dr Micheal Brains"
             title="Healthcare Provider"
             rating={5}
@@ -95,7 +91,7 @@ const Toplabs = () => {
             image="image_url"
             onPress={() => navigation.navigate("apponitmentdetails")}
           />
-          <Providercard
+          <ProviderCard
             name="Dr Micheal Brains"
             title="Healthcare Provider"
             rating={5}
@@ -103,7 +99,7 @@ const Toplabs = () => {
             image="image_url"
             onPress={() => navigation.navigate("apponitmentdetails")}
           />
-          <Providercard
+          <ProviderCard
             name="Dr Micheal Brains"
             title="Healthcare Provider"
             rating={5}
@@ -111,7 +107,7 @@ const Toplabs = () => {
             image="image_url"
             onPress={() => navigation.navigate("apponitmentdetails")}
           />
-          <Providercard
+          <ProviderCard
             name="Dr Micheal Brains"
             title="Healthcare Provider"
             rating={5}
@@ -119,7 +115,7 @@ const Toplabs = () => {
             image="image_url"
             onPress={() => navigation.navigate("apponitmentdetails")}
           />
-          <Providercard
+          <ProviderCard
             name="Dr Micheal Brains"
             title="Healthcare Provider"
             rating={5}
