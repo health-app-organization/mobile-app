@@ -1,11 +1,11 @@
 import { primarycolor } from "constants/color";
 import { customstyle, customstyle2 } from "constants/customstyle";
 import { Textstyles } from "constants/fontsize";
-import { Text } from "react-native";
+import { Text, TouchableOpacityProps } from "react-native";
 import { TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
-export const CustomButton: React.FC<CustomButtonProps> = ({
+export const CustomButton: React.FC<CustomButtonProps & TouchableOpacityProps> = ({
     Textname,
     onPress,
     backgroundColor = primarycolor,
@@ -18,10 +18,12 @@ export const CustomButton: React.FC<CustomButtonProps> = ({
     width,
     isLoading,
     disabled,
+    ...extraProps
 }) => {
     return (
         <>
             <TouchableOpacity
+                {...extraProps}
                 disabled={isLoading || disabled}
                 style={[
                     {

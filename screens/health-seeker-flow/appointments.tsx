@@ -6,12 +6,14 @@ import { DoctorCard } from "components/health-seeker/appointment/doctor-card";
 
 const Appointments = () => {
   return (
-    <>
-      <ScrollView className="pt-4 px-4">
-        <DateComponent />
-        <AppointmentComponent />
+    <View className="flex-1">
+      <ScrollView className="">
+        <View className="gap-y-6 pt-6 px-6">
+          <DateComponent />
+          <AppointmentComponent />
+        </View>
       </ScrollView>
-    </>
+    </View>
   );
 };
 
@@ -20,8 +22,8 @@ export const AppointmentComponent = () => {
     "upcoming"
   );
   return (
-    <>
-      <View className="flex-row justify-center mt-2 mb-6">
+    <View className="gap-y-4">
+      <View className="flex-row justify-center">
         {/* Upcoming Tab */}
         <TouchableOpacity
           className={`px-4 py-2 w-[162px] flex justify-center items-center h-[41px] rounded-xl mx-2 ${activeTab === "upcoming" ? "bg-[#0099B8]" : "bg-[#0099B833]"
@@ -53,7 +55,7 @@ export const AppointmentComponent = () => {
       {/* Tab Content */}
       {activeTab === "upcoming" ? (
         // Upcoming Tab Content
-        <View className="px-4 w-full gap-y-2">
+        <View className="px-4 w-full gap-y-4">
           <DoctorCard
             name="Dr Michael Brains"
             session="Morning Session"
@@ -98,7 +100,7 @@ export const AppointmentComponent = () => {
       ) : (
         activeTab === "completed" && (
           // Completed Tab Content
-          <View className="px-4 w-full gap-y-2">
+          <View className="px-4 w-full gap-y-4">
             <DoctorCard
               name="Dr Sarah Williams"
               session="Afternoon Session"
@@ -134,7 +136,7 @@ export const AppointmentComponent = () => {
           </View>
         )
       )}
-    </>
+    </View>
   );
 };
 

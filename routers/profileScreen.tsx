@@ -2,19 +2,19 @@ import {
   createStackNavigator,
   CardStyleInterpolators,
 } from "@react-navigation/stack";
-import Settings from "screens/patients/dashboard/profile/settings";
-import ManageAddress from "screens/patients/dashboard/profile/manageaddress";
+import Settings from "screens/health-seeker-flow/profile/settings";
+import ManageAddress from "screens/health-seeker-flow/profile/manage-address";
 import { RootStackParamList } from "types/stack";
-import Profile from "screens/patients/dashboard/profile/profile";
-import Wallet from "screens/patients/dashboard/wallet";
-import Personal from "screens/patients/dashboard/profile/personal";
-import ProfileCompletion from "screens/patients/dashboard/profile/profilecomplete";
-import OrderHistory from "screens/patients/dashboard/orderhistory";
-import OrderTracking from "screens/patients/dashboard/ordertracking";
-import Favourites from "screens/patients/dashboard/favourites";
-import MedicineReminder from "screens/patients/dashboard/profile/medicine-reminder";
-import MedicineReminderAdd from "screens/patients/dashboard/profile/medicine-reminder-add";
-import CustomerSupport from "screens/patients/dashboard/profile/customer-support";
+import Profile from "screens/health-seeker-flow/profile";
+import Wallet from "screens/health-seeker-flow/profile/wallet";
+import Personal from "screens/health-seeker-flow/profile/personal";
+import ProfileCompletion from "screens/health-seeker-flow/profile/profilecomplete";
+import OrderHistory from "screens/health-seeker-flow/profile/orderhistory";
+import OrderTracking from "screens/health-seeker-flow/profile/ordertracking";
+import Favourites from "screens/health-seeker-flow/profile/favorites";
+import MedicineReminder from "screens/health-seeker-flow/profile/medicine-reminder";
+import MedicineReminderAdd from "screens/health-seeker-flow/profile/medicine-reminder-add";
+import CustomerSupport from "screens/health-seeker-flow/profile/customer-support";
 import ReferralDetails from "screens/health-seeker-flow/dashboard/notifications/referral-details";
 import DrugReferralDetails from "screens/health-seeker-flow/dashboard/notifications/drug-referral-details";
 

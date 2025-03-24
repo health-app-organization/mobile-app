@@ -56,7 +56,7 @@ export default function SignUp() {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [showKeyboard, setShowKeyboard] = useState(false); // State to toggle keyboard visibility
   const [otp, setOtp] = useState(["", "", "", "", "", ""]); // OTP input array
-  const [showloginModal, setshowloginModal] = useState(false);
+  const [showLoginModal, setShowLoginModal] = useState(false);
 
   const translateY = useSharedValue(600); // Animation for the keyboard
   const animatedStyles = useAnimatedStyle(() => ({
@@ -94,7 +94,7 @@ export default function SignUp() {
         setCurrentStep
       );
       if (response === "ok") {
-        setshowloginModal(true);
+        setShowLoginModal(true);
         translateYsuccess.value = withSpring(0, {
           damping: 10,
           stiffness: 100,
@@ -155,7 +155,7 @@ export default function SignUp() {
         />
       )}
       {/* Success Modal Display */}
-      {currentStep === 2 && showloginModal && (
+      {currentStep === 2 && showLoginModal && (
         <>
           <View
             style={{ backgroundColor: primarycolor }}

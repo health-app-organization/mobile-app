@@ -1,9 +1,5 @@
-import React from "react";
-import { StatusBar } from "expo-status-bar";
 import { View, Image, Text } from "react-native";
 import { Textstyles } from "../../../constants/fontsize";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { primarycolor } from "constants/color";
 
 const OrderTracking = () => {
   return (

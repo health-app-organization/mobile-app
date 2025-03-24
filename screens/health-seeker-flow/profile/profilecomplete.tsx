@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
-import Medical from "../medical";
+import Medical from "./medical";
 import TestReport from "./testreport";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
@@ -23,12 +23,9 @@ const ProfileCompletion = () => {
   };
 
   return (
-    <SafeAreaView className="flex-1 bg-primaryTwo">
-      <StatusBar backgroundColor={primarycolor} />
-      <Header9 profileName="Caleb Omojuko" profileCompletion="42" />
-
+    <View className="flex-1">
       {/* Tab Header */}
-      <View className="flex-row justify-around mt-5 border-b border-gray-300">
+      <View className="flex-row justify-around border-b border-gray-300 pt-6">
         <TouchableOpacity onPress={() => setCurrentTab(0)}>
           <Text
             className={
@@ -54,8 +51,8 @@ const ProfileCompletion = () => {
       </View>
 
       {/* Tab Content */}
-      <View className="p-5">{renderTabContent()}</View>
-    </SafeAreaView>
+      <View className="flex-1">{renderTabContent()}</View>
+    </View>
   );
 };
 

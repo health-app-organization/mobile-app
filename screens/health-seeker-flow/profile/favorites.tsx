@@ -5,7 +5,7 @@ import { Textstyles } from "../../../constants/fontsize";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { primarycolor } from "constants/color";
 
-const Favourites = () => {
+const Favorites = () => {
   return (
     <>
       <View className=" w-full flex mt-52 justify-center items-center">
@@ -24,4 +24,4 @@ const Favourites = () => {
   );
 };
 
-export default Favourites;
+export default Favorites;

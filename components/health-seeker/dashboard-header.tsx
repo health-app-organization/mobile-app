@@ -41,7 +41,12 @@ const DashboardHeader = () => {
                         </View>
                     </View>
                     <TouchableOpacity
-                        onPress={() => navigation.navigate("health-seeker", { screen: "notifications" })}
+                        onPress={() =>
+                            navigation.navigate("health-seeker", {
+                                screen: "safe-area-view",
+                                params: { screen: "notifications" },
+                            })
+                        }
                         style={{ elevation: 4 }}
                         className="w-10 h-10 rounded-xl bg-white flex justify-center items-center shadow-sm shadow-black"
                     >
@@ -65,7 +70,12 @@ const DashboardHeader = () => {
                     </View>
                     <View>
                         <TouchableOpacity
-                            onPress={() => navigation.navigate("health-seeker", { screen: "user-qr-code" })}
+                            onPress={() =>
+                                navigation.navigate("health-seeker", {
+                                    screen: "safe-area-view",
+                                    params: { screen: "user-qr-code" },
+                                })
+                            }
                             className="h-20 w-20 flex justify-center items-center rounded-full border-white border-2"
                         >
                             <View className="h-16 w-16 flex justify-center items-center rounded-full bg-white p-2">

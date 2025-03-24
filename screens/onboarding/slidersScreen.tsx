@@ -63,7 +63,7 @@ const Slider = () => {
     if (currentindex < mapArray.length - 1) {
       setcurrentindex((next) => next + 1);
     } else if (currentindex === mapArray.length - 1) {
-      navigation.navigate("login");
+      navigation.navigate("health-seeker", { screen: "identity" });
     }
   };
 

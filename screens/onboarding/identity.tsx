@@ -42,7 +42,7 @@ const Identity = () => {
     if (selectedIdentity === "health-provider") {
       // navigation.navigate("healthptype"); // Navigate to healthtype for health provider
     } else if (selectedIdentity === "health-seeker") {
-      navigation.navigate("health-seeker", { screen: "signup" });
+      navigation.navigate("health-seeker", { screen: "safe-area-view", params: { screen: "signup" } });
     }
   };
 
@@ -51,7 +51,7 @@ const Identity = () => {
     if (selectedIdentity === "health-provider") {
       // navigation.navigate("doctor-login"); // Navigate to healthtype for health provider
     } else {
-      navigation.navigate("health-seeker", { screen: "login" });
+      navigation.navigate("health-seeker", { screen: "safe-area-view", params: { screen: "login" } });
     }
   };
 
@@ -158,23 +158,25 @@ const Identity = () => {
       </View>
 
       {/* Conditionally show buttons when an identity is selected */}
-      {selectedIdentity && (
-        <View className="px-4 mt-10">
-          <CustomButton
-            Textname={"Login"}
-            onPress={handletologin}
-            backgroundColor={primarycolor}
-            TextColor={whitecolor}
-          />
-          <View className="h-3" />
-          <CustomButton2
-            Textname={"Create account"}
-            onPress={handletonewacc}
-            backgroundColor={primarycolortwo}
-            TextColor={primarycolor}
-          />
-        </View>
-      )}
+      {
+        selectedIdentity && (
+          <View className="px-4 mt-10">
+            <CustomButton
+              Textname={"Login"}
+              onPress={handletologin}
+              backgroundColor={primarycolor}
+              TextColor={whitecolor}
+            />
+            <View className="h-3" />
+            <CustomButton2
+              Textname={"Create account"}
+              onPress={handletonewacc}
+              backgroundColor={primarycolortwo}
+              TextColor={primarycolor}
+            />
+          </View>
+        )
+      }
 
       {/* Modal for confirmation */}
       <Modal visible={showConfirmation} transparent={true} animationType="fade">
@@ -208,7 +210,7 @@ const Identity = () => {
           </View>
         </View>
       </Modal>
-    </View>
+    </View >
   );
 };
 

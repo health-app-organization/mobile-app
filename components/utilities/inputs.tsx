@@ -2,11 +2,11 @@ import { primarycolor } from "constants/color";
 import { customstyle } from "constants/customstyle";
 import { Textstyles } from "constants/fontsize";
 import { useState } from "react";
-import { Text, TouchableOpacity } from "react-native";
+import { Text, TextInputProps, TouchableOpacity } from "react-native";
 import { TextInput, View } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 
-export const CustomTextInput: React.FC<CustomInputProps> = ({
+export const CustomTextInput: React.FC<CustomInputProps & TextInputProps> = ({
     autoCapitalize,
     placeholder,
     placeholderTextColor,
@@ -17,6 +17,7 @@ export const CustomTextInput: React.FC<CustomInputProps> = ({
     disabled,
     value,
     className,
+    ...props
 }) => {
     const [showicon, seticon] = useState(true); // Initially, show the icon
     const [inputValue, setInputValue] = useState<string | undefined>(value); // Track the input value
@@ -30,6 +31,7 @@ export const CustomTextInput: React.FC<CustomInputProps> = ({
                     <View className="absolute z-10 left-4">{leftIcon}</View>
                 )}
                 <TextInput
+                    {...props}
                     onFocus={() => seticon(false)} // Hide icon when focused
                     onBlur={() => inputValue === "" && seticon(true)} // Show icon on blur if input is empty
                     placeholder={placeholder}

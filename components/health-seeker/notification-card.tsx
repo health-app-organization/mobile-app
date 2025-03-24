@@ -40,7 +40,13 @@ export const NotificationCard: React.FC<NotificationCardProps> = ({
                     <Text style={[Textstyles.text_xsma]}>{description}</Text>
                     {type === "order-details" ? (
                         <TouchableOpacity
-                            onPress={() => navigation.navigate("health-seeker", { screen: "drug-referral-details", id })}
+                            onPress={() =>
+                                navigation.navigate("health-seeker", {
+                                    screen: "safe-area-view",
+                                    id,
+                                    params: { screen: "drug-referral-details" },
+                                })
+                            }
                             className=""
                         >
                             <Text
@@ -53,7 +59,13 @@ export const NotificationCard: React.FC<NotificationCardProps> = ({
                     ) : (
                         type === "details" && (
                             <TouchableOpacity
-                                onPress={() => navigation.navigate("health-seeker", { screen: "referral-details", id })}
+                                onPress={() =>
+                                    navigation.navigate("health-seeker", {
+                                        screen: "safe-area-view",
+                                        id,
+                                        params: { screen: "referral-details" },
+                                    })
+                                }
                                 className=""
                             >
                                 <Text

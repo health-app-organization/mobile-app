@@ -1,22 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { View, StatusBar, FlatList } from "react-native";
-import { useNavigation } from "@react-navigation/native";
-import { primarycolor } from "../../../constants/color";
+import { primarycolor } from "../../constants/color";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { io } from "socket.io-client";
-import { baseUrl } from "../../../api/end-point";
+import { baseUrl } from "../../api/end-point";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { FontAwesome } from "@expo/vector-icons";
-import { StackNavigation } from "../../../types/stack";
-import HeaderTitle from "components/utilities/headers";
 import { CustomInputSearch } from "components/utilities/inputs";
 import { ChatList } from "components/health-seeker/chats/chat-list";
 
 const Chats = () => {
-  const navigation = useNavigation<StackNavigation>();
-  const handletocheck = () => {
-    navigation.navigate("Appointments");
-  };
 
   const [chatPeers, setChatPeers] = useState([]);
   const [requestCount, setRequestCount] = useState(0);
@@ -70,8 +63,6 @@ const Chats = () => {
       <FlatList
         ListHeaderComponent={() => (
           <>
-            <HeaderTitle title="Chats" />
-            <View className="h-2" />
             <View className="px-4">
               <CustomInputSearch
                 placeholder="Search for chat"
@@ -84,7 +75,7 @@ const Chats = () => {
         )}
         data={[
           {
-            profileImage: require("../../../assets/images/chat 1.png"),
+            profileImage: require("../../assets/images/chat 1.png"),
             id: 1,
             name: "Dr. Sunmisola Olowofela",
             message:
@@ -93,7 +84,7 @@ const Chats = () => {
             unreadCount: 4,
           },
           {
-            profileImage: require("../../../assets/images/chat 1.png"),
+            profileImage: require("../../assets/images/chat 1.png"),
             id: 2,
             name: "Dr. Sunmisola Olowofela",
             message:
@@ -101,7 +92,7 @@ const Chats = () => {
             time: "18:52",
           },
           {
-            profileImage: require("../../../assets/images/chat 1.png"),
+            profileImage: require("../../assets/images/chat 1.png"),
             id: 3,
             name: "Dr. Sunmisola Olowofela",
             message:
@@ -109,7 +100,7 @@ const Chats = () => {
             time: "18:52",
           },
           {
-            profileImage: require("../../../assets/images/chat 1.png"),
+            profileImage: require("../../assets/images/chat 1.png"),
             id: 4,
             name: "Dr. Sunmisola Olowofela",
             message:
@@ -118,7 +109,7 @@ const Chats = () => {
             unreadCount: 3,
           },
           {
-            profileImage: require("../../../assets/images/chat 1.png"),
+            profileImage: require("../../assets/images/chat 1.png"),
             id: 5,
             name: "Dr. Sunmisola Olowofela",
             message:
@@ -127,7 +118,7 @@ const Chats = () => {
             unreadCount: 5,
           },
           {
-            profileImage: require("../../../assets/images/chat 1.png"),
+            profileImage: require("../../assets/images/chat 1.png"),
             id: 6,
             name: "Dr. Sunmisola Olowofela",
             message:
@@ -136,7 +127,7 @@ const Chats = () => {
             unreadCount: 4,
           },
           {
-            profileImage: require("../../../assets/images/chat 1.png"),
+            profileImage: require("../../assets/images/chat 1.png"),
             id: 7,
             name: "Dr. Sunmisola Olowofela",
             message:
@@ -144,7 +135,7 @@ const Chats = () => {
             time: "18:52",
           },
           {
-            profileImage: require("../../../assets/images/chat 1.png"),
+            profileImage: require("../../assets/images/chat 1.png"),
             id: 8,
             name: "Dr. Sunmisola Olowofela",
             message:
@@ -152,7 +143,7 @@ const Chats = () => {
             time: "18:52",
           },
           {
-            profileImage: require("../../../assets/images/chat 1.png"),
+            profileImage: require("../../assets/images/chat 1.png"),
             id: 9,
             name: "Dr. Sunmisola Olowofela",
             message:
@@ -161,7 +152,7 @@ const Chats = () => {
             unreadCount: 3,
           },
           {
-            profileImage: require("../../../assets/images/chat 1.png"),
+            profileImage: require("../../assets/images/chat 1.png"),
             id: 10,
             name: "Dr. Sunmisola Olowofela",
             message:

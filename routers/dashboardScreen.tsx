@@ -4,15 +4,15 @@ import {
 } from "@react-navigation/stack";
 import Dashboard from "../screens/health-seeker-flow/dashboard";
 import Appointments from "../screens/health-seeker-flow/appointments";
-import AppointmentDetails from "../screens/patients/dashboard/apponitmentdetails";
+import AppointmentDetails from "../screens/health-seeker-flow/dashboard/appointment/appointment-details";
 import Toplabs from "../screens/patients/dashboard/LAB/toplaboratories";
 import Laboratories from "../screens/patients/dashboard/LAB/laboratories";
-import Medicine from "../screens/patients/dashboard/medicine";
+import Medicine from "../screens/health-seeker-flow/dashboard/medicine";
 import Notification from "../screens/health-seeker-flow/dashboard/notifications";
 import { PaymentScreen } from "../screens/patients/dashboard/payment";
 import Orcode from "../screens/health-seeker-flow/profile/user-qr-code";
 import Cart from "../screens/patients/dashboard/cart";
-import Messages from "../screens/patients/dashboard/chats";
+import Messages from "../screens/health-seeker-flow/chats";
 import HealthcareProviderScreen from "../screens/patients/dashboard/LAB/healthprovider";
 import ProfileScreen from "./profileScreen";
 import ListofHealthprovider from "../screens/patients/dashboard/LAB/Listofhealthprovider";
@@ -86,19 +86,6 @@ const DashboardScreen = () => {
       <Stack.Screen
         name="payment"
         component={PaymentScreen}
-      />
-      <Stack.Screen
-        name="notifications"
-        component={Notification}
-      />
-      <Stack.Screen
-        name="medicine"
-        component={Medicine}
-      />
-
-      <Stack.Screen
-        name="laborarories"
-        component={Laboratories}
       />
 
       <Stack.Screen

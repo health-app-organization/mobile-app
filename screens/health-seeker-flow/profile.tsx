@@ -12,8 +12,8 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { FontAwesome } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons"; // Import Ionicons for arrow
-import { primarycolor } from "../../../../constants/color";
-import { Textstyles } from "../../../../constants/fontsize";
+import { primarycolor } from "../../constants/color";
+import { Textstyles } from "../../constants/fontsize";
 import {
   AddressBookIcon,
   DocumentvalidationIcon,
@@ -25,8 +25,8 @@ import {
   ShopBagicon,
   UserIcon,
   WalletIcon,
-} from "../../../../assets/iconsvg/Svgicon";
-import useAuthStore from "../../../../store/auth-store";
+} from "../../assets/iconsvg/Svgicon";
+import useAuthStore from "../../store/auth-store";
 import { StackNavigation } from "types/stack";
 import { SelectMenuProps } from "types/general";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -50,25 +50,25 @@ const data = [
     id: 3,
     name: "My Medical Records",
     icon: <DocumentvalidationIcon />,
-    routeName: "profilecomplete",
+    routeName: "profile-completion",
   },
   {
     id: 4,
     name: "Order History",
     icon: <InvoiceIcon />,
-    routeName: "orderhistory",
+    routeName: "order-history",
   },
   {
     id: 5,
     name: "Order Tracking",
     icon: <ShipmenttrackIcon />,
-    routeName: "ordertracking",
+    routeName: "order-tracking",
   },
   {
     id: 6,
-    name: "My Favourites",
+    name: "My Favorites",
     icon: <ShopBagicon />,
-    routeName: "favourites",
+    routeName: "favorites",
   },
   {
     id: 7,
@@ -114,110 +114,99 @@ const Profile = () => {
 
   return (
     <>
-      <SafeAreaView className="flex flex-1 w-full h-full bg-primaryTwo">
-        <StatusBar style="auto" backgroundColor={primarycolor} />
-        <View className="w-full bg-primary h-[25vh] rounded-b-3xl pt-20">
-          <Text
-            className="text-white text-2xl font-bold ml-8"
-            style={[Textstyles.text_medium]}
-          >
-            My Account
-          </Text>
-        </View>
-        <View className=" h-[10vh] -mt-10 mb-12 ">
-          <View className=" w-full flex justify-center   items-center">
-            <View className="   flex justify-center items-center    ">
-              {/* Profile Picture */}
-              <View
-                className="w-[80px]  h-[80px]  flex justify-center items-center  rounded-tl-lg overflow-hidden"
-                style={{
-                  opacity: 1,
-                  borderWidth: 3, // Set the border width to 3
-                  borderColor: "#FFFFFF", // Set the border color to white
-                  borderRadius: 10,
-                }}
-              >
-                <Image
-                  source={require("../../../../assets/images/pro.png")} // Ensure the path is correct
-                  resizeMode="contain"
-                  className="w-full h-full"
-                />
-              </View>
-
-              {/* Camera Icon */}
-              <TouchableOpacity
-                className="w-8 h-8 bg-[#FFAA26] rounded-full -mt-6 ml-16"
-                style={{
-                  borderWidth: 3,
-                  borderColor: "#FFFFFF", // Set the border color to white
-                  opacity: 1,
-                }}
-              >
-                <FontAwesome
-                  name="camera"
-                  size={15}
-                  color="#000000"
-                  style={{
-                    alignSelf: "center",
-                    marginTop: "auto",
-                    marginBottom: "auto",
-                  }} // Center the icon
-                />
-              </TouchableOpacity>
-              <Text
-                className=" text-[24px] font-[700] leading-[36px] "
-                style={[Textstyles.text_medium]}
-              >
-                {user?.firstName + " " + user?.lastName}
-              </Text>
-              <Text
-                className=" text-[16px] leading-[24px] mb-1 "
-                style={{ color: "rgba(0, 0, 0, 0.5)" }}
-              >
-                {user?.email}
-              </Text>
-              <Text
-                className=" text-[16px] leading-[24px] "
-                style={{ color: "rgba(0, 0, 0, 0.5)" }}
-              >
-                {user?.phoneNumber}
-              </Text>
+      <View className=" h-[10vh] -mt-10 z-50">
+        <View className=" w-full flex justify-center   items-center">
+          <View className="   flex justify-center items-center    ">
+            {/* Profile Picture */}
+            <View
+              className="w-[80px]  h-[80px]  flex justify-center items-center  rounded-tl-lg overflow-hidden"
+              style={{
+                opacity: 1,
+                borderWidth: 3, // Set the border width to 3
+                borderColor: "#FFFFFF", // Set the border color to white
+                borderRadius: 10,
+              }}
+            >
+              <Image
+                source={require("../../assets/images/pro.png")} // Ensure the path is correct
+                resizeMode="contain"
+                className="w-full h-full"
+              />
             </View>
+
+            {/* Camera Icon */}
+            <TouchableOpacity
+              className="w-8 h-8 bg-[#FFAA26] rounded-full -mt-6 ml-16"
+              style={{
+                borderWidth: 3,
+                borderColor: "#FFFFFF", // Set the border color to white
+                opacity: 1,
+              }}
+            >
+              <FontAwesome
+                name="camera"
+                size={15}
+                color="#000000"
+                style={{
+                  alignSelf: "center",
+                  marginTop: "auto",
+                  marginBottom: "auto",
+                }} // Center the icon
+              />
+            </TouchableOpacity>
+            <Text
+              className=" text-[24px] font-[700] leading-[36px] "
+              style={[Textstyles.text_medium]}
+            >
+              {user?.firstName + " " + user?.lastName}
+            </Text>
+            <Text
+              className=" text-[16px] leading-[24px] mb-1 "
+              style={{ color: "rgba(0, 0, 0, 0.5)" }}
+            >
+              {user?.email}
+            </Text>
+            <Text
+              className=" text-[16px] leading-[24px] "
+              style={{ color: "rgba(0, 0, 0, 0.5)" }}
+            >
+              {user?.phoneNumber}
+            </Text>
           </View>
         </View>
+      </View>
 
-        <View className="h-[55vh]">
-          <ScrollView className="pt-6">
-            {data.map((item) => (
-              <SelectMenu
-                key={item.id}
-                label={item.name}
-                icon={item.icon}
-                routeName={item.routeName}
-              />
-            ))}
-            <TouchableOpacity
-              onPress={handleShowModal}
-              className="h-[90px] flex justify-between items-center flex-row  border-b-1 pr-4"
-              style={{ borderBottomColor: "rgba(0, 0, 0, 0.2)" }}
-            >
-              <View className=" flex-row w-[185px]  justify-between items-center  ml-[24px]">
-                <View className=" w-[45px] h-[45px] bg-[#00D5FD80] flex justify-center items-center rounded-[10px]">
-                  <LogIcon />
-                </View>
-                <View>
-                  <Text style={[Textstyles.text_xmedium]} className=" -ml-32">
-                    Log out
-                  </Text>
-                </View>
+      <View className="flex-1">
+        <ScrollView className="">
+          {data.map((item) => (
+            <SelectMenu
+              key={item.id}
+              label={item.name}
+              icon={item.icon}
+              routeName={item.routeName}
+            />
+          ))}
+          <TouchableOpacity
+            onPress={handleShowModal}
+            className="h-[90px] flex justify-between items-center flex-row  border-b-1 pr-4"
+            style={{ borderBottomColor: "rgba(0, 0, 0, 0.2)" }}
+          >
+            <View className=" flex-row w-[185px]  justify-between items-center  ml-[24px]">
+              <View className=" w-[45px] h-[45px] bg-[#00D5FD80] flex justify-center items-center rounded-[10px]">
+                <LogIcon />
               </View>
-              <View className=" flex justify-center items-center w-8 h-8 mr-[8]">
-                <Ionicons name="chevron-forward" size={32} color="#0099b8" />
+              <View>
+                <Text style={[Textstyles.text_xmedium]} className=" -ml-32">
+                  Log out
+                </Text>
               </View>
-            </TouchableOpacity>
-          </ScrollView>
-        </View>
-      </SafeAreaView>
+            </View>
+            <View className=" flex justify-center items-center w-8 h-8 mr-[8]">
+              <Ionicons name="chevron-forward" size={32} color="#0099b8" />
+            </View>
+          </TouchableOpacity>
+        </ScrollView>
+      </View>
       {modalVisible && (
         <Modallogout
           slideAnim={slideAnim}
@@ -235,7 +224,12 @@ const SelectMenu: React.FC<SelectMenuProps> = ({ routeName, label, icon }) => {
 
   return (
     <TouchableOpacity
-      onPress={() => navigation.navigate(routeName as any)}
+      onPress={() =>
+        navigation.navigate("health-seeker", {
+          screen: "safe-area-view",
+          params: { screen: routeName },
+        })
+      }
       className="h-[90px] flex justify-between items-center flex-row  border-b-1 pr-4"
       style={{ borderBottomColor: "rgba(0, 0, 0, 0.2)" }}
     >
@@ -249,7 +243,7 @@ const SelectMenu: React.FC<SelectMenuProps> = ({ routeName, label, icon }) => {
           </Text>
         </View>
       </View>
-      <View className=" flex justify-center items-center w-8 h-8 mr-[8]">
+      <View className="flex justify-center items-center w-8 h-8 mr-[8]">
         <Ionicons name="chevron-forward" size={32} color="#0099b8" />
       </View>
     </TouchableOpacity>

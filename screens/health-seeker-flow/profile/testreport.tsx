@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, Image, KeyboardAvoidingView } from "react-native";
-import noReportsImage from "../../../../assets/images/pana.png";
-import { primarycolor, whitecolor } from "../../../../constants/color";
+import noReportsImage from "../../../assets/images/pana.png";
+import { primarycolor, whitecolor } from "../../../constants/color";
 import { FloatingActionButton } from "components/utilities/floating-action-button";
 import { CustomInputWithHeader, CustomInputWithHeader2 } from "components/utilities/inputs";
 import { CustomButton } from "components/utilities/buttons";

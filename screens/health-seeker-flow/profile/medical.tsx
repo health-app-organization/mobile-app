@@ -83,9 +83,9 @@ const Medical = () => {
   ];
 
   return (
-    <View>
-      <KeyboardAvoidingView>
-        <ScrollView className="mb-44">
+    <View className="flex-1">
+      <ScrollView className="">
+        <View className="gap-y-4 p-6">
           <CustomDropdownWithHeader
             headerText="Allergy"
             placeholder="Any Allergy"
@@ -142,16 +142,15 @@ const Medical = () => {
             value={alcoholConsumption}
             onChange={(val) => setAlcoholConsumption(val)}
           />
-          <View className=" mt-4" />
-          <View className=" mb-7">
-            <CustomButton
-              Textname={"Save"}
-              backgroundColor={primarycolor}
-              TextColor={whitecolor}
-            />
-          </View>
-        </ScrollView>
-      </KeyboardAvoidingView>
+        </View>
+      </ScrollView>
+      <View className="pb-6 px-6">
+        <CustomButton
+          Textname={"Save"}
+          backgroundColor={primarycolor}
+          TextColor={whitecolor}
+        />
+      </View>
     </View>
   );
 };

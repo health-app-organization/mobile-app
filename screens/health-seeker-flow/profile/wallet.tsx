@@ -22,7 +22,7 @@ const Wallet = () => {
       {/* a modal */}
       {openModal && (
         <View className="absolute top-0 left-0 right-0 bottom-0 bg-[rgba(0,0,0,0.5)] justify-center items-center z-50">
-          <View className="w-[80%] h-fit bg-white rounded-[60px] py-16 px-8 gap-y-6">
+          <View className="w-[80%] bg-white rounded-[60px] py-16 px-8 gap-y-6">
             <View className="flex-row justify-between items-center">
               <View className="flex-row items-center">
                 <Image
@@ -68,43 +68,8 @@ const Wallet = () => {
           </View>
         </View>
       )}
-      <View className="flex-1 w-full h-screen bg-primaryTwo">
-        <StatusBar style="auto" />
-
-        <View className="w-full bg-[#0099B8] h-1/3">
-          <View className="flex-row items-center px-8 h-[90px] pt-16">
-            {/* Back Button */}
-            <TouchableOpacity onPress={() => navigation.goBack()}>
-              <Ionicons name="chevron-back" size={32} color="white" />
-            </TouchableOpacity>
-
-            {/* Title */}
-            <Text className="text-white text-2xl font-bold ml-4">
-              My Wallet
-            </Text>
-          </View>
-          <View className=" w-full  mt-14 flex-row justify-between px-5 h-[119px] ">
-            <View className="   w-[170px] h-[130px]">
-              <Text className=" text-2xl text-white mt-7 mb-2">
-                Available Balance
-              </Text>
-              <Text className="  text-2xl text-white font-bold "> ₦0.00</Text>
-              <Image
-                source={require("../../../assets/images/wallet2.png")}
-                className="w-full -z-10 -mt-[75px]"
-                resizeMode="contain"
-              />
-            </View>
-            <View className="  flex justify-center items-center w-[104px] mt-3 h-[104px]">
-              <Image
-                source={require("../../../assets/images/wallet.png")}
-                className="w-full"
-                resizeMode="contain"
-              />
-            </View>
-          </View>
-        </View>
-        <View className=" mt-[30px] px-24">
+      <View className="flex-1 p-6">
+        <View className="w-2/3 md:w-1/2 mx-auto">
           <CustomButton
             Textname={"Top-up Account"}
             backgroundColor={primarycolor}

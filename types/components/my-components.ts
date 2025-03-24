@@ -161,7 +161,7 @@ interface CustomDropdownProps {
     options: { value: string; label: string }[];
     placeholder: string | React.ReactNode;
     onChange: (value: string) => void;
-    disable?: boolean;
+    disabled?: boolean;
     value: string | undefined;
     leftIcon?: React.ReactNode;
 }

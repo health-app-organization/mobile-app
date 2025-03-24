@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import { Alert, FlatList, Text, View } from "react-native";
-import { primarycolor, whitecolor } from "../../../../constants/color";
-import useAuthStore from "../../../../store/auth-store";
+import { Alert, FlatList, ScrollView, Text, View } from "react-native";
+import { primarycolor, whitecolor } from "../../../constants/color";
+import useAuthStore from "../../../store/auth-store";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import axios from "axios";
-import { baseUrl } from "../../../../api/end-point";
+import { baseUrl } from "../../../api/end-point";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
-import { StackNavigation } from "../../../../types/stack";
+import { StackNavigation } from "../../../types/stack";
 import { FontAwesome } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native";
 import { Textstyles } from "constants/fontsize";
@@ -332,70 +332,13 @@ const Personal = () => {
   const [openDateModal, setOpenDateModal] = useState(false);
 
   return (
-    <SafeAreaView className="bg-primaryTwo">
-      <StatusBar style="auto" backgroundColor="#00A8CC" />
-      <FlatList
+    <>
+      <View className="flex-1">
+        {/* <FlatList
         alwaysBounceVertical={false}
-        ListHeaderComponent={() => (
-          <Header9
-            profileName={user?.firstName + " " + user?.lastName}
-            profileCompletion={profileCompletion.toFixed(0)}
-          />
-        )}
         data={formList}
         renderItem={({ item }) => {
-          if (item.inputType === "input") {
-            return (
-              <View className="mx-4 my-1">
-                <CustomInputWithHeader
-                  headerText={item.headerText}
-                  placeholder={item.placeHolder}
-                  leftIcon={
-                    <FontAwesome
-                      name={
-                        item.leftIconName as keyof typeof FontAwesome.glyphMap
-                      }
-                      color="#000"
-                      size={20}
-                    />
-                  }
-                  value={item.value}
-                  onChange={item.onChange}
-                />
-              </View>
-            );
-          } else if (item.inputType === "dropdown") {
-            return (
-              <View className="mx-4 my-1">
-                <CustomDropdownWithHeader
-                  headerText={item.headerText}
-                  options={item.options || []}
-                  placeholder={item.placeHolder}
-                  value={item.value}
-                  onChange={item.onChange}
-                />
-              </View>
-            );
-          } else if (item.inputType === "date-picker") {
-            return (
-              <View className="mx-4 my-1">
-                <Text
-                  className="text-lg font-bold mb-2"
-                  style={[Textstyles.text_cmedium]}
-                >
-                  Date of Birth
-                </Text>
-                <TouchableOpacity
-                  className="border border-primary rounded-md p-4 flex-row items-center gap-x-4"
-                  onPress={() => setOpenDateModal(true)}
-                >
-                  <FontAwesome name="calendar" size={20} color="#000" />
-                  <Text className="">{formatDate(selected)}</Text>
-                </TouchableOpacity>
-              </View>
-            );
-          }
-          return null;
+          
         }}
         keyExtractor={(item) => item.headerText}
         ListFooterComponent={() => (
@@ -409,37 +352,101 @@ const Personal = () => {
               </Text>
             )}
             <View className="h-1" />
-            <CustomButton
-              Textname="Save"
-              backgroundColor={primarycolor}
-              TextColor={whitecolor}
-              onPress={handleUpdateUser}
-              isLoading={isLoading}
-              disabled={profileCompletion < 100}
-            />
+            
           </>
         )}
         ListFooterComponentStyle={{ padding: 10 }}
-      />
-      {openDateModal && (
-        <View className="absolute flex-1 bg-[#00000050] h-screen w-full justify-center">
-          <View className="w-[80%] mx-auto bg-white rounded-md p-4">
-            <TouchableOpacity onPress={() => setOpenDateModal(false)} className="flex-row justify-end">
-              <FontAwesome name="times" size={20} color={primarycolor} />
-            </TouchableOpacity>
-            <View className="h-10" />
-            <DateTimePicker
-              mode="single"
-              date={selected}
-              onChange={({ date }) => {
-                setSelected(date);
-                formData.birthDate = formatDate(date);
-              }}
-            />
-          </View>
+      /> */}
+        <View className="flex-1">
+          <ScrollView>
+            <View className="gap-y-4 pb-1 pt-6 px-6">
+              {formList.map((item, index) => {
+                if (item.inputType === "input") {
+                  return (
+                    <View className="" key={index}>
+                      <CustomInputWithHeader
+                        headerText={item.headerText}
+                        placeholder={item.placeHolder}
+                        leftIcon={
+                          <FontAwesome
+                            name={
+                              item.leftIconName as keyof typeof FontAwesome.glyphMap
+                            }
+                            color="#000"
+                            size={20}
+                          />
+                        }
+                        value={item.value}
+                        onChange={item.onChange}
+                      />
+                    </View>
+                  );
+                } else if (item.inputType === "dropdown") {
+                  return (
+                    <View className="" key={index}>
+                      <CustomDropdownWithHeader
+                        headerText={item.headerText}
+                        options={item.options || []}
+                        placeholder={item.placeHolder}
+                        value={item.value}
+                        onChange={item.onChange}
+                      />
+                    </View>
+                  );
+                } else if (item.inputType === "date-picker") {
+                  return (
+                    <View className="" key={index}>
+                      <Text
+                        className="text-lg font-bold mb-2"
+                        style={[Textstyles.text_cmedium]}
+                      >
+                        Date of Birth
+                      </Text>
+                      <TouchableOpacity
+                        className="border border-primary rounded-md p-4 flex-row items-center gap-x-4"
+                        onPress={() => setOpenDateModal(true)}
+                      >
+                        <FontAwesome name="calendar" size={20} color="#000" />
+                        <Text className="">{formatDate(selected)}</Text>
+                      </TouchableOpacity>
+                    </View>
+                  );
+                }
+                return null;
+              })}
+            </View>
+          </ScrollView>
         </View>
-      )}
-    </SafeAreaView>
+        <View className="pb-6 px-6">
+          <CustomButton
+            Textname="Save"
+            backgroundColor={primarycolor}
+            TextColor={whitecolor}
+            onPress={handleUpdateUser}
+            isLoading={isLoading}
+            disabled={profileCompletion < 100}
+          />
+        </View>
+        {openDateModal && (
+          <View className="absolute flex-1 bg-[#00000050] h-screen w-full justify-center">
+            <View className="w-[80%] mx-auto bg-white rounded-md p-4">
+              <TouchableOpacity onPress={() => setOpenDateModal(false)} className="flex-row justify-end">
+                <FontAwesome name="times" size={20} color={primarycolor} />
+              </TouchableOpacity>
+              <View className="h-10" />
+              <DateTimePicker
+                mode="single"
+                date={selected}
+                onChange={({ date }) => {
+                  setSelected(date);
+                  formData.birthDate = formatDate(date);
+                }}
+              />
+            </View>
+          </View>
+        )}
+      </View>
+    </>
   );
 };
 

@@ -8,7 +8,7 @@ export const CustomDropdownWithHeader: React.FC<CustomDropdownProps> = ({
     options = [],
     placeholder,
     onChange,
-    disable,
+    disabled,
     value,
     leftIcon,
 }) => {
@@ -31,7 +31,7 @@ export const CustomDropdownWithHeader: React.FC<CustomDropdownProps> = ({
             <TouchableOpacity
                 className="relative border border-primary rounded-lg p-4"
                 onPress={() => setShowOptions(!showOptions)} // Toggle options visibility
-                disabled={disable}
+                disabled={disabled}
             >
                 {leftIcon && (
                     <View className="absolute left-4 top-3 z-10">{leftIcon}</View>
@@ -41,7 +41,7 @@ export const CustomDropdownWithHeader: React.FC<CustomDropdownProps> = ({
                         options.find((option) => option.value === selectedValue)?.label
                     ) : (
                         <View className="flex-row items-center justify-between w-full">
-                            <Text>{placeholder}</Text>
+                            <Text className="font-normal text-base text-greyText">{placeholder}</Text>
                             <Ionicons name="chevron-down" size={20} color="black" />
                         </View>
                     )}
@@ -59,12 +59,12 @@ export const CustomDropdownWithHeader: React.FC<CustomDropdownProps> = ({
                 >
                     <View className="flex-1 h-screen w-full bg-[#00000050]">
                         <View className="flex-1 justify-center items-center">
-                            <View className="w-[350px] bg-white rounded-2xl py-3 px-4 border border-primary">
+                            <View className="w-[350px] bg-white rounded-xl py-3 px-4 border border-primary">
                                 <TouchableOpacity
                                     className="p-4 bg-gray-200 rounded-lg flex-row justify-between"
                                     onPress={() => setShowOptions(false)}
                                 >
-                                    <Text className="text-center" style={[Textstyles.text_xsma]}>
+                                    <Text className="text-center font-normal text-base text-greyText">
                                         Select Option
                                     </Text>
                                     <Ionicons name="chevron-up" size={20} color="black" />
@@ -85,7 +85,7 @@ export const CustomDropdownWithHeader: React.FC<CustomDropdownProps> = ({
                                                 }
                                             }}
                                         >
-                                            <Text style={[Textstyles.text_xsma]}>{option.label}</Text>
+                                            <Text className="font-normal text-base text-greyText">{option.label}</Text>
                                         </TouchableOpacity>
                                     ))}
                                 </ScrollView>
