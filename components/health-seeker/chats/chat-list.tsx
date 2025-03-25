@@ -1,5 +1,7 @@
+import { useNavigation } from "@react-navigation/native";
 import { Image, Text, TouchableOpacity } from "react-native";
 import { View } from "react-native";
+import { StackNavigation } from "types/stack";
 
 export const ChatList: React.FC<ChatListProps> = ({
     profileImage,
@@ -8,6 +10,7 @@ export const ChatList: React.FC<ChatListProps> = ({
     time,
     unreadCount,
 }) => {
+    const navigation = useNavigation<StackNavigation>();
     return (
         <>
             <View className="h-1" />
@@ -17,7 +20,12 @@ export const ChatList: React.FC<ChatListProps> = ({
                         unreadCount! > 0 ? "rgba(0, 153, 184, 0.05)" : "white",
                 }}
                 className="flex-row items-center p-4 rounded-lg"
-                onPress={() => console.log("Open chat")}
+                onPress={() =>
+                    navigation.navigate("health-seeker", {
+                        screen: "safe-area-view",
+                        params: { screen: "chat" },
+                    })
+                }
             >
                 {/* Profile Image */}
                 <Image

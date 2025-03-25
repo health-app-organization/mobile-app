@@ -74,30 +74,3 @@ export const CustomRadioSingleOption: React.FC<
         </TouchableOpacity>
     );
 };
-
-interface SelectionPickerProps {
-    Title: string;
-    onPress: () => void;
-}
-export const SelectionPicker: React.FC<SelectionPickerProps> = ({
-    Title,
-    onPress,
-}) => {
-    return (
-        <>
-            <TouchableOpacity
-                onPress={() => onPress()}
-                className="justify-between px-3 flex-row items-center"
-                style={{
-                    borderColor: primarycolor,
-                    borderWidth: 1,
-                    height: 50,
-                    borderRadius: 10,
-                }}
-            >
-                <Text style={[Textstyles.text_xmedium]}>{Title}</Text>
-                <ArrowDownIcon />
-            </TouchableOpacity>
-        </>
-    );
-};

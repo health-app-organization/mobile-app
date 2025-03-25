@@ -23,12 +23,12 @@ const Dashboard = () => {
       <View className="h-full w-full flex">
         <View className="flex-1 items-center pt-3 pb-1">
           <ScrollView showsVerticalScrollIndicator={false}>
-            <DashboardMenu />
-            <View className="h-6" />
-            <Appointment />
+            <View className="gap-y-6">
+              <DashboardMenu />
+              <Appointment />
+            </View>
           </ScrollView>
         </View>
-
       </View>
     </>
   );
@@ -40,36 +40,50 @@ const DashboardMenu = () => {
   return (
     <>
       <View className="px-2 mx-auto">
-        <ScrollView className="py-2" horizontal showsHorizontalScrollIndicator={false}>
-          <MenuButton
-            onPress={() => navigation.navigate("health-seeker", { screen: "healthcare-provider" })}
-            icon={<SethIcon width={40} height={40} />}
-            text={
-              <Text style={[Textstyles.text_xsmall]} className="text-center">
-                Healthcare Provider
-              </Text>
-            }
-          />
-          <View className="w-4" />
-          <MenuButton
-            onPress={() => navigation.navigate("medicine")}
-            icon={<AmbulanceIcon width={40} height={40} />}
-            text={
-              <Text style={[Textstyles.text_xsmall]} className="text-center">
-                Medicine
-              </Text>
-            }
-          />
-          <View className="w-4" />
-          <MenuButton
-            onPress={() => navigation.navigate("laborarories")}
-            icon={<LabIcon width={40} height={40} />}
-            text={
-              <Text style={[Textstyles.text_xsmall]} className="text-center">
-                Lab and Radiology
-              </Text>
-            }
-          />
+        <ScrollView
+          className="py-2"
+          horizontal
+          showsHorizontalScrollIndicator={false}
+        >
+          <View className="gap-x-4 flex-row">
+            <MenuButton
+              onPress={() =>
+                navigation.navigate("health-seeker", {
+                  screen: "safe-area-view",
+                  params: { screen: "healthcare-provider" },
+                })
+              }
+              icon={<SethIcon width={40} height={40} />}
+              text={
+                <Text style={[Textstyles.text_xsmall]} className="text-center">
+                  Healthcare Provider
+                </Text>
+              }
+            />
+            <MenuButton
+              onPress={() =>
+                navigation.navigate("health-seeker", {
+                  screen: "safe-area-view",
+                  params: { screen: "medicine" },
+                })
+              }
+              icon={<AmbulanceIcon width={40} height={40} />}
+              text={
+                <Text style={[Textstyles.text_xsmall]} className="text-center">
+                  Medicine
+                </Text>
+              }
+            />
+            <MenuButton
+              onPress={() => navigation.navigate("health-seeker", { screen: "safe-area-view", params: { screen: "laboratories" } })}
+              icon={<LabIcon width={40} height={40} />}
+              text={
+                <Text style={[Textstyles.text_xsmall]} className="text-center">
+                  Lab and Radiology
+                </Text>
+              }
+            />
+          </View>
         </ScrollView>
       </View>
     </>

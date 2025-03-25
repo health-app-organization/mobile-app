@@ -1,7 +1,9 @@
 import { linkcolor, primarycolor } from "constants/color";
 import { Textstyles } from "constants/fontsize";
+import dayjs, { Dayjs } from "dayjs";
 import { useEffect, useState } from "react";
-import { ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { ScrollView, Text, TouchableOpacity, TouchableOpacityProps, View } from "react-native";
+import DateTimePicker from "react-native-ui-datepicker";
 
 export const DateComponent = () => {
     const [getDayArray, setDayArray] = useState<Date[]>([]);
@@ -26,7 +28,7 @@ export const DateComponent = () => {
     return (
         <View className="px-3">
             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-                <View className="w-full flex-row gap-3 items-center justify-evenly">
+                <View className="flex-row gap-x-3">
                     {getDayArray.map((date, index) => {
                         const isSelectedDate =
                             selectedDate &&
@@ -71,3 +73,70 @@ export const DateComponent = () => {
         </View>
     );
 };
+
+export function DatePicker({
+    setBirthDate,
+    birthDate,
+    closeModal,
+    className,
+}: {
+    setBirthDate: (value: string) => void;
+    birthDate: string;
+    closeModal: (value: boolean) => void;
+    className?: string;
+}) {
+    const [date, setDate] = useState<Dayjs>(dayjs());
+
+    // Update and close modal after date selection
+    const setNewDate = (selectedDate: string) => {
+        setBirthDate(dayjs(selectedDate).format("YYYY-MM-DD"));
+        closeModal(false); // Close the modal
+    };
+
+    return (
+        <View className={className}>
+            <DateTimePicker
+                mode="single"
+                date={date}
+                selectedItemColor={primarycolor}
+                onChange={(params) => {
+                    setDate(dayjs(params.date)); // Update the date state
+                    if (params.date) {
+                        setNewDate(params.date.toString()); // Update the date and close the modal
+                    }
+                }}
+            />
+        </View>
+    );
+};
+
+export function HourPicker({ selectedHour, ...props }: { selectedHour?: number } & TouchableOpacityProps) {
+    return (
+        <View className="flex-wrap flex-row justify-between">
+            {[...Array(16)].map((_, index) => (
+                <View
+                    key={index}
+                    style={{
+                        width: "22%", // Adjust width to fit 4 items per row with spacing
+                        marginBottom: 10, // Add spacing between rows
+                    }}
+                    className="items-center"
+                >
+                    <TouchableOpacity
+                        {...props}
+                        style={{
+                            borderWidth: selectedHour === (index + 1) ? 0 : 1,
+                            borderColor: primarycolor,
+                            paddingVertical: 4,
+                            paddingHorizontal: 12,
+                            borderRadius: 30,
+                            backgroundColor: selectedHour === (index + 1) ? primarycolor : "transparent",
+                        }}
+                    >
+                        <Text>9:00am</Text>
+                    </TouchableOpacity>
+                </View>
+            ))}
+        </View>
+    )
+}

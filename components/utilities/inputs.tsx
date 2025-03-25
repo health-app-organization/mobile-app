@@ -2,11 +2,11 @@ import { primarycolor } from "constants/color";
 import { customstyle } from "constants/customstyle";
 import { Textstyles } from "constants/fontsize";
 import { useState } from "react";
-import { Text, TouchableOpacity } from "react-native";
+import { Text, TextInputProps, TouchableOpacity } from "react-native";
 import { TextInput, View } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 
-export const CustomTextInput: React.FC<CustomInputProps> = ({
+export const CustomTextInput: React.FC<CustomInputProps & TextInputProps> = ({
     autoCapitalize,
     placeholder,
     placeholderTextColor,
@@ -14,23 +14,27 @@ export const CustomTextInput: React.FC<CustomInputProps> = ({
     rightIcon,
     onChange,
     secureTextEntry,
+    borderColor,
+    borderWidth,
     disabled,
     value,
     className,
+    label,
+    ...props
 }) => {
     const [showicon, seticon] = useState(true); // Initially, show the icon
     const [inputValue, setInputValue] = useState<string | undefined>(value); // Track the input value
     const [isFocused, setIsFocused] = useState(false); // Track focus state
 
     return (
-        <>
-            <View className={`w-full relative flex justify-center p-1 ${className}`}>
+        <View>
+            {label && <Text className="font-normal text-base">{label}</Text>}
+            <View className={`w-full relative flex justify-center ${className}`}>
                 {/* Show icon only when input is empty and not focused */}
-                {showicon && inputValue === "" && (
-                    <View className="absolute z-10 left-4">{leftIcon}</View>
-                )}
+                {showicon && <View className="absolute z-10 left-4">{leftIcon}</View>}
                 <TextInput
-                    onFocus={() => seticon(false)} // Hide icon when focused
+                    {...props}
+                    // onFocus={() => seticon(false)} // Hide icon when focused
                     onBlur={() => inputValue === "" && seticon(true)} // Show icon on blur if input is empty
                     placeholder={placeholder}
                     placeholderTextColor={placeholderTextColor}
@@ -38,8 +42,9 @@ export const CustomTextInput: React.FC<CustomInputProps> = ({
                     style={[
                         customstyle.textinputstyle,
                         {
-                            borderColor: isFocused ? "#0099b8" : "#ccc", // Change border color on focus
-                            borderWidth: 1, // Add border width
+                            paddingLeft: leftIcon ? 45 : 15,
+                            borderColor: borderColor ?? isFocused ? "#0099b8" : "#ccc", // Change border color on focus
+                            borderWidth: borderWidth ?? 1, // Add border width
                         },
                     ]}
                     onChangeText={(text) => {
@@ -56,7 +61,7 @@ export const CustomTextInput: React.FC<CustomInputProps> = ({
                     <View className="absolute right-2 z-50">{rightIcon}</View>
                 )}
             </View>
-        </>
+        </View>
     );
 };
 
@@ -225,6 +230,7 @@ export const CustomInputPassword: React.FC<CustomInputProps> = ({
     disabled,
     value,
     leftIcon,
+    label,
     className,
 }) => {
     const [inputValue, setInputValue] = useState(value); // Track the input value
@@ -238,10 +244,12 @@ export const CustomInputPassword: React.FC<CustomInputProps> = ({
     return (
         <View className={`w-full flex flex-col ${className}`}>
             {/* Input Header */}
-            <Text className="mb-2" style={[Textstyles.text_cmedium]}>
-                {headerText}
-            </Text>
-
+            {headerText && (
+                <Text className="mb-2" style={[Textstyles.text_cmedium]}>
+                    {headerText}
+                </Text>
+            )}
+            {label && <Text className="font-normal text-base">{label}</Text>}
             {/* Input Field */}
             <View className="relative flex justify-center">
                 {/* Show left FontAwesome icon if iconName is provided */}

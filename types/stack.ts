@@ -8,6 +8,7 @@ export type ScreenNames = [
     "health-seeker",
     "health-provider",
     "hospitals",
+    "appointment-details",
 ];
 export type RootStackParamList = Record<
     ScreenNames[number],

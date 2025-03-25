@@ -17,7 +17,12 @@ import { useNavigation } from "@react-navigation/native";
 import { height, width } from "../../constants/mobileDimensions";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { StackNavigation } from "../../types/stack";
-import { CustomButton, CustomButton2, CustomButtonSmall, CustomButtonSmall2 } from "components/utilities/buttons";
+import {
+  CustomButton,
+  CustomButton2,
+  CustomButtonSmall,
+  CustomButtonSmall2,
+} from "components/utilities/buttons";
 
 const Identity = () => {
   const navigation = useNavigation<StackNavigation>();
@@ -38,20 +43,28 @@ const Identity = () => {
     ChangeRole();
   }, [Role]);
   // Functions to handle navig// Function to handle the 'Create account' navigation
-  const handletonewacc = () => {
+  const handletonewacc = async () => {
     if (selectedIdentity === "health-provider") {
-      // navigation.navigate("healthptype"); // Navigate to healthtype for health provider
+      setShowConfirmation(true);
+      await AsyncStorage.setItem("auth", "signup")
     } else if (selectedIdentity === "health-seeker") {
-      navigation.navigate("health-seeker", { screen: "signup" });
+      navigation.navigate("health-seeker", {
+        screen: "safe-area-view",
+        params: { screen: "signup" },
+      });
     }
   };
 
   // Function to handle the 'Login' navigation
-  const handletologin = () => {
+  const handletologin = async () => {
     if (selectedIdentity === "health-provider") {
-      // navigation.navigate("doctor-login"); // Navigate to healthtype for health provider
+      setShowConfirmation(true);
+      await AsyncStorage.setItem("auth", "login")
     } else {
-      navigation.navigate("health-seeker", { screen: "login" });
+      navigation.navigate("health-seeker", {
+        screen: "safe-area-view",
+        params: { screen: "login" },
+      });
     }
   };
 
@@ -62,9 +75,10 @@ const Identity = () => {
   // Function to proceed after confirmation
   const handleConfirmationContinue = () => {
     setShowConfirmation(false);
-    if (selectedIdentity === "health-provider") {
-      // navigation.navigate("healthptype"); // Adjust the route for health provider login/signup
-    }
+    navigation.navigate("health-provider", {
+      screen: "safe-area-view",
+      params: { screen: "health-provider-list" },
+    });
   };
 
   // Function to close confirmation modal

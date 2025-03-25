@@ -34,7 +34,7 @@ export const Login = ({ navigation }: { navigation: StackNavigation }) => {
     };
 
     const handleForgotPassword = async () => {
-        navigation.navigate("health-seeker", { screen: "request-otp" });
+        navigation.navigate("health-seeker", { screen: "safe-area-view", params: { screen: "request-otp" } });
     };
 
     return (

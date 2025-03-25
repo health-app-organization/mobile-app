@@ -60,3 +60,62 @@ export const notificationsMockData: {
             time: "25min ago",
         },
     ];
+
+export const healthProviderList = [
+    {
+        name: "Dr Micheal Brains",
+        title: "Gynecologist",
+        rating: 5,
+        likes: 100,
+        image: "image_url_1",
+    },
+    {
+        name: "Dr Adeola Segusi",
+        title: "Neologist",
+        rating: 2,
+        likes: 80,
+        image: "image_url_2",
+    },
+    {
+        name: "Dr Babalola Tope",
+        title: "General Medical Practioner",
+        rating: 3,
+        likes: 120,
+        image: "image_url_3",
+    },
+    {
+        name: "Dr Madame Koko",
+        title: "Optomist",
+        rating: 4,
+        likes: 90,
+        image: "image_url_4",
+    },
+    {
+        name: "Dr Micheal Brains",
+        title: "Gynecologist",
+        rating: 5,
+        likes: 100,
+        image: "image_url_1",
+    },
+    {
+        name: "Dr Adeola Segusi",
+        title: "Neologist",
+        rating: 2,
+        likes: 80,
+        image: "image_url_2",
+    },
+    {
+        name: "Dr Babalola Tope",
+        title: "General Medical Practioner",
+        rating: 3,
+        likes: 120,
+        image: "image_url_3",
+    },
+    {
+        name: "Dr Madame Koko",
+        title: "Optomist",
+        rating: 4,
+        likes: 90,
+        image: "image_url_4",
+    },
+];

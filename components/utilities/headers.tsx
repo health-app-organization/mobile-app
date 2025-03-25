@@ -321,7 +321,7 @@ export const Header9: React.FC<CustomHeaderProps> = ({
                 paddingHorizontal: 20,
                 paddingTop: 20,
                 paddingBottom: 20,
-                backgroundColor: "#00A8CC",
+                backgroundColor: primarycolor,
             }}
         >
             {/* Back Button */}
