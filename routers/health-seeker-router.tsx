@@ -49,7 +49,6 @@ import OrderTracking from "screens/health-seeker-flow/profile/ordertracking";
 import Favorites from "screens/health-seeker-flow/profile/favorites";
 import ManageAddress from "screens/health-seeker-flow/profile/manage-address";
 import MedicineReminder from "screens/health-seeker-flow/profile/medicine-reminder";
-import MedicineReminderAdd from "screens/health-seeker-flow/profile/medicine-reminder-add";
 import Settings from "screens/health-seeker-flow/profile/settings";
 import CustomerSupport from "screens/health-seeker-flow/profile/customer-support";
 

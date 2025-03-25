@@ -8,6 +8,7 @@ import Identity from "../screens/onboarding/identity";
 import AuthProvider from "../providers/auth-provider";
 import { RootStackParamList } from "../types/stack";
 import HealthSeekerRouter from "./health-seeker-router";
+import HealthProviderRouter from "./health-provider-router";
 
 const StackWrapper = () => {
   const Stack = createStackNavigator<RootStackParamList>();
@@ -37,6 +38,10 @@ const StackWrapper = () => {
         <Stack.Screen
           name="health-seeker"
           component={HealthSeekerRouter}
+        />
+        <Stack.Screen
+          name="health-provider"
+          component={HealthProviderRouter}
         />
       </Stack.Navigator>
     </AuthProvider>

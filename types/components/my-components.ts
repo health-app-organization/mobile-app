@@ -34,6 +34,7 @@ interface CustomInputProps {
     errorMessage?: string;
     headerText?: string;
     className?: string;
+    label?: string;
 };
 
 interface CustomSelectProps {
