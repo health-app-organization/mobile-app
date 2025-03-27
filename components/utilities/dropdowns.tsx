@@ -11,6 +11,8 @@ export const CustomDropdownWithHeader: React.FC<CustomDropdownProps> = ({
     disabled,
     value,
     leftIcon,
+    label,
+    required,
 }) => {
     const [selectedValue, setSelectedValue] = useState(value);
     const [showOptions, setShowOptions] = useState(false); // State to show/hide options
@@ -25,6 +27,12 @@ export const CustomDropdownWithHeader: React.FC<CustomDropdownProps> = ({
                 >
                     {headerText}
                 </Text>
+            )}
+            {label && (
+                <View className="flex-row">
+                    <Text className="font-normal text-base">{label}</Text>
+                    {required && <Text style={{ color: "#A30202" }}>*</Text>}
+                </View>
             )}
 
             {/* Dropdown Field */}

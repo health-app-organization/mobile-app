@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
-import useAuthStore from "store/auth-store";
 import { StackNavigation } from "types/stack";
 import { Feather, FontAwesome } from "@expo/vector-icons";
 import { Textstyles } from "constants/fontsize";
@@ -18,9 +17,6 @@ export const Login = ({ navigation }: { navigation: StackNavigation }) => {
     const handleToSignup = () => {
         navigation.navigate("health-seeker", { screen: "signup" });
     };
-
-    // const login = useAuthStore((state) => state.login);
-    const { login } = useAuthStore();
     const handletodashboard = async () => {
         const data = { email, password };
         // const response = await loginfunction(data, setIsLoading, setErrorMessage);

@@ -23,11 +23,6 @@ import { height } from "../../../constants/mobileDimensions";
 import { RadioButton } from "react-native-paper";
 import { customstyle } from "../../../constants/customstyle";
 import DateModal from "../../../components/modals/date-modal";
-import {
-  RegisterDataOne,
-  RegisterDataThree,
-  RegisterDataTwo,
-} from "../../patients/fetchdata/fetchdata";
 import SuccessModal from "../../../components/modals/success-modal";
 import { handleOtpInput } from "../../../utilities/utility";
 import { StackNavigation } from "../../../types/stack";
@@ -87,19 +82,19 @@ export default function SignUp() {
         password,
       };
       setIsLoading(true);
-      const response = await RegisterDataThree(
-        data,
-        setIsLoading,
-        setErrorMessage,
-        setCurrentStep
-      );
-      if (response === "ok") {
-        setShowLoginModal(true);
-        translateYsuccess.value = withSpring(0, {
-          damping: 10,
-          stiffness: 100,
-        });
-      }
+      // const response = await RegisterDataThree(
+      //   data,
+      //   setIsLoading,
+      //   setErrorMessage,
+      //   setCurrentStep
+      // );
+      // if (response === "ok") {
+      setShowLoginModal(true);
+      //   translateYsuccess.value = withSpring(0, {
+      //     damping: 10,
+      //     stiffness: 100,
+      //   });
+      // }
 
       setIsLoading(false);
     } else if (currentStep === 0) {
@@ -107,16 +102,16 @@ export default function SignUp() {
         setErrorMessage("Invalid Email Address");
         return;
       }
-      RegisterDataOne(email, setIsLoading, setErrorMessage, setCurrentStep);
+      // RegisterDataOne(email, setIsLoading, setErrorMessage, setCurrentStep);
     } else {
       const joinOtp = otp.join("");
-      RegisterDataTwo(
-        email,
-        joinOtp,
-        setIsLoading,
-        setErrorMessage,
-        setCurrentStep
-      );
+      // RegisterDataTwo(
+      //   email,
+      //   joinOtp,
+      //   setIsLoading,
+      //   setErrorMessage,
+      //   setCurrentStep
+      // );
     }
   };
 

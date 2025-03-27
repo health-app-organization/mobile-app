@@ -20,6 +20,7 @@ import HealthProvider from "screens/health-provider-flow/auth/health-provider";
 import Verification from "screens/health-provider-flow/auth/verification";
 import ForgotPassword from "screens/health-provider-flow/auth/forgot-password";
 import SetNewPassword from "screens/health-provider-flow/auth/set-new-password";
+import CompleteRegistration from "screens/health-provider-flow/dashboard/complete-registration";
 
 const TabFlowRouter = () => {
     const Tab = createBottomTabNavigator();
@@ -29,11 +30,11 @@ const TabFlowRouter = () => {
         <SafeAreaView style={{ flex: 1, backgroundColor: primarycolortwo }}>
             <StatusBar backgroundColor={primarycolor} style="light" />
             <Tab.Navigator
-                initialRouteName="dashboard"
+                initialRouteName="home"
                 screenOptions={({ route }) => ({
                     tabBarIcon: ({ focused, color, size }) => {
                         switch (route.name) {
-                            case "dashboard":
+                            case "home":
                                 return (
                                     <View
                                         style={{
@@ -98,7 +99,7 @@ const TabFlowRouter = () => {
             >
                 <Tab.Screen
                     options={{ animation: "fade", header: () => <DashboardHeader /> }}
-                    name="dashboard"
+                    name="home"
                     component={Dashboard}
                 />
                 <Tab.Screen
@@ -240,6 +241,21 @@ const HealthProviderRouterSafeAreaView = () => {
                     }}
                     name="set-new-password"
                     component={SetNewPassword}
+                />
+                <Stack.Screen
+                    // options={{
+                    //     animation: "fade",
+                    //     header: ({ navigation }) => (
+                    //         <TouchableOpacity
+                    //             onPress={() => navigation.goBack()}
+                    //             className="pt-2 px-4"
+                    //         >
+                    //             <Ionicons name="chevron-back" size={30} color="black" />
+                    //         </TouchableOpacity>
+                    //     ),
+                    // }}
+                    name="complete-registration"
+                    component={CompleteRegistration}
                 />
             </Stack.Navigator>
         </SafeAreaView>

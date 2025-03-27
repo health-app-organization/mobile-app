@@ -1,5 +1,4 @@
 import React, { useRef, useState } from "react";
-import { StatusBar } from "expo-status-bar";
 import {
   View,
   Text,
@@ -26,7 +25,6 @@ import {
   UserIcon,
   WalletIcon,
 } from "../../assets/iconsvg/Svgicon";
-import useAuthStore from "../../store/auth-store";
 import { StackNavigation } from "types/stack";
 import { SelectMenuProps } from "types/general";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -97,10 +95,8 @@ const data = [
 ];
 
 const Profile = () => {
-  const { getUser } = useAuthStore();
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const slideAnim = useRef(new Animated.Value(300)).current; // Starting position off-screen
-  const user = getUser();
 
   const handleShowModal = () => {
     setModalVisible(true);
