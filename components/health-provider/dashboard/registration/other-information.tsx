@@ -1,6 +1,6 @@
 import { Textstyles } from "constants/fontsize";
 import { useState } from "react";
-import { Image, Text, TouchableOpacity, View } from "react-native";
+import { Image, Pressable, Text, TouchableOpacity, View } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { formatDate } from "utilities/utility";
 import { DateType } from "react-native-ui-datepicker";
@@ -97,7 +97,9 @@ export default function OtherInformation({
                         <Text className="font-normal text-2xl">₦</Text>
                     }
                     rightIcon={
-                        <Text className="text-primary font-normal text-base">/session</Text>
+                        <Pressable className="h-full" onPress={() => setCurrentPage(5)}>
+                            <Text className="text-primary font-normal text-base">/session</Text>
+                        </Pressable>
                     }
                     required
                     borderColor={primarycolor}
@@ -110,7 +112,9 @@ export default function OtherInformation({
                         <Text className="font-normal text-2xl">₦</Text>
                     }
                     rightIcon={
-                        <Text className="text-primary font-normal text-base">/session</Text>
+                        <Pressable className="h-full" onPress={() => setCurrentPage(5)}>
+                            <Text className="text-primary font-normal text-base">/session</Text>
+                        </Pressable>
                     }
                     required
                     borderColor={primarycolor}
@@ -123,7 +127,9 @@ export default function OtherInformation({
                         <Text className="font-normal text-2xl">₦</Text>
                     }
                     rightIcon={
-                        <Text className="text-primary font-normal text-base">/session</Text>
+                        <Pressable className="h-full" onPress={() => setCurrentPage(5)}>
+                            <Text className="text-primary font-normal text-base">/session</Text>
+                        </Pressable>
                     }
                     required
                     borderColor={primarycolor}

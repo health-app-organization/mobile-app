@@ -1,6 +1,6 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
-import { CalenderIcon, HomeIcon, MessageIcon, UserIcon } from "assets/iconsvg/Svgicon";
+import { AnalyticsUpIcon, CalendarIcon, CalenderIcon, HomeIcon, MessageIcon, UserIcon } from "assets/iconsvg/Svgicon";
 import { linkcolor, primarycolor, primarycolortwo } from "constants/color";
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
@@ -24,7 +24,6 @@ import CompleteRegistration from "screens/health-provider-flow/dashboard/complet
 
 const TabFlowRouter = () => {
     const Tab = createBottomTabNavigator();
-    const [unreadMessages, setUnreadMessages] = useState(5);
 
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: primarycolortwo }}>
@@ -55,7 +54,7 @@ const TabFlowRouter = () => {
                                             padding: 10,
                                         }}
                                     >
-                                        <MessageIcon width={size} height={size} color={color} />
+                                        <CalendarIcon fill={color} className={`size-[${size}]`} />
                                     </View>
                                 );
                             case "earnings":
@@ -67,7 +66,7 @@ const TabFlowRouter = () => {
                                             padding: 10,
                                         }}
                                     >
-                                        <CalenderIcon width={size} height={size} color={color} />
+                                        <AnalyticsUpIcon fill={color} className={`size-[${size}]`} />
                                     </View>
                                 );
                             case "account":
@@ -105,15 +104,7 @@ const TabFlowRouter = () => {
                 <Tab.Screen
                     options={{
                         animation: "fade",
-                        tabBarBadge: unreadMessages > 0 ? unreadMessages : undefined,
-                        tabBarBadgeStyle: {
-                            backgroundColor: primarycolor,
-                            fontSize: 12,
-                            fontWeight: 600,
-                            width: 18,
-                            height: 18,
-                        },
-                        header: () => <HeaderTitle title="Chats" />,
+                        header: () => <HeaderTitle title="My Appointment" />,
                     }}
                     name="appointments"
                     component={Appointments}

@@ -4,7 +4,7 @@ import { useLayoutEffect, useState } from "react";
 import { Text, View } from "react-native";
 
 export default function Dashboard({ navigation }: { navigation: any }) {
-    const [percentageComplete, setPercentageComplete] = useState(50);
+    const [percentageComplete, setPercentageComplete] = useState(100);
     useLayoutEffect(() => {
         navigation.setOptions({
             headerShown: percentageComplete === 100,

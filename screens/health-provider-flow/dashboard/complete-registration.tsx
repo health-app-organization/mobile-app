@@ -14,6 +14,7 @@ import DateTimePicker, { DateType } from "react-native-ui-datepicker";
 import { formatDate } from "utilities/utility";
 import Availability from "components/health-provider/dashboard/registration/availability";
 import Credentials from "components/health-provider/dashboard/registration/credentials";
+import SessionTiming from "components/health-provider/dashboard/registration/session-timing";
 
 export default function CompleteRegistration({
     navigation,
@@ -141,6 +142,9 @@ export default function CompleteRegistration({
                         )}
                         {currentPage === 4 && (
                             <Availability />
+                        )}
+                        {currentPage === 5 && (
+                            <SessionTiming />
                         )}
                         {currentPage === 6 && (
                             <Credentials />

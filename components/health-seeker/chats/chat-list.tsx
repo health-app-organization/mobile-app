@@ -23,7 +23,7 @@ export const ChatList: React.FC<ChatListProps> = ({
                 onPress={() =>
                     navigation.navigate("health-seeker", {
                         screen: "safe-area-view",
-                        params: { screen: "chat" },
+                        params: { screen: "chat", name: "Damilare" },
                     })
                 }
             >
