@@ -35,6 +35,7 @@ interface CustomInputProps {
     headerText?: string;
     className?: string;
     label?: string;
+    required?: boolean;
 };
 
 interface CustomSelectProps {
@@ -76,6 +77,7 @@ interface CustomHeaderProps {
     profileCompletion?: string;
     //
     marginLeft?: number;
+    onBackPress?: () => void;
 }
 
 interface ProviderCardProps {
@@ -165,6 +167,8 @@ interface CustomDropdownProps {
     disabled?: boolean;
     value: string | undefined;
     leftIcon?: React.ReactNode;
+    label?: string;
+    required?: boolean;
 }
 
 interface FloatingActionButtonProps {

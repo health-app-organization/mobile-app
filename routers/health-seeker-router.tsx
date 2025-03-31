@@ -38,7 +38,6 @@ import AppointmentDetails from "screens/health-seeker-flow/dashboard/appointment
 import BookAppointment from "screens/health-seeker-flow/dashboard/appointment/book-appointment";
 import Payment from "screens/health-seeker-flow/dashboard/appointment/payment";
 import Medicine from "screens/health-seeker-flow/dashboard/medicine";
-import Laboratories from "screens/patients/dashboard/LAB/laboratories";
 import Chat from "screens/health-seeker-flow/chats/chat";
 import { Textstyles } from "constants/fontsize";
 import Personal from "screens/health-seeker-flow/profile/personal";
@@ -349,21 +348,21 @@ const HealthSeekerRouterSafeAreaView = () => {
                     name="medicine"
                     component={Medicine}
                 />
-                <Stack.Screen
+                {/* <Stack.Screen
                     options={{
                         animation: "fade",
                         header: () => <HeaderWithTitleAndBackButton title="Laboratories" />,
                     }}
                     name="laboratories"
                     component={Laboratories}
-                />
+                /> */}
                 <Stack.Screen
                     options={{
                         animation: "fade",
-                        header: () => <HeaderWithTitleAndBackButton title="Semi" />,
+                        header: ({ route }) => <HeaderWithTitleAndBackButton title={route.name} />,
                     }}
                     name="chat"
-                    initialParams={{ name: "Semi" }}
+                    // initialParams={{ name: "Semi" }}
                     component={Chat}
                 />
                 <Stack.Screen

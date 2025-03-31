@@ -20,6 +20,7 @@ export const CustomTextInput: React.FC<CustomInputProps & TextInputProps> = ({
     value,
     className,
     label,
+    required,
     ...props
 }) => {
     const [showicon, seticon] = useState(true); // Initially, show the icon
@@ -28,7 +29,12 @@ export const CustomTextInput: React.FC<CustomInputProps & TextInputProps> = ({
 
     return (
         <View>
-            {label && <Text className="font-normal text-base">{label}</Text>}
+            {label && (
+                <View className="flex-row">
+                    <Text className="font-normal text-base">{label}</Text>
+                    {required && <Text style={{ color: "#A30202" }}>*</Text>}
+                </View>
+            )}
             <View className={`w-full relative flex justify-center ${className}`}>
                 {/* Show icon only when input is empty and not focused */}
                 {showicon && <View className="absolute z-10 left-4">{leftIcon}</View>}

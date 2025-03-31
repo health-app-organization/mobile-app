@@ -1,6 +1,6 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
-import { CalenderIcon, HomeIcon, MessageIcon, UserIcon } from "assets/iconsvg/Svgicon";
+import { AnalyticsUpIcon, CalendarIcon, CalenderIcon, HomeIcon, MessageIcon, UserIcon } from "assets/iconsvg/Svgicon";
 import { linkcolor, primarycolor, primarycolortwo } from "constants/color";
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
@@ -20,20 +20,20 @@ import HealthProvider from "screens/health-provider-flow/auth/health-provider";
 import Verification from "screens/health-provider-flow/auth/verification";
 import ForgotPassword from "screens/health-provider-flow/auth/forgot-password";
 import SetNewPassword from "screens/health-provider-flow/auth/set-new-password";
+import CompleteRegistration from "screens/health-provider-flow/dashboard/complete-registration";
 
 const TabFlowRouter = () => {
     const Tab = createBottomTabNavigator();
-    const [unreadMessages, setUnreadMessages] = useState(5);
 
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: primarycolortwo }}>
             <StatusBar backgroundColor={primarycolor} style="light" />
             <Tab.Navigator
-                initialRouteName="dashboard"
+                initialRouteName="home"
                 screenOptions={({ route }) => ({
                     tabBarIcon: ({ focused, color, size }) => {
                         switch (route.name) {
-                            case "dashboard":
+                            case "home":
                                 return (
                                     <View
                                         style={{
@@ -54,7 +54,7 @@ const TabFlowRouter = () => {
                                             padding: 10,
                                         }}
                                     >
-                                        <MessageIcon width={size} height={size} color={color} />
+                                        <CalendarIcon fill={color} className={`size-[${size}]`} />
                                     </View>
                                 );
                             case "earnings":
@@ -66,7 +66,7 @@ const TabFlowRouter = () => {
                                             padding: 10,
                                         }}
                                     >
-                                        <CalenderIcon width={size} height={size} color={color} />
+                                        <AnalyticsUpIcon fill={color} className={`size-[${size}]`} />
                                     </View>
                                 );
                             case "account":
@@ -98,21 +98,13 @@ const TabFlowRouter = () => {
             >
                 <Tab.Screen
                     options={{ animation: "fade", header: () => <DashboardHeader /> }}
-                    name="dashboard"
+                    name="home"
                     component={Dashboard}
                 />
                 <Tab.Screen
                     options={{
                         animation: "fade",
-                        tabBarBadge: unreadMessages > 0 ? unreadMessages : undefined,
-                        tabBarBadgeStyle: {
-                            backgroundColor: primarycolor,
-                            fontSize: 12,
-                            fontWeight: 600,
-                            width: 18,
-                            height: 18,
-                        },
-                        header: () => <HeaderTitle title="Chats" />,
+                        header: () => <HeaderTitle title="My Appointment" />,
                     }}
                     name="appointments"
                     component={Appointments}
@@ -240,6 +232,21 @@ const HealthProviderRouterSafeAreaView = () => {
                     }}
                     name="set-new-password"
                     component={SetNewPassword}
+                />
+                <Stack.Screen
+                    // options={{
+                    //     animation: "fade",
+                    //     header: ({ navigation }) => (
+                    //         <TouchableOpacity
+                    //             onPress={() => navigation.goBack()}
+                    //             className="pt-2 px-4"
+                    //         >
+                    //             <Ionicons name="chevron-back" size={30} color="black" />
+                    //         </TouchableOpacity>
+                    //     ),
+                    // }}
+                    name="complete-registration"
+                    component={CompleteRegistration}
                 />
             </Stack.Navigator>
         </SafeAreaView>

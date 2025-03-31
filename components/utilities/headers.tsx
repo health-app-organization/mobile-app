@@ -6,13 +6,14 @@ import { primarycolor } from "constants/color";
 
 export const HeaderWithTitleAndBackButton: React.FC<CustomHeaderProps> = ({
     title,
+    onBackPress,
 }) => {
     const navigation = useNavigation();
 
     return (
-        <View className="bg-[#0099b8]">
-            <View className="flex flex-row items-center p-4">
-                <TouchableOpacity onPress={() => navigation.goBack()}>
+        <View className="bg-primary">
+            <View className="flex flex-row items-center py-2 px-4">
+                <TouchableOpacity onPress={() => (onBackPress ? onBackPress() : navigation.goBack())}>
                     <Ionicons name="chevron-back" size={28} color="white" />
                 </TouchableOpacity>
                 <Text className="text-white text-2xl font-bold">{title}</Text>

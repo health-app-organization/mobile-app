@@ -1,29 +1,23 @@
 import React, { useState } from "react";
 import { Alert, FlatList, ScrollView, Text, View } from "react-native";
 import { primarycolor, whitecolor } from "../../../constants/color";
-import useAuthStore from "../../../store/auth-store";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { StatusBar } from "expo-status-bar";
 import axios from "axios";
 import { baseUrl } from "../../../api/end-point";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
-import { StackNavigation } from "../../../types/stack";
 import { FontAwesome } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native";
 import { Textstyles } from "constants/fontsize";
 import DateTimePicker, { DateType } from "react-native-ui-datepicker";
 import { formatDate } from "utilities/utility";
 import { UserFormData } from "types/general";
-import { Header9 } from "components/utilities/headers";
 import { CustomInputWithHeader } from "components/utilities/inputs";
 import { CustomDropdownWithHeader } from "components/utilities/dropdowns";
 import { CustomButton } from "components/utilities/buttons";
 
 const Personal = () => {
-  const { login, getUser } = useAuthStore();
-  const user = getUser();
-  const navigation = useNavigation<StackNavigation>();
+  const navigation = useNavigation<any>();
+  let user: any;
 
   const [formData, setFormData] = useState({
     firstName: user?.firstName || "",
@@ -298,7 +292,6 @@ const Personal = () => {
           response.status === 203
         ) {
           setErrorMessage("");
-          login(response.data, {});
           Alert.alert("Profile updated successfully");
           navigation.navigate("profile");
         }
