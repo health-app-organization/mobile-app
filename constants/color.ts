@@ -1,4 +1,5 @@
 export const primarycolor = "#0099b8";
+export const secondaryColor = "#16DBCC";
 export const linkcolor = "#00d5fd"
 export const primarycolortwo = "#F3F3F3"
 export const logocolor = "#011D66"

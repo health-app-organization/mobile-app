@@ -359,7 +359,7 @@ const HealthSeekerRouterSafeAreaView = () => {
                 <Stack.Screen
                     options={{
                         animation: "fade",
-                        header: ({ route }) => <HeaderWithTitleAndBackButton title={route.name} />,
+                        header: ({ route }) => <HeaderWithTitleAndBackButton title={"Patient"} />,
                     }}
                     name="chat"
                     // initialParams={{ name: "Semi" }}

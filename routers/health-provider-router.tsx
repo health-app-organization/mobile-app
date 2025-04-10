@@ -1,15 +1,19 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
-import { AnalyticsUpIcon, CalendarIcon, CalenderIcon, HomeIcon, MessageIcon, UserIcon } from "assets/iconsvg/Svgicon";
+import {
+    AnalyticsUpIcon,
+    CalendarIcon,
+    HomeIcon,
+    UserIcon,
+} from "assets/iconsvg/Svgicon";
 import { linkcolor, primarycolor, primarycolortwo } from "constants/color";
 import { StatusBar } from "expo-status-bar";
-import { useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import { Textstyles } from "constants/fontsize";
 import DashboardHeader from "components/health-seeker/dashboard-header";
-import HeaderTitle from "components/utilities/headers";
+import HeaderTitle, { HeaderWithTitleAndBackButton } from "components/utilities/headers";
 import Dashboard from "screens/health-provider-flow/dashboard";
 import Appointments from "screens/health-provider-flow/appointments";
 import Earnings from "screens/health-provider-flow/earnings";
@@ -21,6 +25,8 @@ import Verification from "screens/health-provider-flow/auth/verification";
 import ForgotPassword from "screens/health-provider-flow/auth/forgot-password";
 import SetNewPassword from "screens/health-provider-flow/auth/set-new-password";
 import CompleteRegistration from "screens/health-provider-flow/dashboard/complete-registration";
+import Chats from "screens/health-provider-flow/dashboard/chats";
+import Chat from "screens/health-provider-flow/dashboard/chat";
 
 const TabFlowRouter = () => {
     const Tab = createBottomTabNavigator();
@@ -66,7 +72,10 @@ const TabFlowRouter = () => {
                                             padding: 10,
                                         }}
                                     >
-                                        <AnalyticsUpIcon fill={color} className={`size-[${size}]`} />
+                                        <AnalyticsUpIcon
+                                            fill={color}
+                                            className={`size-[${size}]`}
+                                        />
                                     </View>
                                 );
                             case "account":
@@ -97,7 +106,10 @@ const TabFlowRouter = () => {
                 })}
             >
                 <Tab.Screen
-                    options={{ animation: "fade", header: () => <DashboardHeader /> }}
+                    options={{
+                        animation: "fade",
+                        header: () => <DashboardHeader />,
+                    }}
                     name="home"
                     component={Dashboard}
                 />
@@ -247,6 +259,25 @@ const HealthProviderRouterSafeAreaView = () => {
                     // }}
                     name="complete-registration"
                     component={CompleteRegistration}
+                />
+                <Stack.Screen
+                    options={{
+                        animation: "fade",
+                        header: () => (
+                            <HeaderWithTitleAndBackButton title="Chats" />
+                        ),
+                    }}
+                    name="chats"
+                    component={Chats}
+                />
+                <Stack.Screen
+                    options={{
+                        animation: "fade",
+                        header: ({ route }) => <HeaderWithTitleAndBackButton title={"Semilore"} />,
+                    }}
+                    name="chat"
+                    // initialParams={{ name: "Semi" }}
+                    component={Chat}
                 />
             </Stack.Navigator>
         </SafeAreaView>

@@ -16,11 +16,13 @@ export const CustomTextInput: React.FC<CustomInputProps & TextInputProps> = ({
     secureTextEntry,
     borderColor,
     borderWidth,
+    borderRadius,
     disabled,
     value,
     className,
     label,
     required,
+    paddingLeft,
     ...props
 }) => {
     const [showicon, seticon] = useState(true); // Initially, show the icon
@@ -48,9 +50,10 @@ export const CustomTextInput: React.FC<CustomInputProps & TextInputProps> = ({
                     style={[
                         customstyle.textinputstyle,
                         {
-                            paddingLeft: leftIcon ? 45 : 15,
+                            paddingLeft: leftIcon ? paddingLeft ?? 45 : 15,
                             borderColor: borderColor ?? isFocused ? "#0099b8" : "#ccc", // Change border color on focus
                             borderWidth: borderWidth ?? 1, // Add border width
+                            borderRadius: borderRadius ?? 10,
                         },
                     ]}
                     onChangeText={(text) => {

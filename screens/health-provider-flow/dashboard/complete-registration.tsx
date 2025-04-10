@@ -150,14 +150,16 @@ export default function CompleteRegistration({
                             <Credentials />
                         )}
                     </View>
-                    <CustomButton
-                        Textname={
-                            currentPage === 0 || currentPage === 3 || currentPage === 6
-                                ? "Continue"
-                                : "Save"
-                        }
-                        onPress={handleOnPress}
-                    />
+                    <View className="pb-4">
+                        <CustomButton
+                            Textname={
+                                currentPage === 0 || currentPage === 3 || currentPage === 6
+                                    ? "Continue"
+                                    : "Save"
+                            }
+                            onPress={handleOnPress}
+                        />
+                    </View>
                 </View>
             </ScrollView>
             <Modal
