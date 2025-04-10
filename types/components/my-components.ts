@@ -25,6 +25,7 @@ interface CustomInputProps {
     width?: string | number;
     borderColor?: string;
     borderWidth?: number;
+    borderRadius?: number;
     backgroundColor?: string;
     disabled?: boolean;
     placeholderTextColor?: string;
@@ -36,6 +37,7 @@ interface CustomInputProps {
     className?: string;
     label?: string;
     required?: boolean;
+    paddingLeft?: number;
 };
 
 interface CustomSelectProps {
@@ -119,6 +121,7 @@ interface ChatListProps {
     message: string;
     time: string;
     unreadCount?: number;
+    onPress?: () => void;
 }
 
 interface NotificationCardProps {
