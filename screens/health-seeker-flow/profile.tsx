@@ -117,7 +117,7 @@ const Profile = () => {
 
   return (
     <>
-      <View className=" h-[10vh] -mt-10 z-50">
+      <View className=" pt-3">
         <View className=" w-full flex justify-center   items-center">
           <View className="   flex justify-center items-center    ">
             {/* Profile Picture */}

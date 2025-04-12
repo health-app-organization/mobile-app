@@ -56,8 +56,9 @@ const TabFlowRouter = () => {
     const [unreadMessages, setUnreadMessages] = useState(5);
 
     return (
-        <SafeAreaView style={{ flex: 1, backgroundColor: primarycolortwo }}>
-            <StatusBar backgroundColor={primarycolor} style="light" />
+        <View style={{ flex: 1, backgroundColor: primarycolortwo}} className="w-full" >
+
+            <StatusBar style="dark" />
             <Tab.Navigator
                 initialRouteName="home"
                 screenOptions={({ route }) => ({
@@ -184,7 +185,7 @@ const TabFlowRouter = () => {
                     component={Profile}
                 />
             </Tab.Navigator>
-        </SafeAreaView>
+        </View>
     );
 };
 
@@ -192,7 +193,7 @@ const HealthSeekerRouterSafeAreaView = () => {
     const Stack = createStackNavigator();
 
     return (
-        <SafeAreaView style={{ flex: 1, backgroundColor: primarycolortwo }}>
+        <View style={{ flex: 1, backgroundColor: primarycolortwo }} >
             <StatusBar backgroundColor={primarycolor} style="light" />
             <Stack.Navigator initialRouteName="login">
                 <Stack.Screen
@@ -497,7 +498,7 @@ const HealthSeekerRouterSafeAreaView = () => {
                     component={CustomerSupport}
                 />
             </Stack.Navigator>
-        </SafeAreaView>
+        </View>
     );
 };
 

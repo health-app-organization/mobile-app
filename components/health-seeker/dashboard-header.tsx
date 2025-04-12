@@ -13,7 +13,7 @@ const DashboardHeader = () => {
     return (
         <View
             style={{ backgroundColor: primarycolor, borderBottomEndRadius: 16, borderBottomStartRadius: 16, paddingHorizontal: 12, paddingVertical: 20, }}
-            className="w-full"
+            className="w-full h-[30vh] pt-[40px]"
         >
             <View className="absolute -bottom-10 left-15 opacity-30">
                 <BackgroundIcon width={200} height={200} fill="#ffffff30" />

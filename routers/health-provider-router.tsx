@@ -32,8 +32,8 @@ const TabFlowRouter = () => {
     const Tab = createBottomTabNavigator();
 
     return (
-        <SafeAreaView style={{ flex: 1, backgroundColor: primarycolortwo }}>
-            <StatusBar backgroundColor={primarycolor} style="light" />
+        <View style={{ flex: 1, backgroundColor: primarycolortwo }}>
+            <StatusBar  style="dark" />
             <Tab.Navigator
                 initialRouteName="home"
                 screenOptions={({ route }) => ({
@@ -158,7 +158,7 @@ const TabFlowRouter = () => {
                     component={Account}
                 />
             </Tab.Navigator>
-        </SafeAreaView>
+        </View>
     );
 };
 
