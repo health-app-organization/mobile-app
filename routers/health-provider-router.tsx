@@ -1,5 +1,7 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
+import { useNavigation } from '@react-navigation/native';
+
 import {
     AnalyticsUpIcon,
     CalendarIcon,
@@ -16,7 +18,7 @@ import DashboardHeader from "components/health-seeker/dashboard-header";
 import HeaderTitle, { HeaderWithTitleAndBackButton } from "components/utilities/headers";
 import Dashboard from "screens/health-provider-flow/dashboard";
 import Appointments from "screens/health-provider-flow/appointments";
-import Earnings from "screens/health-provider-flow/earnings";
+import Earnings from "screens/health-provider-flow/Earning/earnings";
 import Account from "screens/health-provider-flow/Account";
 import Login from "screens/health-provider-flow/auth/login";
 import Signup from "screens/health-provider-flow/auth/sign-up";
@@ -27,6 +29,14 @@ import SetNewPassword from "screens/health-provider-flow/auth/set-new-password";
 import CompleteRegistration from "screens/health-provider-flow/dashboard/complete-registration";
 import Chats from "screens/health-provider-flow/dashboard/chats";
 import Chat from "screens/health-provider-flow/dashboard/chat";
+import Withdraw from "screens/health-provider-flow/Earning/Withdraw";
+import ProfileScreen from "screens/health-provider-flow/My Account/ProfileScreen";
+import UrgentCriteriaScreen from "screens/health-provider-flow/My Account/UrgentCriteriaScreen";
+import PayoutHistoryScreen from "screens/health-provider-flow/My Account/PayoutHistoryScreen";
+import BankingDetailsScreen from "screens/health-provider-flow/My Account/BankingDetailsScreen";
+import SettingsScreen from "screens/health-provider-flow/My Account/SettingsScreen";
+import SupportScreen from "screens/health-provider-flow/My Account/SupportScreen";
+import Pharmappointment from "screens/health-provider-flow/Pharmacists/Pharmappointment";
 
 const TabFlowRouter = () => {
     const Tab = createBottomTabNavigator();
@@ -286,6 +296,8 @@ const HealthProviderRouterSafeAreaView = () => {
 
 const HealthProviderRouter = () => {
     const Stack = createStackNavigator();
+    const navigation = useNavigation();
+
 
     return (
         <View className="h-full w-full flex-1 bg-primaryTwo">
@@ -299,6 +311,47 @@ const HealthProviderRouter = () => {
                     options={{ animation: "fade", headerShown: false }}
                     name="safe-area-view"
                     component={HealthProviderRouterSafeAreaView}
+                />
+                
+                <Stack.Screen
+                    name="Withdraw"
+                    component={Withdraw}
+                    options={{ animation: "fade", headerShown: false }}
+                />
+                 <Stack.Screen
+                    name="ProfileScreen"
+                    component={ProfileScreen}
+                    options={{ animation: "fade", headerShown: false }}
+                />
+                <Stack.Screen
+                    name="UrgentCriteria"
+                    component={UrgentCriteriaScreen}
+                    options={{ animation: "fade", headerShown: false }}
+                />
+                <Stack.Screen
+                    name="PayoutHistory"
+                    component={PayoutHistoryScreen}
+                    options={{ animation: "fade", headerShown: false }}
+                />
+                <Stack.Screen
+                    name="BankingDetails"
+                    component={BankingDetailsScreen}
+                    options={{ animation: "fade", headerShown: false }}
+                />
+                <Stack.Screen
+                    name="Settings"
+                    component={SettingsScreen}
+                    options={{ animation: "fade", headerShown: false }}
+                />
+                <Stack.Screen
+                    name="Support"
+                    component={SupportScreen}
+                    options={{ animation: "fade", headerShown: false }}
+                />
+                 <Stack.Screen
+                    name="PharmAppointment"
+                    component={Pharmappointment}
+                    options={{ animation: "fade", headerShown: false }}
                 />
             </Stack.Navigator>
         </View>

@@ -1,4 +1,5 @@
 import { G, Path, Svg } from "react-native-svg";
+import { IconProps } from "types/icon";
 
 export const Notificationicon = ({ width, height, fill }: IconProps) => (
     <>
@@ -1252,7 +1253,7 @@ export const ArrowUpIcon = () => (
     </>
 );
 
-export const CalendarIcon = ({ className, fill }: any) => {
+export const CalendarIcon = ({ className, fill }: IconProps) => {
     return (
         <Svg width="24" height="24" viewBox="0 0 24 24" fill="none" className={className}>
             <Path d="M11 13H16M8 13H8.00898M13 17H8M16 17H15.991" stroke={fill ?? "black"} stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
@@ -1262,7 +1263,7 @@ export const CalendarIcon = ({ className, fill }: any) => {
         </Svg>
     )
 }
-export const AnalyticsUpIcon = ({ className, fill }: any) => {
+export const AnalyticsUpIcon = ({ className, fill }: IconProps) => {
     return (
         <Svg width="24" height="24" viewBox="0 0 24 24" fill="none" className={className}>
             <Path d="M7 18V16M12 18V15M17 18V13M2.5 12C2.5 7.52166 2.5 5.28249 3.89124 3.89124C5.28249 2.5 7.52166 2.5 12 2.5C16.4783 2.5 18.7175 2.5 20.1088 3.89124C21.5 5.28249 21.5 7.52166 21.5 12C21.5 16.4783 21.5 18.7175 20.1088 20.1088C18.7175 21.5 16.4783 21.5 12 21.5C7.52166 21.5 5.28249 21.5 3.89124 20.1088C2.5 18.7175 2.5 16.4783 2.5 12Z" stroke={fill ?? "black"} stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
@@ -1271,7 +1272,7 @@ export const AnalyticsUpIcon = ({ className, fill }: any) => {
     )
 }
 
-export const EmojiIcon = ({ className, fill }: any) => {
+export const EmojiIcon = ({ className, fill }: IconProps) => {
     return (
         <Svg width="24" height="24" viewBox="0 0 24 24" fill="none" className={className}>
             <Path d="M11.9926 15.6627C10.425 15.6627 8.76077 15.4398 7.24517 15.0535C6.96285 14.6226 6.75483 14.162 6.65825 13.6939C8.25557 14.1471 10.1129 14.4591 12 14.4591C13.8871 14.4591 15.7444 14.1471 17.3492 13.6939C17.2377 14.162 17.0371 14.6226 16.7623 15.0535C15.2467 15.4324 13.5825 15.6627 12 15.6627H11.9926ZM11.9926 18.6865C15.3507 18.6865 18.0475 16.2199 18.419 13.2927C18.5007 12.7058 18.1144 12.4383 17.5944 12.5869C15.7073 13.1441 13.9391 13.4562 11.9926 13.4562C10.0461 13.4562 8.29272 13.1441 6.39822 12.5869C5.87816 12.4383 5.49926 12.7058 5.57355 13.2927C5.93759 16.2199 8.62704 18.6865 11.9926 18.6865ZM14.89 11.1233C15.5067 11.1233 16.0565 10.5661 16.0565 9.7786C16.0565 8.99108 15.5067 8.42645 14.89 8.42645C14.2734 8.42645 13.7311 8.99108 13.7311 9.7786C13.7311 10.5661 14.2734 11.1233 14.89 11.1233ZM9.08024 11.1233C9.70431 11.1233 10.2541 10.5661 10.2541 9.7786C10.2541 8.99108 9.70431 8.42645 9.08024 8.42645C8.45617 8.42645 7.93611 8.99108 7.93611 9.7786C7.93611 10.5661 8.4636 11.1233 9.08024 11.1233ZM12 20.2987C7.39376 20.2987 3.70134 16.6062 3.70134 11.9926C3.70134 7.3789 7.38633 3.69391 11.9926 3.69391C16.5988 3.69391 20.3061 7.38633 20.3061 12C20.3061 16.6137 16.6137 20.3061 12 20.3061V20.2987ZM12 21.9926C17.4681 21.9926 22 17.4606 22 11.9926C22 6.52452 17.4681 2 11.9926 2C6.51709 2 2 6.53195 2 12C2 17.4681 6.53195 22 12 22V21.9926Z" fill={fill ?? "#51555B"} />
@@ -1279,7 +1280,7 @@ export const EmojiIcon = ({ className, fill }: any) => {
     )
 }
 
-export const LinkIcon = ({ className, fill }: any) => {
+export const LinkIcon = ({ className, fill }: IconProps) => {
     return (
         <Svg width="24" height="24" viewBox="0 0 24 24" fill="none" className={className}>
             <Path d="M5.82338 12L4.27922 10.4558C2.57359 8.75022 2.57359 5.98485 4.27922 4.27922C5.98485 2.57359 8.75022 2.57359 10.4558 4.27922L19.7208 13.5442C21.4264 15.2498 21.4264 18.0152 19.7208 19.7208C18.0152 21.4264 15.2498 21.4264 13.5442 19.7208L10.0698 16.2464C9.00379 15.1804 9.00379 13.4521 10.0698 12.386C11.1358 11.32 12.8642 11.32 13.9302 12.386L15.8604 14.3162" stroke={fill ?? "#51555B"} stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
@@ -1287,7 +1288,7 @@ export const LinkIcon = ({ className, fill }: any) => {
     )
 }
 
-export const ArrowDown01Icon = ({ className, fill }: any) => {
+export const ArrowDown01Icon = ({ className, fill }: IconProps) => {
     return (
         <Svg width="24" height="24" viewBox="0 0 24 24" fill="none" className={className}>
             <Path d="M18 9.00005C18 9.00005 13.5811 15 12 15C10.4188 15 6 9 6 9" stroke={fill ?? "#141B34"} stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
