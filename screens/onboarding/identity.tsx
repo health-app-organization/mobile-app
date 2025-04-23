@@ -1,28 +1,12 @@
 import React, { useEffect, useState } from "react";
-import {
-  Image,
-  View,
-  Text,
-  TouchableOpacity,
-  StatusBar,
-  Modal,
-} from "react-native";
+import {Image,View,Text,TouchableOpacity,StatusBar,Modal,} from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
-import {
-  primarycolor,
-  primarycolortwo,
-  whitecolor,
-} from "../../constants/color";
+import {primarycolor,primarycolortwo,whitecolor,} from "../../constants/color";
 import { useNavigation } from "@react-navigation/native";
 import { height, width } from "../../constants/mobileDimensions";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { StackNavigation } from "../../types/stack";
-import {
-  CustomButton,
-  CustomButton2,
-  CustomButtonSmall,
-  CustomButtonSmall2,
-} from "components/utilities/buttons";
+import {CustomButton,CustomButton2,CustomButtonSmall,CustomButtonSmall2,} from "components/utilities/buttons";
 
 const Identity = () => {
   const navigation = useNavigation<StackNavigation>();
