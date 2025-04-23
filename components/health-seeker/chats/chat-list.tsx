@@ -9,22 +9,27 @@ export const ChatList: React.FC<ChatListProps> = ({
     message,
     time,
     unreadCount,
+    onPress,
 }) => {
     const navigation = useNavigation<StackNavigation>();
     return (
         <>
-            <View className="h-1" />
             <TouchableOpacity
                 style={{
                     backgroundColor:
                         unreadCount! > 0 ? "rgba(0, 153, 184, 0.05)" : "white",
                 }}
                 className="flex-row items-center p-4 rounded-lg"
-                onPress={() =>
-                    navigation.navigate("health-seeker", {
-                        screen: "safe-area-view",
-                        params: { screen: "chat", name: "Damilare" },
-                    })
+                onPress={() => {
+                    if (onPress) {
+                        onPress();
+                    } else {
+                        navigation.navigate("health-seeker", {
+                            screen: "safe-area-view",
+                            params: { screen: "chat", name: "Damilare" },
+                        })
+                    }
+                }
                 }
             >
                 {/* Profile Image */}

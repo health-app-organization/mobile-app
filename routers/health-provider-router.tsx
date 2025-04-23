@@ -1,6 +1,11 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
-import { AnalyticsUpIcon, CalendarIcon, HomeIcon, UserIcon } from "assets/iconsvg/Svgicon";
+import {
+    AnalyticsUpIcon,
+    CalendarIcon,
+    HomeIcon,
+    UserIcon,
+} from "assets/iconsvg/Svgicon";
 import { linkcolor, primarycolor, primarycolortwo } from "constants/color";
 import { StatusBar } from "expo-status-bar";
 import { Text, TouchableOpacity, View } from "react-native";
@@ -8,7 +13,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import { Textstyles } from "constants/fontsize";
 import DashboardHeader from "components/health-seeker/dashboard-header";
-import HeaderTitle from "components/utilities/headers";
+import HeaderTitle, { HeaderWithTitleAndBackButton } from "components/utilities/headers";
 import Dashboard from "screens/health-provider-flow/dashboard";
 import Appointments from "screens/health-provider-flow/Appointment/appointments";
 import AppointmentDetail from "screens/health-provider-flow/Appointment/appointmentDetail";
@@ -21,6 +26,8 @@ import Verification from "screens/health-provider-flow/auth/verification";
 import ForgotPassword from "screens/health-provider-flow/auth/forgot-password";
 import SetNewPassword from "screens/health-provider-flow/auth/set-new-password";
 import CompleteRegistration from "screens/health-provider-flow/dashboard/complete-registration";
+import Chats from "screens/health-provider-flow/dashboard/chats";
+import Chat from "screens/health-provider-flow/dashboard/chat";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -207,6 +214,25 @@ const HealthProviderRouterSafeAreaView = () => {
                 <Stack.Screen
                     name="complete-registration"
                     component={CompleteRegistration}
+                />
+                <Stack.Screen
+                    options={{
+                        animation: "fade",
+                        header: () => (
+                            <HeaderWithTitleAndBackButton title="Chats" />
+                        ),
+                    }}
+                    name="chats"
+                    component={Chats}
+                />
+                <Stack.Screen
+                    options={{
+                        animation: "fade",
+                        header: ({ route }) => <HeaderWithTitleAndBackButton title={"Semilore"} />,
+                    }}
+                    name="chat"
+                    // initialParams={{ name: "Semi" }}
+                    component={Chat}
                 />
             </Stack.Navigator>
         </SafeAreaView>

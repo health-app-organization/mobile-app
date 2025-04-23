@@ -24,7 +24,7 @@ export const HeaderWithTitleAndBackButton: React.FC<CustomHeaderProps> = ({
 
 const HeaderTitle: React.FC<CustomHeaderProps> = ({ title }) => {
     return (
-        <View className="w-full p-5 bg-[#0099B8]">
+        <View className="w-full h-36 p-5 pt-[56px] bg-[#0099B8]">
             <Text className="text-2xl text-white font-bold">{title}</Text>
         </View>
     );

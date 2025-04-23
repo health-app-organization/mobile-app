@@ -12,8 +12,8 @@ const DashboardHeader = () => {
     const navigation = useNavigation<StackNavigation>();
     return (
         <View
-            style={{ backgroundColor: primarycolor }}
-            className="w-full rounded-b-2xl px-3 py-5"
+            style={{ backgroundColor: primarycolor, borderBottomEndRadius: 16, borderBottomStartRadius: 16, paddingHorizontal: 12, paddingVertical: 20, }}
+            className="w-full h-[30vh] pt-[40px]"
         >
             <View className="absolute -bottom-10 left-15 opacity-30">
                 <BackgroundIcon width={200} height={200} fill="#ffffff30" />

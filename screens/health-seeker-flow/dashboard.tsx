@@ -19,11 +19,12 @@ import { DateComponent } from "components/utilities/date-component";
 const Dashboard = () => {
   return (
     <>
-      <StatusBar backgroundColor={primarycolor} style="light" />
       <View className="h-full w-full flex">
-        <View className="flex-1 items-center pt-3 pb-1">
-          <ScrollView showsVerticalScrollIndicator={false}>
-            <View className="gap-y-6">
+        <View className="flex-1 w-full items-center pt-3 pb-1">
+          <ScrollView
+           showsVerticalScrollIndicator={false}
+           >
+            <View className="gap-y-6 w-full">
               <DashboardMenu />
               <Appointment />
             </View>
@@ -35,16 +36,11 @@ const Dashboard = () => {
 };
 export default Dashboard;
 
-const DashboardMenu = () => {
+const  DashboardMenu = () => {
   const navigation = useNavigation<StackNavigation>();
   return (
     <>
-      <View className="px-2 mx-auto">
-        <ScrollView
-          className="py-2"
-          horizontal
-          showsHorizontalScrollIndicator={false}
-        >
+      <View className="px-2 mx-auto items-center w-full">
           <View className="gap-x-4 flex-row">
             <MenuButton
               onPress={() =>
@@ -84,7 +80,7 @@ const DashboardMenu = () => {
               }
             />
           </View>
-        </ScrollView>
+        
       </View>
     </>
   );

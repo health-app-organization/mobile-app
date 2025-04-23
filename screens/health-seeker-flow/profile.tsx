@@ -108,9 +108,16 @@ const Profile = () => {
     }).start();
   };
 
+  const user = {
+    firstName: "John",
+    lastName: "Doe",
+    email: "john25doe@gmail.com",
+    phoneNumber: "+254 700 000 000",
+  }
+
   return (
     <>
-      <View className=" h-[10vh] -mt-10 z-50">
+      <View className=" pt-3">
         <View className=" w-full flex justify-center   items-center">
           <View className="   flex justify-center items-center    ">
             {/* Profile Picture */}
