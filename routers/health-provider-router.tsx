@@ -147,8 +147,7 @@ const TabScreens = () => (
 
 // --- Tabs wrapped with stack to allow pushing to detail screens ---
 const TabFlowRouter = () => (
-    <SafeAreaView style={{ flex: 1, backgroundColor: primarycolortwo }}>
-        <StatusBar backgroundColor={primarycolor} style="light" />
+    <SafeAreaView style={{ flex: 1, backgroundColor: primarycolortwo }} className="pt-[56px] h-full w-full">
         <Stack.Navigator screenOptions={{ headerShown: false }}>
             <Stack.Screen name="Tabs" component={TabScreens} />
         </Stack.Navigator>
@@ -160,8 +159,7 @@ const HealthProviderRouterSafeAreaView = () => {
     const Stack = createStackNavigator();
 
     return (
-        <SafeAreaView style={{ flex: 1, backgroundColor: primarycolortwo }}>
-            <StatusBar backgroundColor={primarycolor} style="light" />
+        <View style={{ flex: 1, backgroundColor: primarycolortwo }} className="pt-[56px] h-full w-full">
             <Stack.Navigator initialRouteName="login">
                 <Stack.Screen
                     name="health-provider-list"
@@ -245,7 +243,7 @@ const HealthProviderRouterSafeAreaView = () => {
                     component={Chat}
                 />
             </Stack.Navigator>
-        </SafeAreaView>
+        </View>
     );
 };
 
@@ -271,47 +269,6 @@ const HealthProviderRouter = () => {
                 <Stack.Screen
                     name="safe-area-view"
                     component={HealthProviderRouterSafeAreaView}
-                    options={{ animation: "fade", headerShown: false }}
-                />
-                
-                <Stack.Screen
-                    name="Withdraw"
-                    component={WithdrawScreen}
-                    options={{ animation: "fade", headerShown: false }}
-                />
-                 <Stack.Screen
-                    name="ProfileScreen"
-                    component={ProfileEditScreen}
-                    options={{ animation: "fade", headerShown: false }}
-                />
-                <Stack.Screen
-                    name="UrgentCriteria"
-                    component={UrgentCriteriaScreen}
-                    options={{ animation: "fade", headerShown: false }}
-                />
-                <Stack.Screen
-                    name="PayoutHistory"
-                    component={PayoutHistoryScreen}
-                    options={{ animation: "fade", headerShown: false }}
-                />
-                <Stack.Screen
-                    name="BankingDetails"
-                    component={BankingDetailsScreen}
-                    options={{ animation: "fade", headerShown: false }}
-                />
-                <Stack.Screen
-                    name="Settings"
-                    component={SettingsScreen}
-                    options={{ animation: "fade", headerShown: false }}
-                />
-                <Stack.Screen
-                    name="Support"
-                    component={SupportScreen}
-                    options={{ animation: "fade", headerShown: false }}
-                />
-                 <Stack.Screen
-                    name="PharmAppointment"
-                    component={Pharmappointment}
                     options={{ animation: "fade", headerShown: false }}
                 />
                 
