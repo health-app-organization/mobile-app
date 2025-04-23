@@ -314,47 +314,6 @@ const HealthProviderRouter = () => {
                     component={Pharmappointment}
                     options={{ animation: "fade", headerShown: false }}
                 />
-                
-                <Stack.Screen
-                    name="Withdraw"
-                    component={WithdrawScreen}
-                    options={{ animation: "fade", headerShown: false }}
-                />
-                 <Stack.Screen
-                    name="ProfileScreen"
-                    component={ProfileEditScreen}
-                    options={{ animation: "fade", headerShown: false }}
-                />
-                <Stack.Screen
-                    name="UrgentCriteria"
-                    component={UrgentCriteriaScreen}
-                    options={{ animation: "fade", headerShown: false }}
-                />
-                <Stack.Screen
-                    name="PayoutHistory"
-                    component={PayoutHistoryScreen}
-                    options={{ animation: "fade", headerShown: false }}
-                />
-                <Stack.Screen
-                    name="BankingDetails"
-                    component={BankingDetailsScreen}
-                    options={{ animation: "fade", headerShown: false }}
-                />
-                <Stack.Screen
-                    name="Settings"
-                    component={SettingsScreen}
-                    options={{ animation: "fade", headerShown: false }}
-                />
-                <Stack.Screen
-                    name="Support"
-                    component={SupportScreen}
-                    options={{ animation: "fade", headerShown: false }}
-                />
-                 <Stack.Screen
-                    name="PharmAppointment"
-                    component={Pharmappointment}
-                    options={{ animation: "fade", headerShown: false }}
-                />
             </Stack.Navigator>
         </View>
     );
