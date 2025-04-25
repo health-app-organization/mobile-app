@@ -42,7 +42,9 @@ const EarningsScreen = () => {
       <ScrollView className="mt-6" showsVerticalScrollIndicator={false}>
         <View className="flex-row justify-between items-center mb-4">
           <Text className="text-base font-black">Recent Transactions</Text>
-          <Text className="text-[#0099B8] text-sm font-black">See all</Text>
+          <TouchableOpacity onPress={() => navigation.navigate("RecentTransactions")}>
+    <Text className="text-[#0099B8] text-sm font-black">See all</Text>
+  </TouchableOpacity>
         </View>
 
         {transactions.map((txn, index) => (

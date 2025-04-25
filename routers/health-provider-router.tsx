@@ -38,6 +38,7 @@ import BankingDetailsScreen from "screens/health-provider-flow/My Account/Bankin
 import SettingsScreen from "screens/health-provider-flow/My Account/SettingsScreen";
 import SupportScreen from "screens/health-provider-flow/My Account/SupportScreen";
 import Pharmappointment from "screens/health-provider-flow/Pharmacists/Pharmappointment";
+import RecentTransactions from "screens/health-provider-flow/Earning/RecentTransactions";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -147,11 +148,11 @@ const TabScreens = () => (
 
 // --- Tabs wrapped with stack to allow pushing to detail screens ---
 const TabFlowRouter = () => (
-    <SafeAreaView style={{ flex: 1, backgroundColor: primarycolortwo }} className="pt-[56px] h-full w-full">
+    <View style={{ flex: 1, backgroundColor: primarycolortwo }} className=" h-full w-full">
         <Stack.Navigator screenOptions={{ headerShown: false }}>
             <Stack.Screen name="Tabs" component={TabScreens} />
         </Stack.Navigator>
-    </SafeAreaView>
+    </View>
 );
 
 // --- Auth & Registration Flow ---
@@ -310,6 +311,11 @@ const HealthProviderRouter = () => {
                  <Stack.Screen
                     name="PharmAppointment"
                     component={Pharmappointment}
+                    options={{ animation: "fade", headerShown: false }}
+                />
+                 <Stack.Screen
+                    name="RecentTransactions"
+                    component={RecentTransactions}
                     options={{ animation: "fade", headerShown: false }}
                 />
             </Stack.Navigator>

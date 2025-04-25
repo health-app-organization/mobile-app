@@ -1,18 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
 import { Text, View, TouchableOpacity } from "react-native";
 import { Feather } from '@expo/vector-icons';
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Modal } from "react-native";
+
+const LogoutModal = ({ visible, onClose, onConfirm }) => {
+  return (
+    <Modal transparent visible={visible} animationType="fade">
+      <View className="flex-1 justify-end bg-black/30">
+        <View className="bg-white rounded-t-3xl px-6 py-8">
+          <Text className="text-center text-[#009FB7] font-bold text-lg mb-3">
+            WESTCARE
+          </Text>
+          <Text className="text-center text-black font-semibold text-base mb-6">
+            Are you sure you want to logout ?
+          </Text>
+
+          <TouchableOpacity
+            onPress={onClose}
+            className="bg-red-600 py-6 rounded-xl mb-6"
+          >
+            <Text className="text-white text-center font-semibold">No</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={onConfirm}
+            className="bg-[#009FB7] py-6 rounded-xl"
+          >
+            <Text className="text-white text-center font-semibold">Yes</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </Modal>
+  );
+};
+
 
 const AccountScreen = () => {
   const navigation = useNavigation();
+  const [showLogoutModal, setShowLogoutModal] = useState(false); // <--- state for modal
 
   const handleLogout = async () => {
     try {
-      // Clear stored auth tokens or session
-      await AsyncStorage.clear(); // or remove specific keys
-
-      // Navigate to Login or Welcome screen
+      await AsyncStorage.clear();
       navigation.reset({
         index: 0,
         routes: [{ name: "LoginScreen" }],
@@ -31,8 +62,15 @@ const AccountScreen = () => {
         <MenuItem icon="dollar-sign" title="Banking Details" route="BankingDetails" />
         <MenuItem icon="settings" title="Settings" route="Settings" />
         <MenuItem icon="headphones" title="Customer Support" route="Support" />
-        <MenuItem icon="log-out" title="Logout" color="red" onPress={handleLogout} />
+        <MenuItem icon="log-out" title="Logout" color="red" onPress={() => setShowLogoutModal(true)} />
       </View>
+
+      {/* Logout confirmation modal */}
+      <LogoutModal
+        visible={showLogoutModal}
+        onClose={() => setShowLogoutModal(false)}
+        onConfirm={handleLogout}
+      />
     </View>
   );
 };
