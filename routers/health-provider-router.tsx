@@ -147,11 +147,11 @@ const TabScreens = () => (
 
 // --- Tabs wrapped with stack to allow pushing to detail screens ---
 const TabFlowRouter = () => (
-    <SafeAreaView style={{ flex: 1, backgroundColor: primarycolortwo }} className="pt-[56px] h-full w-full">
+    <View style={{ flex: 1, backgroundColor: primarycolortwo }} className=" h-full w-full">
         <Stack.Navigator screenOptions={{ headerShown: false }}>
             <Stack.Screen name="Tabs" component={TabScreens} />
         </Stack.Navigator>
-    </SafeAreaView>
+    </View>
 );
 
 // --- Auth & Registration Flow ---

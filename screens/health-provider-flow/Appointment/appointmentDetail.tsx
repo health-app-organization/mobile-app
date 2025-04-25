@@ -114,6 +114,9 @@ const AppointmentDetail = () => {
 
   const Medicine = () => {
     const [searchQuery, setSearchQuery] = useState('');
+    const [selectedDrugs, setSelectedDrugs] = useState<
+      { name: string; dosage: string; notes: string }[]
+    >([]);
   
     const medicines = [
       'Paracetamol',
@@ -124,36 +127,96 @@ const AppointmentDetail = () => {
       'Lisinopril',
     ];
   
-    const filtered = medicines.filter(med =>
-      med.toLowerCase().includes(searchQuery.toLowerCase())
+    const filtered = medicines.filter(
+      (med) =>
+        med.toLowerCase().includes(searchQuery.toLowerCase()) &&
+        !selectedDrugs.some((item) => item.name === med)
     );
+  
+    const handleSelectDrug = (drug: string) => {
+      setSelectedDrugs((prev) => [...prev, { name: drug, dosage: '', notes: '' }]);
+      setSearchQuery('');
+    };
+  
+    const handleDosageChange = (drugName: string, value: string) => {
+      setSelectedDrugs((prev) =>
+        prev.map((item) =>
+          item.name === drugName ? { ...item, dosage: value } : item
+        )
+      );
+    };
+  
+    const handleNotesChange = (drugName: string, value: string) => {
+      setSelectedDrugs((prev) =>
+        prev.map((item) =>
+          item.name === drugName ? { ...item, notes: value } : item
+        )
+      );
+    };
+  
+    const removeDrug = (drugName: string) => {
+      setSelectedDrugs((prev) => prev.filter((item) => item.name !== drugName));
+    };
   
     return (
       <ScrollView>
         <View className="px-4 mt-4">
           {/* Search Input */}
           <TextInput
-            placeholder="Search medic"
+            placeholder="Search medicine"
             value={searchQuery}
             onChangeText={setSearchQuery}
             className="bg-gray-200 p-2 rounded-lg mb-4"
           />
   
-          {/* Search Results */}
-          {filtered.length > 0 ? (
-            filtered.map((med, index) => (
-              <Text key={index} className="text-base mb-2">
-                {med}
-              </Text>
-            ))
-          ) : (
-            <Text className="text-gray-500">No medicines found.</Text>
+          {/* Filtered Search Results */}
+          {searchQuery.length > 0 && filtered.length > 0 && (
+            <View className="bg-white rounded-lg shadow p-2 mb-4">
+              {filtered.map((med, index) => (
+                <TouchableOpacity key={index} onPress={() => handleSelectDrug(med)}>
+                  <Text className="text-base py-2 border-b border-gray-100">{med}</Text>
+                </TouchableOpacity>
+              ))}
+            </View>
+          )}
+  
+          {/* Selected Medicines with Dosage & Notes */}
+          {selectedDrugs.length > 0 && (
+            <View className="mt-4">
+              <Text className="text-base font-semibold mb-2">Selected Items:</Text>
+              {selectedDrugs.map((item, index) => (
+                <View
+                  key={index}
+                  className="flex-col bg-white p-3 mb-4 rounded-lg shadow-sm"
+                >
+                  <View className="flex-row justify-between items-center mb-2">
+                    <Text className="text-base font-medium">{item.name}</Text>
+                    <TouchableOpacity onPress={() => removeDrug(item.name)}>
+                      <Feather name="x" size={18} color="red" />
+                    </TouchableOpacity>
+                  </View>
+                  <Text
+                    placeholder="Enter dosage (e.g. 500mg, 1 tablet)"
+                    value={item.dosage}
+                    onChangeText={(value) => handleDosageChange(item.name, value)}
+                    className="border border-gray-300 p-2 rounded-lg mb-2"
+                  />
+                  <TextInput
+                    placeholder="Notes or instructions (e.g. Take after food)"
+                    value={item.notes}
+                    onChangeText={(value) => handleNotesChange(item.name, value)}
+                    className="border border-gray-300 p-2 rounded-lg"
+                  />
+                </View>
+              ))}
+            </View>
           )}
         </View>
       </ScrollView>
     );
   };
-
+  
+  
   const Referral = () => (
     <View className="px-4">
       <Text className="text-sm text-gray-600">Referred to Dr. Olayemi for further examination.</Text>
