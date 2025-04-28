@@ -38,6 +38,7 @@ import BankingDetailsScreen from "screens/health-provider-flow/My Account/Bankin
 import SettingsScreen from "screens/health-provider-flow/My Account/SettingsScreen";
 import SupportScreen from "screens/health-provider-flow/My Account/SupportScreen";
 import Pharmappointment from "screens/health-provider-flow/Pharmacists/Pharmappointment";
+import RecentTransactions from "screens/health-provider-flow/Earning/RecentTransactions";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -310,6 +311,11 @@ const HealthProviderRouter = () => {
                  <Stack.Screen
                     name="PharmAppointment"
                     component={Pharmappointment}
+                    options={{ animation: "fade", headerShown: false }}
+                />
+                 <Stack.Screen
+                    name="RecentTransactions"
+                    component={RecentTransactions}
                     options={{ animation: "fade", headerShown: false }}
                 />
             </Stack.Navigator>

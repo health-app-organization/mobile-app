@@ -4,7 +4,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import { useNavigation } from '@react-navigation/native';
 import { DateComponent } from "components/utilities/date-component";
 
-const Appointments = () => {
+const Appointments = () =>{
   const navigation = useNavigation();
    const [activeTab, setActiveTab] = useState<"Online" | "clinic">(
       "Online")
