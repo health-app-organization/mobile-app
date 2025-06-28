@@ -72,7 +72,7 @@ const AppointmentDetails = () => {
           className="w-full h-[60vh]"
         />
         <View className="bg-white pt-16 rounded-t-3xl -mt-5">
-          <View className="w-[90%] h-[100px] bg-primary left-[5%] absolute z-10 -top-16 rounded-md shadow-md shadow-[#0099B840] p-3 flex-col justify-evenly">
+          <View className="w-[90%] h-[100px] bg-primary left-[5%] absolute z-10 -top-16 rounded-md shadow-md shadow-slate-100 p-3 flex-col justify-evenly">
             <Text
               className="text-white text-center"
               style={[Textstyles.text_medium]}

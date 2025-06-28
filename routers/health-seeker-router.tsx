@@ -58,7 +58,7 @@ const TabFlowRouter = () => {
     return (
         <View style={{ flex: 1, backgroundColor: primarycolortwo}} className="w-full" >
 
-            <StatusBar style="dark" />
+            <StatusBar style="light" />
             <Tab.Navigator
                 initialRouteName="home"
                 screenOptions={({ route }) => ({
@@ -143,7 +143,7 @@ const TabFlowRouter = () => {
                             width: 18,
                             height: 18,
                         },
-                        header: () => <HeaderTitle title="Chats" />,
+                        header: () => <HeaderTitle title="Chats" profileCompletion={""} />,
                     }}
                     name="chats"
                     component={Messages}
@@ -151,7 +151,7 @@ const TabFlowRouter = () => {
                 <Tab.Screen
                     options={{
                         animation: "fade",
-                        header: () => <HeaderTitle title="Appointments" />,
+                        header: () => <HeaderTitle title="Appointments" profileCompletion={""} />,
                     }}
                     name="appointments"
                     component={Appointments}
@@ -247,7 +247,7 @@ const HealthSeekerRouterSafeAreaView = () => {
                         header: ({ navigation }) => (
                             <TouchableOpacity
                                 onPress={() => navigation.goBack()}
-                                className="pt-2 px-4"
+                                className="pt-44 px-4"
                             >
                                 <Ionicons name="chevron-back" size={30} color="black" />
                             </TouchableOpacity>
@@ -275,7 +275,7 @@ const HealthSeekerRouterSafeAreaView = () => {
                     options={{
                         animation: "fade",
                         header: () => (
-                            <HeaderWithTitleAndBackButton title="Notifications" />
+                            <HeaderWithTitleAndBackButton title="Notifications" profileCompletion={""} />
                         ),
                     }}
                     name="notifications"
@@ -285,7 +285,7 @@ const HealthSeekerRouterSafeAreaView = () => {
                     options={{
                         animation: "fade",
                         header: () => (
-                            <HeaderWithTitleAndBackButton title="Referral Details" />
+                            <HeaderWithTitleAndBackButton title="Referral Details" profileCompletion={""} />
                         ),
                     }}
                     initialParams={{ id: 1234 }}
@@ -296,7 +296,7 @@ const HealthSeekerRouterSafeAreaView = () => {
                     options={{
                         animation: "fade",
                         header: () => (
-                            <HeaderWithTitleAndBackButton title="Drug Referral Details" />
+                            <HeaderWithTitleAndBackButton title="Drug Referral Details" profileCompletion={""} />
                         ),
                     }}
                     initialParams={{ id: 1234 }}
@@ -307,7 +307,7 @@ const HealthSeekerRouterSafeAreaView = () => {
                     options={{
                         animation: "fade",
                         header: () => (
-                            <HeaderWithTitleAndBackButton title="Patient QR Code" />
+                            <HeaderWithTitleAndBackButton title="Patient QR Code" profileCompletion={""} />
                         ),
                     }}
                     name="user-qr-code"
@@ -317,7 +317,7 @@ const HealthSeekerRouterSafeAreaView = () => {
                     options={{
                         animation: "fade",
                         header: () => (
-                            <HeaderWithTitleAndBackButton title="Healthcare Provider" />
+                            <HeaderWithTitleAndBackButton title="Healthcare Provider" profileCompletion={""} />
                         ),
                     }}
                     name="healthcare-provider"
@@ -327,7 +327,7 @@ const HealthSeekerRouterSafeAreaView = () => {
                     options={{
                         animation: "fade",
                         header: () => (
-                            <HeaderWithTitleAndBackButton title="Appointment Details" />
+                            <HeaderWithTitleAndBackButton title="Appointment Details" profileCompletion={""} />
                         ),
                     }}
                     name="book-appointment"
@@ -336,7 +336,7 @@ const HealthSeekerRouterSafeAreaView = () => {
                 <Stack.Screen
                     options={{
                         animation: "fade",
-                        header: () => <HeaderWithTitleAndBackButton title="Payment" />,
+                        header: () => <HeaderWithTitleAndBackButton title="Payment" profileCompletion={""} />,
                     }}
                     name="pay-for-appointment"
                     component={Payment}
@@ -344,7 +344,7 @@ const HealthSeekerRouterSafeAreaView = () => {
                 <Stack.Screen
                     options={{
                         animation: "fade",
-                        header: () => <HeaderWithTitleAndBackButton title="Medicine" />,
+                        header: () => <HeaderWithTitleAndBackButton title="Medicine" profileCompletion={""} />,
                     }}
                     name="medicine"
                     component={Medicine}
@@ -444,7 +444,7 @@ const HealthSeekerRouterSafeAreaView = () => {
                 <Stack.Screen
                     options={{
                         animation: "fade",
-                        header: () => <HeaderWithTitleAndBackButton title="Order History" />,
+                        header: () => <HeaderWithTitleAndBackButton title="Order History" profileCompletion={""} />,
                     }}
                     name="order-history"
                     component={OrderHistory}
@@ -452,7 +452,7 @@ const HealthSeekerRouterSafeAreaView = () => {
                 <Stack.Screen
                     options={{
                         animation: "fade",
-                        header: () => <HeaderWithTitleAndBackButton title="Order Tracking" />,
+                        header: () => <HeaderWithTitleAndBackButton title="Order Tracking" profileCompletion={""} />,
                     }}
                     name="order-tracking"
                     component={OrderTracking}
@@ -460,7 +460,7 @@ const HealthSeekerRouterSafeAreaView = () => {
                 <Stack.Screen
                     options={{
                         animation: "fade",
-                        header: () => <HeaderWithTitleAndBackButton title="Favorites" />,
+                        header: () => <HeaderWithTitleAndBackButton title="Favorites" profileCompletion={""} />,
                     }}
                     name="favorites"
                     component={Favorites}
@@ -468,7 +468,7 @@ const HealthSeekerRouterSafeAreaView = () => {
                 <Stack.Screen
                     options={{
                         animation: "fade",
-                        header: () => <HeaderWithTitleAndBackButton title="Manage Address" />,
+                        header: () => <HeaderWithTitleAndBackButton title="Manage Address" profileCompletion={""} />,
                     }}
                     name="manage-address"
                     component={ManageAddress}
@@ -476,7 +476,7 @@ const HealthSeekerRouterSafeAreaView = () => {
                 <Stack.Screen
                     options={{
                         animation: "fade",
-                        header: () => <HeaderWithTitleAndBackButton title="Medicine Reminder" />,
+                        header: () => <HeaderWithTitleAndBackButton title="Medicine Reminder" profileCompletion={""} />,
                     }}
                     name="medicine-reminder"
                     component={MedicineReminder}
@@ -484,7 +484,7 @@ const HealthSeekerRouterSafeAreaView = () => {
                 <Stack.Screen
                     options={{
                         animation: "fade",
-                        header: () => <Header title="Settings" />,
+                        header: () => <Header title="Settings" profileCompletion={""} />,
                     }}
                     name="settings"
                     component={Settings}
@@ -492,7 +492,7 @@ const HealthSeekerRouterSafeAreaView = () => {
                 <Stack.Screen
                     options={{
                         animation: "fade",
-                        header: () => <Header title="Customer Support" />,
+                        header: () => <Header title="Customer Support" profileCompletion={""} />,
                     }}
                     name="customer-support"
                     component={CustomerSupport}
@@ -506,7 +506,7 @@ const HealthSeekerRouter = () => {
     const Stack = createStackNavigator();
 
     return (
-        <View className="h-full w-full flex-1 bg-primaryTwo">
+        <View className="w-full flex-1 bg-primaryTwo">
             <Stack.Navigator initialRouteName="dashboard">
                 <Stack.Screen
                     options={{ animation: "fade", headerShown: false }}

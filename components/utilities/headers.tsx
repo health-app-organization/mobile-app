@@ -3,6 +3,15 @@ import { Text, TouchableOpacity, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { Textstyles } from "constants/fontsize";
 import { primarycolor } from "constants/color";
+ 
+interface CustomHeaderProps{
+    title?:string
+    onBackPress?:()=>void
+    rightIcon?:any,
+    onRightIconPress?:()=>void,
+    profileName?:string,
+    profileCompletion?:string,
+}
 
 export const HeaderWithTitleAndBackButton: React.FC<CustomHeaderProps> = ({
     title,
@@ -12,7 +21,7 @@ export const HeaderWithTitleAndBackButton: React.FC<CustomHeaderProps> = ({
 
     return (
         <View className="bg-primary">
-            <View className="flex flex-row items-center py-2 px-4">
+            <View className="flex flex-row items-center py-16 px-4">
                 <TouchableOpacity onPress={() => (onBackPress ? onBackPress() : navigation.goBack())}>
                     <Ionicons name="chevron-back" size={28} color="white" />
                 </TouchableOpacity>

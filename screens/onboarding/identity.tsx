@@ -73,11 +73,11 @@ const Identity = () => {
   return (
     <View
       style={{ height: height, width: width }}
-      className="bg-primaryTwo py-[40px]"
+      className="bg-primaryTwo py-[12px]"
     >
       <StatusBar />
 
-      <View className="w-full h-44 mt-12 flex mb-7 justify-center items-center">
+      <View className="w-full h-44 mt-3 flex mb-7 justify-center items-center">
         <View className="w-[50%] h-32 flex justify-center items-center">
           <Image
             source={require("../../assets/images/logo.png")}
@@ -88,10 +88,10 @@ const Identity = () => {
         <Text className=" font-bold text-xl">Choose identity</Text>
       </View>
 
-      <View className="flex-row items-center justify-evenly w-full h-64">
+      <View className="flex-row items-center justify-evenly h-[25%] w-full">
         {/* TouchableOpacity for Identity 1 */}
         <TouchableOpacity
-          className="w-[143.01px] h-[188.56px] justify-center items-center relative"
+          className="w-[40%] h-[20%] justify-center items-center relative"
           onPress={() => {
             handleSelection("health-seeker");
             setRole("user");
@@ -112,7 +112,7 @@ const Identity = () => {
 
         {/* TouchableOpacity for Identity 2 (Health Provider) */}
         <TouchableOpacity
-          className="w-[143.01px] h-[188.56px] justify-center items-center relative"
+          className="w-[40%] h-[20%] justify-center items-center relative"
           onPress={() => {
             handleSelection("health-provider");
             setRole("provider");
@@ -132,10 +132,10 @@ const Identity = () => {
         </TouchableOpacity>
       </View>
 
-      <View className="flex-row items-center justify-evenly w-full h-64">
+      <View className="flex-row items-center justify-evenly w-full h-[25%] mt-8">
         {/* TouchableOpacity for Identity 3 (Hospitals) */}
         <TouchableOpacity
-          className="w-[143.01px] h-[188.56px] justify-center items-center relative"
+          className="w-[40%] h-[20%] justify-center items-center relative"
           onPress={() => {
             handleSelection("hospitals");
             //! setRole("provider");
@@ -157,7 +157,7 @@ const Identity = () => {
 
       {/* Conditionally show buttons when an identity is selected */}
       {selectedIdentity && (
-        <View className="px-4 mt-10">
+        <View className="px-4 mt-5">
           <CustomButton
             Textname={"Login"}
             onPress={handletologin}

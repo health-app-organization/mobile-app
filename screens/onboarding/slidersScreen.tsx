@@ -18,10 +18,10 @@ const Slider = () => {
       component: <Sliderone />,
       description: (
         <>
-          <Text className="text-center text-black  text-3xl mt-10 font-bold mb-5">
+          <Text className="text-center text-black  text-2xl mt-10 font-bold mb-5">
             Select Your Healthcare Provider
           </Text>
-          <Text className="text-center text-gray-500 leading-9 text-[22px]">
+          <Text className="text-center text-gray-500 leading-6 text-[16px]">
             Search for healthcare providers by specialty, or location. Need a
             general check-up or specialist consultation, we’ve got you covered.
           </Text>
@@ -32,10 +32,10 @@ const Slider = () => {
       component: <Slidertwo />,
       description: (
         <>
-          <Text className="text-center text-black  text-3xl mt-6 font-bold mb-5">
+           <Text className="text-center text-black  text-2xl mt-10 font-bold mb-5">
             Secure and Convenient Communication
           </Text>
-          <Text className="text-center text-gray-500 leading-9 text-[22px] ">
+          <Text className="text-center text-gray-500 leading-6 text-[16px] ">
             Communicate directly with your healthcare provider through our
             secure messaging platform for follow-ups or quick questions.
           </Text>
@@ -46,10 +46,10 @@ const Slider = () => {
       component: <Sliderthree />,
       description: (
         <>
-          <Text className="text-center text-black  text-3xl mt-10 font-bold mb-5">
+            <Text className="text-center text-black  text-2xl mt-10 font-bold mb-5">
             Effortless Appointment Booking
           </Text>
-          <Text className="text-center text-gray-500 leading-9 text-[22px] ">
+          <Text className="text-center text-gray-500 leading-6 text-[16px] ">
             Choose from a variety of appointment types, including in-person
             visits and telehealth consultations.
           </Text>

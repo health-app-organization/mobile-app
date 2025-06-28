@@ -24,7 +24,7 @@ const Medicine = () => {
         placeholder="Search for chat"
         leftIcon={<FontAwesome name="search" color="#000" size={20} />}
         value={searchTerm}
-        onChange={(text) => setSearchTerm(text)}
+        onChange={(text:any) => setSearchTerm(text)}
       />
       <Text className=" text-[27px] font-[600] leading-[30px]">
         Top Pharmacist
