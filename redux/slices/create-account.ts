@@ -2,11 +2,15 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { AxiosError } from "axios";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigation } from "types/stack";
-import { AxiosJSON } from "./axios";
-import { SignupPayload, SignupResponse, UserData } from "types/user/User";
+import { AxiosJSON } from "../axios";
+import { UserData } from "types/user/User";
 import { Alert } from "react-native";
 import Toast from "react-native-toast-message";
 import { ApiErrorResponse, handleMutationError } from "utilities/ErrorHanler";
+import {
+  SignupPayload,
+  SignupResponse,
+} from "types/screens/signUp/creat-account";
 
 const navigation = useNavigation<StackNavigation>();
 
@@ -70,7 +74,7 @@ export const createAccountProvider = createAsyncThunk(
       dispatch(SignUpRequest());
 
       const { data } = await axios.post<SignupResponse>(
-        `/auth/seeker/register`,
+        `/auth/provider/register`,
         payload
       );
 
