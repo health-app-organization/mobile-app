@@ -95,7 +95,6 @@ export const submitVerificationToken = createAsyncThunk(
         visibilityTime: 5000,
       });
       dispatch(submitVerificationSuccess());
-      await AsyncStorage.multiRemove(["VerificationToken", "data"]);
     } catch (error) {
       console.log("submit Verification Error", error);
 

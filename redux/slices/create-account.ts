@@ -12,6 +12,8 @@ import {
   SeekerRegistrationApiResponse,
   SignupPayload,
 } from "types/screens/signUp/creat-account";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Utils } from "utilities/utils";
 
 // const navigation = useNavigation<StackNavigation>();
 
@@ -45,15 +47,16 @@ export const createAccountSeeker = createAsyncThunk(
         });
         dispatch(SignUpFailed(data.message));
         return rejectWithValue(data.message);
+      } else {
+        await storeUserCredentials(data);
+        Toast.show({
+          type: "success",
+          text1: data.message!!,
+          visibilityTime: 4000,
+        });
+
+        dispatch(SignUpSuccess(data));
       }
-
-      Toast.show({
-        type: "success",
-        text1: data.message!!,
-        visibilityTime: 4000,
-      });
-
-      dispatch(SignUpSuccess(data));
     } catch (error) {
       const axiosError = error as AxiosError<ApiErrorResponse>;
       handleMutationError(
@@ -66,6 +69,17 @@ export const createAccountSeeker = createAsyncThunk(
       console.log("SignUp failed", axiosError.response);
       dispatch(SignUpFailed(errorMessage));
       return rejectWithValue(errorMessage);
+    }
+
+    async function storeUserCredentials(data: SeekerRegistrationApiResponse) {
+      await AsyncStorage.multiSet([
+        ["email", data.data.user.email ?? ""],
+        ["VerificationToken", data.token ?? ""],
+        ["data", JSON.stringify(data.data)],
+        ["user_id", data.data.user.id ?? ""],
+      ]);
+      Utils.wait(2000);
+      dispatch(SignUpSuccess(data.data)); // Dispatch the getLoginComplete action to indicate that the login request has completed.
     }
   }
 );

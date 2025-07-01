@@ -585,6 +585,7 @@ import { sendVerificationToken } from "redux/slices/send-otp";
 import { RootState, useAppDispatch } from "redux/store";
 import { useSelector } from "react-redux";
 import { submitVerificationToken } from "redux/slices/verify-otp";
+import { createAccountSeeker } from "redux/slices/create-account";
 
 export default function SignUp() {
   const navigation = useNavigation<StackNavigation>();
@@ -663,15 +664,38 @@ export default function SignUp() {
         setErrorMessage(err || "Invalid or expired OTP.");
       }
     } else if (currentStep === 2) {
+      // const data = {
+      //   phoneNumber,
+      //   firstName,
+      //   lastName,
+      //   email,
+      //   birthDate,
+      //   gender,
+      //   password,
+      // };
+
       const data = {
-        phoneNumber,
         firstName,
         lastName,
         email,
-        birthDate,
-        gender,
+        phone: phoneNumber,
+        dateOfBirth: birthDate,
         password,
+        confirmPassword,
+        gender: gender.toLowerCase() as "male" | "female",
       };
+
+      console.log("Submitting signup payload", data);
+
+      const res = await dispatch(createAccountSeeker(data));
+
+      if (createAccountSeeker.fulfilled.match(res)) {
+        setShowLoginModal(true);
+        navigation.navigate("health-seeker", { screen: "dashboard" });
+      } else {
+        const err = res.payload as string;
+        setErrorMessage(err || "Registration failed");
+      }
 
       // dispatch registerUser(data);
       setShowLoginModal(true);
@@ -741,17 +765,6 @@ export default function SignUp() {
                 className="w-full h-[500px]"
                 style={[animatedStyles]}
               >
-                {/* <NumericKeyboard
-                  onPress={(value: string) =>
-                    handleOtpInput({
-                      value,
-                      otp,
-                      setOtp,
-                      setErrorMessage,
-                      onSubmitOtp: () => handleContinue(),
-                    })
-                  }
-                /> */}
                 <NumericKeyboard
                   onPress={(value: string) =>
                     handleOtpInput({

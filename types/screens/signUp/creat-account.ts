@@ -17,6 +17,7 @@ export interface SeekerRegistrationApiResponse {
   status: boolean;
   message: string;
   data: SeekerData;
+  token: string;
 }
 
 export interface SeekerData {
