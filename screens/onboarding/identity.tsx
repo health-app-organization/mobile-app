@@ -61,7 +61,7 @@ const Identity = () => {
     setShowConfirmation(false);
     navigation.navigate("health-provider", {
       screen: "safe-area-view",
-      params: { screen: "health-provider-list" },
+      params: { screen: "login" },
     });
   };
 
