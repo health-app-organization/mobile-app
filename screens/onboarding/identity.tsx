@@ -1,12 +1,29 @@
 import React, { useEffect, useState } from "react";
-import {Image,View,Text,TouchableOpacity,StatusBar,Modal,} from "react-native";
+import {
+  Image,
+  View,
+  Text,
+  TouchableOpacity,
+  StatusBar,
+  Modal,
+  SafeAreaView,
+} from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
-import {primarycolor,primarycolortwo,whitecolor,} from "../../constants/color";
+import {
+  primarycolor,
+  primarycolortwo,
+  whitecolor,
+} from "../../constants/color";
 import { useNavigation } from "@react-navigation/native";
-import { height, width } from "../../constants/mobileDimensions";
+// import { height, width } from "../../constants/mobileDimensions";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { StackNavigation } from "../../types/stack";
-import {CustomButton,CustomButton2,CustomButtonSmall,CustomButtonSmall2,} from "components/utilities/buttons";
+import {
+  CustomButton,
+  CustomButton2,
+  CustomButtonSmall,
+  CustomButtonSmall2,
+} from "components/utilities/buttons";
 
 const Identity = () => {
   const navigation = useNavigation<StackNavigation>();
@@ -30,7 +47,7 @@ const Identity = () => {
   const handletonewacc = async () => {
     if (selectedIdentity === "health-provider") {
       setShowConfirmation(true);
-      await AsyncStorage.setItem("auth", "signup")
+      await AsyncStorage.setItem("auth", "signup");
     } else if (selectedIdentity === "health-seeker") {
       navigation.navigate("health-seeker", {
         screen: "safe-area-view",
@@ -43,7 +60,7 @@ const Identity = () => {
   const handletologin = async () => {
     if (selectedIdentity === "health-provider") {
       setShowConfirmation(true);
-      await AsyncStorage.setItem("auth", "login")
+      await AsyncStorage.setItem("auth", "login");
     } else {
       navigation.navigate("health-seeker", {
         screen: "safe-area-view",
@@ -71,8 +88,12 @@ const Identity = () => {
   };
 
   return (
-    <View
-      style={{ height: height, width: width }}
+    <SafeAreaView
+      style={{
+        backgroundColor: primarycolortwo,
+        flex: 1,
+        justifyContent: "center",
+      }}
       className="bg-primaryTwo py-[12px]"
     >
       <StatusBar />
@@ -206,7 +227,7 @@ const Identity = () => {
           </View>
         </View>
       </Modal>
-    </View>
+    </SafeAreaView>
   );
 };
 
