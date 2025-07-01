@@ -35,6 +35,8 @@ export const createAccountSeeker = createAsyncThunk(
         payload
       );
 
+      console.log("Health Care login response ", data);
+
       if (!data.status) {
         Toast.show({
           type: "error",

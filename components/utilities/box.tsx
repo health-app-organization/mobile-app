@@ -13,7 +13,9 @@ export const Box: React.FC<BoxProps> = ({ inputText }) => {
     <View
       style={[
         customstyle.boxstyle,
-        { borderColor: inputText ? primarycolor : "#D1D5DB" },
+        {
+          borderColor: inputText ? primarycolor : "#D1D5DB",
+        },
       ]}
       className="flex justify-center items-center"
     >

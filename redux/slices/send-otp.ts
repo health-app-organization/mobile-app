@@ -11,11 +11,17 @@ const axios = AxiosJSON();
 
 export const sendVerificationToken = createAsyncThunk(
   "verification/sendVerificationToken",
-  async (email: string, { dispatch, rejectWithValue }) => {
+  async (
+    { email, reason }: { email: string; reason: string },
+    { dispatch, rejectWithValue }
+  ) => {
     try {
       dispatch(sendVerificationRequest());
 
-      const data = (await axios.post(`auth/send-otp`, { email }))
+      const value =
+        reason === "verify_email" ? "verify_email" : "forgot_password";
+
+      const data = (await axios.post(`auth/send-otp`, { email, reason: value }))
         .data as OtpAiResponse;
 
       console.log("Health Care login response ", data);
