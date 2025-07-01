@@ -11,6 +11,7 @@ import {
   ProviderRegistrationApiResponse,
   SeekerRegistrationApiResponse,
   SignupPayload,
+  SignupProviderPayload,
 } from "types/screens/signUp/creat-account";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Utils } from "utilities/utils";
@@ -86,7 +87,7 @@ export const createAccountSeeker = createAsyncThunk(
 
 export const createAccountProvider = createAsyncThunk(
   "user/createAccount",
-  async (payload: SignupPayload, { dispatch, rejectWithValue }) => {
+  async (payload: SignupProviderPayload, { dispatch, rejectWithValue }) => {
     try {
       dispatch(SignUpRequest());
 

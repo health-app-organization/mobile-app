@@ -11,6 +11,13 @@ export interface SignupPayload {
   gender: "male" | "female";
 }
 
+export interface SignupProviderPayload {
+  email: string;
+  phone: string;
+  password: string;
+  type: "seeker" | "provider";
+}
+
 // models/SeekerRegistrationResponse.ts
 
 export interface SeekerRegistrationApiResponse {
