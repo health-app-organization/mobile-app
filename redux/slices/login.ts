@@ -7,6 +7,10 @@ import { UserData } from "types/user/User";
 import { LoginAiResponse } from "types/screens/login/login";
 import { ApiErrorResponse, handleMutationError } from "utilities/ErrorHanler";
 import { Utils } from "utilities/utils";
+import { StackNavigation } from "types/stack";
+import { useNavigation } from "@react-navigation/native";
+
+// const navigation = useNavigation<StackNavigation>();
 
 interface LoginState {
   loading: boolean;
@@ -34,8 +38,7 @@ export const loginUser = createAsyncThunk(
           email,
           password,
         })
-      ).data as LoginAiResponse; // Send a POST request to the server to log in the student.
-      const token = data?.data.token;
+      ).data as LoginAiResponse; // Send a POST request to the server to log in
 
       console.log("Health Care login response ", data);
       if (!data?.status) {
@@ -48,7 +51,7 @@ export const loginUser = createAsyncThunk(
         return rejectWithValue({ message: data.message }); // Reject the promise with the error message.
       } else {
         await storeUserCredentials(data);
-        // router.replace(`/(user)/(home)`);
+        // navigation.navigate("health-seeker", { screen: "dashboard" });
 
         Toast.show({
           type: "success",
@@ -62,9 +65,9 @@ export const loginUser = createAsyncThunk(
       let errorMessage = "An error occurred";
       const axiosError = error as AxiosError<ApiErrorResponse>; // Cast the error to an AxiosError.
       const status = error as AxiosError<String>;
-      console.log(" Foche Login Error", status?.response);
+      console.log(" Login Error", status?.response);
 
-      console.log(" Foche Login Error Status", axiosError?.response?.status);
+      console.log("  Login Error Status", axiosError?.response?.status);
 
       handleMutationError(axiosError, " Sign in failed. Try again later.");
       console.log("Signin failed", axiosError.response);

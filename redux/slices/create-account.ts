@@ -8,11 +8,12 @@ import { Alert } from "react-native";
 import Toast from "react-native-toast-message";
 import { ApiErrorResponse, handleMutationError } from "utilities/ErrorHanler";
 import {
+  ProviderRegistrationApiResponse,
+  SeekerRegistrationApiResponse,
   SignupPayload,
-  SignupResponse,
 } from "types/screens/signUp/creat-account";
 
-const navigation = useNavigation<StackNavigation>();
+// const navigation = useNavigation<StackNavigation>();
 
 const axios = AxiosJSON();
 
@@ -29,12 +30,12 @@ export const createAccountSeeker = createAsyncThunk(
     try {
       dispatch(SignUpRequest());
 
-      const { data } = await axios.post<SignupResponse>(
+      const { data } = await axios.post<SeekerRegistrationApiResponse>(
         `/auth/seeker/register`,
         payload
       );
 
-      if (!data.success) {
+      if (!data.status) {
         Toast.show({
           type: "error",
           text1: data.message!!,
@@ -73,12 +74,12 @@ export const createAccountProvider = createAsyncThunk(
     try {
       dispatch(SignUpRequest());
 
-      const { data } = await axios.post<SignupResponse>(
+      const { data } = await axios.post<ProviderRegistrationApiResponse>(
         `/auth/provider/register`,
         payload
       );
 
-      if (!data.success) {
+      if (!data.status) {
         Toast.show({
           type: "error",
           text1: data.message!!,

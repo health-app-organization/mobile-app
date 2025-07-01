@@ -5,17 +5,8 @@ import { StackNavigation } from "types/stack";
 
 export default async function Logout() {
   const navigation = useNavigation<StackNavigation>();
-  const login = () => {
-    navigation.navigate("start", { screen: "Login" });
-  };
 
   // Clear recovery email from storage
-  await AsyncStorage.multiRemove([
-    "email",
-    "VerificationToken",
-    "data",
-    "company_id",
-    "recoveryEmail",
-  ]);
-  login;
+  await AsyncStorage.multiRemove(["email", "VerificationToken", "data"]);
+  navigation.navigate("health-seeker", { screen: "login" });
 }

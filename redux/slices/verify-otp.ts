@@ -2,23 +2,23 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { AxiosError } from "axios";
 import Toast from "react-native-toast-message";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { OtpAiResponse } from "../../types/screens/signUp/otp";
 import { AxiosJSON } from "redux/axios";
-import { StackNavigation } from "types/stack";
-import { useNavigation } from "@react-navigation/native";
 
 const axios = AxiosJSON();
 
-export const sendVerificationToken = createAsyncThunk(
-  "verification/sendVerificationToken",
-  async (email: string, { dispatch, rejectWithValue }) => {
+export const submitVerificationToken = createAsyncThunk(
+  "verification/submitVerificationToken",
+  async (
+    { email, otp }: { email: string; otp: string },
+    { dispatch, rejectWithValue }
+  ) => {
     try {
-      dispatch(sendVerificationRequest());
+      dispatch(submitVerificationRequest());
 
-      const data = (await axios.post(`auth/send-otp`, { email }))
-        .data as OtpAiResponse;
-
-      console.log("Health Care login response ", data);
+      const { data } = await axios.post(
+        `/auth/:status/password/reset/verify_otp`,
+        { email, otp }
+      );
 
       if (!data.status) {
         Toast.show({
@@ -26,7 +26,7 @@ export const sendVerificationToken = createAsyncThunk(
           text1: data.message,
           visibilityTime: 5000,
         });
-        dispatch(sendVerificationFailed());
+        dispatch(submitVerificationFailed());
         return rejectWithValue(data.message);
       }
 
@@ -35,20 +35,21 @@ export const sendVerificationToken = createAsyncThunk(
         text1: data.message,
         visibilityTime: 5000,
       });
-      dispatch(sendVerificationSuccess());
+      dispatch(submitVerificationSuccess());
+      await AsyncStorage.multiRemove(["VerificationToken", "data"]);
     } catch (error) {
-      console.log("Verification Error", error);
+      console.log("submit Verification Error", error);
 
       const axiosError = error as AxiosError<{ message: string }>;
       const errorMessage =
         axiosError.response?.data?.message ||
-        "An error occurred while sending the verification token.";
+        "An error occurred while submiting the verification token.";
       Toast.show({
         type: "error",
         text1: errorMessage,
         visibilityTime: 5000,
       });
-      dispatch(sendVerificationFailed());
+      dispatch(submitVerificationFailed());
       return rejectWithValue(errorMessage);
     }
   }
@@ -62,26 +63,26 @@ const initialState: VerificationState = {
   loading: false,
 };
 
-const sendTokenVerificationSlice = createSlice({
-  name: "verification/sendVerificationToken",
+const emailVerificationSlice = createSlice({
+  name: "verification/submitVerificationToken",
   initialState,
   reducers: {
-    sendVerificationRequest: (state) => {
+    submitVerificationRequest: (state) => {
       state.loading = true;
     },
-    sendVerificationSuccess: (state) => {
+    submitVerificationSuccess: (state) => {
       state.loading = false;
     },
-    sendVerificationFailed: (state) => {
+    submitVerificationFailed: (state) => {
       state.loading = false;
     },
   },
 });
 
 export const {
-  sendVerificationRequest,
-  sendVerificationSuccess,
-  sendVerificationFailed,
-} = sendTokenVerificationSlice.actions;
+  submitVerificationRequest,
+  submitVerificationSuccess,
+  submitVerificationFailed,
+} = emailVerificationSlice.actions;
 
-export default sendTokenVerificationSlice;
+export default emailVerificationSlice;

@@ -10,9 +10,6 @@ export interface ApiErrorResponse {
   data?: Record<string, string[]>;
 }
 
-// Utils import might not be needed in this specific function anymore
-// import { Utils } from './utils';
-
 export interface ApiErrorResponse {
   success: boolean;
   message?: string;

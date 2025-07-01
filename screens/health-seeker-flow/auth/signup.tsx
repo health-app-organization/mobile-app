@@ -17,7 +17,11 @@ import Animated, {
   withSpring,
 } from "react-native-reanimated";
 import { Textstyles } from "../../../constants/fontsize";
-import { primarycolor, whitecolor, greycolortwo } from "../../../constants/color";
+import {
+  primarycolor,
+  whitecolor,
+  greycolortwo,
+} from "../../../constants/color";
 import NumericKeyboard from "../../../components/modals/custom-keyboard"; // Importing the Numeric Keyboard
 import { height } from "../../../constants/mobileDimensions";
 import { RadioButton } from "react-native-paper";
@@ -28,8 +32,15 @@ import { handleOtpInput } from "../../../utilities/utility";
 import { StackNavigation } from "../../../types/stack";
 import { StatusBar } from "expo-status-bar";
 import { Box } from "components/utilities/box";
-import { CustomInputPassword, CustomInputWithHeader, CustomTextInput } from "components/utilities/inputs";
+import {
+  CustomInputPassword,
+  CustomInputWithHeader,
+  CustomTextInput,
+} from "components/utilities/inputs";
 import { CustomButton } from "components/utilities/buttons";
+import { sendVerificationToken } from "redux/slices/send-otp";
+import { RootState, useAppDispatch } from "redux/store";
+import { useSelector } from "react-redux";
 
 export default function SignUp() {
   const navigation = useNavigation<StackNavigation>();
@@ -45,13 +56,15 @@ export default function SignUp() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
   const [showDate, setShowDate] = useState(false); //for date picker
 
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [showKeyboard, setShowKeyboard] = useState(false); // State to toggle keyboard visibility
   const [otp, setOtp] = useState(["", "", "", "", "", ""]); // OTP input array
   const [showLoginModal, setShowLoginModal] = useState(false);
+  const dispatch = useAppDispatch();
+  const { loading: isLoading } = useSelector((state: RootState) => state.otp);
 
   const translateY = useSharedValue(600); // Animation for the keyboard
   const animatedStyles = useAnimatedStyle(() => ({
@@ -66,12 +79,82 @@ export default function SignUp() {
     return emailRegex.test(email);
   };
 
+  // const handleContinue = async () => {
+  //   if (isLoading) {
+  //     return;
+  //   }
+  //   if (currentStep === 2) {
+  //     console.log(phoneNumber);
+  //     const data = {
+  //       phoneNumber,
+  //       firstName,
+  //       lastName,
+  //       email,
+  //       birthDate,
+  //       gender,
+  //       password,
+  //     };
+  //     setIsLoading(true);
+  //     // const response = await RegisterDataThree(
+  //     //   data,
+  //     //   setIsLoading,
+  //     //   setErrorMessage,
+  //     //   setCurrentStep
+  //     // );
+  //     // if (response === "ok") {
+  //     setShowLoginModal(true);
+  //     //   translateYsuccess.value = withSpring(0, {
+  //     //     damping: 10,
+  //     //     stiffness: 100,
+  //     //   });
+  //     // }
+
+  //     setIsLoading(false);
+  //   } else if (currentStep === 0) {
+  //     if (!isValidEmail(email)) {
+  //       setErrorMessage("Invalid Email Address");
+  //       return;
+  //     }
+  //     // RegisterDataOne(email, setIsLoading, setErrorMessage, setCurrentStep);
+  //   } else {
+  //     const joinOtp = otp.join("");
+  //     // RegisterDataTwo(
+  //     //   email,
+  //     //   joinOtp,
+  //     //   setIsLoading,
+  //     //   setErrorMessage,
+  //     //   setCurrentStep
+  //     // );
+  //   }
+  // };
+
   const handleContinue = async () => {
-    if (isLoading) {
-      return;
-    }
-    if (currentStep === 2) {
-      console.log(phoneNumber);
+    if (isLoading) return;
+
+    if (currentStep === 0) {
+      if (!isValidEmail(email)) {
+        setErrorMessage("Invalid Email Address");
+        return;
+      }
+
+      const res = await dispatch(sendVerificationToken(email));
+
+      if (sendVerificationToken.fulfilled.match(res)) {
+        setCurrentStep(1);
+      } else {
+        const err = res.payload as string;
+        setErrorMessage(err || "Failed to send OTP.");
+      }
+    } else if (currentStep === 1) {
+      const joinOtp = otp.join("");
+      if (joinOtp.length !== 6) {
+        setErrorMessage("Please enter a 6-digit code.");
+        return;
+      }
+
+      // dispatch verifyOtpThunk({ email, otp: joinOtp }) here
+      // if success -> setCurrentStep(2)
+    } else if (currentStep === 2) {
       const data = {
         phoneNumber,
         firstName,
@@ -81,37 +164,9 @@ export default function SignUp() {
         gender,
         password,
       };
-      setIsLoading(true);
-      // const response = await RegisterDataThree(
-      //   data,
-      //   setIsLoading,
-      //   setErrorMessage,
-      //   setCurrentStep
-      // );
-      // if (response === "ok") {
-      setShowLoginModal(true);
-      //   translateYsuccess.value = withSpring(0, {
-      //     damping: 10,
-      //     stiffness: 100,
-      //   });
-      // }
 
-      setIsLoading(false);
-    } else if (currentStep === 0) {
-      if (!isValidEmail(email)) {
-        setErrorMessage("Invalid Email Address");
-        return;
-      }
-      // RegisterDataOne(email, setIsLoading, setErrorMessage, setCurrentStep);
-    } else {
-      const joinOtp = otp.join("");
-      // RegisterDataTwo(
-      //   email,
-      //   joinOtp,
-      //   setIsLoading,
-      //   setErrorMessage,
-      //   setCurrentStep
-      // );
+      // dispatch registerUser(data) here
+      // if success -> setShowLoginModal(true)
     }
   };
 
@@ -273,7 +328,9 @@ export default function SignUp() {
                   placeholderTextColor={greycolortwo}
                   onChange={(val) => setEmail(val)}
                   value={email}
-                  leftIcon={<FontAwesome name="envelope" color="#ccc" size={20} />}
+                  leftIcon={
+                    <FontAwesome name="envelope" color="#ccc" size={20} />
+                  }
                 />
               </View>
             </>
@@ -309,7 +366,9 @@ export default function SignUp() {
                     <CustomInputWithHeader
                       headerText="First name"
                       placeholder="Enter your first name"
-                      leftIcon={<FontAwesome name="user" color="#000" size={20} />}
+                      leftIcon={
+                        <FontAwesome name="user" color="#000" size={20} />
+                      }
                       value={firstName}
                       onChange={(text) => setFirstName(text)}
                     />
@@ -317,7 +376,9 @@ export default function SignUp() {
                     <CustomInputWithHeader
                       headerText="Last name"
                       placeholder="Enter your last name"
-                      leftIcon={<FontAwesome name="user" color="#000" size={20} />}
+                      leftIcon={
+                        <FontAwesome name="user" color="#000" size={20} />
+                      }
                       value={lastName}
                       onChange={(text) => setLastName(text)}
                     />
@@ -325,7 +386,9 @@ export default function SignUp() {
                     <CustomInputWithHeader
                       headerText="Email address"
                       placeholder="Enter your email address"
-                      leftIcon={<FontAwesome name="envelope" color="#000" size={20} />}
+                      leftIcon={
+                        <FontAwesome name="envelope" color="#000" size={20} />
+                      }
                       value={email}
                       onChange={(text) => setEmail(text)}
                       disabled
@@ -334,7 +397,9 @@ export default function SignUp() {
                     <CustomInputWithHeader
                       headerText="Phone number"
                       placeholder="Enter your phone number"
-                      leftIcon={<FontAwesome name="phone" color="#000" size={20} />}
+                      leftIcon={
+                        <FontAwesome name="phone" color="#000" size={20} />
+                      }
                       value={`+234 ${phoneNumber}`}
                       onChange={(text) => setPhoneNumber(text)}
                     />
@@ -416,7 +481,9 @@ export default function SignUp() {
                       value={password}
                       onChange={(text) => setPassword(text)}
                       secureTextEntry={true}
-                      leftIcon={<FontAwesome name="lock" color="#000" size={20} />}
+                      leftIcon={
+                        <FontAwesome name="lock" color="#000" size={20} />
+                      }
                     />
                     <View className="h-3" />
                     <Text className="text-red-500">{errorMessage}</Text>
@@ -426,7 +493,9 @@ export default function SignUp() {
                       value={confirmPassword}
                       onChange={(text) => setConfirmPassword(text)}
                       secureTextEntry={true}
-                      leftIcon={<FontAwesome name="lock" color="#000" size={20} />}
+                      leftIcon={
+                        <FontAwesome name="lock" color="#000" size={20} />
+                      }
                       className="mb-32"
                     />
                   </ScrollView>
@@ -444,10 +513,10 @@ export default function SignUp() {
                 isLoading
                   ? "Loading..."
                   : currentStep === 2
-                    ? "Continue"
-                    : currentStep === 1
-                      ? "Verify"
-                      : "Send"
+                  ? "Continue"
+                  : currentStep === 1
+                  ? "Verify"
+                  : "Send"
               }
               isLoading={isLoading}
               TextColor={whitecolor}
