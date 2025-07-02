@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   ActivityIndicator,
   Image,
@@ -39,7 +39,7 @@ export const Login = ({ navigation }: { navigation: StackNavigation }) => {
     setSecureTextEntry(!secureTextEntry);
   };
 
-  const { loading } = useSelector((state: RootState) => state.auth);
+  const { loading, data } = useSelector((state: RootState) => state.auth);
 
   const handleToSignup = () => {
     navigation.navigate("health-seeker", { screen: "signup" });
@@ -81,10 +81,15 @@ export const Login = ({ navigation }: { navigation: StackNavigation }) => {
           password: password,
         })
       );
+      // navigation.navigate("health-seeker", { screen: "dashboard" });
+    }
+  };
+
+  useEffect(() => {
+    if (!loading && data) {
       navigation.navigate("health-seeker", { screen: "dashboard" });
     }
-    // navigation.navigate("health-seeker", { screen: "dashboard" });
-  };
+  }, [loading, data]);
 
   const handleForgotPassword = async () => {
     navigation.navigate("health-seeker", {
@@ -100,7 +105,13 @@ export const Login = ({ navigation }: { navigation: StackNavigation }) => {
       keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 0}
       enabled
     >
-      {loading && <ActivityIndicator size="large" color="black" />}
+      {loading && (
+        <View
+          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+        >
+          <ActivityIndicator size="large" color="black" />
+        </View>
+      )}
       <ScrollView>
         <StatusBar backgroundColor="white" />
         <View className="h-screen w-full px-5 py-[44px] bg-primaryTwo">
@@ -158,7 +169,7 @@ export const Login = ({ navigation }: { navigation: StackNavigation }) => {
             onPress={handletodashboard}
             backgroundColor={primarycolor}
             TextColor={whitecolor}
-            isLoading={IsLoading}
+            isLoading={loading}
             // disabled={email === "" || password === ""}
           />
           <View className="flex-row h-14 mt-36 gap-1 w-full justify-center items-center">
