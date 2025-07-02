@@ -81,15 +81,25 @@ export const Login = ({ navigation }: { navigation: StackNavigation }) => {
           password: password,
         })
       );
-      // navigation.navigate("health-seeker", { screen: "dashboard" });
+      navigation.navigate("health-seeker", { screen: "dashboard" });
     }
   };
 
-  useEffect(() => {
-    if (!loading && data) {
-      navigation.navigate("health-seeker", { screen: "dashboard" });
-    }
-  }, [loading, data]);
+  // useEffect(() => {
+  //   if (!loading ) {
+  //     navigation.navigate("health-seeker", { screen: "dashboard" });
+  //   }
+  // }, [loading]);
+
+  // if (loading) {
+  //   return (
+  //     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+  //       <ActivityIndicator size="large" color="black" />
+
+  //     </View>
+
+  //   );
+  // }
 
   const handleForgotPassword = async () => {
     navigation.navigate("health-seeker", {

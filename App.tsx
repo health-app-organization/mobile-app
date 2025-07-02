@@ -47,9 +47,9 @@ export default function App() {
 
   return (
     <Provider store={store}>
-      <Toast config={toastConfig} position="top" />
       <GestureHandlerRootView style={{ flex: 1 }}>
         <PaperProvider>
+          <Toast config={toastConfig} position="top" />
           <NavigationContainer>
             <Stack.Navigator screenOptions={{ headerShown: false }}>
               <Stack.Screen name="onboarding" component={StackWrapper} />
