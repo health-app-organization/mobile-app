@@ -6,6 +6,8 @@ import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigation } from "../../types/stack";
 import { CustomButton } from "components/utilities/buttons";
+import React from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 // Slider component
 const Slider = () => {
@@ -23,7 +25,7 @@ const Slider = () => {
           </Text>
           <Text className="text-center text-gray-500 leading-6 text-[16px]">
             Search for healthcare providers by specialty, or location. Need a
-            general check-up or specialist consultation, we’ve got you covered.
+            general check-up or specialist consultation, we've got you covered.
           </Text>
         </>
       ),
@@ -32,7 +34,7 @@ const Slider = () => {
       component: <Slidertwo />,
       description: (
         <>
-           <Text className="text-center text-black  text-2xl mt-10 font-bold mb-5">
+          <Text className="text-center text-black  text-2xl mt-10 font-bold mb-5">
             Secure and Convenient Communication
           </Text>
           <Text className="text-center text-gray-500 leading-6 text-[16px] ">
@@ -46,7 +48,7 @@ const Slider = () => {
       component: <Sliderthree />,
       description: (
         <>
-            <Text className="text-center text-black  text-2xl mt-10 font-bold mb-5">
+          <Text className="text-center text-black  text-2xl mt-10 font-bold mb-5">
             Effortless Appointment Booking
           </Text>
           <Text className="text-center text-gray-500 leading-6 text-[16px] ">
@@ -59,21 +61,32 @@ const Slider = () => {
   ];
 
   // Handle "Next" button click
-  const handlenext = () => {
+  const handlenext = async () => {
     if (currentindex < mapArray.length - 1) {
       setcurrentindex((next) => next + 1);
     } else if (currentindex === mapArray.length - 1) {
+      try {
+        await AsyncStorage.setItem("completedOnboarding", "Done");
+      } catch (error) {
+        console.error("Failed to save onboarding status", error);
+      }
       navigation.navigate("health-seeker", { screen: "identity" });
     }
   };
 
   // Handle "Get Started" button click
-  const handletoiden = () => {
+  const handletoiden = async () => {
+    try {
+      await AsyncStorage.setItem("completedOnboarding", "Done");
+    } catch (error) {
+      console.error("Failed to save onboarding status", error);
+    }
     navigation.navigate("identity");
   };
 
   // Handle "Skip" button click
-  const handleSkip = () => {
+  const handleSkip = async () => {
+    await AsyncStorage.setItem("completedOnboarding", "Done");
     setcurrentindex(mapArray.length - 1); // Skip to the last slider
   };
 

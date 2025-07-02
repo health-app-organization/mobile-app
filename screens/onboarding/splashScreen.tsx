@@ -1,5 +1,12 @@
 import React, { useEffect, useRef } from "react";
-import { Animated, View, StyleSheet, StatusBar, Image, Text } from "react-native";
+import {
+  Animated,
+  View,
+  StyleSheet,
+  StatusBar,
+  Image,
+  Text,
+} from "react-native";
 import {
   logocolor,
   primarycolor,
@@ -8,6 +15,7 @@ import {
 } from "../../constants/color";
 import { useIsFocused, useNavigation } from "@react-navigation/native";
 import { StackNavigation } from "../../types/stack";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const AnimatedBackground = () => {
   const navigation = useNavigation<StackNavigation>();
@@ -33,14 +41,38 @@ const AnimatedBackground = () => {
   }, []);
 
   const isFocused = useIsFocused();
+  // const goto = async () => {
+  //   // const status = await getDeviceStatus();
+  //   // if (status) {
+  //   navigation.navigate("slider");
+  //   //     } else {
+  //   //       navigation.navigate('slider');
+  //   //     }
+  // };
+
   const goto = async () => {
-    // const status = await getDeviceStatus();
-    // if (status) {
-    navigation.navigate("slider");
-    //     } else {
-    //       navigation.navigate('slider');
-    //     }
+    try {
+      const token = await AsyncStorage.getItem("VerificationToken");
+      const onboardingStatus = await AsyncStorage.getItem(
+        "completedOnboarding"
+      );
+
+      const isOnboarded = onboardingStatus === "Done";
+
+      if (!token && !isOnboarded) {
+        navigation.navigate("slider");
+      } else if (!token && isOnboarded) {
+        // navigation.navigate("login");
+        navigation.navigate("health-seeker", { screen: "login" });
+      } else if (token && isOnboarded) {
+        navigation.navigate("health-seeker"); // or "health-provider" based on role
+      }
+    } catch (err) {
+      console.error("Navigation error:", err);
+      navigation.navigate("slider"); // fallback
+    }
   };
+
   useEffect(() => {
     if (isFocused) {
       const mystart = setTimeout(() => {
@@ -85,9 +117,11 @@ const AnimatedBackground = () => {
             resizeMode="contain"
             className="h-24 w-24"
           />
-
         </View>
-        <Text className="text-white font-bold text-center text-3xl"><Text>Westa</Text><Text>Care</Text></Text>
+        <Text className="text-white font-bold text-center text-3xl">
+          <Text>Westa</Text>
+          <Text>Care</Text>
+        </Text>
       </Animated.View>
     </View>
   );
