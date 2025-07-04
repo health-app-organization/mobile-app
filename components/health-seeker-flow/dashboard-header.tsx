@@ -74,8 +74,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 50,
     width: "100%",
-    height: "60%",
-    flex: 1,
+    height: "55%",
+    flex: 0.5,
   },
   page: {
     flex: 1,
