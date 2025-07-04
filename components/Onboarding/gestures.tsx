@@ -1,76 +1,3 @@
-// // src/screens/slider/SliderGestures.tsx
-// import { StatusBar } from "expo-status-bar";
-// import React from "react";
-// import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-// import { primarycolor, whitecolor } from "../../constants/colors";
-// import { Textstyles } from "../../constants/fontsize";
-// import { CustomButton } from "../../utilities/buttons";
-// import { sliderSteps } from "./data";
-
-// type SliderGesturesProps = {
-//   screenIndex: number;
-//   onContinue: () => void;
-//   onSkip: () => void;
-//   onGetStarted: () => void;
-// };
-
-// const SliderGestures = ({
-//   screenIndex,
-//   onContinue,
-//   onSkip,
-//   onGetStarted,
-// }: SliderGesturesProps) => {
-//   const data = sliderSteps[screenIndex];
-//   const isLastScreen = screenIndex === sliderSteps.length - 1;
-
-//   return (
-//     <View style={styles.page}>
-//       <StatusBar style="auto" />
-
-//       {/* Slider Section */}
-//       <View>
-//         {/* {!isLastScreen && (
-//           <TouchableOpacity onPress={onSkip}>
-//             <Text style={[Textstyles.text_small]}>Skip</Text>
-//           </TouchableOpacity>
-//         )} */}
-
-//         {/* <View>
-//           <Image source={data.image} />
-//         </View> */}
-//       </View>
-
-//       {/* White View Section */}
-//       <View>
-//         <View>
-//           <Text>{data.title}</Text>
-//           <Text>{data.description}</Text>
-//         </View>
-
-// {/* Buttons */}
-// <View>
-//   <CustomButton
-//     Textname={isLastScreen ? "Get started" : "Next"}
-//     onPress={isLastScreen ? onGetStarted : onContinue}
-//     backgroundColor={primarycolor}
-//     TextColor={whitecolor}
-//   />
-// </View>
-//       </View>
-//     </View>
-//   );
-// };
-
-// export default SliderGestures;
-
-// const styles = StyleSheet.create({
-//   page: {
-//     justifyContent: "center",
-//     flex: 1,
-//   },
-// });
-
-// src/screens/slider/SliderGestures.tsx
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
@@ -134,7 +61,7 @@ const SliderGestures = ({
         style={{
           // paddingTop: 20,
           paddingBottom: 10,
-          marginBottom: 50,
+          // marginBottom: 20,
           backgroundColor: "white",
           paddingHorizontal: 20,
         }}

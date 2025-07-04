@@ -55,7 +55,7 @@ export const CustomTextInput: React.FC<CustomInputProps & TextInputProps> = ({
               zIndex: 1,
             }}
           >
-            {showicon}
+            {leftIcon}
           </View>
         )}
         <TextInput
