@@ -88,12 +88,13 @@
 
 // export default DashboardHeader;
 
-import { BackgroundIcon, Notificationicon } from "assets/iconsvg/Svgicon";
+// import { BackgroundIcon, Notificationicon } from "assets/iconsvg/Svgicon";
 import { Text, TouchableOpacity, View, StyleSheet } from "react-native";
 import { Avatar } from "react-native-paper";
 import { primarycolor, whitecolor } from "../../constants/colors";
 import { Textstyles } from "../../constants/fontsize";
 import { QRCodeScreen } from "../../utilities/qr-code";
+import { BackgroundIcon, Notificationicon } from "../../assets/iconsvg/Svgicon";
 
 const DashboardHeader = () => {
   return (
@@ -116,7 +117,7 @@ const DashboardHeader = () => {
               {"Hi " + "firstName"}
             </Text>
             <Text style={[Textstyles.text_xxmedium, styles.whiteText]}>
-              How're you today?
+              {`How're you today?`}
             </Text>
           </View>
         </View>

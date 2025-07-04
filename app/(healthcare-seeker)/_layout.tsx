@@ -1,17 +1,23 @@
 import { Tabs } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import {
-  CalenderIcon,
-  HomeIcon,
-  MessageIcon,
-  UserIcon,
-} from "assets/iconsvg/Svgicon";
+// import {
+//   CalenderIcon,
+//   HomeIcon,
+//   MessageIcon,
+//   UserIcon,
+// } from "assets/iconsvg/Svgicon";
 
 import { View, Text } from "react-native";
 import { linkcolor, primarycolor } from "../../constants/colors";
 import HeaderTitle from "../../utilities/headers";
 import { Textstyles } from "../../constants/fontsize";
 import DashboardHeader from "../../components/health-seeker-flow/dashboard-header";
+import {
+  CalenderIcon,
+  HomeIcon,
+  MessageIcon,
+  UserIcon,
+} from "../../assets/iconsvg/Svgicon";
 
 export default function SeekerTabs() {
   return (
