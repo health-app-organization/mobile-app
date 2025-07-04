@@ -1,11 +1,10 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
+import LoginProvider from "../../../components/health-provider-flow/auth/login";
 
 const Login = () => {
   return (
-    <View>
-      <Text>Login</Text>
-    </View>
+   <LoginProvider/>
   );
 };
 

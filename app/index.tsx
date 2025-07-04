@@ -1,6 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Redirect } from "expo-router";
 import { useEffect, useState } from "react";
+import "../global.css"
 import { ActivityIndicator } from "react-native";
 
 const Home = () => {
