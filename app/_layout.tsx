@@ -7,14 +7,8 @@ const TabsLayout = () => {
       <Stack.Screen name="index" options={{ headerShown: false }} />
       <Stack.Screen name="(onboarding)" options={{ headerShown: false }} />
       <Stack.Screen name="(auth)" options={{ headerShown: false }} />
-      <Stack.Screen
-        name="(healthcare-provider)"
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="(healthcare-seeker)"
-        options={{ headerShown: false }}
-      />
+      <Stack.Screen name="(provider-auth)" options={{ headerShown: false }} />
+      <Stack.Screen name="(seeker-auth)" options={{ headerShown: false }} />
     </Stack>
   );
 };

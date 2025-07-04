@@ -32,9 +32,8 @@ export const LoginPage = () => {
   const toggleSecureEntry = () => {
     setSecureTextEntry(!secureTextEntry);
   };
-
   const handleToSignup = () => {
-    router.push("/(healthcare-seeker)/(auth)/signup");
+    router.push("/(seeker)/(auth)/signup");
   };
 
   const handletodashboard = () => {

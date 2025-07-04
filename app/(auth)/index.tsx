@@ -48,7 +48,7 @@ const Identity = () => {
       setShowConfirmation(true);
       await AsyncStorage.setItem("auth", "signup");
     } else if (selectedIdentity === "health-seeker") {
-      router.push("/(healthcare-seeker)");
+      router.push("/(seeker-auth)");
     }
   };
 
@@ -58,7 +58,7 @@ const Identity = () => {
       setShowConfirmation(true);
       await AsyncStorage.setItem("auth", "login");
     } else {
-      router.push("/(healthcare-seeker)");
+      router.push("/(seeker-auth)");
     }
   };
 
@@ -69,7 +69,7 @@ const Identity = () => {
   // Function to proceed after confirmation
   const handleConfirmationContinue = () => {
     setShowConfirmation(false);
-    router.push("/(healthcare-provider)");
+    router.push("/(provider-auth)");
   };
 
   // Function to close confirmation modal
