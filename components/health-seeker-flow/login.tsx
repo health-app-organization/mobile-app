@@ -28,7 +28,7 @@ export const LoginPage = () => {
   const [errorMessage, setErrorMessage] = useState<string | null>("");
 
   const handleToSignup = () => {
-    router.push("/(seeker)/(auth)/signup");
+    router.push("/(seeker-auth)/(auth)/signup");
   };
 
   const handletodashboard = () => {
@@ -200,7 +200,7 @@ const styles = StyleSheet.create({
   signupContainer: {
     flexDirection: "row",
     height: 56,
-    marginTop: 144,
+    marginTop: 100,
     gap: 4,
     width: "100%",
     justifyContent: "center",
