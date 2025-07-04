@@ -1,12 +1,5 @@
 import { Tabs } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-// import {
-//   CalenderIcon,
-//   HomeIcon,
-//   MessageIcon,
-//   UserIcon,
-// } from "assets/iconsvg/Svgicon";
-
 import { View, Text } from "react-native";
 import { linkcolor, primarycolor } from "../../constants/colors";
 import HeaderTitle from "../../utilities/headers";
