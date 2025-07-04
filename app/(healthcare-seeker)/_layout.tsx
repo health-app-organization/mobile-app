@@ -4,7 +4,6 @@ import { View, Text } from "react-native";
 import { linkcolor, primarycolor } from "../../constants/colors";
 import HeaderTitle from "../../utilities/headers";
 import { Textstyles } from "../../constants/fontsize";
-import DashboardHeader from "../../components/health-seeker-flow/dashboard-header";
 import {
   CalenderIcon,
   HomeIcon,
@@ -84,7 +83,7 @@ export default function SeekerTabs() {
         <Tabs.Screen
           name="home"
           options={{
-            header: () => <DashboardHeader />,
+            header: () => <HeaderTitle title="Home" profileCompletion={""} />,
           }}
         />
         <Tabs.Screen
