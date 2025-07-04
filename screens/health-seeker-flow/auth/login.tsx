@@ -42,7 +42,10 @@ export const Login = ({ navigation }: { navigation: StackNavigation }) => {
   const { loading, data } = useSelector((state: RootState) => state.auth);
 
   const handleToSignup = () => {
-    navigation.navigate("health-seeker", { screen: "signup" });
+    navigation.navigate("health-seeker", {
+      screen: "safe-area-view",
+      params: { screen: "signup" },
+    });
   };
   //   const handletodashboard = async () => {
   //     const data = { email, password };
@@ -123,7 +126,7 @@ export const Login = ({ navigation }: { navigation: StackNavigation }) => {
         </View>
       )}
       <ScrollView>
-        <StatusBar backgroundColor="white" />
+        <StatusBar style="auto" />
         <View className="h-screen w-full px-5 py-[44px] bg-primaryTwo">
           <>
             <Text

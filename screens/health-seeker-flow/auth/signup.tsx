@@ -728,7 +728,7 @@ export default function SignUp() {
 
   return (
     <>
-      <StatusBar backgroundColor="white" />
+      <StatusBar style="auto"  />
       {showDate && (
         <DateModal
           setBirthDate={(value) => setBirthDate(value)}
