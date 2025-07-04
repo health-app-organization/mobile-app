@@ -56,7 +56,7 @@ export const LoginPage = () => {
     //     })
     //   );
     // }
-    router.push("/(healthcare-seeker)/home");
+    router.push("/(healthcare-seeker)/(home)");
   };
 
   const handleForgotPassword = async () => {};

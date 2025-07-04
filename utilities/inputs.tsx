@@ -198,6 +198,7 @@ export const CustomInputWithHeader: React.FC<CustomInputProps> = ({
             },
           ]}
           placeholder={placeholder} // Set placeholder text
+          placeholderTextColor="#999" // Optional: Set a placeholder text color
           value={inputValue} // Use inputValue for the actual value
           editable={!disabled} // Allow editing based on disable prop
           secureTextEntry={secureTextEntry}
@@ -321,6 +322,7 @@ export const CustomInputPassword: React.FC<CustomInputProps> = ({
             },
           ]}
           placeholder={placeholder}
+          placeholderTextColor="#999" // Optional: Set a placeholder text color
           value={inputValue}
           editable={!disabled}
           secureTextEntry={secureTextEntry && !isPasswordVisible} // Toggle secureTextEntry based on visibility

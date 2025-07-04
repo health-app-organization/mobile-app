@@ -19,7 +19,7 @@ export default function SeekerTabs() {
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
             switch (route.name) {
-              case "home":
+              case "(home)":
                 return (
                   <View
                     style={{
@@ -81,9 +81,12 @@ export default function SeekerTabs() {
         })}
       >
         <Tabs.Screen
-          name="home"
+          name="(home)"
+          // options={{
+          //   header: () => <HeaderTitle title="Home" profileCompletion={""} />,
+          // }}
           options={{
-            header: () => <HeaderTitle title="Home" profileCompletion={""} />,
+            headerShown: false,
           }}
         />
         <Tabs.Screen
