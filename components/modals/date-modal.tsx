@@ -1,9 +1,9 @@
-import DateTimePicker from "react-native-ui-datepicker";
+import { FontAwesome } from "@expo/vector-icons";
 import dayjs, { Dayjs } from "dayjs";
 import { useState } from "react";
-import { View, Text, TouchableOpacity } from "react-native";
-import { FontAwesome } from "@expo/vector-icons";
-import { primarycolor } from "../../constants/color";
+import { Text, TouchableOpacity, View } from "react-native";
+import DateTimePicker from "react-native-ui-datepicker";
+import { primarycolor } from "../../constants/colors";
 
 const DateModal = ({
   setBirthDate,

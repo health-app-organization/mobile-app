@@ -1,11 +1,6 @@
-import { Platform, StyleSheet } from "react-native";
-import {
-  greycolor,
-  greycolorfour,
-  primarycolor,
-  primarycolortwo,
-  whitecolor,
-} from "./color";
+import { StyleSheet } from "react-native";
+import { greycolor, greycolorfour, primarycolor } from "./colors";
+
 export const customstyle = StyleSheet.create({
   buttonstyle: {
     height: 55,
@@ -74,10 +69,6 @@ export const customstyle2 = StyleSheet.create({
     borderColor: greycolorfour,
   },
 });
-
-
-
-
 
 export const radioButtonStyles = StyleSheet.create({
   radioButton: {

@@ -1,16 +1,14 @@
 // NumericKeyboard.js
 import React from "react";
 import {
-  View,
+  Dimensions,
+  StyleSheet,
   Text,
   TouchableOpacity,
-  StyleSheet,
-  Dimensions,
+  View,
 } from "react-native";
-import {
-  greycolor,
-  primarycolor,
-} from "../../constants/color";
+
+import { greycolor, primarycolor } from "../../constants/colors";
 import { Textstyles } from "../../constants/fontsize";
 
 const { width } = Dimensions.get("window"); // Get screen width for responsive design

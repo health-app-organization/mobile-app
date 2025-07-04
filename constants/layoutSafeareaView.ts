@@ -1,23 +1,21 @@
-import {Platform, StyleSheet} from 'react-native'
-import { primarycolor, primarycolortwo, whitecolor } from './color';
+import { Platform, StyleSheet } from "react-native";
+import { primarycolor, primarycolortwo, whitecolor } from "./colors";
+
 export const bgstyles = StyleSheet.create({
-    bgcolorprimary: {
-        backgroundColor:primarycolor ,
-        color: whitecolor,
-    },
-    bgcolorprimarytwo: {
-        backgroundColor:primarycolortwo ,
-        color: whitecolor,
-    },
-    bgcolorwhite: {
-        backgroundColor:whitecolor ,
-        color: primarycolortwo,
-    },
+  bgcolorprimary: {
+    backgroundColor: primarycolor,
+    color: whitecolor,
+  },
+  bgcolorprimarytwo: {
+    backgroundColor: primarycolortwo,
+    color: whitecolor,
+  },
+  bgcolorwhite: {
+    backgroundColor: whitecolor,
+    color: primarycolortwo,
+  },
 
-    andriod: {
-        paddingTop: Platform.OS === "android" ? 20 : 0,
-    },
-
-  });
-  
-  
+  andriod: {
+    paddingTop: Platform.OS === "android" ? 20 : 0,
+  },
+});
