@@ -13,7 +13,6 @@ import {
 } from "react-native";
 
 import { router } from "expo-router";
-import React from "react";
 import { primarycolor, whitecolor } from "../../constants/colors";
 import { Textstyles } from "../../constants/fontsize";
 import { CustomButton } from "../../utilities/buttons";
@@ -27,11 +26,7 @@ export const LoginPage = () => {
   const [password, setPassword] = useState("");
   const [IsLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>("");
-  const [secureTextEntry, setSecureTextEntry] = useState(true);
 
-  const toggleSecureEntry = () => {
-    setSecureTextEntry(!secureTextEntry);
-  };
   const handleToSignup = () => {
     router.push("/(seeker)/(auth)/signup");
   };
@@ -135,7 +130,7 @@ export const LoginPage = () => {
           />
           <View style={styles.signupContainer}>
             <Text style={[Textstyles.text_small, styles.signupText]}>
-              Don't have an account?
+              {`Don't have an account?`}
             </Text>
             <TouchableOpacity onPress={handleToSignup}>
               <Text style={[Textstyles.text_small, styles.signupLink]}>
