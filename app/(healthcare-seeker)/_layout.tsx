@@ -1,18 +1,4 @@
-// import { Tabs } from "expo-router";
-
-// export default function SeekerTabs() {
-//   return (
-//     <Tabs screenOptions={{ headerShown: false }}>
-//       <Tabs.Screen name="home" />
-//       <Tabs.Screen name="appointment" />
-//       <Tabs.Screen name="chat" />
-//       <Tabs.Screen name="profile" />
-//     </Tabs>
-//   );
-// }
-
 import { Tabs } from "expo-router";
-// import { linkcolor, primarycolor } from "constants/color";
 import { StatusBar } from "expo-status-bar";
 import {
   CalenderIcon,
@@ -20,9 +6,7 @@ import {
   MessageIcon,
   UserIcon,
 } from "assets/iconsvg/Svgicon";
-// import DashboardHeader from "components/health-seeker/dashboard-header";
-// import HeaderTitle from "components/utilities/headers";
-// import { Textstyles } from "constants/fontsize";
+
 import { View, Text } from "react-native";
 import { linkcolor, primarycolor } from "../../constants/colors";
 import HeaderTitle from "../../utilities/headers";
