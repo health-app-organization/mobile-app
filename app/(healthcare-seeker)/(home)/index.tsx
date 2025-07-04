@@ -2,6 +2,7 @@ import { ScrollView, StyleSheet, View } from "react-native";
 import React from "react";
 import DashboardHeader from "../../../components/health-seeker-flow/dashboard-header";
 import DashboardMenu from "../../../components/health-seeker-flow/dashboard";
+import Appointment from "../../../components/health-seeker-flow/appointment";
 
 const Home = () => {
   return (
@@ -9,6 +10,8 @@ const Home = () => {
       <DashboardHeader />
       <ScrollView style={{ marginTop: 30, flex: 1 }}>
         <DashboardMenu />
+
+        <Appointment />
       </ScrollView>
     </View>
   );

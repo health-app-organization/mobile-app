@@ -36,6 +36,11 @@ import {
   StyleSheet,
 } from "react-native";
 
+interface MenuButtonProps {
+  icon: React.ReactNode;
+  text: React.ReactNode;
+}
+
 export const MenuButton: React.FC<MenuButtonProps & TouchableOpacityProps> = ({
   icon,
   text,
