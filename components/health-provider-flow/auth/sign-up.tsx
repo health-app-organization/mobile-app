@@ -1,13 +1,11 @@
-import { CustomButton } from "components/utilities/buttons";
-import {
-  CustomInputPassword,
-  CustomTextInput,
-} from "components/utilities/inputs";
-import { primarycolor } from "constants/color";
+
 import { Image, ScrollView, TouchableOpacity } from "react-native";
 import { Text, View } from "react-native";
+import { CustomInputPassword, CustomTextInput } from "../../../utilities/inputs";
+import { primarycolor } from "../../../constants/colors";
+import { CustomButton } from "../../../utilities/buttons";
 
-export default function Login({ navigation }: { navigation: any }) {
+export default function SignUpPage({ navigation }: { navigation: any }) {
   return (
     <View className="flex-1 px-4 py-20">
       <ScrollView showsVerticalScrollIndicator={false}>
