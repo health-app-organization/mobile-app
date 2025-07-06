@@ -16,7 +16,7 @@ export const ProviderCard: React.FC<ProviderCardProps> = ({
       onPress={onPress}
     >
       <Image
-        source={require("../../assets/images/appo.png")} //* to be changed to dynamic image
+        source={require("../assets/images/appo.png")} //* to be changed to dynamic image
         className="w-[120px] h-[120px]"
         resizeMode="cover"
       />
@@ -60,7 +60,7 @@ export const ProviderCard2: React.FC<ProviderCardProps> = ({
       {/* Left Section: Image */}
       <View className="bg-gray-600 w-[200px] h-[97px] flex justify-center  rounded-t-xl items-center mr-4">
         <Image
-          source={require("../../assets/images/appo.png")}
+          source={require("../assets/images/appo.png")}
           className="w-full h-full" // Set height to full
           resizeMode="contain"
         />

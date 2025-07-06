@@ -1,4 +1,4 @@
-import { ArrowUpIcon } from "assets/iconsvg/Svgicon";
+import { ArrowUpIcon } from "../assets/iconsvg/Svgicon";
 
 import React from "react";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";

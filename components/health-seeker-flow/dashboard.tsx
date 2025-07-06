@@ -1,14 +1,20 @@
 import { View, Text, StyleSheet } from "react-native";
 import { MenuButton } from "../../utilities/menu-button";
 import { AmbulanceIcon, LabIcon, SethIcon } from "../../assets/iconsvg/Svgicon";
+// import { AmbulanceIcon, LabIcon, SethIcon } from "../../assets/iconsvg/Svgicon";
 import { Textstyles } from "../../constants/fontsize";
+import { router } from "expo-router";
 
 const DashboardMenu = () => {
+  const healthProvider = () => {
+    router.push("/dashboard");
+  };
   return (
     <View style={styles.container}>
       <View style={styles.menuRow}>
         <MenuButton
           icon={<SethIcon width={40} height={40} />}
+          onPress={healthProvider}
           text={
             <Text style={[Textstyles.text_xsmall, styles.menuText]}>
               Healthcare Provider

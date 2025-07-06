@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
     width: "100%",
     paddingHorizontal: 20,
     paddingVertical: 44,
-    backgroundColor: "white",
+    // backgroundColor: "white",
   },
   welcomeText: {
     fontSize: 24,

@@ -18,6 +18,7 @@ const TabsLayout = () => {
         name="(healthcare-seeker)"
         options={{ headerShown: false }}
       />
+      <Stack.Screen name="dashboard" options={{ headerShown: false }} />
     </Stack>
   );
 };
