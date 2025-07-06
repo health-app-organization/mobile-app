@@ -16,6 +16,12 @@ const NotificationLayout = () => {
           headerShown: false,
         }}
       />
+      <Stack.Screen
+        name="referral-details"
+        options={{
+          headerShown: false,
+        }}
+      />
     </Stack>
   );
 };
