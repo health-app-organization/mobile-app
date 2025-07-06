@@ -21,7 +21,7 @@ import {
   CustomInputWithHeader,
 } from "../../utilities/inputs";
 
-export const LoginPage = () => {
+export const LoginPage: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [IsLoading, setIsLoading] = useState(false);

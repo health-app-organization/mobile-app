@@ -19,6 +19,7 @@ import { Textstyles } from "../../constants/fontsize";
 import { Calender } from "../../assets/iconsvg/Svgicon";
 import { ChatList } from "./chats/chat-list";
 import { DateComponent } from "../../utilities/date-component";
+import AppointmentComponent from "./home/AppointmentComponent";
 
 const Appointment = () => {
   const [checkapointment, setcheckappointment] = useState(false);
@@ -57,7 +58,7 @@ const Appointment = () => {
           </View>
 
           <View style={styles.appointmentComponent}>
-            {/* <AppointmentComponent /> */}
+            <AppointmentComponent />
           </View>
         </View>
       )}
@@ -74,6 +75,7 @@ const styles = StyleSheet.create({
     marginTop: 20, // equivalent to mt-5 (5 * 4 = 20)
   },
   appointmentsContainer: {
+    marginTop: 12,
     paddingHorizontal: 20, // equivalent to px-5 (5 * 4 = 20)
     width: "100%",
   },

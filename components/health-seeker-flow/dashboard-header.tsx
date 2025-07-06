@@ -4,6 +4,7 @@ import { primarycolor, whitecolor } from "../../constants/colors";
 import { Textstyles } from "../../constants/fontsize";
 import { QRCodeScreen } from "../../utilities/qr-code";
 import { BackgroundIcon, Notificationicon } from "../../assets/iconsvg/Svgicon";
+import { router } from "expo-router";
 
 const DashboardHeader = () => {
   return (
@@ -32,7 +33,12 @@ const DashboardHeader = () => {
             </View>
           </View>
 
-          <TouchableOpacity style={styles.notificationButton}>
+          <TouchableOpacity
+            style={styles.notificationButton}
+            onPress={() => {
+              router.push("/(notification)");
+            }}
+          >
             <Notificationicon width={28} height={28} />
           </TouchableOpacity>
         </View>
@@ -75,7 +81,7 @@ const styles = StyleSheet.create({
     paddingVertical: 50,
     width: "100%",
     height: "55%",
-    flex: 0.5,
+    flex: 0.4,
   },
   page: {
     flex: 1,

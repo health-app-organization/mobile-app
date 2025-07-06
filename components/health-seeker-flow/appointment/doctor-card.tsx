@@ -1,4 +1,4 @@
-import { Image, Text, View } from "react-native";
+import { Image, Text, View, StyleSheet } from "react-native";
 import { lightGreen, lightBlue } from "../../../constants/colors";
 import { Textstyles } from "../../../constants/fontsize";
 import { CustomButton } from "../../../utilities/buttons";
@@ -7,9 +7,9 @@ interface DoctorCardProps {
   name: string;
   session: string;
   time: string;
-  imageSource: any; // Adjust type as necessary
+  imageSource: any;
   onPress: () => void;
-  status?: "upcoming" | "completed" | "cancelled"; // Optional status prop
+  status?: "upcoming" | "completed" | "cancelled";
 }
 
 export const DoctorCard: React.FC<DoctorCardProps> = ({
@@ -21,17 +21,15 @@ export const DoctorCard: React.FC<DoctorCardProps> = ({
   status = "upcoming",
 }) => {
   return (
-    <View className="w-full flex-row rounded-xl overflow-hidden bg-white">
-      <View style={{ aspectRatio: 1 }} className="w-[50%] overflow-hidden">
-        <Image source={imageSource} className="w-full h-full" />
+    <View style={styles.container}>
+      <View style={styles.imageContainer}>
+        <Image source={imageSource} style={styles.image} />
       </View>
-      <View className="flex-1 p-4 flex-col justify-between">
-        <Text style={[Textstyles.text_medium]} className="text-center">
-          Dr Micheal Brains
-        </Text>
-        <View>
-          <Text className="text-center">Morning Session</Text>
-          <Text className="text-center">09:00AM Prompt</Text>
+      <View style={styles.contentContainer}>
+        <Text style={[Textstyles.text_medium, styles.nameText]}>{name}</Text>
+        <View style={styles.sessionContainer}>
+          <Text style={styles.sessionText}>{session}</Text>
+          <Text style={styles.timeText}>{time}</Text>
         </View>
         <CustomButton
           Textname="View Details"
@@ -43,3 +41,42 @@ export const DoctorCard: React.FC<DoctorCardProps> = ({
     </View>
   );
 };
+
+export default DoctorCard;
+const styles = StyleSheet.create({
+  container: {
+    width: "100%",
+    flexDirection: "row",
+    borderRadius: 12,
+    overflow: "hidden",
+    backgroundColor: "white",
+  },
+  imageContainer: {
+    aspectRatio: 1,
+    width: "50%",
+    overflow: "hidden",
+  },
+  image: {
+    width: "100%",
+    height: "100%",
+    resizeMode: "cover",
+    borderRadius: 12,
+  },
+  contentContainer: {
+    flex: 1,
+    padding: 16,
+    justifyContent: "space-between",
+  },
+  nameText: {
+    textAlign: "center",
+  },
+  sessionContainer: {
+    marginVertical: 8,
+  },
+  sessionText: {
+    textAlign: "center",
+  },
+  timeText: {
+    textAlign: "center",
+  },
+});
