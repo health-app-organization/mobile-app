@@ -3,11 +3,16 @@ import React from "react";
 import { useLocalSearchParams } from "expo-router";
 import DrugReferralDetails from "../../components/health-seeker-flow/notification/notification-deatails";
 import { StatusBar } from "expo-status-bar";
+import HeaderWithTitleAndBackButton from "../../components/health-seeker-flow/notification/notification-header";
 const NotificationDetails = () => {
   const { id } = useLocalSearchParams();
   console.log("ID: ", id);
   return (
     <View style={styles.container}>
+      <HeaderWithTitleAndBackButton
+        title="Drug Referral Details"
+        profileCompletion={""}
+      />
       <DrugReferralDetails id={id} />
       <StatusBar style="dark" />
     </View>
@@ -19,6 +24,6 @@ export default NotificationDetails;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingVertical: 20,
+    // paddingVertical: 20,
   },
 });

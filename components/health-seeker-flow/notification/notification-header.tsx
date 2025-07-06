@@ -2,6 +2,7 @@ import { Text, TouchableOpacity, View, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { primarycolor } from "../../../constants/colors";
 import { router } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 
 interface CustomHeaderProps {
   title?: string;
@@ -24,6 +25,8 @@ const HeaderWithTitleAndBackButton: React.FC<CustomHeaderProps> = ({
 
   return (
     <View style={styles.headerContainer}>
+      <StatusBar style="dark" />
+
       <View style={styles.headerContent}>
         <TouchableOpacity
           //   onPress={() => (onBackPress ? onBackPress() : navigation.goBack())}
@@ -41,6 +44,8 @@ const HeaderWithTitleAndBackButton: React.FC<CustomHeaderProps> = ({
 const styles = StyleSheet.create({
   headerContainer: {
     backgroundColor: primarycolor,
+    paddingTop: 40, // Adjust based on your status bar height
+    paddingBottom: 16, // Adjust for bottom padding if needed
   },
   headerContent: {
     flexDirection: "row",
