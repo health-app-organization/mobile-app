@@ -5,10 +5,7 @@ import HeaderWithTitleAndBackButton from "../../components/health-seeker-flow/no
 const ChatsScreen = () => {
   return (
     <View style={styles.container}>
-      <HeaderWithTitleAndBackButton
-        title="Appointment Details"
-        profileCompletion={""}
-      />
+      <HeaderWithTitleAndBackButton title="Patient" profileCompletion={""} />
       <Chat />
     </View>
   );
