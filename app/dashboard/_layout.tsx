@@ -16,6 +16,30 @@ const DashLayout = () => {
           headerShown: false,
         }}
       />
+      <Stack.Screen
+        name="book-appointment"
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="medicine"
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="payment"
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="user-qr-code"
+        options={{
+          headerShown: false,
+        }}
+      />
     </Stack>
   );
 };

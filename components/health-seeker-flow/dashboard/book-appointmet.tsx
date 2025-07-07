@@ -2,8 +2,12 @@ import { ScrollView, Text, View, StyleSheet } from "react-native";
 import { DatePicker, HourPicker } from "../../../utilities/date-component";
 import { Textstyles } from "../../../constants/fontsize";
 import { CustomButton } from "../../../utilities/buttons";
+import { router } from "expo-router";
 
 const BookAppointmentDetails = () => {
+  const payment = () => {
+    router.push("/dashboard/payment");
+  };
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
@@ -24,15 +28,7 @@ const BookAppointmentDetails = () => {
         <HourPicker selectedHour={1} />
       </ScrollView>
       <View style={styles.buttonContainer}>
-        <CustomButton
-          Textname="Next"
-          // onPress={() =>
-          //     navigation.navigate("health-seeker", {
-          //         screen: "safe-area-view",
-          //         params: { screen: "pay-for-appointment" },
-          //     })
-          // }
-        />
+        <CustomButton Textname="Next" onPress={() => payment()} />
       </View>
     </View>
   );

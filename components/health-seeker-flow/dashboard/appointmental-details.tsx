@@ -50,7 +50,11 @@
 //   };
 
 //   return (
-//     <ScrollView style={styles.container}>
+//     <View style={styles.container}>
+//     <ScrollView style={styles.scrollView}
+// contentContainerStyle={styles.scrollContent}
+// showsVerticalScrollIndicator={false}
+//>
 //       <TouchableOpacity style={styles.backButton}>
 //         <Ionicons name="chevron-back" size={30} color="white" />
 //       </TouchableOpacity>
@@ -450,22 +454,6 @@ const AppointmentDetails = ({ appointmentId }: AppointmentDetailsProps) => {
           </View>
 
           <View style={styles.mainContent}>
-            {/* <View style={styles.statsContainer}>
-              {data.map((item, index) => (
-                <View key={index} style={styles.statItem}>
-                  <FontAwesome
-                    name={item.iconName}
-                    size={24}
-                    color={item.color}
-                  />
-                  <View style={styles.statTextContainer}>
-                    <Text style={styles.statPrimaryText}>{item.text1}</Text>
-                    <Text style={styles.statSecondaryText}>{item.text2}</Text>
-                  </View>
-                </View>
-              ))}
-            </View> */}
-
             <View style={styles.statsContainer}>
               {data.map((item, index) => (
                 <View key={index} style={styles.statItem}>
@@ -600,6 +588,8 @@ const ExperienceItem = ({
 );
 
 // Styles
+
+export default AppointmentDetails;
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
@@ -619,9 +609,13 @@ const styles = StyleSheet.create({
     left: 20,
     zIndex: 50,
   },
+  // headerImage: {
+  //   width: "100%",
+  //   height: 300,
+  // },
   headerImage: {
     width: "100%",
-    height: 300,
+    height: 450,
   },
   contentContainer: {
     backgroundColor: "white",
@@ -656,7 +650,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   mainContent: {
-    paddingHorizontal: 5,
+    paddingHorizontal: "5%",
     paddingBottom: 20,
     gap: 16,
   },
@@ -664,10 +658,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    flexWrap: "wrap",
+    // flexWrap: "wrap",
   },
   statItem: {
-    width: "48%",
+    // width: "48%",
     flexDirection: "column",
     alignItems: "center",
     gap: 12,
@@ -676,7 +670,6 @@ const styles = StyleSheet.create({
   },
   statTextContainer: {
     flexDirection: "column",
-
     alignItems: "center",
     gap: 4,
   },
@@ -771,5 +764,3 @@ const styles = StyleSheet.create({
     marginTop: 24,
   },
 });
-
-export default AppointmentDetails;

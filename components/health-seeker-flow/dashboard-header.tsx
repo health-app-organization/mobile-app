@@ -7,6 +7,9 @@ import { BackgroundIcon, Notificationicon } from "../../assets/iconsvg/Svgicon";
 import { router } from "expo-router";
 
 const DashboardHeader = () => {
+  const qRcode = () => {
+    router.push("/dashboard/user-qr-code");
+  };
   return (
     <View style={styles.container}>
       <View style={styles.page}>
@@ -60,7 +63,7 @@ const DashboardHeader = () => {
           </View>
 
           <View>
-            <TouchableOpacity style={styles.qrCodeContainer}>
+            <TouchableOpacity style={styles.qrCodeContainer} onPress={qRcode}>
               <View style={styles.qrCodeInner}>
                 <QRCodeScreen />
               </View>
