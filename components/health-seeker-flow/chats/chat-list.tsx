@@ -19,7 +19,7 @@ export const ChatList: React.FC<ChatListProps> = ({
   onPress,
 }) => {
   const openChat = () => {
-    router.push("/chat");
+    router.push("/chats");
   };
   return (
     <>
@@ -30,7 +30,7 @@ export const ChatList: React.FC<ChatListProps> = ({
             ? styles.unreadContainer
             : styles.readContainer,
         ]}
-        onPress={onPress || openChat}
+        onPress={openChat}
       >
         {/* Profile Image */}
         <Image
