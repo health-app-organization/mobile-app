@@ -6,6 +6,7 @@ import { CustomButton } from "../../../utilities/buttons";
 import { Textstyles } from "../../../constants/fontsize";
 import { StatusBar } from "expo-status-bar";
 import { FontAwesome } from "@expo/vector-icons";
+import { useRouter } from "expo-router";
 
 
 
@@ -22,10 +23,11 @@ export default function LoginProvider() {
   const toggleSecureEntry = () => {
     setSecureTextEntry(!secureTextEntry);
   };
+  const router=useRouter()
 
   //const { loading } = useSelector((state: RootState) => state.auth);
-
-//   const handletodashboard = () => {
+   const handletodashboard = () => {
+    router.replace("/healthcare-provider/(homeprovider)")
 //     // Validate email
 //     if (!email || !Utils.validateEmail(email)) {
 //       Toast.show({
@@ -53,7 +55,8 @@ export default function LoginProvider() {
 //       navigation.navigate("health-provider", { screen: "dashboard" });
 //     }
 //     navigation.navigate("health-seeker", { screen: "dashboard" });
-//   };
+   
+  };
 
   return (
    <KeyboardAvoidingView
@@ -119,7 +122,7 @@ export default function LoginProvider() {
              {errorMessage && <Text style={styles.errorText}>{errorMessage}</Text>}
              <CustomButton
                Textname={"Login"}
-               //onPress={handletodashboard}
+               onPress={handletodashboard}
                backgroundColor={primarycolor}
                TextColor={whitecolor}
                isLoading={IsLoading}
@@ -129,7 +132,7 @@ export default function LoginProvider() {
                  {`Don't have an account?`}
                </Text>
                <TouchableOpacity 
-               //onPress={handleToSignup}
+               onPress={()=>router.replace("/(provider-auth)/(auth)/signup")}
                >
                  <Text style={[Textstyles.text_small, styles.signupLink]}>
                    Sign up
