@@ -1,10 +1,14 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
+import SettingsPage from "../../components/health-seeker-flow/profile/settings";
+import { Header } from "../../utilities/headers";
 
 const Settings = () => {
   return (
     <View style={styles.container}>
-      <Text>Settings</Text>
+      <Header title="Settings" profileCompletion="" />
+
+      <SettingsPage />
     </View>
   );
 };

@@ -1,10 +1,14 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
+import FavoritesPage from "../../components/health-seeker-flow/profile/favourites";
+import { Header } from "../../utilities/headers";
 
 const Favorites = () => {
   return (
     <View style={styles.container}>
-      <Text>Favorites</Text>
+      <Header title="Favourites" profileCompletion="" />
+
+      <FavoritesPage />
     </View>
   );
 };

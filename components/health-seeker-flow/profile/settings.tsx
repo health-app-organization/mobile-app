@@ -1,18 +1,3 @@
-// import { StyleSheet, Text, View } from "react-native";
-// import React from "react";
-
-// const Settings = () => {
-//   return (
-//     <View>
-//       <Text>Settings</Text>
-//     </View>
-//   );
-// };
-
-// export default Settings;
-
-// const styles = StyleSheet.create({});
-
 import { View, Text, Switch, ScrollView } from "react-native";
 import React, { useState } from "react";
 import { Textstyles } from "../../../constants/fontsize";
@@ -22,7 +7,7 @@ import { primarycolor, whitecolor } from "../../../constants/colors";
 import { CustomButton } from "../../../utilities/buttons";
 import { CustomInputPassword } from "../../../utilities/inputs";
 
-const Settings = () => {
+const SettingsPage = () => {
   const [isEnabled, setIsEnabled] = useState(false);
 
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
@@ -105,4 +90,4 @@ const Settings = () => {
   );
 };
 
-export default Settings;
+export default SettingsPage;

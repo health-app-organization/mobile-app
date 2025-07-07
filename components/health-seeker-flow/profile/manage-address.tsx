@@ -23,7 +23,7 @@ import { primarycolor, whitecolor } from "../../../constants/colors";
 import { CustomButton } from "../../../utilities/buttons";
 import { CustomInputWithHeader } from "../../../utilities/inputs";
 
-const ManageAddress = () => {
+const ManageAddressPage = () => {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -90,4 +90,4 @@ const ManageAddress = () => {
   );
 };
 
-export default ManageAddress;
+export default ManageAddressPage;

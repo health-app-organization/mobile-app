@@ -1,22 +1,7 @@
-// import { StyleSheet, Text, View } from "react-native";
-// import React from "react";
-
-// const Favorites = () => {
-//   return (
-//     <View>
-//       <Text>Favorites</Text>
-//     </View>
-//   );
-// };
-
-// export default Favorites;
-
-// const styles = StyleSheet.create({});
-
 import { View, Image, Text } from "react-native";
 import { Textstyles } from "../../../constants/fontsize";
 
-const Favorites = () => {
+const FavoritesPage = () => {
   return (
     <>
       <View className=" w-full flex mt-52 justify-center items-center">
@@ -35,4 +20,4 @@ const Favorites = () => {
   );
 };
 
-export default Favorites;
+export default FavoritesPage;

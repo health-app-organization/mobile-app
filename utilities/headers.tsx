@@ -52,7 +52,7 @@ export const Header: React.FC<CustomHeaderProps> = ({
   return (
     <View
       style={{ backgroundColor: primarycolor }}
-      className="p-5 flex-row items-center justify-center w-full"
+      className="p-10 flex-row items-center justify-center w-full"
     >
       {/* Back Button */}
       <TouchableOpacity

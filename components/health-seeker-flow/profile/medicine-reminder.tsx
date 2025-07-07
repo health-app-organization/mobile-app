@@ -1,27 +1,11 @@
-// import { StyleSheet, Text, View } from "react-native";
-// import React from "react";
-
-// const MedicineReminder = () => {
-//   return (
-//     <View>
-//       <Text>MedicineReminder </Text>
-//     </View>
-//   );
-// };
-
-// export default MedicineReminder;
-
-// const styles = StyleSheet.create({});
-
 import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { useState } from "react";
 import MedicineReminderAdd from "./medicine-reminder-add";
 import { CustomButton } from "../../../utilities/buttons";
 import { Textstyles } from "../../../constants/fontsize";
-// import { CustomButton } from "components/utilities/buttons";
 
-const MedicineReminder: React.FC<{}> = () => {
+const MedicineReminderPage: React.FC<{}> = () => {
   const [showAddReminder, setShowAddReminder] = useState<boolean>(false);
 
   return (
@@ -64,7 +48,7 @@ const MedicineReminder: React.FC<{}> = () => {
   );
 };
 
-export default MedicineReminder;
+export default MedicineReminderPage;
 
 const ReminderTab = () => {
   return (
