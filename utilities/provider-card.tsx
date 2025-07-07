@@ -120,7 +120,7 @@ export const ProviderCard: React.FC<ProviderCardProps> = ({
       <Image
         source={image || require("../assets/images/appo.png")}
         style={styles.cardImage}
-        resizeMode="cover"
+        resizeMode="contain"
       />
       <View style={styles.cardContent}>
         <Text style={styles.providerName}>{name}</Text>
@@ -244,6 +244,7 @@ const styles = StyleSheet.create({
   },
   card2ImageContainer: {
     backgroundColor: "#4B5563", // gray-600
+
     width: 200,
     height: 97,
     justifyContent: "center",

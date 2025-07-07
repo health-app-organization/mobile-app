@@ -9,6 +9,10 @@ const DashboardMenu = () => {
   const healthProvider = () => {
     router.push("/dashboard");
   };
+
+  const medicine = () => {
+    router.push("/dashboard/medicine");
+  };
   return (
     <View style={styles.container}>
       <View style={styles.menuRow}>
@@ -23,6 +27,7 @@ const DashboardMenu = () => {
         />
         <MenuButton
           icon={<AmbulanceIcon width={40} height={40} />}
+          onPress={medicine}
           text={
             <Text style={[Textstyles.text_xsmall, styles.menuText]}>
               Medicine

@@ -9,6 +9,7 @@ import { CustomInputSearch } from "../../../utilities/inputs";
 import { ProviderCard } from "../../../utilities/provider-card";
 import { healthProviderList } from "../notification/notification-data";
 import { primarycolor, whitecolor } from "../../../constants/colors";
+import { router } from "expo-router";
 // import { healthProviderList } from "mock-data/mock-data";
 
 const HealthcareProvider = () => {
@@ -50,13 +51,6 @@ const HealthcareProvider = () => {
     { label: "Home Consultation", value: "Home Consultation" },
     { label: "Clinic Consultation", value: "Clinic Consultation" },
   ];
-
-  //   const handleSelectValue: HandleSelectValue = (value) => {
-  //     if (currentSetter) {
-  //       currentSetter(value);
-  //     }
-  //     setShowModal(false);
-  //   };
 
   const handleSelectValue: React.Dispatch<React.SetStateAction<string>> = (
     value
@@ -165,6 +159,9 @@ const HealthcareProvider = () => {
                     onPress={() => {
                       // TODO: Replace with navigation or desired action
                       console.log(`Pressed provider: ${provider.name}`);
+                      router.push(
+                        `/dashboard/appointment-details?providerId=${index + 1}`
+                      );
                     }}
                   />
                 ))}
