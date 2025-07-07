@@ -3,7 +3,7 @@ import React from "react";
 
 const ProviderAuthLayout = () => {
   return (
-    <Stack>
+    <Stack screenOptions={{ headerShown: false }}>
       <Stack.Screen name="index" options={{ headerShown: false }} />
       <Stack.Screen name="signup" options={{ headerShown: false }} />
       <Stack.Screen name="forget-password" options={{ headerShown: false }} />
