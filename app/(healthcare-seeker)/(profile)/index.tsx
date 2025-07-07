@@ -30,7 +30,7 @@ const Profile = () => {
       </View>
 
       {/* <ProfileData /> */}
-      <View>
+      <View style={{ flex: 1 }}>
         <Account />
       </View>
     </View>
