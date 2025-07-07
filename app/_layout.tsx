@@ -19,6 +19,7 @@ const TabsLayout = () => {
         options={{ headerShown: false }}
       />
       <Stack.Screen name="dashboard" options={{ headerShown: false }} />
+      <Stack.Screen name="chats" options={{ headerShown: false }} />
     </Stack>
   );
 };

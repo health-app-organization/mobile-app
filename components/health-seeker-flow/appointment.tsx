@@ -1,18 +1,3 @@
-// import { StyleSheet, Text, View } from "react-native";
-// import React from "react";
-
-// const Appointment = () => {
-//   return (
-//     <View>
-//       <Text>Appointment</Text>
-//     </View>
-//   );
-// };
-
-// export default Appointment;
-
-// const styles = StyleSheet.create({});
-
 import { View, Text, StyleSheet } from "react-native";
 import { useState } from "react";
 import { Textstyles } from "../../constants/fontsize";

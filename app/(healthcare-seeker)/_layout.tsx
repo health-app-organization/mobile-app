@@ -31,7 +31,7 @@ export default function SeekerTabs() {
                     <HomeIcon width={size} height={size} color={color} />
                   </View>
                 );
-              case "chat":
+              case "(chat)":
                 return (
                   <View
                     style={{
@@ -82,15 +82,12 @@ export default function SeekerTabs() {
       >
         <Tabs.Screen
           name="(home)"
-          // options={{
-          //   header: () => <HeaderTitle title="Home" profileCompletion={""} />,
-          // }}
           options={{
             headerShown: false,
           }}
         />
         <Tabs.Screen
-          name="chat"
+          name="(chat)"
           options={{
             header: () => <HeaderTitle title="Chats" profileCompletion={""} />,
           }}

@@ -6,8 +6,8 @@ import { primarycolor } from "../../../constants/colors";
 
 export default function Chat() {
   return (
-    <View className="flex-1">
-      <ScrollView className="flex-1 p-4">
+    <View style={{ flex: 1 }}>
+      <ScrollView style={{ flex: 1, padding: 10 }}>
         <Text className="mx-auto text-greyText">Today</Text>
         <ReceivedComponent text="this is just a little test to see how this goes this is just a little test to see how this goes this is just a little test to see how this goes this is just a little test to see how this goes" />
         <SenderComponent text="ohh yeah, alright, let's watch and see" />
@@ -42,7 +42,6 @@ export default function Chat() {
               </View>
             }
             paddingLeft={80}
-            multiline
           />
         </View>
         <TouchableOpacity className="bg-primary px-4 justify-center">
