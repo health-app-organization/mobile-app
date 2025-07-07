@@ -3,7 +3,6 @@ import { StatusBar } from "expo-status-bar";
 import { View, Text } from "react-native";
 import { linkcolor, primarycolor } from "../../constants/colors";
 import HeaderTitle from "../../utilities/headers";
-import { Textstyles } from "../../constants/fontsize";
 import {
   CalenderIcon,
   HomeIcon,
@@ -43,7 +42,7 @@ export default function SeekerTabs() {
                     <MessageIcon width={size} height={size} color={color} />
                   </View>
                 );
-              case "appointment":
+              case "(appointment)":
                 return (
                   <View
                     style={{
@@ -55,7 +54,7 @@ export default function SeekerTabs() {
                     <CalenderIcon width={size} height={size} color={color} />
                   </View>
                 );
-              case "profile":
+              case "(profile)":
                 return (
                   <View
                     style={{
@@ -93,40 +92,14 @@ export default function SeekerTabs() {
           }}
         />
         <Tabs.Screen
-          name="appointment"
+          name="(appointment)"
           options={{
             header: () => (
               <HeaderTitle title="Appointments" profileCompletion={""} />
             ),
           }}
         />
-        <Tabs.Screen
-          name="profile"
-          options={{
-            header: () => (
-              <View
-                style={{
-                  width: "100%",
-                  backgroundColor: primarycolor,
-                  borderEndEndRadius: 30,
-                  borderBottomStartRadius: 30,
-                  height: "25%",
-                }}
-              >
-                <Text
-                  style={{
-                    color: "white",
-                    ...Textstyles.text_medium,
-                    marginLeft: 32,
-                    marginTop: 80,
-                  }}
-                >
-                  My Account
-                </Text>
-              </View>
-            ),
-          }}
-        />
+        <Tabs.Screen name="(profile)" options={{ headerShown: false }} />
       </Tabs>
     </>
   );
