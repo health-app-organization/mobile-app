@@ -1,10 +1,15 @@
 import { StyleSheet, View } from "react-native";
 import React from "react";
 import HealthcareProvider from "../../components/health-seeker-flow/dashboard/healthcare-provider";
+import HeaderWithTitleAndBackButton from "../../components/health-seeker-flow/notification/notification-header";
 
 const HealthCareProvider = () => {
   return (
     <View style={styles.container}>
+      <HeaderWithTitleAndBackButton
+        title="Healthcare Provider"
+        profileCompletion={""}
+      />
       <HealthcareProvider />
     </View>
   );

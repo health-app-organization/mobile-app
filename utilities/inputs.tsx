@@ -6,6 +6,7 @@ import {
   TextInputProps,
   TouchableOpacity,
   View,
+  StyleSheet,
 } from "react-native";
 import { primarycolor } from "../constants/colors";
 import { customstyle } from "../constants/customstyle";
@@ -215,53 +216,53 @@ export const CustomInputWithHeader: React.FC<CustomInputProps> = ({
   );
 };
 
-export const CustomInputSearch: React.FC<CustomInputProps> = ({
-  placeholder, // New placeholder prop
-  autoCapitalize,
-  onChange,
-  secureTextEntry,
-  disabled,
-  value,
-  leftIcon,
-}) => {
-  const [inputValue, setInputValue] = useState(value); // Track the input value
-  const [isFocused, setIsFocused] = useState(false); // Track focus state
+// export const CustomInputSearch: React.FC<CustomInputProps> = ({
+//   placeholder, // New placeholder prop
+//   autoCapitalize,
+//   onChange,
+//   secureTextEntry,
+//   disabled,
+//   value,
+//   leftIcon,
+// }) => {
+//   const [inputValue, setInputValue] = useState(value); // Track the input value
+//   const [isFocused, setIsFocused] = useState(false); // Track focus state
 
-  return (
-    <View className="w-full flex flex-col">
-      {/* Input Field */}
-      <View className="relative flex justify-center">
-        {/* Show left FontAwesome icon if iconName is provided */}
-        {leftIcon && <View className="absolute left-4 z-50">{leftIcon}</View>}
-        <TextInput
-          style={[
-            customstyle.textinputstyle,
-            {
-              paddingLeft: leftIcon ? 45 : 15, // Adjust left padding based on icon presence
-              borderColor: isFocused ? "#0099b8" : "#ccc", // Change border color on focus
-              borderWidth: 1, // Add border width
-              borderRadius: 10, // Optional: add border radius
-              backgroundColor: "#F3F3F3",
-            },
-          ]}
-          placeholder={placeholder} // Set placeholder text
-          value={inputValue} // Use inputValue for the actual value
-          editable={!disabled} // Allow editing based on disable prop
-          secureTextEntry={secureTextEntry}
-          autoCapitalize={autoCapitalize || "none"}
-          onFocus={() => setIsFocused(true)} // Set focus state
-          onBlur={() => setIsFocused(false)} // Reset focus state
-          onChangeText={(text) => {
-            setInputValue(text); // Update input value state
-            if (onChange) {
-              onChange(text); // Call the parent onChange handler if provided
-            }
-          }}
-        />
-      </View>
-    </View>
-  );
-};
+//   return (
+//     <View className="w-full flex flex-col">
+//       {/* Input Field */}
+//       <View className="relative flex justify-center">
+//         {/* Show left FontAwesome icon if iconName is provided */}
+//         {leftIcon && <View className="absolute left-4 z-50">{leftIcon}</View>}
+//         <TextInput
+//           style={[
+//             customstyle.textinputstyle,
+//             {
+//               paddingLeft: leftIcon ? 45 : 15, // Adjust left padding based on icon presence
+//               borderColor: isFocused ? "#0099b8" : "#ccc", // Change border color on focus
+//               borderWidth: 1, // Add border width
+//               borderRadius: 10, // Optional: add border radius
+//               backgroundColor: "#F3F3F3",
+//             },
+//           ]}
+//           placeholder={placeholder} // Set placeholder text
+//           value={inputValue} // Use inputValue for the actual value
+//           editable={!disabled} // Allow editing based on disable prop
+//           secureTextEntry={secureTextEntry}
+//           autoCapitalize={autoCapitalize || "none"}
+//           onFocus={() => setIsFocused(true)} // Set focus state
+//           onBlur={() => setIsFocused(false)} // Reset focus state
+//           onChangeText={(text) => {
+//             setInputValue(text); // Update input value state
+//             if (onChange) {
+//               onChange(text); // Call the parent onChange handler if provided
+//             }
+//           }}
+//         />
+//       </View>
+//     </View>
+//   );
+// };
 
 export const CustomInputPassword: React.FC<CustomInputProps> = ({
   headerText,
@@ -526,3 +527,81 @@ export const CustomInputWithHeaders: React.FC<CustomInputProps> = ({
     </View>
   );
 };
+
+interface CustomInputProps {
+  placeholder?: string;
+  autoCapitalize?: "none" | "sentences" | "words" | "characters";
+  onChange?: (text: string) => void;
+  secureTextEntry?: boolean;
+  disabled?: boolean;
+  value?: string;
+  leftIcon?: React.ReactNode;
+}
+
+export const CustomInputSearch: React.FC<CustomInputProps> = ({
+  placeholder,
+  autoCapitalize,
+  onChange,
+  secureTextEntry,
+  disabled,
+  value,
+  leftIcon,
+}) => {
+  const [inputValue, setInputValue] = useState(value);
+  const [isFocused, setIsFocused] = useState(false);
+
+  return (
+    <View style={styles.container}>
+      <View style={styles.inputContainer}>
+        {leftIcon && <View style={styles.iconContainer}>{leftIcon}</View>}
+        <TextInput
+          style={[
+            styles.input,
+            {
+              paddingLeft: leftIcon ? 45 : 15,
+              borderColor: isFocused ? "#0099b8" : "#ccc",
+              backgroundColor: disabled ? "#e9ecef" : "#F3F3F3",
+            },
+          ]}
+          placeholder={placeholder}
+          placeholderTextColor="#6c757d"
+          value={inputValue}
+          editable={!disabled}
+          secureTextEntry={secureTextEntry}
+          autoCapitalize={autoCapitalize || "none"}
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
+          onChangeText={(text) => {
+            setInputValue(text);
+            onChange?.(text);
+          }}
+        />
+      </View>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    width: "100%",
+  },
+  inputContainer: {
+    position: "relative",
+    justifyContent: "center",
+  },
+  iconContainer: {
+    position: "absolute",
+    left: 15,
+    zIndex: 50,
+  },
+  input: {
+    height: 48,
+    borderWidth: 1,
+    borderRadius: 10,
+    paddingRight: 15,
+    fontSize: 16,
+    color: "#212529",
+  },
+});
+
+export default CustomInputSearch;

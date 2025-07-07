@@ -136,7 +136,7 @@ const HealthcareProvider = () => {
           <View style={styles.providerListContainer}>
             <ScrollView>
               <View style={styles.providerList}>
-                {healthProviderList.map((provider, index) => (
+                {/* {healthProviderList.map((provider, index) => (
                   <ProviderCard
                     key={index}
                     name={provider.name}
@@ -151,6 +151,21 @@ const HealthcareProvider = () => {
                     //     params: { providerId: 1234 },
                     //   })
                     // }
+                  />
+                ))} */}
+                {healthProviderList.map((provider, index) => (
+                  <ProviderCard
+                    key={index}
+                    name={provider.name}
+                    title={provider.title}
+                    rating={provider.rating}
+                    reviews={50}
+                    likes={provider.likes}
+                    image={provider.image}
+                    onPress={() => {
+                      // TODO: Replace with navigation or desired action
+                      console.log(`Pressed provider: ${provider.name}`);
+                    }}
                   />
                 ))}
               </View>

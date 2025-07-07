@@ -10,6 +10,12 @@ const DashLayout = () => {
           headerShown: false,
         }}
       />
+      <Stack.Screen
+        name="appointment-details"
+        options={{
+          headerShown: false,
+        }}
+      />
     </Stack>
   );
 };
