@@ -3,18 +3,16 @@ import { AxiosError } from "axios";
 import { AxiosJSON } from "../axios";
 import Toast from "react-native-toast-message";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { UserData } from "types/user/User";
-import { LoginAiResponse } from "types/screens/login/login";
-import { ApiErrorResponse, handleMutationError } from "utilities/ErrorHanler";
-import { Utils } from "utilities/utils";
-import { StackNavigation } from "types/stack";
-import { useNavigation } from "@react-navigation/native";
-
-// const navigation = useNavigation<StackNavigation>();
+import { UserData } from "../../types/user/User";
+import { LoginAiResponse } from "../../types/screens/login/login";
+import { ApiErrorResponse, handleMutationError } from "../../utils/ErrorHanler";
+import { Utils } from "../../utils/utils";
+import { router } from "expo-router";
 
 interface LoginState {
   loading: boolean;
   data: UserData | null;
+  error: string | null;
 }
 
 const axios = AxiosJSON();
@@ -51,8 +49,7 @@ export const loginUser = createAsyncThunk(
         return rejectWithValue({ message: data.message }); // Reject the promise with the error message.
       } else {
         await storeUserCredentials(data);
-        // navigation.navigate("health-seeker", { screen: "dashboard" });
-
+        router.push("/(healthcare-seeker)/(home)");
         Toast.show({
           type: "success",
           text1: data.message,
@@ -92,6 +89,7 @@ export const loginUser = createAsyncThunk(
 const initialState: LoginState = {
   loading: false,
   data: null,
+  error: null,
 };
 
 const loginSlice = createSlice({

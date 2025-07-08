@@ -4,8 +4,12 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   GetDashboardApiResponse,
   GetDashboardData,
-} from "types/user/get-dashboard";
-import Logout from "utilities/Logout";
+} from "../../types/user/get-dashboard";
+// import {
+//   GetDashboardApiResponse,
+//   GetDashboardData,
+// } from "types/user/get-dashboard";
+// import Logout from "utilities/Logout";
 
 interface GetDashBoardError {
   message: string;

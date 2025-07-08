@@ -3,9 +3,7 @@ import { AxiosError } from "axios";
 import Toast from "react-native-toast-message";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { OtpAiResponse } from "../../types/screens/signUp/otp";
-import { AxiosJSON } from "redux/axios";
-import { StackNavigation } from "types/stack";
-import { useNavigation } from "@react-navigation/native";
+import { AxiosJSON } from "../axios";
 
 const axios = AxiosJSON();
 

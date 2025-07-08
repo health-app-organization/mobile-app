@@ -23,7 +23,10 @@ const DateModal = ({
   };
 
   return (
-    <View className="rounded-2xl p-3 z-50 bg-slate-100 top-16 absolute">
+    <View
+      className="rounded-2xl p-3 z-50 bg-slate-100 top-16 absolute"
+      style={{ paddingHorizontal: 20 }}
+    >
       <View className="items-end">
         <TouchableOpacity onPress={() => closeModal(false)}>
           <Text>

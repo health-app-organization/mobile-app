@@ -2,6 +2,8 @@ import { Stack } from "expo-router";
 import React from "react";
 import { Provider } from "react-redux";
 import store from "../redux/store";
+import Toast from "react-native-toast-message";
+import { toastConfig } from "../config/Toast";
 
 const TabsLayout = () => {
   return (
@@ -25,6 +27,7 @@ const TabsLayout = () => {
         <Stack.Screen name="chats" options={{ headerShown: false }} />
         <Stack.Screen name="profile" options={{ headerShown: false }} />
       </Stack>
+      <Toast config={toastConfig} position="bottom" />
     </Provider>
   );
 };

@@ -126,12 +126,6 @@ const data = [
     icon: <SettingsIcon />,
     action: openSupport,
   },
-  {
-    id: 11,
-    name: "Logout",
-    icon: <SettingsIcon />,
-    action: openLogout,
-  },
 ];
 
 export default data;

@@ -33,8 +33,16 @@ import { handleOtpInput } from "../../utils/utility";
 import NumericKeyboard from "../modals/custom-keyboard";
 import DateModal from "../modals/date-modal";
 import SuccessModal from "../modals/success-modal";
+import { RootState, useAppDispatch } from "../../redux/store";
+import { useSelector } from "react-redux";
+import { createAccountSeeker } from "../../redux/slices/create-account";
+import { sendVerificationToken } from "../../redux/slices/send-otp";
+import { submitVerificationToken } from "../../redux/slices/verify-otp";
+import Toast from "react-native-toast-message";
 
 export default function SignUpPage() {
+  const dispatch = useAppDispatch();
+
   const [currentStep, setCurrentStep] = useState(0);
   const [phoneNumber, setPhoneNumber] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -44,12 +52,14 @@ export default function SignUpPage() {
   const [gender, setGender] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
   const [showDate, setShowDate] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [showKeyboard, setShowKeyboard] = useState(false);
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
   const [showLoginModal, setShowLoginModal] = useState(false);
+
+  const { loading: isLoading } = useSelector((state: RootState) => state.otp);
 
   const translateY = useSharedValue(600);
   const animatedStyles = useAnimatedStyle(() => ({
@@ -65,16 +75,169 @@ export default function SignUpPage() {
     return emailRegex.test(email);
   };
 
-  const handleContinue = async () => {
-    // Implementation remains the same
-    if (currentStep < 2) {
-      setErrorMessage(null);
-      setCurrentStep((prevStep) => prevStep + 1);
-    }
+  // const handleContinue = async () => {
+  //   // Implementation remains the same
+  //   if (currentStep < 2) {
+  //     setErrorMessage(null);
+  //     setCurrentStep((prevStep) => prevStep + 1);
+  //   }
 
-    if (currentStep === 2) {
+  //   if (currentStep === 2) {
+  //     setShowLoginModal(true);
+  //     translateYsuccess.value = withSpring(0);
+  //   }
+  // };
+
+  // const handleContinue = async () => {
+  //   if (isLoading) return;
+
+  //   if (currentStep === 0) {
+  //     if (!isValidEmail(email)) {
+  //       setErrorMessage("Invalid Email Address");
+  //       return;
+  //     }
+
+  //     const res = await dispatch(
+  //       sendVerificationToken({ email, reason: "verify_email" })
+  //     );
+  //     if (sendVerificationToken.fulfilled.match(res)) {
+  //       setCurrentStep(1);
+  //     } else {
+  //       const err = res.payload as string;
+  //       setErrorMessage(err || "Failed to send OTP.");
+  //     }
+  //   } else if (currentStep === 1) {
+  //     const joinOtp = otp.join("");
+  //     if (joinOtp.length !== 6) {
+  //       setErrorMessage("Please enter a 6-digit code.");
+  //       return;
+  //     }
+
+  //     const res = await dispatch(
+  //       submitVerificationToken({
+  //         email,
+  //         otp: joinOtp,
+  //         reason: "verify_email",
+  //       })
+  //     );
+
+  //     if (submitVerificationToken.fulfilled.match(res)) {
+  //       setCurrentStep(2);
+  //     } else {
+  //       const err = res.payload as string;
+  //       setErrorMessage(err || "Invalid or expired OTP.");
+  //     }
+  //   } else if (currentStep === 2) {
+  //     const data = {
+  //       firstName,
+  //       lastName,
+  //       email,
+  //       phone: phoneNumber,
+  //       dateOfBirth: birthDate,
+  //       password,
+  //       confirmPassword,
+  //       gender: gender.toLowerCase() as "male" | "female",
+  //     };
+
+  //     console.log("Submitting signup payload", data);
+
+  //     const res = await dispatch(createAccountSeeker(data));
+
+  //     if (createAccountSeeker.fulfilled.match(res)) {
+  //       setShowLoginModal(true);
+  //     } else {
+  //       const err = res.payload as string;
+  //       setErrorMessage(err || "Registration failed");
+  //     }
+
+  //     // dispatch registerUser(data);
+  //     setShowLoginModal(true);
+  //   }
+  // };
+
+  const handleContinue = async () => {
+    if (isLoading) return;
+
+    if (currentStep === 0) {
+      if (!isValidEmail(email)) {
+        Toast.show({
+          type: "error",
+          text1: "Enter a valid email address",
+        });
+        return;
+      }
+
+      const res = await dispatch(
+        sendVerificationToken({ email, reason: "verify_email" })
+      );
+      if (sendVerificationToken.fulfilled.match(res)) {
+        setCurrentStep(1);
+      }
+    } else if (currentStep === 1) {
+      const joinOtp = otp.join("");
+      if (joinOtp.length !== 6) {
+        Toast.show({
+          type: "error",
+          text1: "Please enter a 6-digit code.",
+        });
+        return;
+      }
+
+      const res = await dispatch(
+        submitVerificationToken({
+          email,
+          otp: joinOtp,
+          reason: "verify_email",
+        })
+      );
+
+      if (submitVerificationToken.fulfilled.match(res)) {
+        setCurrentStep(2);
+        // Toast.show({
+        //   type: "success",
+        //   text1: "Success",
+        //   text2: "Email verified successfully!",
+        // });
+      } else {
+        const err = res.payload as string;
+        // Toast.show({
+        //   type: "error",
+        //   text1: "Error",
+        //   text2: err || "Invalid or expired OTP.",
+        // });
+      }
+    } else if (currentStep === 2) {
+      const data = {
+        firstName,
+        lastName,
+        email,
+        phone: phoneNumber,
+        dateOfBirth: birthDate,
+        password,
+        confirmPassword,
+        gender: gender.toLowerCase() as "male" | "female",
+      };
+
+      console.log("Submitting signup payload", data);
+
+      const res = await dispatch(createAccountSeeker(data));
       setShowLoginModal(true);
-      translateYsuccess.value = withSpring(0);
+
+      // if (createAccountSeeker.fulfilled.match(res)) {
+      //   Toast.show({
+      //     type: "success",
+      //     text1: "Success",
+      //     text2: "Account created successfully!",
+      //   });
+      //   // setShowLoginModal(true);
+      // } else {
+      //   const err = res.payload as string;
+      //   Toast.show({
+      //     type: "error",
+      //     text1: "Error",
+      //     text2: err || "Registration failed",
+      //   });
+      // }
     }
   };
 
@@ -89,6 +252,11 @@ export default function SignUpPage() {
     setShowKeyboard((prevState) => !prevState);
     translateY.value = showKeyboard ? withSpring(600) : withSpring(200);
   };
+
+  // const handleShowKeys = () => {
+  //   setShowKeyboard((prevState) => !prevState);
+  //   translateY.value = showKeyboard ? withSpring(565) : withSpring(165);
+  // };
 
   useEffect(() => {
     if (password !== confirmPassword) {
@@ -377,10 +545,10 @@ export default function SignUpPage() {
                 isLoading
                   ? "Loading..."
                   : currentStep === 2
-                    ? "Continue"
-                    : currentStep === 1
-                      ? "Verify"
-                      : "Send"
+                  ? "Continue"
+                  : currentStep === 1
+                  ? "Verify"
+                  : "Send"
               }
               isLoading={isLoading}
               TextColor={whitecolor}

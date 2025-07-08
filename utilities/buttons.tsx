@@ -5,6 +5,22 @@ import { primarycolor } from "../constants/colors";
 import { customstyle, customstyle2 } from "../constants/customstyle";
 import { Textstyles } from "../constants/fontsize";
 
+interface CustomButtonProps {
+  Textname: string;
+  onPress: () => void;
+  backgroundColor?: string;
+  TextColor?: string;
+  borderWidth?: number;
+  borderColor?: string;
+  leftIcon?: React.ReactNode;
+  rightIcon?: React.ReactNode;
+  width?: string;
+  height?: string;
+  isLoading?: boolean;
+  disabled?: boolean;
+  props?: any;
+}
+
 export const CustomButton: React.FC<
   CustomButtonProps & TouchableOpacityProps
 > = ({

@@ -1,22 +1,19 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { AxiosError } from "axios";
-import { useNavigation } from "@react-navigation/native";
-import { StackNavigation } from "types/stack";
 import { AxiosJSON } from "../axios";
-import { UserData } from "types/user/User";
+import { UserData } from "../../types/user/User";
 import { Alert } from "react-native";
 import Toast from "react-native-toast-message";
-import { ApiErrorResponse, handleMutationError } from "utilities/ErrorHanler";
 import {
   ProviderRegistrationApiResponse,
   SeekerRegistrationApiResponse,
   SignupPayload,
   SignupProviderPayload,
-} from "types/screens/signUp/creat-account";
+} from "../../types/screens/signUp/creat-account";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Utils } from "utilities/utils";
-
-// const navigation = useNavigation<StackNavigation>();
+import { ApiErrorResponse, handleMutationError } from "../../utils/ErrorHanler";
+import { Utils } from "../../utils/utils";
+import { router } from "expo-router";
 
 const axios = AxiosJSON();
 
@@ -58,6 +55,8 @@ export const createAccountSeeker = createAsyncThunk(
 
         dispatch(SignUpSuccess(data));
       }
+
+      router.push("/(healthcare-seeker)/(home)");
     } catch (error) {
       const axiosError = error as AxiosError<ApiErrorResponse>;
       handleMutationError(

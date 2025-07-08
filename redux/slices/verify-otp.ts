@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { AxiosError } from "axios";
 import Toast from "react-native-toast-message";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { AxiosJSON } from "redux/axios";
+import { AxiosJSON } from "../axios";
 
 const axios = AxiosJSON();
 

@@ -20,12 +20,27 @@ import {
   CustomInputPassword,
   CustomInputWithHeader,
 } from "../../utilities/inputs";
+import { RootState, useAppDispatch } from "../../redux/store";
+import { useSelector } from "react-redux";
+import { Utils } from "../../utils/utils";
+import Toast from "react-native-toast-message";
+import { loginUser } from "../../redux/slices/login";
+import { ActivityIndicator } from "../activity-indicator";
 
 export const LoginPage: React.FC = () => {
+  const dispatch = useAppDispatch();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [IsLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>("");
+  const [secureTextEntry, setSecureTextEntry] = useState(true);
+
+  const { loading } = useSelector((state: RootState) => state.auth);
+
+  const toggleSecureEntry = () => {
+    setSecureTextEntry(!secureTextEntry);
+  };
 
   const handleToSignup = () => {
     router.push("/(seeker-auth)/(auth)/signup");
@@ -33,33 +48,40 @@ export const LoginPage: React.FC = () => {
 
   const handletodashboard = () => {
     // Validate email
-    // if (!email || !Utils.validateEmail(email)) {
-    //   Toast.show({
-    //     type: "error",
-    //     text1: "Please a valid email",
-    //     visibilityTime: 5000,
-    //     position: "bottom",
-    //   });
-    //   return;
-    // }
-    // if (!email || !password) {
-    //   Toast.show({
-    //     type: "info",
-    //     text1: "Input all fields",
-    //     visibilityTime: 5000,
-    //   });
-    // } else {
-    //   dispatch(
-    //     loginUser({
-    //       email: email,
-    //       password: password,
-    //     })
-    //   );
-    // }
-    router.push("/(healthcare-seeker)/(home)");
+    if (!email || !Utils.validateEmail(email)) {
+      Toast.show({
+        type: "error",
+        text1: "Please a valid email",
+        visibilityTime: 5000,
+        position: "bottom",
+      });
+      return;
+    }
+    if (!email || !password) {
+      Toast.show({
+        type: "info",
+        text1: "Input all fields",
+        visibilityTime: 5000,
+      });
+    } else {
+      dispatch(
+        loginUser({
+          email: email,
+          password: password,
+        })
+      );
+    }
   };
 
   const handleForgotPassword = async () => {};
+
+  if (loading) {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <ActivityIndicator size={64} />
+      </View>
+    );
+  }
 
   return (
     <KeyboardAvoidingView
@@ -68,11 +90,6 @@ export const LoginPage: React.FC = () => {
       keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 0}
       enabled
     >
-      {/* {loading && (
-        <View style={styles.loadingContainer}>
-          <ActivityIndicator size="large" color="black" />
-        </View>
-      )} */}
       <ScrollView>
         <StatusBar backgroundColor="white" />
         <View style={styles.container}>
