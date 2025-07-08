@@ -1,10 +1,13 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
+import OrderTrackingPage from "../../components/health-seeker-flow/profile/order-tracking";
+import { Header } from "../../utilities/headers";
 
 const OrderTracking = () => {
   return (
     <View style={styles.container}>
-      <Text>OrderTracking</Text>
+      <Header title="Order Tracking" profileCompletion="" />
+      <OrderTrackingPage />
     </View>
   );
 };

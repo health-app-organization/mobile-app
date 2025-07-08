@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { View, Text, Image, KeyboardAvoidingView } from "react-native";
-import noReportsImage from "../../assets/images/pana.png";
-import { AppointmentCard } from "../../components/health-seeker-flow/appointment/appointment-card";
-import { primarycolor, whitecolor } from "../../constants/colors";
-import { CustomButton } from "../../utilities/buttons";
-import { FloatingActionButton } from "../../utilities/floating-action-button";
+import noReportsImage from "../../../assets/images/pana.png";
+import { AppointmentCard } from "../appointment/appointment-card";
+import { primarycolor, whitecolor } from "../../../constants/colors";
+import { CustomButton } from "../../../utilities/buttons";
+import { FloatingActionButton } from "../../../utilities/floating-action-button";
 import {
   CustomInputWithHeader,
   CustomInputWithHeader2,
-} from "../../utilities/inputs";
+} from "../../../utilities/inputs";
 
 const TestReport = () => {
   const [isFormVisible, setIsFormVisible] = useState(false);
@@ -31,6 +31,7 @@ const TestReport = () => {
       className={`flex justify-center items-center ${
         !isFormVisible && !isAppointmentVisible ? "mt-40" : ""
       }`}
+      style={{ paddingHorizontal: 16 }}
     >
       {/* Conditionally render either the initial content, form, or appointment card */}
       {!isFormVisible && !isAppointmentVisible ? (

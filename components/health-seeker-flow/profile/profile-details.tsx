@@ -1,18 +1,3 @@
-// import { StyleSheet, Text, View } from "react-native";
-// import React from "react";
-
-// const ProfileDetailsPage = () => {
-//   return (
-//     <View>
-//       <Text>ProfileDetails</Text>
-//     </View>
-//   );
-// };
-
-// export default ProfileDetailsPage;
-
-// const styles = StyleSheet.create({});
-
 import React, { useState } from "react";
 import { Alert, FlatList, ScrollView, Text, View } from "react-native";
 import axios from "axios";
@@ -30,7 +15,7 @@ import { CustomInputWithHeader } from "../../../utilities/inputs";
 
 const BASE_URL = process.env.EXPO_PUBLIC_API_URL;
 
-const ProfileDetails = () => {
+const ProfileDetailsPage = () => {
   const navigation = useNavigation<any>();
   let user: any;
 
@@ -461,4 +446,4 @@ const ProfileDetails = () => {
   );
 };
 
-export default ProfileDetails;
+export default ProfileDetailsPage;

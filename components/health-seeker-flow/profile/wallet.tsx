@@ -23,7 +23,7 @@ import { CustomButton } from "../../../utilities/buttons";
 import { CustomInputWithHeader } from "../../../utilities/inputs";
 import { CustomRadioSingleOption } from "../../../utilities/selects";
 
-const Wallet = () => {
+const WalletPage = () => {
   let user: any;
   const [openModal, setOpenModal] = useState(false);
   const [amount, setAmount] = useState("");
@@ -110,4 +110,4 @@ const Wallet = () => {
   );
 };
 
-export default Wallet;
+export default WalletPage;
