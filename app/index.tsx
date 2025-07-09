@@ -2,74 +2,115 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Redirect } from "expo-router";
 import { useEffect, useState } from "react";
 import "../global.css";
-import { ActivityIndicator } from "react-native";
 import { RootState, useAppDispatch } from "../redux/store";
 import { getDashboard } from "../redux/slices/get-dashboard";
 import { useSelector } from "react-redux";
+import { ActivityIndicator } from "../components/activity-indicator";
+import { View } from "react-native";
+import Toast from "react-native-toast-message";
 
 const Home = () => {
   const dispatch = useAppDispatch();
+  const {
+    data,
+    loading: dashboardLoading,
+    error,
+  } = useSelector((state: RootState) => state.dashboard);
 
-  const data = useSelector((state: RootState) => state.dashboard.data);
+  const [authState, setAuthState] = useState<{
+    isOnboardingComplete: boolean | null;
+    tokenExist: boolean | null;
+  }>({
+    isOnboardingComplete: null,
+    tokenExist: null,
+  });
 
-  console.log("data", data?.role);
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
 
-  const [isOnboardingComplete, setIsOnboardingComplete] = useState<
-    boolean | null
-  >(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [tokenExist, setTokenExist] = useState(false);
-
-  // Effect to check token and onboarding status initially
   useEffect(() => {
-    const checkStatus = async () => {
+    const checkAuthState = async () => {
       try {
-        const token = await AsyncStorage.getItem("VerificationToken");
-        setTokenExist(!!token);
+        const [token, onboardingStatus] = await Promise.all([
+          AsyncStorage.getItem("VerificationToken"),
+          AsyncStorage.getItem("completedOnboarding"),
+        ]);
 
-        // if token exists dispatch getUser details
+        setAuthState({
+          tokenExist: !!token,
+          isOnboardingComplete: onboardingStatus === "Done",
+        });
+
         if (token) {
-          dispatch(getDashboard());
+          await dispatch(getDashboard());
         }
-
-        const status = await AsyncStorage.getItem("completedOnboarding");
-        setIsOnboardingComplete(status === "Done");
       } catch (error) {
-        console.error("Failed to fetch token or onboarding status", error);
+        console.error("Auth state check failed:", error);
+        Toast.show({
+          type: "error",
+          text1: "Error",
+          text2: "Failed to verify authentication",
+        });
       } finally {
-        setIsLoading(false);
+        setIsInitialLoad(false);
       }
     };
-    checkStatus();
-  }, []);
 
-  if (isLoading) {
-    return <ActivityIndicator />;
+    checkAuthState();
+  }, [dispatch]);
+
+  // Initial loading state
+  if (isInitialLoad) {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <ActivityIndicator size={64} />
+      </View>
+    );
   }
 
-  if (!isOnboardingComplete && !tokenExist) {
-    // User is neither logged in nor has completed onboarding
-    // @ts-ignore
-    return <Redirect href={`/(onboarding)`} />;
-  }
-  if (!tokenExist && isOnboardingComplete) {
-    // User is logged in and has completed onboarding
-    // @ts-ignore
-    return <Redirect href={`/(auth)`} />;
-  }
-
-  if (tokenExist && isOnboardingComplete) {
-    // User is logged in and has completed onboarding
-    // @ts-ignore
-
-    if (data?.role === "seeker") {
-      return <Redirect href={`/(healthcare-seeker)/(home)`} />;
-    } else {
-      return <Redirect href={`/(healthcare-provider)/(homeprovider)`} />;
-    }
+  // Handle error state
+  if (error) {
+    Toast.show({
+      type: "error",
+      text1: "Error",
+      text2: "Failed to load user data",
+    });
+    return <Redirect href="/(auth)" />;
   }
 
-  return null;
+  // No token cases
+  if (!authState.tokenExist) {
+    return authState.isOnboardingComplete ? (
+      <Redirect href="/(auth)" />
+    ) : (
+      <Redirect href="/(onboarding)" />
+    );
+  }
+
+  // Token exists but dashboard still loading
+  if (dashboardLoading) {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <ActivityIndicator size={64} />
+      </View>
+    );
+  }
+
+  // Token exists and dashboard loaded
+  if (data?.role) {
+    return data.role === "seeker" ? (
+      <Redirect href="/(healthcare-seeker)/(home)" />
+    ) : (
+      <Redirect href="/(healthcare-provider)/(homeprovider)" />
+    );
+  }
+
+  // Fallback - token exists but no role (shouldn't normally happen)
+  Toast.show({
+    type: "error",
+    text1: "Error",
+    text2: "User role not found",
+  });
+  return <Redirect href="/(auth)" />;
 };
 
 export default Home;
