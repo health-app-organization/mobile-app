@@ -1,11 +1,17 @@
 import React, { useState } from "react";
 import { Text, View, TouchableOpacity } from "react-native";
 import { Feather } from '@expo/vector-icons';
-import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Modal } from "react-native";
+import { useRouter } from "expo-router";
 
-const LogoutModal = ({ visible, onClose, onConfirm }) => {
+interface LogoutProps{
+  visible:boolean;
+  onClose:()=>void;
+  onConfirm:()=>void
+}
+
+const LogoutModal = ({ visible, onClose, onConfirm }:LogoutProps) => {
   return (
     <Modal transparent visible={visible} animationType="fade">
       <View className="flex-1 justify-end bg-black/30">
@@ -38,16 +44,14 @@ const LogoutModal = ({ visible, onClose, onConfirm }) => {
 
 
 const AccountScreen = () => {
-  const navigation = useNavigation();
+  const router=useRouter()
+
   const [showLogoutModal, setShowLogoutModal] = useState(false); // <--- state for modal
 
   const handleLogout = async () => {
     try {
       await AsyncStorage.clear();
-      navigation.reset({
-        index: 0,
-        routes: [{ name: "LoginScreen" }],
-      });
+      router.push('/(provider-auth)/(auth)')
     } catch (error) {
       console.log("Logout error:", error);
     }
@@ -56,13 +60,13 @@ const AccountScreen = () => {
   return (
     <View className="flex-1">
       <View className="mt-14 px-6 space-y-2">
-        <MenuItem icon="user" title="My Profile" route="ProfileScreen" />
-        <MenuItem icon="check-circle" title="Urgent Criteria" route="UrgentCriteria" />
-        <MenuItem icon="credit-card" title="Payout History" route="PayoutHistory" />
+        <MenuItem icon="user" title="My Profile" route="ProfileScreen"  />
+        <MenuItem icon="check-circle" title="Urgent Criteria" route="UrgentCriteria"  />
+        <MenuItem icon="credit-card" title="Payout History" route="PayoutHistory"/>
         <MenuItem icon="dollar-sign" title="Banking Details" route="BankingDetails" />
-        <MenuItem icon="settings" title="Settings" route="Settings" />
+        <MenuItem icon="settings" title="Settings" route="Settings"  />
         <MenuItem icon="headphones" title="Customer Support" route="Support" />
-        <MenuItem icon="log-out" title="Logout" color="red" onPress={() => setShowLogoutModal(true)} />
+        <MenuItem icon="log-out" title="Logout" color="red" onPress={() => setShowLogoutModal(true)}  />
       </View>
 
       {/* Logout confirmation modal */}
@@ -75,16 +79,22 @@ const AccountScreen = () => {
   );
 };
 
-
-const MenuItem = ({ icon, title, route, onPress, color = "teal" }) => {
-  const navigation = useNavigation();
+interface MenuItemProps{
+  icon:any;
+  title:string;
+  route?:any
+  onPress?:()=>void
+  color?:string
+}
+const MenuItem = ({ icon, title, route, onPress, color = "teal" }:MenuItemProps) => {
+  const router=useRouter()
   const textColor = color === "red" ? "text-red-500" : "text-gray-800";
 
   return (
     <View>
       <TouchableOpacity
         className="flex-row items-center justify-between bg-gray-100 p-6 rounded-xl"
-        onPress={onPress || (() => route && navigation.navigate(route))}
+        onPress={onPress || (() => route && router.push(route))}
       >
         <View style={{ flexDirection: "row", alignItems: "center", gap: 10 }}>
           <Feather name={icon} size={24} color={color} />
