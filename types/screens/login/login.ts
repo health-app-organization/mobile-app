@@ -1,4 +1,4 @@
-import { UserData } from "types/user/User";
+import { UserData } from "../../user/User";
 
 export interface LoginAiResponse {
   status: boolean;

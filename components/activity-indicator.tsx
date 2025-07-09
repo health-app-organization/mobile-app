@@ -77,7 +77,7 @@ export const ActivityIndicator = ({ size }: ActivityIndicatorProps) => {
         >
           <SweepGradient
             c={vec(canvasSize / 2, canvasSize / 2)}
-            colors={["black", "white", "purple", "deepblue", "black"]}
+            colors={["black", "white", "purple", "blue", "magenta"]}
             // colors={["cyan", "magenta", "yellow", "cyan"]}
           />
           <BlurMask blur={5} style="solid" />

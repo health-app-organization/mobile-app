@@ -38,6 +38,8 @@ export const loginUser = createAsyncThunk(
         })
       ).data as LoginAiResponse; // Send a POST request to the server to log in
 
+      console.log("login response role", data.data.user.role);
+
       console.log("Health Care login response ", data);
       if (!data?.status) {
         Toast.show({
@@ -45,11 +47,17 @@ export const loginUser = createAsyncThunk(
           text1: data.message,
           visibilityTime: 5000,
         });
+
         dispatch(getLoginFailed()); // Dispatch the getLoginComplete action to indicate that the login request has completed.
         return rejectWithValue({ message: data.message }); // Reject the promise with the error message.
       } else {
         await storeUserCredentials(data);
-        router.push("/(healthcare-seeker)/(home)");
+        if (data?.data?.user?.role === "seeker") {
+          router.push("/(healthcare-seeker)/(home)");
+        } else if (data?.data?.user?.role === "provider") {
+          router.push("/(healthcare-provider)/(homeprovider)");
+        }
+
         Toast.show({
           type: "success",
           text1: data.message,

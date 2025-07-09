@@ -3,8 +3,17 @@ import { Redirect } from "expo-router";
 import { useEffect, useState } from "react";
 import "../global.css";
 import { ActivityIndicator } from "react-native";
+import { RootState, useAppDispatch } from "../redux/store";
+import { getDashboard } from "../redux/slices/get-dashboard";
+import { useSelector } from "react-redux";
 
 const Home = () => {
+  const dispatch = useAppDispatch();
+
+  const data = useSelector((state: RootState) => state.dashboard.data);
+
+  console.log("data", data?.role);
+
   const [isOnboardingComplete, setIsOnboardingComplete] = useState<
     boolean | null
   >(null);
@@ -19,9 +28,9 @@ const Home = () => {
         setTokenExist(!!token);
 
         // if token exists dispatch getUser details
-        // if (token) {
-        //   dispatch(getUserDetails());
-        // }
+        if (token) {
+          dispatch(getDashboard());
+        }
 
         const status = await AsyncStorage.getItem("completedOnboarding");
         setIsOnboardingComplete(status === "Done");
@@ -52,7 +61,12 @@ const Home = () => {
   if (tokenExist && isOnboardingComplete) {
     // User is logged in and has completed onboarding
     // @ts-ignore
-    return <Redirect href={`/(healthcare-seeker)/(home)`} />;
+
+    if (data?.role === "seeker") {
+      return <Redirect href={`/(healthcare-seeker)/(home)`} />;
+    } else {
+      return <Redirect href={`/(healthcare-provider)/(homeprovider)`} />;
+    }
   }
 
   return null;
