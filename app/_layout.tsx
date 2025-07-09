@@ -11,13 +11,16 @@ const TabsLayout = () => {
       <Stack.Screen name="(seeker-auth)" options={{ headerShown: false }} />
       <Stack.Screen name="(notification)" options={{ headerShown: false }} />
       <Stack.Screen
-        name="healthcare-provider"
+        name="(healthcare-provider)"
         options={{ headerShown: false }}
       />
+  
+
       <Stack.Screen
         name="(healthcare-seeker)"
         options={{ headerShown: false }}
       />
+
       <Stack.Screen name="dashboard" options={{ headerShown: false }} />
       <Stack.Screen name="chats" options={{ headerShown: false }} />
       <Stack.Screen name="profile" options={{ headerShown: false }} />

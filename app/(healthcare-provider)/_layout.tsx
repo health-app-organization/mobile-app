@@ -32,7 +32,7 @@ export default function ProviderTabs() {
                                <HomeIcon width={size} height={size} color={color} />
                            </View>
                        );
-                   case "appointmentprovider":
+                   case "appointments":
                        return (
                            <View style={style}>
                                <CalendarIcon fill={color} className={`size-[${size}]`} />
@@ -72,7 +72,7 @@ export default function ProviderTabs() {
           }}
         />
           <Tabs.Screen
-            name="appointmentprovider"
+            name="appointments"
             options={{
                 header: () => <HeaderTitle title="My Appointment" />,
             }}
@@ -86,27 +86,7 @@ export default function ProviderTabs() {
         <Tabs.Screen
             name="account"
             options={{
-                header: () => (
-                    <View
-                        style={{
-                            width: "100%",
-                            backgroundColor: primarycolor,
-                            borderEndEndRadius: 30,
-                            borderBottomStartRadius: 30,
-                        }}
-                        className="h-[25vh]"
-                    >
-                        <Text
-                            style={{
-                                color: "white",
-                                ...Textstyles.text_medium,
-                            }}
-                            className="ml-8 mt-20"
-                        >
-                            My Account
-                        </Text>
-                    </View>
-                ),
+                header: () =><HeaderTitle title="My Account" />,
             }}
         />
       </Tabs>

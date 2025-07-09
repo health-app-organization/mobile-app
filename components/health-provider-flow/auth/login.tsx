@@ -27,7 +27,7 @@ export default function LoginProvider() {
 
   //const { loading } = useSelector((state: RootState) => state.auth);
    const handletodashboard = () => {
-    router.replace("/healthcare-provider/(homeprovider)")
+    router.replace("/(healthcare-provider)/(homeprovider)")
 //     // Validate email
 //     if (!email || !Utils.validateEmail(email)) {
 //       Toast.show({
