@@ -4,6 +4,7 @@ import sendTokenVerificationSlice from "./slices/send-otp";
 import loginSlice from "./slices/login";
 import emailVerificationSlice from "./slices/verify-otp";
 import getDashBoardSlice from "./slices/get-dashboard";
+import updateUserSlice from "./slices/update-user";
 
 const rootReducer = combineReducers({
   signup: signUpSlice.reducer,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   auth: loginSlice.reducer,
   verifyOtp: emailVerificationSlice.reducer,
   dashboard: getDashBoardSlice.reducer,
+  updateSeeker: updateUserSlice.reducer,
 });
 
 export default rootReducer;

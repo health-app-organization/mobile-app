@@ -8,223 +8,203 @@
 //   Animated,
 //   Alert,
 //   FlatList,
+//   StyleSheet,
 // } from "react-native";
-// import { FontAwesome } from "@expo/vector-icons";
-// import { Ionicons } from "@expo/vector-icons"; // Import Ionicons for arrow
-
+// import { FontAwesome, Ionicons } from "@expo/vector-icons";
 // import AsyncStorage from "@react-native-async-storage/async-storage";
-// import { SafeAreaView } from "react-native-safe-area-context";
-// import data from "./profile-data";
 // import { Textstyles } from "../../../constants/fontsize";
 // import { LogIcon } from "../../../assets/iconsvg/Svgicon";
 // import { primarycolor } from "../../../constants/colors";
 // import { CustomButton } from "../../../utilities/buttons";
 // import { router } from "expo-router";
+// import data from "./profile-data";
+// import { useSelector } from "react-redux";
+// import { RootState } from "../../../redux/store";
+// import * as ImagePicker from "expo-image-picker";
+// import Logout from "../../../utils/Logout";
+
+// interface MenuItem {
+//   id: number;
+//   name: string;
+//   icon: React.ReactNode;
+//   action: () => void;
+// }
+
+// const NoImage = require("../../../assets/images/noProfile.png");
 
 // const Account = () => {
+//   const user = useSelector((state: RootState) => state.dashboard.data);
+
+//   user?.role === "seeker"
+//     ? console.log(user.seeker)
+//     : console.log(user?.provider);
+
 //   const [modalVisible, setModalVisible] = useState<boolean>(false);
-//   const slideAnim = useRef(new Animated.Value(300)).current; // Starting position off-screen
+//   const [passport, setPassport] = useState("");
+//   const [profileImage, setProfileImage] = useState(user?.seeker?.image || "");
+
+//   const slideAnim = useRef(new Animated.Value(300)).current;
 
 //   const handleShowModal = () => {
 //     setModalVisible(true);
 //     Animated.spring(slideAnim, {
-//       toValue: 0, // Slide into view
-//       friction: 8, // Adjust for a more springy effect
+//       toValue: 0,
+//       friction: 8,
 //       tension: 40,
 //       useNativeDriver: true,
 //     }).start();
 //   };
 
-//   const user = {
-//     firstName: "John",
-//     lastName: "Doe",
-//     email: "john25doe@gmail.com",
-//     phoneNumber: "+254 700 000 000",
+//   const handleProfileImgButtonClick = async () => {
+//     const permissionResult =
+//       await ImagePicker.requestMediaLibraryPermissionsAsync();
+//     if (permissionResult.granted === false) {
+//       alert("Permission to access gallery is required!");
+//       return;
+//     }
+
+//     let pickerResult = await ImagePicker.launchImageLibraryAsync({
+//       mediaTypes: ["images"],
+//       allowsEditing: true,
+//       aspect: [4, 3],
+//       quality: 1,
+//     });
+
+//     if (!pickerResult.canceled && pickerResult.assets?.length > 0) {
+//       const selectedImage = pickerResult.assets[0];
+//       setProfileImage(selectedImage.uri);
+//       setPassport(selectedImage.uri);
+//     }
 //   };
 
 //   return (
-//     <>
-//       <View className=" pt-3">
-//         <View className=" w-full flex justify-center   items-center">
-//           <View className="   flex justify-center items-center    ">
-//             {/* Profile Picture */}
-//             <View
-//               className="w-[80px]  h-[80px]  flex justify-center items-center  rounded-tl-lg overflow-hidden"
-//               style={{
-//                 opacity: 1,
-//                 borderWidth: 3, // Set the border width to 3
-//                 borderColor: "#FFFFFF", // Set the border color to white
-//                 borderRadius: 10,
-//               }}
-//             >
-//               <Image
-//                 source={require("../../../assets/images/pro.png")} // Ensure the path is correct
-//                 resizeMode="contain"
-//                 className="w-full h-full"
-//               />
-//             </View>
-
-//             {/* Camera Icon */}
-//             <TouchableOpacity
-//               className="w-8 h-8 bg-[#FFAA26] rounded-full -mt-6 ml-16"
-//               style={{
-//                 borderWidth: 3,
-//                 borderColor: "#FFFFFF", // Set the border color to white
-//                 opacity: 1,
-//               }}
-//             >
-//               <FontAwesome
-//                 name="camera"
-//                 size={15}
-//                 color="#000000"
-//                 style={{
-//                   alignSelf: "center",
-//                   marginTop: "auto",
-//                   marginBottom: "auto",
-//                 }} // Center the icon
-//               />
-//             </TouchableOpacity>
-//             <Text
-//               className=" text-[24px] font-[700] leading-[36px] "
-//               style={[Textstyles.text_medium]}
-//             >
-//               {user?.firstName + " " + user?.lastName}
-//             </Text>
-//             <Text
-//               className=" text-[16px] leading-[24px] mb-1 "
-//               style={{ color: "rgba(0, 0, 0, 0.5)" }}
-//             >
-//               {user?.email}
-//             </Text>
-//             <Text
-//               className=" text-[16px] leading-[24px] "
-//               style={{ color: "rgba(0, 0, 0, 0.5)" }}
-//             >
-//               {user?.phoneNumber}
-//             </Text>
-//           </View>
+//     <View style={styles.container}>
+//       <View style={styles.profileHeader}>
+//         <View style={styles.profileImageContainer}>
+//           <Image
+//             source={user?.seeker?.image ? user.seeker.image : NoImage}
+//             resizeMode="contain"
+//             style={styles.profileImage}
+//           />
+//           <TouchableOpacity
+//             style={styles.cameraButton}
+//             onPress={handleProfileImgButtonClick}
+//           >
+//             <FontAwesome
+//               name="camera"
+//               size={15}
+//               color="#000000"
+//               style={styles.cameraIcon}
+//             />
+//           </TouchableOpacity>
 //         </View>
+//         <Text style={[Textstyles.text_medium, styles.userName]}>
+//           {user?.name ? user.name : "Agwu"} {user?.name ? user.name : "Ezekiel"}
+//         </Text>
+//         <Text style={styles.userInfo}>
+//           {user?.email ? user.email : "email@gmail.com"}
+//         </Text>
+//         <Text style={styles.userInfo}>
+//           {user?.phone ? user.phone : "+254 700 000 000"}
+//         </Text>
 //       </View>
 
-//       <View className="flex-1">
+//       <View style={styles.menuContainer}>
 //         <FlatList
 //           data={data}
 //           scrollEnabled={true}
-//           showsHorizontalScrollIndicator
-//           renderItem={({ item }) => <SelectMenu item={item} />}
+//           showsVerticalScrollIndicator={false}
+//           renderItem={({ item }) => <SelectMenu item={item as MenuItem} />}
 //           keyExtractor={(item) => item.id.toString()}
 //           ListFooterComponent={() => (
 //             <TouchableOpacity
 //               onPress={handleShowModal}
-//               className="h-[90px] flex justify-between items-center flex-row  border-b-1 pr-4"
-//               style={{ borderBottomColor: "rgba(0, 0, 0, 0.2)" }}
+//               style={styles.logoutButton}
 //             >
-//               <View className=" flex-row w-[185px]  justify-between items-center  ml-[24px]">
-//                 <View className=" w-[45px] h-[45px] bg-[#00D5FD80] flex justify-center items-center rounded-[10px]">
+//               <View style={styles.logoutContent}>
+//                 <View style={styles.logoutIconContainer}>
 //                   <LogIcon />
 //                 </View>
-//                 <View>
-//                   <Text style={[Textstyles.text_xmedium]} className=" -ml-32">
-//                     Log out
-//                   </Text>
-//                 </View>
+//                 <Text style={[Textstyles.text_xmedium, styles.logoutText]}>
+//                   Log out
+//                 </Text>
 //               </View>
-//               <View className=" flex justify-center items-center w-8 h-8 mr-[8]">
-//                 <Ionicons name="chevron-forward" size={32} color="#0099b8" />
-//               </View>
+//               <Ionicons name="chevron-forward" size={32} color="#0099b8" />
 //             </TouchableOpacity>
 //           )}
 //         />
 //       </View>
+
 //       {modalVisible && (
-//         <Modallogout
-//           slideAnim={slideAnim}
-//           setModalVisible={(value: boolean) => setModalVisible(value)}
-//         />
+//         <ModalLogout slideAnim={slideAnim} setModalVisible={setModalVisible} />
 //       )}
-//     </>
+//     </View>
 //   );
 // };
 
-// export default Account;
-
-// const SelectMenu = ({ item }: { item: any }) => {
-//   console.log("item", item.label);
-
+// const SelectMenu = ({ item }: { item: MenuItem }) => {
 //   return (
-//     <TouchableOpacity
-//       onPress={item.action}
-//       className="h-[90px] flex justify-between items-center flex-row  border-b-1 pr-4"
-//       style={{ borderBottomColor: "rgba(0, 0, 0, 0.2)" }}
-//     >
-//       <View className=" flex-row w-[185px]  items-center  ml-[24px]">
-//         <View className=" w-[45px] h-[45px] bg-[#00D5FD80] flex justify-center items-center rounded-[10px]">
-//           {item.icon}
-//         </View>
-//         <View>
-//           <Text style={[Textstyles.text_xmedium]} className="ml-4">
-//             {item.name}
-//           </Text>
-//         </View>
+//     <TouchableOpacity onPress={item.action} style={styles.menuItem}>
+//       <View style={styles.menuContent}>
+//         <View style={styles.menuIconContainer}>{item.icon}</View>
+//         <Text style={[Textstyles.text_xmedium, styles.menuText]}>
+//           {item.name}
+//         </Text>
 //       </View>
-//       <View className="flex justify-center items-center w-8 h-8 mr-[8]">
-//         <Ionicons name="chevron-forward" size={32} color="#0099b8" />
-//       </View>
+//       <Ionicons name="chevron-forward" size={32} color="#0099b8" />
 //     </TouchableOpacity>
 //   );
 // };
 
-// const Modallogout: React.FC<{
+// interface ModalLogoutProps {
 //   slideAnim: Animated.Value;
 //   setModalVisible: (value: boolean) => void;
-// }> = ({ slideAnim, setModalVisible }) => {
-//   //   const navigation = useNavigation<StackNavigation>();
+// }
 
-//   const handlehideModal = () => {
+// const ModalLogout: React.FC<ModalLogoutProps> = ({
+//   slideAnim,
+//   setModalVisible,
+// }) => {
+//   const handleHideModal = () => {
 //     setModalVisible(false);
 //     Animated.timing(slideAnim, {
-//       toValue: 300, // Slide into view
-//       duration: 500, // Adjust duration as needed
+//       toValue: 300,
+//       duration: 500,
 //       useNativeDriver: true,
 //     }).start();
 //   };
 
 //   const handleLogout = async () => {
-//     await AsyncStorage.clear();
-//     setModalVisible(false);
-//     router.replace("/(auth)");
-//     // navigation.navigate("identity");
-//     Alert.alert("Logout", "You have successfully logged out");
+//     Logout();
 //   };
 
 //   return (
-//     <View className="h-full w-full absolute">
-//       <View
-//         style={{ backgroundColor: primarycolor }}
-//         className="absolute h-full w-full opacity-70"
-//       />
+//     <View style={styles.modalOverlay}>
+//       <View style={styles.modalBackground} />
 //       <Animated.View
-//         style={[{ transform: [{ translateY: slideAnim }] }]}
-//         className="w-full h-[25vh] bg-white absolute z-50  bottom-0  rounded-t-2xl"
+//         style={[
+//           styles.modalContent,
+//           { transform: [{ translateY: slideAnim }] },
+//         ]}
 //       >
-//         <View className="items-center mt-5">
+//         <View style={styles.modalHeader}>
 //           <Text style={[Textstyles.text_xmedium]}>Westacare</Text>
 //           <Text style={[Textstyles.text_x16small]}>
-//             Are you sure you want to logout ?
+//             Are you sure you want to logout?
 //           </Text>
 //         </View>
-//         <View className="px-5 mt-3">
+//         <View style={styles.modalButtons}>
 //           <CustomButton
-//             TextColor={"white"}
-//             Textname={"Yes"}
-//             backgroundColor={"red"}
+//             TextColor="white"
+//             Textname="Yes"
+//             backgroundColor="red"
 //             onPress={handleLogout}
 //           />
-//           <View className="h-3" />
+//           <View style={styles.buttonSpacer} />
 //           <CustomButton
-//             onPress={handlehideModal}
-//             TextColor={"white"}
-//             Textname={"No"}
+//             onPress={handleHideModal}
+//             TextColor="white"
+//             Textname="No"
 //             backgroundColor={primarycolor}
 //           />
 //         </View>
@@ -233,26 +213,173 @@
 //   );
 // };
 
-import React, { useRef, useState } from "react";
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     paddingTop: 12,
+//   },
+//   profileHeader: {
+//     width: "100%",
+//     alignItems: "center",
+//     justifyContent: "center",
+//   },
+//   profileImageContainer: {
+//     width: 90,
+//     height: 90,
+//     justifyContent: "center",
+//     alignItems: "center",
+//     borderWidth: 3,
+//     borderColor: "#FFFFFF",
+//     borderRadius: 10,
+//     overflow: "hidden",
+//   },
+//   profileImage: {
+//     width: "100%",
+//     height: "100%",
+//   },
+//   cameraButton: {
+//     width: 32,
+//     height: 32,
+//     backgroundColor: "#FFAA26",
+//     borderRadius: 16,
+//     borderWidth: 3,
+//     borderColor: "#FFFFFF",
+//     position: "absolute",
+//     bottom: -7,
+//     right: 1,
+//     justifyContent: "center",
+//   },
+//   cameraIcon: {
+//     alignSelf: "center",
+//   },
+//   userName: {
+//     fontSize: 24,
+//     fontWeight: "700",
+//     lineHeight: 36,
+//     marginTop: 16,
+//   },
+//   userInfo: {
+//     fontSize: 16,
+//     lineHeight: 24,
+//     color: "rgba(0, 0, 0, 0.5)",
+//     marginBottom: 4,
+//   },
+//   menuContainer: {
+//     flex: 1,
+//     marginTop: 16,
+//   },
+//   menuItem: {
+//     height: 90,
+//     flexDirection: "row",
+//     justifyContent: "space-between",
+//     alignItems: "center",
+//     paddingRight: 16,
+//     borderBottomWidth: 1,
+//     borderBottomColor: "rgba(0, 0, 0, 0.2)",
+//   },
+//   menuContent: {
+//     flexDirection: "row",
+//     width: 185,
+//     alignItems: "center",
+//     marginLeft: 24,
+//   },
+//   menuIconContainer: {
+//     width: 45,
+//     height: 45,
+//     backgroundColor: "#00D5FD80",
+//     justifyContent: "center",
+//     alignItems: "center",
+//     borderRadius: 10,
+//   },
+//   menuText: {
+//     marginLeft: 16,
+//   },
+//   logoutButton: {
+//     height: 90,
+//     flexDirection: "row",
+//     justifyContent: "space-between",
+//     alignItems: "center",
+//     paddingRight: 16,
+//     borderBottomWidth: 1,
+//     borderBottomColor: "rgba(0, 0, 0, 0.2)",
+//     marginBottom: 30,
+//   },
+//   logoutContent: {
+//     flexDirection: "row",
+//     width: 185,
+//     justifyContent: "space-between",
+//     alignItems: "center",
+//     marginLeft: 24,
+//   },
+//   logoutIconContainer: {
+//     width: 45,
+//     height: 45,
+//     backgroundColor: "#00D5FD80",
+//     justifyContent: "center",
+//     alignItems: "center",
+//     borderRadius: 10,
+//   },
+//   logoutText: {
+//     marginLeft: -116,
+//   },
+//   modalOverlay: {
+//     position: "absolute",
+//     height: "90%",
+//     width: "100%",
+//   },
+//   modalBackground: {
+//     position: "absolute",
+//     height: "100%",
+//     width: "100%",
+//     backgroundColor: "rgba(0, 0, 0, 0.5)",
+//     opacity: 0.7,
+//   },
+//   modalContent: {
+//     width: "100%",
+//     height: "25%",
+//     backgroundColor: "white",
+//     position: "absolute",
+//     bottom: 0,
+//     zIndex: 50,
+//     borderTopLeftRadius: 16,
+//     borderTopRightRadius: 16,
+//   },
+//   modalHeader: {
+//     alignItems: "center",
+//     marginTop: 20,
+//   },
+//   modalButtons: {
+//     paddingHorizontal: 20,
+//     marginTop: 12,
+//     backgroundColor: "white",
+//   },
+//   buttonSpacer: {
+//     height: 12,
+//   },
+// });
+
+// export default Account;
+
+import React, { useEffect, useRef, useState } from "react";
 import {
   View,
   Text,
   TouchableOpacity,
   Image,
-  ScrollView,
-  Animated,
-  Alert,
-  FlatList,
   StyleSheet,
+  FlatList,
+  Animated,
 } from "react-native";
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Textstyles } from "../../../constants/fontsize";
 import { LogIcon } from "../../../assets/iconsvg/Svgicon";
 import { primarycolor } from "../../../constants/colors";
 import { CustomButton } from "../../../utilities/buttons";
-import { router } from "expo-router";
 import data from "./profile-data";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../redux/store";
+import * as ImagePicker from "expo-image-picker";
+import Logout from "../../../utils/Logout";
 
 interface MenuItem {
   id: number;
@@ -261,16 +388,22 @@ interface MenuItem {
   action: () => void;
 }
 
-interface User {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phoneNumber: string;
-}
+const NoImage = require("../../../assets/images/noProfile.png");
 
 const Account = () => {
+  const user = useSelector((state: RootState) => state.dashboard.data);
   const [modalVisible, setModalVisible] = useState<boolean>(false);
+  const [profileImage, setProfileImage] = useState("");
   const slideAnim = useRef(new Animated.Value(300)).current;
+
+  // Set initial profile image based on role
+  useEffect(() => {
+    if (user?.role === "seeker" && user.seeker?.image) {
+      setProfileImage(user.seeker.image);
+    } else if (user?.role === "provider" && user.provider?.image) {
+      setProfileImage(user.provider.image);
+    }
+  }, [user]);
 
   const handleShowModal = () => {
     setModalVisible(true);
@@ -282,23 +415,78 @@ const Account = () => {
     }).start();
   };
 
-  const user: User = {
-    firstName: "John",
-    lastName: "Doe",
-    email: "john25doe@gmail.com",
-    phoneNumber: "+254 700 000 000",
+  const handleProfileImgButtonClick = async () => {
+    const permissionResult =
+      await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (permissionResult.granted === false) {
+      alert("Permission to access gallery is required!");
+      return;
+    }
+
+    const pickerResult = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    if (!pickerResult.canceled && pickerResult.assets?.length > 0) {
+      setProfileImage(pickerResult.assets[0].uri);
+    }
   };
+
+  // Get user data based on role
+  const getUserData = () => {
+    if (user?.role === "seeker") {
+      return {
+        name:
+          `${user.seeker?.firstName || ""} ${
+            user.seeker?.lastName || ""
+          }`.trim() || "Agwu Ezekiel",
+        email: user.email || "email@gmail.com",
+        phone: user.phone || "+254 700 000 000",
+        image: profileImage || user.seeker?.image || NoImage,
+      };
+    } else if (user?.role === "provider") {
+      return {
+        // name: user.provider?.name || "Dr. Smith",
+        name:
+          `${user.provider?.firstName || ""} ${
+            user.provider?.lastName || ""
+          }`.trim() || "Dr. Smith",
+
+        email: user.email || "doctor@gmail.com",
+        phone: user.phone || "+254 700 000 001",
+        image: profileImage || user.provider?.image || NoImage,
+      };
+    }
+    return {
+      name: "Guest User",
+      email: "guest@gmail.com",
+      phone: "+254 700 000 000",
+      image: NoImage,
+    };
+  };
+
+  const userData = getUserData();
 
   return (
     <View style={styles.container}>
       <View style={styles.profileHeader}>
         <View style={styles.profileImageContainer}>
           <Image
-            source={require("../../../assets/images/pro.png")}
+            source={
+              typeof userData.image === "string"
+                ? { uri: userData.image }
+                : userData.image
+            }
             resizeMode="contain"
             style={styles.profileImage}
           />
-          <TouchableOpacity style={styles.cameraButton}>
+          <TouchableOpacity
+            style={styles.cameraButton}
+            onPress={handleProfileImgButtonClick}
+          >
             <FontAwesome
               name="camera"
               size={15}
@@ -308,10 +496,10 @@ const Account = () => {
           </TouchableOpacity>
         </View>
         <Text style={[Textstyles.text_medium, styles.userName]}>
-          {user.firstName} {user.lastName}
+          {userData.name}
         </Text>
-        <Text style={styles.userInfo}>{user.email}</Text>
-        <Text style={styles.userInfo}>{user.phoneNumber}</Text>
+        <Text style={styles.userInfo}>{userData.email}</Text>
+        <Text style={styles.userInfo}>{userData.phone}</Text>
       </View>
 
       <View style={styles.menuContainer}>
@@ -380,10 +568,7 @@ const ModalLogout: React.FC<ModalLogoutProps> = ({
   };
 
   const handleLogout = async () => {
-    await AsyncStorage.clear();
-    setModalVisible(false);
-    router.replace("/(auth)");
-    Alert.alert("Logout", "You have successfully logged out");
+    Logout();
   };
 
   return (
@@ -432,8 +617,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   profileImageContainer: {
-    width: 80,
-    height: 80,
+    width: 90,
+    height: 90,
     justifyContent: "center",
     alignItems: "center",
     borderWidth: 3,
@@ -453,8 +638,8 @@ const styles = StyleSheet.create({
     borderWidth: 3,
     borderColor: "#FFFFFF",
     position: "absolute",
-    bottom: -16,
-    right: 16,
+    bottom: -7,
+    right: 1,
     justifyContent: "center",
   },
   cameraIcon: {

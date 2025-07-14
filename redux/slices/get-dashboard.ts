@@ -38,10 +38,11 @@ export const getDashboard = createAsyncThunk(
         "Authorization"
       ] = `Bearer ${verificationToken}`;
 
-      const { data } = await axios.get<GetDashboardApiResponse>(`/dashboard`);
+      const { data } = await axios.get<GetDashboardApiResponse>(
+        `/dashboard?monthsAgo=4`
+      );
       dispatch(getDashBoardSuccess(data.data));
       dispatch(getDashBoardComplete());
-      //   dispatch(getUserDetails());
     } catch (error) {
       let errorMessage = "Network Error";
 

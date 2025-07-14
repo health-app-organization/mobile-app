@@ -2,12 +2,18 @@ import { Text, TouchableOpacity, View, StyleSheet } from "react-native";
 import { Avatar } from "react-native-paper";
 
 import { router } from "expo-router";
-import { BackgroundIcon, Notificationicon } from "../../../assets/iconsvg/Svgicon";
+import {
+  BackgroundIcon,
+  Notificationicon,
+} from "../../../assets/iconsvg/Svgicon";
 import { Textstyles } from "../../../constants/fontsize";
 import { QRCodeScreen } from "../../../utilities/qr-code";
 import { primarycolor, whitecolor } from "../../../constants/colors";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../redux/store";
 
 const DashboardHeader = () => {
+  const data = useSelector((state: RootState) => state.dashboard.data);
   return (
     <View style={styles.container}>
       <View style={styles.page}>
@@ -26,7 +32,8 @@ const DashboardHeader = () => {
             <View style={styles.spacer} />
             <View>
               <Text style={[Textstyles.text_xmedium, styles.whiteText]}>
-                {"Hi " + "firstName"}
+                {/* {"Hi " + "firstName"} */}
+                Hi {data?.name ? data?.name : "Ezekiel"}
               </Text>
               <Text style={[Textstyles.text_xxmedium, styles.whiteText]}>
                 {`How're you today?`}
@@ -44,7 +51,7 @@ const DashboardHeader = () => {
           </TouchableOpacity>
         </View>
 
-        <View style={styles.middleSpacer}/>
+        <View style={styles.middleSpacer} />
 
         <View style={styles.bottomRow}>
           <View>
@@ -55,7 +62,7 @@ const DashboardHeader = () => {
               <BackgroundIcon width={50} height={50} />
               <View style={styles.spacer} />
               <Text style={[Textstyles.text_medium, styles.whiteText]}>
-                0.00
+                {data?.wallet?.balance ? data?.wallet.balance : "0.00"}
               </Text>
             </View>
           </View>
@@ -83,8 +90,7 @@ const styles = StyleSheet.create({
     width: "100%",
     //height: "55%",
     //flex: 0.4,
-    flexDirection:"row"
-
+    flexDirection: "row",
   },
   page: {
     flex: 1,

@@ -35,6 +35,9 @@ const Home = () => {
           AsyncStorage.getItem("completedOnboarding"),
         ]);
 
+        console.log("VerificationToken", token);
+        console.log("onboardingStatus", onboardingStatus);
+
         setAuthState({
           tokenExist: !!token,
           isOnboardingComplete: onboardingStatus === "Done",
