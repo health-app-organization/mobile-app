@@ -5,8 +5,12 @@ import { Textstyles } from "../../constants/fontsize";
 import { QRCodeScreen } from "../../utilities/qr-code";
 import { BackgroundIcon, Notificationicon } from "../../assets/iconsvg/Svgicon";
 import { router } from "expo-router";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
 
 const DashboardHeader = () => {
+  const data = useSelector((state: RootState) => state.dashboard.data);
+  3;
   const qRcode = () => {
     router.push("/dashboard/user-qr-code");
   };
@@ -28,7 +32,8 @@ const DashboardHeader = () => {
             <View style={styles.spacer} />
             <View>
               <Text style={[Textstyles.text_xmedium, styles.whiteText]}>
-                {"Hi " + "firstName"}
+                {/* {"Hi " + "firstName"} */}
+                Hi {data?.name ? data?.name : "Ezekiel"}
               </Text>
               <Text style={[Textstyles.text_xxmedium, styles.whiteText]}>
                 {`How're you today?`}
@@ -57,7 +62,8 @@ const DashboardHeader = () => {
               <BackgroundIcon width={50} height={50} />
               <View style={styles.spacer} />
               <Text style={[Textstyles.text_medium, styles.whiteText]}>
-                0.00
+                {data?.wallet?.currency ? data?.wallet?.currency : "NGN"}{" "}
+                {data?.wallet?.balance ? data?.wallet?.balance : "0.00"}
               </Text>
             </View>
           </View>

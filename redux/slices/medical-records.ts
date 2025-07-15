@@ -6,43 +6,46 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { router } from "expo-router";
 import moment from "moment";
 import { getDashboard } from "./get-dashboard";
+import { MedicalRecordResponse } from "../../types/profile/medical-records";
 
-interface UpdateUserError {
+interface MedicalRecordsError {
   message: string;
 }
 
-interface UpdateUserState {
+interface MedicalRecordsState {
   loading: boolean;
 }
 
 const axios = AxiosJSON();
 
-export const updateUser = createAsyncThunk(
-  "user/updateUser",
+export const medicalRecords = createAsyncThunk(
+  "user/medicalRecords",
   async (
     {
-      firstName,
-      lastName,
-      dateOfBirth,
-      gender,
-      bloodGroup,
-      maritalStatus,
-      height,
-      weight,
-    }: {
-      firstName: string;
-      lastName: string;
-      dateOfBirth: string;
-      gender: string;
-      bloodGroup: string;
-      maritalStatus: string;
-      height: string;
-      weight: string;
+      allergies,
+      currMed,
+      pastMed,
+      chronicDisease,
+      injuries,
+      surgeries,
+      smokingHabits,
+      alcoholConsumption,
+    }: // activityLevel,
+    {
+      allergies: string;
+      currMed: string;
+      pastMed: string;
+      chronicDisease: string;
+      injuries: string;
+      surgeries: string;
+      smokingHabits: string;
+      alcoholConsumption: string;
+      // activityLevel: string;
     },
     { dispatch, rejectWithValue }
   ) => {
     try {
-      dispatch(getUpdateUserRequest());
+      dispatch(getMedicalRecordsRequest());
       const verificationToken: string | null = await AsyncStorage.getItem(
         "VerificationToken"
       );
@@ -55,29 +58,31 @@ export const updateUser = createAsyncThunk(
         "Authorization"
       ] = `Bearer ${verificationToken}`;
 
-      const dob = moment(dateOfBirth).format("YYYY-MM-DD");
-
-      const updateData = {
-        firstName,
-        lastName,
-        dateOfBirth: dob,
-        gender,
-        bloodGroup,
-        maritalStatus,
-        height,
-        weight,
+      const medicaldata = {
+        allergies,
+        currMed,
+        pastMed,
+        chronicDisease,
+        injuries,
+        surgeries,
+        smokingHabits,
+        alcoholConsumption,
+        // activityLevel,
       };
 
-      const { data } = await axios.post(`/seekers/update-profile1`, {
-        ...updateData,
-      });
+      const { data } = await axios.post<MedicalRecordResponse>(
+        `/seekers/update-profile2`,
+        {
+          ...medicaldata,
+        }
+      );
 
-      console.log(" upload user data", data);
+      console.log(" upload data", data);
       if (verificationToken) {
         await dispatch(getDashboard());
       }
 
-      dispatch(getUpdateUserComplete());
+      dispatch(getMedicalRecordsComplete());
 
       if (data?.status === false) {
         return rejectWithValue({ message: data?.message });
@@ -95,7 +100,7 @@ export const updateUser = createAsyncThunk(
       console.log("error", error);
 
       let errorMessage = "An error occurred";
-      const axiosError = error as AxiosError<UpdateUserError>; // Cast the error to an AxiosError.
+      const axiosError = error as AxiosError<MedicalRecordsError>; // Cast the error to an AxiosError.
       console.log("headers error", axiosError.response);
 
       if (axiosError.response && axiosError.response.data) {
@@ -104,7 +109,7 @@ export const updateUser = createAsyncThunk(
         errorMessage = axiosError.message;
       }
 
-      dispatch(getUpdateUserComplete());
+      dispatch(getMedicalRecordsComplete());
 
       Toast.show({
         type: "error",
@@ -116,26 +121,26 @@ export const updateUser = createAsyncThunk(
   }
 );
 
-const initialState: UpdateUserState = {
+const initialState: MedicalRecordsState = {
   loading: false,
 };
 
-const updateUserSlice = createSlice({
-  name: "updateUser",
+const medicalRecordsSlice = createSlice({
+  name: "MedicalRecords",
   initialState,
   reducers: {
-    getUpdateUserRequest: (state) => {
+    getMedicalRecordsRequest: (state) => {
       state.loading = true;
     },
 
-    getUpdateUserComplete: (state) => {
+    getMedicalRecordsComplete: (state) => {
       state.loading = false;
       console.log("update user complete" + state.loading);
     },
   },
 });
 
-export const { getUpdateUserRequest, getUpdateUserComplete } =
-  updateUserSlice.actions;
+export const { getMedicalRecordsRequest, getMedicalRecordsComplete } =
+  medicalRecordsSlice.actions;
 
-export default updateUserSlice;
+export default medicalRecordsSlice;

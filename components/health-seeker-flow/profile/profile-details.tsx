@@ -1,8 +1,5 @@
 import React, { useState } from "react";
-import { Alert, FlatList, ScrollView, Text, View } from "react-native";
-import axios from "axios";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useNavigation } from "@react-navigation/native";
+import { StyleSheet, ScrollView, Text, View } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native";
 import DateTimePicker, { DateType } from "react-native-ui-datepicker";
@@ -12,30 +9,41 @@ import { CustomButton } from "../../../utilities/buttons";
 import { Textstyles } from "../../../constants/fontsize";
 import CustomDropdownWithHeader from "../../../utilities/dropdowns";
 import { CustomInputWithHeader } from "../../../utilities/inputs";
+import { RootState, useAppDispatch } from "../../../redux/store";
+import { useSelector } from "react-redux";
+import { UserFormData } from "../../../types/general";
+import { updateUser } from "../../../redux/slices/update-user";
+import { ActivityIndicator } from "../../activity-indicator";
 
-const BASE_URL = process.env.EXPO_PUBLIC_API_URL;
+// Helper function to format date for API
+const formatDateForAPI = (date: Date | undefined): string => {
+  if (!date) return "";
+  return date.toISOString().split("T")[0]; // YYYY-MM-DD
+};
 
 const ProfileDetailsPage = () => {
-  const navigation = useNavigation<any>();
-  let user: any;
+  const user = useSelector((state: RootState) => state.dashboard.data);
+
+  const dispatch = useAppDispatch();
+
+  const loading = useSelector((state: RootState) => state.dashboard.loading);
 
   const [formData, setFormData] = useState({
-    firstName: user?.firstName || "",
-    lastName: user?.lastName || "",
-    email: user?.email || "",
-    phoneNumber: user?.phoneNumber || "",
-    birthDate: user?.birthDate || "",
-    gender: user?.gender || "",
-    bloodGroup: user?.bloodGroup || "",
-    height: user?.height || "",
-    weight: user?.weight || "",
-    activityLevel: user?.activityLevel || "",
-    foodPreferences: user?.foodPreferences || "",
-    occupation: user?.occupation || "",
+    firstName: user?.seeker?.firstName || "",
+    lastName: user?.seeker?.lastName || "",
+    dateOfBirth: "",
+    gender: "",
+    bloodGroup: "",
+    height: "",
+    weight: "",
+    // Add maritalStatus if needed
+    maritalStatus: "",
   });
 
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [selectedDate, setSelectedDate] = useState<DateType>();
+  const [openDateModal, setOpenDateModal] = useState(false);
 
   const calculateProfileCompletion = () => {
     const totalFields = Object.keys(formData).length;
@@ -115,28 +123,13 @@ const ProfileDetailsPage = () => {
       value: formData.lastName,
       onChange: (text: string) => handleInputChange("lastName", text),
     },
-    {
-      inputType: "input",
-      headerText: "Email address",
-      placeHolder: "Enter your email address",
-      leftIconName: "envelope",
-      value: formData.email,
-      onChange: (text: string) => handleInputChange("email", text),
-    },
-    {
-      inputType: "input",
-      headerText: "Phone number",
-      placeHolder: "Enter your phone number",
-      leftIconName: "phone",
-      value: formData.phoneNumber,
-      onChange: (text: string) => handleInputChange("phoneNumber", text),
-    },
+
     {
       inputType: "date-picker",
       headerText: "Date of birth",
       placeHolder: "Enter your date of birth",
       leftIconName: "calendar",
-      value: formData.birthDate,
+      value: formData.dateOfBirth,
       onChange: (text: string) => handleInputChange("birthDate", text),
     },
     {
@@ -240,116 +233,49 @@ const ProfileDetailsPage = () => {
     },
     {
       inputType: "dropdown",
-      headerText: "Activity Level",
-      placeHolder: "Select your activity level",
-      options: active,
-      value: formData.activityLevel,
+      headerText: "Marital Status",
+      placeHolder: "Select your marital status",
+      options: maritalStatusOptions,
+      value: formData.maritalStatus,
       onChange: (text: string) => handleInputChange("activityLevel", text),
-    },
-    {
-      inputType: "dropdown",
-      headerText: "Food preference",
-      placeHolder: "Select your food preference",
-      options: diet,
-      value: formData.foodPreferences,
-      onChange: (text: string) => handleInputChange("foodPreferences", text),
-    },
-    {
-      inputType: "dropdown",
-      headerText: "Occupation",
-      placeHolder: "Select your occupation",
-      options: occupationOptions,
-      value: formData.occupation,
-      onChange: (text: string) => handleInputChange("occupation", text),
     },
   ];
 
   const handleUpdateUser = async () => {
     setIsLoading(true);
-    const role = await AsyncStorage.getItem("role");
-    const token = await AsyncStorage.getItem("token");
+    setErrorMessage(null);
 
-    const filteredFormData = Object.fromEntries(
-      Object.entries(formData).filter(([key, value]) => value !== "")
-    );
+    // Prepare the data for the updateUser action
+    const updateData = {
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      dateOfBirth: formData.dateOfBirth,
+      gender: formData.gender,
+      bloodGroup: formData.bloodGroup,
+      maritalStatus: formData.maritalStatus, // Add if needed
+      height: formData.height,
+      weight: formData.weight,
+    };
 
-    try {
-      if (user) {
-        const response = await axios.put(
-          `${BASE_URL}/users/update/${user.id}`,
-          { ...filteredFormData, role },
-          {
-            headers: {
-              Accept: "application/json",
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        if (
-          response.status === 201 ||
-          response.status === 200 ||
-          response.status === 203
-        ) {
-          setErrorMessage("");
-          Alert.alert("Profile updated successfully");
-          navigation.navigate("profile");
-        }
-      }
-    } catch (error: any) {
-      if (error.response) {
-        console.error("Error response:", error.response.data);
+    // Dispatch the updateUser action
+    await dispatch(updateUser(updateData)).unwrap();
 
-        // Extract the error message or compose it
-        const message =
-          error.response.data.error?.message ||
-          JSON.stringify(error.response.data.error) ||
-          "An error occurred. Please try again.";
-
-        setErrorMessage(message);
-      } else if (error.request) {
-        console.error("Error request:", error.request);
-        setErrorMessage(
-          "No response from the server. Please check your network connection."
-        );
-      } else {
-        console.error("Error message:", error.message);
-        setErrorMessage("An unexpected error occurred. Please try again.");
-      }
-    } finally {
-      setIsLoading(false);
-    }
+    setIsLoading(false);
   };
 
   const [selected, setSelected] = useState<DateType>();
-  const [openDateModal, setOpenDateModal] = useState(false);
+
+  if (loading) {
+    return (
+      <View className="flex justify-center items-center h-screen">
+        <ActivityIndicator size={64} />
+      </View>
+    );
+  }
 
   return (
     <>
       <View className="flex-1">
-        {/* <FlatList
-        alwaysBounceVertical={false}
-        data={formList}
-        renderItem={({ item }) => {
-          
-        }}
-        keyExtractor={(item) => item.headerText}
-        ListFooterComponent={() => (
-          <>
-            {errorMessage && (
-              <Text className="text-red-500">{errorMessage}</Text>
-            )}
-            {profileCompletion < 100 && (
-              <Text className="text-red-500">
-                Complete all fields to save your profile
-              </Text>
-            )}
-            <View className="h-1" />
-            
-          </>
-        )}
-        ListFooterComponentStyle={{ padding: 10 }}
-      /> */}
         <View className="flex-1">
           <ScrollView>
             <View className="gap-y-4 pb-1 pt-6 px-6">
@@ -421,21 +347,21 @@ const ProfileDetailsPage = () => {
           />
         </View>
         {openDateModal && (
-          <View className="absolute flex-1 bg-[#00000050] h-screen w-full justify-center">
-            <View className="w-[80%] mx-auto bg-white rounded-md p-4">
+          <View style={styles.modalOverlay}>
+            <View style={styles.modalContainer}>
               <TouchableOpacity
                 onPress={() => setOpenDateModal(false)}
-                className="flex-row justify-end"
+                style={styles.closeButton}
               >
                 <FontAwesome name="times" size={20} color={primarycolor} />
               </TouchableOpacity>
-              <View className="h-10" />
+              <View style={styles.spacer} />
               <DateTimePicker
                 mode="single"
                 date={selected}
                 onChange={({ date }) => {
                   setSelected(date);
-                  formData.birthDate = formatDate(date);
+                  formData.dateOfBirth = formatDate(date);
                 }}
               />
             </View>
@@ -447,3 +373,28 @@ const ProfileDetailsPage = () => {
 };
 
 export default ProfileDetailsPage;
+const styles = StyleSheet.create({
+  modalOverlay: {
+    position: "absolute",
+    flex: 1,
+    backgroundColor: "rgba(0, 0, 0, 0.5)", // #00000050 equivalent
+    height: "100%",
+    width: "100%",
+    justifyContent: "center",
+  },
+  modalContainer: {
+    width: "80%",
+    marginLeft: "auto",
+    marginRight: "auto",
+    backgroundColor: "lightgrey",
+    borderRadius: 8,
+    padding: 16,
+  },
+  closeButton: {
+    flexDirection: "row",
+    justifyContent: "flex-end",
+  },
+  spacer: {
+    height: 40,
+  },
+});

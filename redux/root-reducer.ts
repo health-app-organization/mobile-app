@@ -5,6 +5,7 @@ import loginSlice from "./slices/login";
 import emailVerificationSlice from "./slices/verify-otp";
 import getDashBoardSlice from "./slices/get-dashboard";
 import updateUserSlice from "./slices/update-user";
+import medicalRecordsSlice from "./slices/medical-records";
 
 const rootReducer = combineReducers({
   signup: signUpSlice.reducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   verifyOtp: emailVerificationSlice.reducer,
   dashboard: getDashBoardSlice.reducer,
   updateSeeker: updateUserSlice.reducer,
+  medicalRecords: medicalRecordsSlice.reducer,
 });
 
 export default rootReducer;

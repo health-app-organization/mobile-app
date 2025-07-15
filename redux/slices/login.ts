@@ -8,6 +8,7 @@ import { LoginAiResponse } from "../../types/screens/login/login";
 import { ApiErrorResponse, handleMutationError } from "../../utils/ErrorHanler";
 import { Utils } from "../../utils/utils";
 import { router } from "expo-router";
+import { getDashboard } from "./get-dashboard";
 
 interface LoginState {
   loading: boolean;
@@ -49,6 +50,7 @@ export const loginUser = createAsyncThunk(
         });
 
         dispatch(getLoginFailed()); // Dispatch the getLoginComplete action to indicate that the login request has completed.
+        dispatch(getDashboard());
         return rejectWithValue({ message: data.message }); // Reject the promise with the error message.
       } else {
         await storeUserCredentials(data);

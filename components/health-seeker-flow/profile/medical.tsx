@@ -3,9 +3,26 @@ import { KeyboardAvoidingView, ScrollView, View } from "react-native";
 import { primarycolor, whitecolor } from "../../../constants/colors";
 import { CustomButton } from "../../../utilities/buttons";
 import CustomDropdownWithHeader from "../../../utilities/dropdowns";
+import { RootState, useAppDispatch } from "../../../redux/store";
+import { medicalRecords } from "../../../redux/slices/medical-records";
+import { useSelector } from "react-redux";
 
 const Medical = () => {
-  const [allergy, setAllergy] = useState("Lactose");
+  const dispatch = useAppDispatch();
+
+  const loading = useSelector(
+    (state: RootState) => state.medicalRecords.loading
+  );
+
+  const [allergy, setAllergy] = useState("");
+  const [medication, setMedication] = useState("");
+  const [pastMedication, setPastMedication] = useState("");
+  const [disease, setDisease] = useState("");
+  const [surgery, setSurgery] = useState("");
+  const [injury, setInjury] = useState("");
+  const [smokingHabit, setSmokingHabit] = useState("");
+  const [alcoholConsumption, setAlcoholConsumption] = useState("");
+
   const allergies = [
     { label: "Lactose", value: "Lactose" },
     { label: "Soy", value: "Soy" },
@@ -15,7 +32,6 @@ const Medical = () => {
     { label: "Fish", value: "Fish" },
   ];
 
-  const [medication, setMedication] = useState("21st Century fish oil");
   const medications = [
     { label: "21st Century fish oil", value: "21st Century fish oil" },
     { label: "Abidec", value: "Abidec" },
@@ -31,10 +47,8 @@ const Medical = () => {
     { label: "AFRICO 1000 CAPSULES", value: "AFRICO 1000 CAPSULES" },
   ];
 
-  const [pastMedication, setPastMedication] = useState("ACCULOL");
   const pastMedications = medications; // Use the same array for past medications
 
-  const [disease, setDisease] = useState("Diabetes");
   const diseases = [
     { label: "Diabetes", value: "Diabetes" },
     { label: "Hypertension", value: "Hypertension" },
@@ -44,7 +58,6 @@ const Medical = () => {
     { label: "Asthma", value: "Asthma" },
   ];
 
-  const [surgery, setSurgery] = useState("Heart");
   const surgeries = [
     { label: "Heart", value: "Heart" },
     { label: "Liver", value: "Liver" },
@@ -53,7 +66,6 @@ const Medical = () => {
     { label: "Brain", value: "Brain" },
   ];
 
-  const [injury, setInjury] = useState("Fracture");
   const injuries = [
     { label: "Fracture", value: "Fracture" },
     { label: "Sprain", value: "Sprain" },
@@ -63,7 +75,6 @@ const Medical = () => {
     { label: "Other", value: "Other" },
   ];
 
-  const [smokingHabit, setSmokingHabit] = useState("I don’t smoke at all");
   const smokingHabits = [
     { label: "1-2/day", value: "1-2/day" },
     { label: "I don’t smoke at all", value: "I don’t smoke at all" },
@@ -73,7 +84,6 @@ const Medical = () => {
     },
   ];
 
-  const [alcoholConsumption, setAlcoholConsumption] = useState("Non-drinker");
   const alcoholConsumptionList = [
     { label: "Non-drinker", value: "Non-drinker" },
     { label: "Rare", value: "Rare" },
@@ -81,6 +91,22 @@ const Medical = () => {
     { label: "Regularly", value: "Regularly" },
     { label: "Heavy", value: "Heavy" },
   ];
+
+  const updateMedical = async () => {
+    // Prepare the data object
+    const medicalData = {
+      allergies: allergy,
+      currMed: medication,
+      pastMed: pastMedication,
+      chronicDisease: disease,
+      injuries: injury,
+      surgeries: surgery,
+      smokingHabits: smokingHabit,
+      alcoholConsumption: alcoholConsumption,
+    };
+    // Dispatch the medicalRecords action
+    await dispatch(medicalRecords(medicalData)).unwrap();
+  };
 
   return (
     <View className="flex-1">
@@ -91,56 +117,56 @@ const Medical = () => {
             placeholder="Any Allergy"
             options={allergies}
             value={allergy}
-            onChange={(val) => setAllergy(val)}
+            onChange={setAllergy}
           />
           <CustomDropdownWithHeader
             headerText="Current Medication"
             placeholder="Any Current Medication"
             options={medications}
             value={medication}
-            onChange={(val) => setMedication(val)}
+            onChange={setMedication}
           />
           <CustomDropdownWithHeader
             headerText="Past Medication"
             placeholder="Any Past Medication"
             options={pastMedications}
             value={pastMedication}
-            onChange={(val) => setPastMedication(val)}
+            onChange={setPastMedication}
           />
           <CustomDropdownWithHeader
             headerText="Chronic Disease"
             placeholder="Any Chronic Disease"
             options={diseases}
             value={disease}
-            onChange={(val) => setDisease(val)}
+            onChange={setDisease}
           />
           <CustomDropdownWithHeader
             headerText="Injuries"
             placeholder="Any Injuries"
             options={injuries}
             value={injury}
-            onChange={(val) => setInjury(val)}
+            onChange={setInjury}
           />
           <CustomDropdownWithHeader
             headerText="Surgery"
             placeholder="Any Past Surgery"
             options={surgeries}
             value={surgery}
-            onChange={(val) => setSurgery(val)}
+            onChange={setSurgery}
           />
           <CustomDropdownWithHeader
             headerText="Smoking Habit"
             placeholder="Any Smoking Habit"
             options={smokingHabits}
             value={smokingHabit}
-            onChange={(val) => setSmokingHabit(val)}
+            onChange={setSmokingHabit}
           />
           <CustomDropdownWithHeader
             headerText="Alcohol Consumption"
             placeholder="How frequently do you drink alcohol"
             options={alcoholConsumptionList}
             value={alcoholConsumption}
-            onChange={(val) => setAlcoholConsumption(val)}
+            onChange={setAlcoholConsumption}
           />
         </View>
       </ScrollView>
@@ -149,6 +175,7 @@ const Medical = () => {
           Textname={"Save"}
           backgroundColor={primarycolor}
           TextColor={whitecolor}
+          onPress={updateMedical}
         />
       </View>
     </View>
