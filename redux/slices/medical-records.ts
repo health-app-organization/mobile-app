@@ -83,6 +83,7 @@ export const medicalRecords = createAsyncThunk(
       }
 
       dispatch(getMedicalRecordsComplete());
+      dispatch(getDashboard());
 
       if (data?.status === false) {
         return rejectWithValue({ message: data?.message });

@@ -1,20 +1,5 @@
-// import { StyleSheet, Text, View } from "react-native";
-// import React from "react";
-
-// const Wallet = () => {
-//   return (
-//     <View>
-//       <Text>Wallet</Text>
-//     </View>
-//   );
-// };
-
-// export default Wallet;
-
-// const styles = StyleSheet.create({});
-
-import React, { useState } from "react";
-import { View, Text, TouchableOpacity, Image } from "react-native";
+import React, { useEffect, useState } from "react";
+import { View, Text, TouchableOpacity, Image, FlatList } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { FontAwesome } from "@expo/vector-icons";
 import { primarycolor, whitecolor } from "../../../constants/colors";
@@ -22,14 +7,26 @@ import { Textstyles } from "../../../constants/fontsize";
 import { CustomButton } from "../../../utilities/buttons";
 import { CustomInputWithHeader } from "../../../utilities/inputs";
 import { CustomRadioSingleOption } from "../../../utilities/selects";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../redux/store";
+import { getTransactions } from "../../../redux/slices/get-transaction";
 
 const WalletPage = () => {
-  let user: any;
+  const user = useSelector((state: RootState) => state.dashboard.data);
+
+  const data = useSelector((state: RootState) => state.transactions.data);
   const [openModal, setOpenModal] = useState(false);
   const [amount, setAmount] = useState("");
   const [paymentMethod, setPaymentMethod] = useState<
     "" | "PayStack" | "Interswitch"
   >("");
+
+  useEffect(() => {
+    getTransactions();
+  }, [data]);
+
+  console.log("transaction data", data);
+
   return (
     <>
       {/* a modal */}
@@ -52,7 +49,7 @@ const WalletPage = () => {
               </TouchableOpacity>
             </View>
             <View className="mx-auto items-center">
-              <Text className="text-[#00000050] font-semibold text-xs leading-6">{`${user?.firstName} ${user?.firstName}`}</Text>
+              <Text className="text-[#00000050] font-semibold text-xs leading-6">{`${user?.seeker?.firstName} ${user?.seeker?.lastName}`}</Text>
               <Text className="font-bold text-sm leading-[30px]">N0.00</Text>
             </View>
             <CustomInputWithHeader
@@ -90,20 +87,43 @@ const WalletPage = () => {
             onPress={() => setOpenModal(true)}
           />
         </View>
-        <Text className=" text-[24px] ml-4 mt-9 mb-24 text-black font-bold">
-          Transaction
-        </Text>
-        <View className=" w-full h-[137px] flex justify-center items-center ">
-          <View className=" w-[265px] h-[137px] flex justify-center items-center ">
-            <Image
-              source={require("../../../assets/images/wallet3.png")}
-              className="w-full"
-              resizeMode="contain"
-            />
-            <Text className=" text-[16px] font-[500] leading-6">
-              No transaction is available
-            </Text>
-          </View>
+
+        <View
+          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+        >
+          <FlatList
+            data={data}
+            renderItem={({ item }) => (
+              <View className="flex flex-col items-center justify-center w-full h-full p-4 rounded-2xl bg-white">
+                {/* <Text> {item.amount}</Text> */}
+              </View>
+            )}
+            ListHeaderComponent={() => (
+              <Text
+                style={{
+                  ...Textstyles.text_cfmedium,
+                  color: "black",
+                  paddingVertical: 10,
+                  fontSize: 18,
+                  textAlign: "center",
+                }}
+              >
+                Transaction
+              </Text>
+            )}
+            ListEmptyComponent={() => (
+              <View className=" w-[265px] h-[137px] flex justify-center items-center ">
+                <Image
+                  source={require("../../../assets/images/wallet3.png")}
+                  className="w-full"
+                  resizeMode="contain"
+                />
+                <Text className=" text-[16px] font-[500] leading-6">
+                  No transaction is available
+                </Text>
+              </View>
+            )}
+          />
         </View>
       </View>
     </>

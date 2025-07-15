@@ -15,12 +15,6 @@ import { UserFormData } from "../../../types/general";
 import { updateUser } from "../../../redux/slices/update-user";
 import { ActivityIndicator } from "../../activity-indicator";
 
-// Helper function to format date for API
-const formatDateForAPI = (date: Date | undefined): string => {
-  if (!date) return "";
-  return date.toISOString().split("T")[0]; // YYYY-MM-DD
-};
-
 const ProfileDetailsPage = () => {
   const user = useSelector((state: RootState) => state.dashboard.data);
 
@@ -31,13 +25,13 @@ const ProfileDetailsPage = () => {
   const [formData, setFormData] = useState({
     firstName: user?.seeker?.firstName || "",
     lastName: user?.seeker?.lastName || "",
-    dateOfBirth: "",
-    gender: "",
-    bloodGroup: "",
-    height: "",
-    weight: "",
+    dateOfBirth: user?.seeker?.dateOfBirth || "",
+    gender: user?.seeker?.gender || "",
+    bloodGroup: user?.seeker?.bloodGroup || "",
+    height: user?.seeker?.height || "",
+    weight: user?.seeker?.weight || "",
     // Add maritalStatus if needed
-    maritalStatus: "",
+    maritalStatus: user?.seeker?.maritalStatus || "",
   });
 
   const [isLoading, setIsLoading] = useState(false);
@@ -237,7 +231,8 @@ const ProfileDetailsPage = () => {
       placeHolder: "Select your marital status",
       options: maritalStatusOptions,
       value: formData.maritalStatus,
-      onChange: (text: string) => handleInputChange("activityLevel", text),
+      onChange: (text: string) =>
+        handleInputChange("maritalStatus" as keyof UserFormData, text),
     },
   ];
 
@@ -361,7 +356,10 @@ const ProfileDetailsPage = () => {
                 date={selected}
                 onChange={({ date }) => {
                   setSelected(date);
-                  formData.dateOfBirth = formatDate(date);
+                  handleInputChange(
+                    "dateOfBirth" as keyof UserFormData,
+                    formatDate(date)
+                  );
                 }}
               />
             </View>

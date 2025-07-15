@@ -48,7 +48,7 @@ const SettingsPage = () => {
             />
           </View>
           <Divider className="" />
-          <View className="">
+          <View style={{ marginTop: 20 }}>
             <Text className="font-semibold" style={[Textstyles.text_cmedium]}>
               Change Password
             </Text>

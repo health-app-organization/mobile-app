@@ -12,16 +12,15 @@ import { primarycolor } from "../constants/colors";
 import { customstyle } from "../constants/customstyle";
 import { Textstyles } from "../constants/fontsize";
 
-interface CustomTextNumberLabel{
-  label?:string // Add label prop
-  autoCapitalize?:any
-  placeholder?:any
-  placeholderTextColor?:any
-  onChange:(value:any)=>void
-  secureTextEntry?:boolean
-  disabled?:any
-  value?:any
-
+interface CustomTextNumberLabel {
+  label?: string; // Add label prop
+  autoCapitalize?: any;
+  placeholder?: any;
+  placeholderTextColor?: any;
+  onChange: (value: any) => void;
+  secureTextEntry?: boolean;
+  disabled?: any;
+  value?: any;
 }
 
 export const CustomTextInput: React.FC<CustomInputProps & TextInputProps> = ({
@@ -81,8 +80,8 @@ export const CustomTextInput: React.FC<CustomInputProps & TextInputProps> = ({
           style={[
             customstyle.textinputstyle,
             {
-              paddingLeft: leftIcon ? (paddingLeft ?? 45) : 15,
-              borderColor: (borderColor ?? isFocused) ? "#0099b8" : "#ccc", // Change border color on focus
+              paddingLeft: leftIcon ? paddingLeft ?? 45 : 15,
+              borderColor: borderColor ?? isFocused ? "#0099b8" : "#ccc", // Change border color on focus
               borderWidth: borderWidth ?? 1, // Add border width
               borderRadius: borderRadius ?? 10,
             },
@@ -151,7 +150,7 @@ export const CustomTextNumber: React.FC<CustomInputProps> = ({
           onChangeText={(text) => {
             // Ensure input only contains numeric values and is max 10 digits
             const formattedText = text.replace(/[^0-9]/g, "").slice(0, 10);
-            setInputValue(formattedText||'');
+            setInputValue(formattedText || "");
             onChange(formattedText);
           }}
           secureTextEntry={secureTextEntry}
@@ -297,7 +296,10 @@ export const CustomInputPassword: React.FC<CustomInputProps> = ({
   };
 
   return (
-    <View className={`w-full flex flex-col ${className}`}>
+    <View
+      className={`w-full flex flex-col ${className}`}
+      style={{ paddingTop: 20 }}
+    >
       {/* Input Header */}
       {headerText && (
         <Text className="mb-2" style={[Textstyles.text_cmedium]}>
@@ -548,18 +550,18 @@ interface CustomInputProps {
   disabled?: boolean;
   value?: string;
   leftIcon?: React.ReactNode;
-  headerText?:string
-  label?:string
-  className?:any
-  borderColor?:any
-  style?:any
-  placeholderTextColor?:any
-  borderWidth?:any
-  borderRadius?:any
-  errorMessage?:string
-  required?:any
-  paddingLeft?:any
-  rightIcon?:any
+  headerText?: string;
+  label?: string;
+  className?: any;
+  borderColor?: any;
+  style?: any;
+  placeholderTextColor?: any;
+  borderWidth?: any;
+  borderRadius?: any;
+  errorMessage?: string;
+  required?: any;
+  paddingLeft?: any;
+  rightIcon?: any;
 }
 
 export const CustomInputSearch: React.FC<CustomInputProps> = ({

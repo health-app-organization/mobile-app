@@ -21,6 +21,7 @@ export interface Provider {
   lastName: string;
   image: string | null;
   gender: "male" | "female" | string;
+
   appointments: any[]; // Replace `any` with specific Appointment type if available
 }
 
@@ -29,7 +30,12 @@ export interface Seeker {
   firstName: string;
   lastName: string;
   image: string | null;
+  dateOfBirth: string;
+  weight: string | null;
+  height: string | null;
   gender: "male" | "female" | string;
+  bloodGroup: string | null;
+  maritalStatus: string | null;
   appointments: any[]; // Replace `any` with specific Appointment type if available
 }
 
