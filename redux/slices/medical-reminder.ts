@@ -31,7 +31,7 @@ export const medicalReminder = createAsyncThunk(
       dosage: string;
       startDate: string;
       recurrence: string;
-      times: string;
+      times: string[];
     },
     { dispatch, rejectWithValue }
   ) => {
@@ -69,27 +69,30 @@ export const medicalReminder = createAsyncThunk(
         await dispatch(getDashboard());
       }
 
-      dispatch(getMedicalReminderComplete());
-      dispatch(getDashboard());
-
       if (data?.status === false) {
         return rejectWithValue({ message: data?.message });
       } else {
-        // router.push("/(user)/(profile)");
+        Toast.show({
+          type: "success",
+          text1: data?.message,
+          visibilityTime: 5000,
+        });
+        dispatch(getMedicalReminderComplete());
+        dispatch(getDashboard());
         router.replace("/profile");
+        return data; // ✅ added this return
       }
-
-      Toast.show({
-        type: "success",
-        text1: data?.message,
-        visibilityTime: 5000,
-      });
     } catch (error) {
       console.log("error", error);
 
       let errorMessage = "An error occurred";
       const axiosError = error as AxiosError<MedicalReminderError>; // Cast the error to an AxiosError.
       console.log("headers error", axiosError.response);
+      console.log("headers error", axiosError.code);
+      console.log("headers error", axiosError);
+      console.log("headers error", axiosError.status);
+      console.log("headers error", axiosError.message);
+      console.log("headers error", axiosError.config);
 
       if (axiosError.response && axiosError.response.data) {
         errorMessage = axiosError.response.data.message; // Set the error message to the response data message.
