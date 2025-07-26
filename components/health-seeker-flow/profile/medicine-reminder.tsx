@@ -69,15 +69,36 @@
 //   );
 // };
 
-import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import {
+  FlatList,
+  Image,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MedicineReminderAdd from "./medicine-reminder-add";
 import { CustomButton } from "../../../utilities/buttons";
 import { Textstyles } from "../../../constants/fontsize";
+import { RootState, useAppDispatch } from "../../../redux/store";
+import { useSelector } from "react-redux";
+import { getmedicalReminder } from "../../../redux/slices/medical-reminder";
 
 const MedicineReminderPage: React.FC<{}> = () => {
   const [showAddReminder, setShowAddReminder] = useState<boolean>(false);
+
+  const dispatch = useAppDispatch();
+
+  const data = useSelector((state: RootState) => state.medicalReminder.data);
+
+  console.log("medical reminder data", data);
+
+  useEffect(() => {
+    getmedicalReminder();
+    // console.log("medical reminder data", data);
+  }, [dispatch]);
 
   return (
     <>

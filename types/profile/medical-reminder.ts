@@ -6,15 +6,21 @@ export interface MedicalReminderApiesponse {
   data: MedicalReminderData;
 }
 
+export interface getAllMedicalReminderApiResponse {
+  status: boolean;
+  message: string;
+  data: MedicalReminderData[];
+}
+
 export interface MedicalReminderData {
   id: string;
-  status: "ongoing" | "completed" | "cancelled" | string;
+  startDate: string; // ISO date string
+  endDate: string | null; // nullable ISO date
+  times: string[]; // array of time strings, e.g., "08:56"
+  recurrence: "oneoff" | "daily" | "weekly" | string;
   medicine: string;
   dosage: string;
-  startDate: string; // ISO Date string
-  endDate: string | null;
-  recurrence: "daily" | "weekly" | "monthly" | "oneoff" | string;
-  times: string[]; // e.g., ["08:00", "14:00"]
+  status: "ongoing" | "completed" | "paused" | string;
   seekerId: string;
-  createdAt: string;
+  createdAt: string; // ISO datetime
 }

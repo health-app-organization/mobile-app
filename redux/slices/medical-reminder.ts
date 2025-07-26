@@ -5,7 +5,11 @@ import Toast from "react-native-toast-message";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { router } from "expo-router";
 import { getDashboard } from "./get-dashboard";
-import { MedicalReminderApiesponse } from "../../types/profile/medical-reminder";
+import {
+  getAllMedicalReminderApiResponse,
+  MedicalReminderApiesponse,
+  MedicalReminderData,
+} from "../../types/profile/medical-reminder";
 
 interface MedicalReminderError {
   message: string;
@@ -13,6 +17,7 @@ interface MedicalReminderError {
 
 interface MedicalReminderState {
   loading: boolean;
+  data: MedicalReminderData | null;
 }
 
 const axios = AxiosJSON();
@@ -77,7 +82,7 @@ export const medicalReminder = createAsyncThunk(
           text1: data?.message,
           visibilityTime: 5000,
         });
-        dispatch(getMedicalReminderComplete());
+        dispatch(getMedicalReminderComplete(data));
         dispatch(getDashboard());
         router.replace("/profile");
         return data; // ✅ added this return
@@ -100,8 +105,6 @@ export const medicalReminder = createAsyncThunk(
         errorMessage = axiosError.message;
       }
 
-      dispatch(getMedicalReminderComplete());
-
       Toast.show({
         type: "error",
         text1: errorMessage,
@@ -122,6 +125,7 @@ export const getmedicalReminder = createAsyncThunk(
       );
 
       if (!verificationToken) {
+        router.push("/(auth)");
         throw new Error("No verification token found");
       }
 
@@ -129,7 +133,7 @@ export const getmedicalReminder = createAsyncThunk(
         "Authorization"
       ] = `Bearer ${verificationToken}`;
 
-      const { data } = await axios.post<MedicalReminderApiesponse>(
+      const { data } = await axios.post<getAllMedicalReminderApiResponse>(
         `/reminders`
       );
 
@@ -138,7 +142,7 @@ export const getmedicalReminder = createAsyncThunk(
         await dispatch(getDashboard());
       }
 
-      dispatch(getMedicalReminderComplete());
+      dispatch(getMedicalReminderComplete(data.data));
       dispatch(getDashboard());
 
       if (data?.status === false) {
@@ -166,8 +170,6 @@ export const getmedicalReminder = createAsyncThunk(
         errorMessage = axiosError.message;
       }
 
-      dispatch(getMedicalReminderComplete());
-
       Toast.show({
         type: "error",
         text1: errorMessage,
@@ -180,6 +182,7 @@ export const getmedicalReminder = createAsyncThunk(
 
 const initialState: MedicalReminderState = {
   loading: false,
+  data: null,
 };
 
 const medicalReminderSlice = createSlice({
@@ -190,9 +193,11 @@ const medicalReminderSlice = createSlice({
       state.loading = true;
     },
 
-    getMedicalReminderComplete: (state) => {
+    getMedicalReminderComplete: (state, action) => {
       state.loading = false;
       console.log("medical reminder complete" + state.loading);
+      state.data = action.payload;
+      console.log("medical reminder data", state.data);
     },
   },
 });

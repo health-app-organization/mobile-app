@@ -15,9 +15,10 @@ import { primarycolor } from "../../../constants/colors";
 import { CustomButton } from "../../../utilities/buttons";
 import data from "./profile-data";
 import { useSelector } from "react-redux";
-import { RootState } from "../../../redux/store";
+import { RootState, useAppDispatch } from "../../../redux/store";
 import * as ImagePicker from "expo-image-picker";
 import Logout from "../../../utils/Logout";
+import { uploadProfilePic } from "../../../redux/slices/update-user";
 
 interface MenuItem {
   id: number;
@@ -29,9 +30,13 @@ interface MenuItem {
 const NoImage = require("../../../assets/images/noProfile.png");
 
 const Account = () => {
+  const dispatch = useAppDispatch();
+
   const user = useSelector((state: RootState) => state.dashboard.data);
   const [modalVisible, setModalVisible] = useState<boolean>(false);
-  const [profileImage, setProfileImage] = useState("");
+  // const [profileImage, setProfileImage] = useState("");
+  const [profileImage, setProfileImage] = useState(user?.seeker?.image || "");
+
   const slideAnim = useRef(new Animated.Value(300)).current;
 
   // Set initial profile image based on role
@@ -61,15 +66,27 @@ const Account = () => {
       return;
     }
 
-    const pickerResult = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+    let pickerResult = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ["images"],
       allowsEditing: true,
-      aspect: [4, 3],
+      aspect: [4, 4],
       quality: 1,
     });
 
     if (!pickerResult.canceled && pickerResult.assets?.length > 0) {
       setProfileImage(pickerResult.assets[0].uri);
+
+      if (pickerResult.assets[0].fileName && pickerResult.assets[0].mimeType) {
+        await dispatch(
+          uploadProfilePic({
+            image: {
+              fileName: pickerResult.assets[0].fileName,
+              uri: pickerResult.assets[0].uri,
+              mimeType: pickerResult.assets[0].mimeType,
+            },
+          })
+        );
+      }
     }
   };
 

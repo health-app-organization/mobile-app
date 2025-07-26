@@ -39,6 +39,8 @@ export const loginUser = createAsyncThunk(
         })
       ).data as LoginAiResponse; // Send a POST request to the server to log in
 
+      dispatch(getDashboard());
+
       console.log("login response role", data.data.user.role);
 
       console.log("Health Care login response ", data);
@@ -50,7 +52,6 @@ export const loginUser = createAsyncThunk(
         });
 
         dispatch(getLoginFailed()); // Dispatch the getLoginComplete action to indicate that the login request has completed.
-        dispatch(getDashboard());
         return rejectWithValue({ message: data.message }); // Reject the promise with the error message.
       } else {
         await storeUserCredentials(data);
