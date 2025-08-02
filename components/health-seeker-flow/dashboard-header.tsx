@@ -6,10 +6,32 @@ import { QRCodeScreen } from "../../utilities/qr-code";
 import { BackgroundIcon, Notificationicon } from "../../assets/iconsvg/Svgicon";
 import { router } from "expo-router";
 import { useSelector } from "react-redux";
-import { RootState } from "../../redux/store";
+import { RootState, useAppDispatch } from "../../redux/store";
+import { getDashboard } from "../../redux/slices/get-dashboard";
+import { useState, useLayoutEffect } from "react";
 
 const DashboardHeader = () => {
   const data = useSelector((state: RootState) => state.dashboard.data);
+
+  // State to manage refreshing status
+  const [refreshing, setRefreshing] = useState(false);
+
+  const dispatch = useAppDispatch();
+
+  useLayoutEffect(() => {
+    dispatch(getDashboard());
+  }, [dispatch]);
+
+  const onRefresh = () => {
+    setRefreshing(true);
+
+    dispatch(getDashboard()).finally(() => {
+      setRefreshing(false);
+    });
+  };
+
+  console.log("user data", data?.seeker?.firstName);
+
   3;
   const qRcode = () => {
     router.push("/dashboard/user-qr-code");
@@ -33,7 +55,10 @@ const DashboardHeader = () => {
             <View>
               <Text style={[Textstyles.text_xmedium, styles.whiteText]}>
                 {/* {"Hi " + "firstName"} */}
-                Hi {data?.name ? data?.name : "Ezekiel"}
+                Hi{" "}
+                {data?.seeker?.firstName
+                  ? data?.seeker?.firstName
+                  : "No UserName"}
               </Text>
               <Text style={[Textstyles.text_xxmedium, styles.whiteText]}>
                 {`How're you today?`}

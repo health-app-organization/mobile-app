@@ -5,11 +5,7 @@ import {
   GetDashboardApiResponse,
   GetDashboardData,
 } from "../../types/user/get-dashboard";
-// import {
-//   GetDashboardApiResponse,
-//   GetDashboardData,
-// } from "types/user/get-dashboard";
-// import Logout from "utilities/Logout";
+import Logout from "../../utils/Logout";
 
 interface GetDashBoardError {
   message: string;

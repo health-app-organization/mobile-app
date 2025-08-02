@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import {
   View,
   Text,
@@ -19,6 +19,7 @@ import { RootState, useAppDispatch } from "../../../redux/store";
 import * as ImagePicker from "expo-image-picker";
 import Logout from "../../../utils/Logout";
 import { uploadProfilePic } from "../../../redux/slices/update-user";
+import { getDashboard } from "../../../redux/slices/get-dashboard";
 
 interface MenuItem {
   id: number;
@@ -36,6 +37,21 @@ const Account = () => {
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   // const [profileImage, setProfileImage] = useState("");
   const [profileImage, setProfileImage] = useState(user?.seeker?.image || "");
+
+  // State to manage refreshing status
+  const [refreshing, setRefreshing] = useState(false);
+
+  useLayoutEffect(() => {
+    dispatch(getDashboard());
+  }, [dispatch]);
+
+  const onRefresh = () => {
+    setRefreshing(true);
+
+    dispatch(getDashboard()).finally(() => {
+      setRefreshing(false);
+    });
+  };
 
   const slideAnim = useRef(new Animated.Value(300)).current;
 
